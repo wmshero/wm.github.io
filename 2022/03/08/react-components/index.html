@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="-React," />
 
 
 
@@ -83,12 +83,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="wm&#39;s blog">
-<meta property="og:url" content="http://example.com/archives/index.html">
+<meta name="description" content="在编写 React 组件时，有一些最佳实践需要遵循：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React 组件的编写">
+<meta property="og:url" content="http://example.com/2022/03/08/react-components/index.html">
 <meta property="og:site_name" content="wm&#39;s blog">
+<meta property="og:description" content="在编写 React 组件时，有一些最佳实践需要遵循：">
 <meta property="og:locale">
+<meta property="article:published_time" content="2022-03-08T07:25:49.000Z">
+<meta property="article:modified_time" content="2023-12-15T07:32:10.659Z">
 <meta property="article:author" content="wm">
+<meta property="article:tag" content="-React">
 <meta name="twitter:card" content="summary">
 
 
@@ -119,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/archives/"/>
+  <link rel="canonical" href="http://example.com/2022/03/08/react-components/"/>
 
 
 
 
 
-  <title>归档 | wm's blog</title>
+  <title>React 组件的编写 | wm's blog</title>
   
 
 
@@ -144,7 +149,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -278,306 +283,201 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      <span class="archive-page-counter">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/08/react-components/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wm's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">React 组件的编写</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-08T15:25:49+08:00">
+                2022-03-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 7 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2023">2023</h1>
-          </div>
-        
-        
 
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2023/12/15/auto-testing/" itemprop="url">
-              
-                <span itemprop="name">自动化测试</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2023-12-15T15:32:04+08:00"
-              content="2023-12-15" >
-          12-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2023/12/15/compatibility/" itemprop="url">
-              
-                <span itemprop="name">兼容性</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2023-12-15T14:31:46+08:00"
-              content="2023-12-15" >
-          12-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2023/01/15/garbage-recycling-mechanism/" itemprop="url">
-              
-                <span itemprop="name">JS 垃圾回收机制</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2023-01-15T14:52:19+08:00"
-              content="2023-01-15" >
-          01-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2022">2022</h1>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2022/12/14/img-lazyload/" itemprop="url">
-              
-                <span itemprop="name">实现图片的懒加载</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2022-12-14T16:00:19+08:00"
-              content="2022-12-14" >
-          12-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2022/10/01/countdown/" itemprop="url">
-              
-                <span itemprop="name">倒计时</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2022-10-01T15:15:59+08:00"
-              content="2022-10-01" >
-          10-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2022/03/08/react-components/" itemprop="url">
-              
-                <span itemprop="name">React 组件的编写</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2022-03-08T15:25:49+08:00"
-              content="2022-03-08" >
-          03-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
+            
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2021">2021</h1>
-          </div>
-        
-        
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2021/10/14/design-patterns/" itemprop="url">
-              
-                <span itemprop="name">设计模式</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2021-10-14T18:00:01+08:00"
-              content="2021-10-14" >
-          10-14
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        <p>在编写 React 组件时，有一些最佳实践需要遵循：</p>
+<span id="more"></span>
+
+<h1 id="单一职责"><a href="#单一职责" class="headerlink" title="单一职责"></a>单一职责</h1><p>就像函数一样，组件也应当遵循单一职责的原则，即每个组件只能负责一个功能。请阅读<a target="_blank" rel="noopener" href="https://zh-hans.reactjs.org/docs/thinking-in-react.html#step-1-break-the-ui-into-a-component-hierarchy">官方示例中的第一步</a>。</p>
+<p>将一个功能复杂的大组件拆分为多个职责单一的小组件可以获得以下好处：</p>
+<ol>
+<li>可读性和可维护性的提升：小组件代码更短，且服务于同一目的；读者可以按层级理解代码。</li>
+<li>可测试性的提升：小组件更容易做单元测试。</li>
+<li>可复用性的提升：小组件可以在简单的调整和提取后被复用于其他场景。</li>
+<li>性能的提升：state 的变化不再总是触发整个大组件的重渲染。</li>
+</ol>
+<h1 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h1><p>拆分组件时在文件结构上的最佳实践是，假设原来有一个大组件是 Complex.tsx，拆分后它应变成一个文件夹：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- Complex</span><br><span class="line">  - index.tsx // 简化后的大组件</span><br><span class="line">  - SubA.tsx // 拆分出来的小组件</span><br><span class="line">  - SubB.tsx // 拆分出来的小组件</span><br></pre></td></tr></table></figure>
+
+<h1 id="State-最小集"><a href="#State-最小集" class="headerlink" title="State 最小集"></a>State 最小集</h1><p>渲染组件所需要的数据有以下来源：外部传入的 prop、组件内部的 state、全局 state（比如 redux store）、组件 scope 外的常量，以及由前面这些基础数据计算得到的间接数据（即 Vue 中的 computed）。</p>
+<p>新人易犯的错误是将间接数据作为 state 来维护，然后用 <code>useEffect</code> 去监听其他 state&#x2F;prop 并重新计算该数据。</p>
+<p>组件内部 state 应是一个最小集，不包含任何间接数据或常量。请阅读<a target="_blank" rel="noopener" href="https://zh-hans.react.dev/learn/thinking-in-react#step-3-identify-the-minimal-but-complete-representation-of-ui-state">官方示例中的第三步</a>。</p>
+<h1 id="Prop-的设计"><a href="#Prop-的设计" class="headerlink" title="Prop 的设计"></a>Prop 的设计</h1><p>Prop 的设计应尽量从组件本身的需求出发，而不是套用父组件已有的数据和方法。举例来说：</p>
+<ol>
+<li>如果子组件需要的数据 c 是由父组件中的 a 和 b 计算而来的，那么应该为 c 设计一个 prop，在父组件中用 a 和 b 计算出 c 之后传给子组件，而不是为 a 和 b 设计两个 prop，在子组件内部再计算 c。这一条原则也可以理解为 prop 最小集。</li>
+<li>如果子组件需要反向传递数据去设置父组件的 state（假设要传递的数据是 date），不要设计一个 setDate prop 然后把父组件的 setDate 直接传给子组件，而是设计一个 onDateChange prop，允许父组件设置一个 callback 去监听子组件的 date 变化。子组件不关心父组件是要 setDate 还是做什么，子组件只负责“广播”自己的数据变化“事件”。</li>
+</ol>
+<h1 id="组件内的代码组织"><a href="#组件内的代码组织" class="headerlink" title="组件内的代码组织"></a>组件内的代码组织</h1><p>目前我们统一用 React hooks 编写组件，hooks 的一大优势就是允许我们将组件内的代码按业务逻辑而非性质分组：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">Bad</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="comment">// states</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> [state1, setState1] = <span class="title function_">useState</span>(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">const</span> [state2, setState2] = <span class="title function_">useState</span>(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// computed</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> computed1 = state1 + <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">const</span> computed2 = !state2;</span><br><span class="line">  <span class="keyword">const</span> computed3 = <span class="string">`<span class="subst">$&#123;computed1&#125;</span> <span class="subst">$&#123;computed2&#125;</span>`</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// side effects</span></span><br><span class="line"></span><br><span class="line">  <span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">sideEffect1</span>();</span><br><span class="line">    <span class="title function_">sideEffect2</span>();</span><br><span class="line">  &#125;, []);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">Good</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="comment">// logic group 1</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> [state1, setState1] = <span class="title function_">useState</span>(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">const</span> computed1 = state1 + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">sideEffect1</span>();</span><br><span class="line">  &#125;, []);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// logic group 2</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> [state2, setState2] = <span class="title function_">useState</span>(<span class="literal">true</span>);</span><br><span class="line">  <span class="keyword">const</span> computed2 = !state2;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">sideEffect2</span>();</span><br><span class="line">  &#125;, []);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// logic group 3</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> computed3 = <span class="string">`<span class="subst">$&#123;computed1&#125;</span> <span class="subst">$&#123;computed2&#125;</span>`</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>如果组件中有很多个逻辑分组，可能就是该组件需要进一步拆分的信号。</p>
+<h1 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h1><p>当一个组件树中有很多不同层级的组件需要访问一批同样的数据时，完全用 prop 传递会导致中间层的组件为了往下传递而多出很多它自己并不关心的 prop，此时你通常需要 context 解决方案，请阅读<a target="_blank" rel="noopener" href="https://zh-hans.legacy.reactjs.org/docs/context.html">官方文档</a>。</p>
+<p>当需要层层传递的数据本身非常简单时，也有<a target="_blank" rel="noopener" href="https://zh-hans.legacy.reactjs.org/docs/context.html#before-you-use-context">除了 context 之外的解决方案</a>。</p>
+<h1 id="表现与逻辑的分离"><a href="#表现与逻辑的分离" class="headerlink" title="表现与逻辑的分离"></a>表现与逻辑的分离</h1><p>组件主要负责表现层（即 UI 层）的逻辑，因此复杂的数据处理逻辑原则上不属于组件的职责，应提取为工具函数而不是直接放一大段代码在组件内。这个职责分离的原则与上文组件拆分的原则在本质上是一致的，即每个单元应负责自己唯一的职责。</p>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React/" rel="tag"># -React</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/10/14/design-patterns/" rel="next" title="设计模式">
+                <i class="fa fa-chevron-left"></i> 设计模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/10/01/countdown/" rel="prev" title="倒计时">
+                倒计时 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -585,6 +485,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -607,8 +511,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -668,6 +581,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3"><span class="nav-number">1.</span> <span class="nav-text">单一职责</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">文件结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#State-%E6%9C%80%E5%B0%8F%E9%9B%86"><span class="nav-number">3.</span> <span class="nav-text">State 最小集</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Prop-%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.</span> <span class="nav-text">Prop 的设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E5%86%85%E7%9A%84%E4%BB%A3%E7%A0%81%E7%BB%84%E7%BB%87"><span class="nav-number">5.</span> <span class="nav-text">组件内的代码组织</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Context"><span class="nav-number">6.</span> <span class="nav-text">Context</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A1%A8%E7%8E%B0%E4%B8%8E%E9%80%BB%E8%BE%91%E7%9A%84%E5%88%86%E7%A6%BB"><span class="nav-number">7.</span> <span class="nav-text">表现与逻辑的分离</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -797,6 +726,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

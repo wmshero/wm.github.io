@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JS," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="设计模式是从许多优秀的软件系统中，总结出的成功的、能够实现可维护性、复用的设计方案，使用这些方案将可以让我们避免做一些重复性的工作。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式">
+<meta property="og:url" content="http://example.com/2021/10/14/design-patterns/index.html">
+<meta property="og:site_name" content="wm&#39;s blog">
+<meta property="og:description" content="设计模式是从许多优秀的软件系统中，总结出的成功的、能够实现可维护性、复用的设计方案，使用这些方案将可以让我们避免做一些重复性的工作。">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-10-14T10:00:01.000Z">
+<meta property="article:modified_time" content="2023-12-15T06:42:32.857Z">
+<meta property="article:author" content="wm">
+<meta property="article:tag" content="JS">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2021/10/14/design-patterns/"/>
+
+
+
+
+
+  <title>设计模式 | wm's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">wm's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404" rel="section">
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/14/design-patterns/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wm's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">设计模式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-10-14T18:00:01+08:00">
+                2021-10-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>设计模式是从许多优秀的软件系统中，总结出的成功的、能够实现可维护性、复用的设计方案，使用这些方案将可以让我们避免做一些重复性的工作。</p>
+<span id="more"></span>
+
+<h1 id="单例模式-弹框"><a href="#单例模式-弹框" class="headerlink" title="单例模式(弹框)"></a>单例模式(弹框)</h1><p>一个类只能构造出唯一实例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Single</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> <span class="title function_">getInstance</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="comment">// 静态方法</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="property">instance</span>) &#123;</span><br><span class="line">      <span class="comment">// 关键代码 this指向的是Single这个构造函数</span></span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">instance</span> = <span class="keyword">new</span> <span class="title class_">Single</span>(name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">instance</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> single1 = <span class="title class_">Single</span>.<span class="title function_">getInstance</span>(<span class="string">&quot;name1&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> single2 = <span class="title class_">Single</span>.<span class="title function_">getInstance</span>(<span class="string">&quot;name2&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(single1 === single2); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="策略模式-表单验证"><a href="#策略模式-表单验证" class="headerlink" title="策略模式(表单验证)"></a>策略模式(表单验证)</h1><p>根据不同参数命中不同的策略</p>
+<h2 id="策略模式的表单验证示例"><a href="#策略模式的表单验证示例" class="headerlink" title="策略模式的表单验证示例"></a>策略模式的表单验证示例</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 策略对象</span></span><br><span class="line"><span class="keyword">const</span> strategies = &#123;</span><br><span class="line">  <span class="comment">// 验证是否为空</span></span><br><span class="line">  <span class="attr">isNoEmpty</span>: <span class="keyword">function</span>(<span class="params">value, errorMsg</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (value.<span class="title function_">trim</span>() === <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> errorMsg;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 验证最小长度</span></span><br><span class="line">  <span class="attr">minLength</span>: <span class="keyword">function</span>(<span class="params">value, length, errorMsg</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (value.<span class="title function_">trim</span>().<span class="property">length</span> &lt; length) &#123;</span><br><span class="line">      <span class="keyword">return</span> errorMsg;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 验证最大长度</span></span><br><span class="line">  <span class="attr">maxLength</span>: <span class="keyword">function</span>(<span class="params">value, length, errorMsg</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (value.<span class="property">length</span> &gt; length) &#123;</span><br><span class="line">      <span class="keyword">return</span> errorMsg;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 验证手机号</span></span><br><span class="line">  <span class="attr">isMobile</span>: <span class="keyword">function</span>(<span class="params">value, errorMsg</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (</span><br><span class="line">      !<span class="regexp">/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|17[7]|18[0|1|2|3|5|6|7|8|9])\d&#123;8&#125;$/</span>.<span class="title function_">test</span>(</span><br><span class="line">        value</span><br><span class="line">      )</span><br><span class="line">    ) &#123;</span><br><span class="line">      <span class="keyword">return</span> errorMsg;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 验证类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Validator</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">cache</span> = []; <span class="comment">// 存储要验证的方法</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">errList</span> = []; <span class="comment">// 存储最终的验证结果</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">add</span>(<span class="params">value, rules</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, rule; (rule = rules[i++]); ) &#123;</span><br><span class="line">      <span class="keyword">let</span> strategyAry = rule.<span class="property">strategy</span>.<span class="title function_">split</span>(<span class="string">&quot;:&quot;</span>);</span><br><span class="line">      <span class="keyword">let</span> errorMsg = rule.<span class="property">errorMsg</span>;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">cache</span>.<span class="title function_">push</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> strategy = strategyAry.<span class="title function_">shift</span>();</span><br><span class="line">        strategyAry.<span class="title function_">unshift</span>(value);</span><br><span class="line">        strategyAry.<span class="title function_">push</span>(errorMsg);</span><br><span class="line">        <span class="comment">// 执行策略对象中的不同验证规则</span></span><br><span class="line">        <span class="keyword">let</span> error = strategies[strategy](...strategyAry <span class="string">&quot;strategy&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (error) &#123;</span><br><span class="line">          <span class="variable language_">this</span>.<span class="property">errList</span>.<span class="title function_">push</span>(error);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">start</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, validatorFunc; (validatorFunc = <span class="variable language_">this</span>.<span class="property">cache</span>[i++]); ) &#123;</span><br><span class="line">      <span class="title function_">validatorFunc</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">errList</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> validataFunc = <span class="keyword">function</span>(<span class="params">info</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> validator = <span class="keyword">new</span> <span class="title class_">Validator</span>();</span><br><span class="line">  validator.<span class="title function_">add</span>(info.<span class="property">userName</span>, [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">strategy</span>: <span class="string">&quot;isNoEmpty&quot;</span>,</span><br><span class="line">      <span class="attr">errorMsg</span>: <span class="string">&quot;用户名不可为空&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">strategy</span>: <span class="string">&quot;minLength:2&quot;</span>,</span><br><span class="line">      <span class="attr">errorMsg</span>: <span class="string">&quot;用户名长度不能小于2位&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]);</span><br><span class="line">  validator.<span class="title function_">add</span>(info.<span class="property">password</span>, [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">strategy</span>: <span class="string">&quot;minLength:6&quot;</span>,</span><br><span class="line">      <span class="attr">errorMsg</span>: <span class="string">&quot;密码长度不能小于6位&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]);</span><br><span class="line">  validator.<span class="title function_">add</span>(info.<span class="property">phoneNumber</span>, [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">strategy</span>: <span class="string">&quot;isMobile&quot;</span>,</span><br><span class="line">      <span class="attr">errorMsg</span>: <span class="string">&quot;请输入正确的手机号码格式&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]);</span><br><span class="line">  <span class="keyword">return</span> validator.<span class="title function_">start</span>();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 需要验证表单的对象</span></span><br><span class="line"><span class="keyword">let</span> userInfo = &#123;</span><br><span class="line">  <span class="attr">userName</span>: <span class="string">&quot;王&quot;</span>,</span><br><span class="line">  <span class="attr">password</span>: <span class="string">&quot;1234&quot;</span>,</span><br><span class="line">  <span class="attr">phoneNumber</span>: <span class="string">&quot;666&quot;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> errorMsg = <span class="title function_">validataFunc</span>(userInfo);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(errorMsg); <span class="comment">// [&#x27;用户名长度不能小于2位&#x27;, &#x27;密码长度不能小于6位&#x27;, &#x27;请输入正确的手机号码格式&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="代理模式-图片预加载"><a href="#代理模式-图片预加载" class="headerlink" title="代理模式(图片预加载)"></a>代理模式(图片预加载)</h1><p>代理对象和本体对象具有一致的接口</p>
+<h2 id="图片代理模式示例"><a href="#图片代理模式示例" class="headerlink" title="图片代理模式示例"></a>图片代理模式示例</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 代理模式</span></span><br><span class="line"><span class="keyword">let</span> relImage = (<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> imgNode = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;img&quot;</span>);</span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(imgNode);</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="title function_">setSrc</span>(<span class="params">src</span>) &#123;</span><br><span class="line">      imgNode.<span class="property">src</span> = src;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="keyword">let</span> proxyImage = (<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> img = <span class="keyword">new</span> <span class="title class_">Image</span>();</span><br><span class="line">  <span class="comment">// 实际要加载的图片 加载成功后 替换调占位图</span></span><br><span class="line">  img.<span class="property">onload</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    relImage.<span class="title function_">setSrc</span>(img.<span class="property">src</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="title function_">setSrc</span>(<span class="params">src</span>) &#123;</span><br><span class="line">      img.<span class="property">src</span> = src;</span><br><span class="line">      <span class="comment">// 设置占位图</span></span><br><span class="line">      relImage.<span class="title function_">setSrc</span>(</span><br><span class="line">        <span class="string">&quot;https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg&quot;</span></span><br><span class="line">      );</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置实际要加载的图片</span></span><br><span class="line">proxyImage.<span class="title function_">setSrc</span>(</span><br><span class="line">  <span class="string">&quot;https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg&quot;</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h1 id="装饰者模式-在函数执行前后添加新的方法"><a href="#装饰者模式-在函数执行前后添加新的方法" class="headerlink" title="装饰者模式(在函数执行前后添加新的方法)"></a>装饰者模式(在函数执行前后添加新的方法)</h1><p>在不改变对象自身的基础上，动态地给某个对象添加一些额外的职责</p>
+<h2 id="装饰者模式示例"><a href="#装饰者模式示例" class="headerlink" title="装饰者模式示例"></a>装饰者模式示例</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fuc</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">Function</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">before</span> = <span class="keyword">function</span> (<span class="params">beFn</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> self = <span class="variable language_">this</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    beFn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>); <span class="comment">// 先执行插入到前面的方法，类似于二叉树的前序遍历</span></span><br><span class="line">    <span class="keyword">return</span> self.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>); <span class="comment">// 后执行当前的方法</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="title class_">Function</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">after</span> = <span class="keyword">function</span> (<span class="params">afFn</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> self = <span class="variable language_">this</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    self.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>); <span class="comment">// 先执行当前的方法</span></span><br><span class="line">    <span class="keyword">return</span> afFn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>); <span class="comment">// 后执行插入到后面的方法</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fuc1</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fuc3</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fuc4</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">4</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fuc = fuc.<span class="title function_">before</span>(fuc1).<span class="title function_">before</span>(fuc4).<span class="title function_">after</span>(fuc3);</span><br><span class="line"><span class="title function_">fuc</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 最终打印结果：4 1 2 3</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="组合模式-打印文件目录"><a href="#组合模式-打印文件目录" class="headerlink" title="组合模式(打印文件目录)"></a>组合模式(打印文件目录)</h1><p>组合模式在对象间形成树形结构<br>组合模式中基本对象和组合对象被一致对待<br>无须关心对象有多少层, 调用时只需在根部进行调用</p>
+<h2 id="函数组合模式示例"><a href="#函数组合模式示例" class="headerlink" title="函数组合模式示例"></a>函数组合模式示例</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Combine</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">list</span> = [];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">add</span>(<span class="params">fn</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">list</span>.<span class="title function_">push</span>(fn);</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>; <span class="comment">// 链式调用</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">excute</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="variable language_">this</span>.<span class="property">list</span>.<span class="property">length</span>; i++) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">list</span>[i].<span class="title function_">excute</span>();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> comb1 = <span class="keyword">new</span> <span class="title class_">Combine</span>();</span><br><span class="line">comb1</span><br><span class="line">  .<span class="title function_">add</span>(&#123;</span><br><span class="line">    <span class="title function_">excute</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">add</span>(&#123;</span><br><span class="line">    <span class="title function_">excute</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> comb2 = <span class="keyword">new</span> <span class="title class_">Combine</span>();</span><br><span class="line">comb2</span><br><span class="line">  .<span class="title function_">add</span>(&#123;</span><br><span class="line">    <span class="title function_">excute</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">add</span>(&#123;</span><br><span class="line">    <span class="title function_">excute</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">4</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> comb3 = <span class="keyword">new</span> <span class="title class_">Combine</span>();</span><br><span class="line">comb3</span><br><span class="line">  .<span class="title function_">add</span>(&#123;</span><br><span class="line">    <span class="title function_">excute</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">5</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">add</span>(&#123;</span><br><span class="line">    <span class="title function_">excute</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">6</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line">comb2.<span class="title function_">add</span>(comb3);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> comb4 = <span class="keyword">new</span> <span class="title class_">Combine</span>();</span><br><span class="line">comb4.<span class="title function_">add</span>(comb1).<span class="title function_">add</span>(comb2);</span><br><span class="line">comb4.<span class="title function_">excute</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 最终打印结果：1 2 3 4 5 6</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="工厂模式-jquery-中的-window"><a href="#工厂模式-jquery-中的-window" class="headerlink" title="工厂模式(jquery 中的 window.$)"></a>工厂模式(jquery 中的 window.$)</h1><p>工厂模式是用来创建对象的一种最常用的设计模式</p>
+<p>不暴露创建对象的具体逻辑，而是将逻辑封装在一个函数中，这个函数就可以被视为一个工厂</p>
+<h2 id="工厂模式示例"><a href="#工厂模式示例" class="headerlink" title="工厂模式示例"></a>工厂模式示例</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">name, color</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">color</span> = color;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Factory</span> &#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="title function_">create</span>(<span class="params">type</span>) &#123;</span><br><span class="line">    <span class="keyword">switch</span> (type) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&quot;car&quot;</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Car</span>(<span class="string">&quot;汽车&quot;</span>, <span class="string">&quot;白色&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&quot;bicycle&quot;</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Car</span>(<span class="string">&quot;自行车&quot;</span>, <span class="string">&quot;黑色&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="attr">default</span>:</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;没有该类型&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> p1 = <span class="title class_">Factory</span>.<span class="title function_">create</span>(<span class="string">&quot;car&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> p2 = <span class="title class_">Factory</span>.<span class="title function_">create</span>(<span class="string">&quot;bicycle&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(p1, p1 <span class="keyword">instanceof</span> <span class="title class_">Car</span>); <span class="comment">// &#123;name: &#x27;汽车&#x27;, color: &#x27;白色&#x27;&#125; true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(p2, p2 <span class="keyword">instanceof</span> <span class="title class_">Car</span>); <span class="comment">// &#123;name: &#x27;自行车&#x27;, color: &#x27;黑色&#x27;&#125; true</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="访问者模式-babel-插件"><a href="#访问者模式-babel-插件" class="headerlink" title="访问者模式(babel 插件)"></a>访问者模式(babel 插件)</h1><p>在不改变该对象的前提下访问其结构中元素的新方法</p>
+<h2 id="访问者模式示例"><a href="#访问者模式示例" class="headerlink" title="访问者模式示例"></a>访问者模式示例</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 元素类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">name, chinese, math, english</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">chinese</span> = chinese;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">math</span> = math;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">english</span> = english;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">accept</span>(<span class="params">visitor</span>) &#123;</span><br><span class="line">    visitor.<span class="title function_">visit</span>(<span class="variable language_">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 访问者类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ChineseTeacher</span> &#123;</span><br><span class="line">  <span class="title function_">visit</span>(<span class="params">student</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`语文 <span class="subst">$&#123;student.chinese&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MathTeacher</span> &#123;</span><br><span class="line">  <span class="title function_">visit</span>(<span class="params">student</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`数学 <span class="subst">$&#123;student.math&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">EnglishTeacher</span> &#123;</span><br><span class="line">  <span class="title function_">visit</span>(<span class="params">student</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`英语 <span class="subst">$&#123;student.english&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实例化元素类</span></span><br><span class="line"><span class="keyword">const</span> student = <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;张三&quot;</span>, <span class="number">90</span>, <span class="number">80</span>, <span class="number">60</span>);</span><br><span class="line"><span class="comment">// 实例化访问者类</span></span><br><span class="line"><span class="keyword">const</span> chineseTeacher = <span class="keyword">new</span> <span class="title class_">ChineseTeacher</span>();</span><br><span class="line"><span class="keyword">const</span> mathTeacher = <span class="keyword">new</span> <span class="title class_">MathTeacher</span>();</span><br><span class="line"><span class="keyword">const</span> englishTeacher = <span class="keyword">new</span> <span class="title class_">EnglishTeacher</span>();</span><br><span class="line"><span class="comment">// 接受访问</span></span><br><span class="line">student.<span class="title function_">accept</span>(chineseTeacher); <span class="comment">// 语文90</span></span><br><span class="line">student.<span class="title function_">accept</span>(mathTeacher); <span class="comment">// 数学80</span></span><br><span class="line">student.<span class="title function_">accept</span>(englishTeacher); <span class="comment">// 英语60</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="发布订阅模式-EventBus"><a href="#发布订阅模式-EventBus" class="headerlink" title="发布订阅模式(EventBus)"></a>发布订阅模式(EventBus)</h1><p>订阅者订阅相关主题，发布者通过发布主题事件的方式，通知订阅该主题的对象</p>
+<h2 id="手写发布订阅模式示例"><a href="#手写发布订阅模式示例" class="headerlink" title="手写发布订阅模式示例"></a>手写发布订阅模式示例</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 发布订阅模式</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">EventBus</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">task</span> = &#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">on</span>(<span class="params">type, fn</span>) &#123;</span><br><span class="line">    <span class="comment">// on 注册事件</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="property">task</span>[type]) <span class="variable language_">this</span>.<span class="property">task</span>[type] = [];</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">task</span>[type].<span class="title function_">push</span>(fn);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">emit</span>(<span class="params">type, ...args</span>) &#123;</span><br><span class="line">    <span class="comment">// emit 发送事件</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">task</span>[type]) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">task</span>[type].<span class="title function_">forEach</span>(<span class="function">(<span class="params">fn</span>) =&gt;</span> &#123;</span><br><span class="line">        fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, args); <span class="comment">// 注意this指向</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">off</span>(<span class="params">type, fn</span>) &#123;</span><br><span class="line">    <span class="comment">// 删除事件</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">task</span>[type]) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">task</span>[type] = <span class="variable language_">this</span>.<span class="property">task</span>[type].<span class="title function_">filter</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> item !== fn);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">once</span>(<span class="params">type, fn</span>) &#123;</span><br><span class="line">    <span class="comment">// 只执行一次</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">f</span>(<span class="params">...args</span>) &#123;</span><br><span class="line">      <span class="title function_">fn</span>(...args);</span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">off</span>(type, f);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">on</span>(type, f);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试</span></span><br><span class="line"><span class="keyword">let</span> event = <span class="keyword">new</span> <span class="title class_">EventBus</span>();</span><br><span class="line">event.<span class="title function_">on</span>(<span class="string">&quot;change&quot;</span>, <span class="function">(<span class="params">...args</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(args);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 只执行一次</span></span><br><span class="line">event.<span class="title function_">once</span>(<span class="string">&quot;change&quot;</span>, <span class="function">(<span class="params">...args</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(args);</span><br><span class="line">&#125;);</span><br><span class="line">event.<span class="title function_">emit</span>(<span class="string">&quot;change&quot;</span>, <span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">event.<span class="title function_">emit</span>(<span class="string">&quot;change&quot;</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+
+<h1 id="观察者模式-vue-双向绑定"><a href="#观察者模式-vue-双向绑定" class="headerlink" title="观察者模式(vue 双向绑定)"></a>观察者模式(vue 双向绑定)</h1><p>一个对象有一系列依赖于它的观察者（watcher），当对象发生变化时，会通知观察者进行更新</p>
+<h2 id="观察者模式示例"><a href="#观察者模式示例" class="headerlink" title="观察者模式示例"></a>观察者模式示例</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> data = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;ming&quot;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">18</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">keys</span>(data).<span class="title function_">forEach</span>(<span class="function">(<span class="params">key</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> value = data[key];</span><br><span class="line">  <span class="title class_">Object</span>.<span class="title function_">defineProperty</span>(data, key, &#123;</span><br><span class="line">    <span class="title function_">get</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;get&quot;</span>, value);</span><br><span class="line">      <span class="keyword">return</span> value;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">set</span>(<span class="params">newValue</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;更新&quot;</span>);</span><br><span class="line">      value = newValue;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">data.<span class="property">name</span> = <span class="string">&quot;佩奇&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(data.<span class="property">name</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 依次打印： 更新 → get 佩奇 → 佩奇</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="观察者与发布订阅模式的区别"><a href="#观察者与发布订阅模式的区别" class="headerlink" title="观察者与发布订阅模式的区别"></a>观察者与发布订阅模式的区别</h1><p>观察者模式：一个对象有一系列依赖于它的观察者（watcher），当对象发生变化时，会通知观察者进行更新</p>
+<p>发布订阅模式：订阅者订阅相关主题，发布者通过发布主题事件的方式通知订阅该主题的对象，发布订阅模式中可以基于不同的主题去执行不同的自定义事件</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JS/" rel="tag"># JS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/03/08/react-components/" rel="prev" title="React 组件的编写">
+                React 组件的编写 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F-%E5%BC%B9%E6%A1%86"><span class="nav-number">1.</span> <span class="nav-text">单例模式(弹框)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F-%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81"><span class="nav-number">2.</span> <span class="nav-text">策略模式(表单验证)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E7%9A%84%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81%E7%A4%BA%E4%BE%8B"><span class="nav-number">2.1.</span> <span class="nav-text">策略模式的表单验证示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F-%E5%9B%BE%E7%89%87%E9%A2%84%E5%8A%A0%E8%BD%BD"><span class="nav-number">3.</span> <span class="nav-text">代理模式(图片预加载)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E7%A4%BA%E4%BE%8B"><span class="nav-number">3.1.</span> <span class="nav-text">图片代理模式示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F-%E5%9C%A8%E5%87%BD%E6%95%B0%E6%89%A7%E8%A1%8C%E5%89%8D%E5%90%8E%E6%B7%BB%E5%8A%A0%E6%96%B0%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">装饰者模式(在函数执行前后添加新的方法)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F%E7%A4%BA%E4%BE%8B"><span class="nav-number">4.1.</span> <span class="nav-text">装饰者模式示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F-%E6%89%93%E5%8D%B0%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95"><span class="nav-number">5.</span> <span class="nav-text">组合模式(打印文件目录)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F%E7%A4%BA%E4%BE%8B"><span class="nav-number">5.1.</span> <span class="nav-text">函数组合模式示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F-jquery-%E4%B8%AD%E7%9A%84-window"><span class="nav-number">6.</span> <span class="nav-text">工厂模式(jquery 中的 window.$)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E7%A4%BA%E4%BE%8B"><span class="nav-number">6.1.</span> <span class="nav-text">工厂模式示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E8%80%85%E6%A8%A1%E5%BC%8F-babel-%E6%8F%92%E4%BB%B6"><span class="nav-number">7.</span> <span class="nav-text">访问者模式(babel 插件)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E8%80%85%E6%A8%A1%E5%BC%8F%E7%A4%BA%E4%BE%8B"><span class="nav-number">7.1.</span> <span class="nav-text">访问者模式示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F-EventBus"><span class="nav-number">8.</span> <span class="nav-text">发布订阅模式(EventBus)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%8B%E5%86%99%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F%E7%A4%BA%E4%BE%8B"><span class="nav-number">8.1.</span> <span class="nav-text">手写发布订阅模式示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F-vue-%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A"><span class="nav-number">9.</span> <span class="nav-text">观察者模式(vue 双向绑定)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F%E7%A4%BA%E4%BE%8B"><span class="nav-number">9.1.</span> <span class="nav-text">观察者模式示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%82%E5%AF%9F%E8%80%85%E4%B8%8E%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">10.</span> <span class="nav-text">观察者与发布订阅模式的区别</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wm</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

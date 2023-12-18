@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="-JS," />
+  <meta name="keywords" content="-测试," />
 
 
 
@@ -81,18 +81,20 @@
 
 
 
-<meta name="description" content="一、垃圾回收机制——GCJavascript 具有自动垃圾回收机制（GC：Garbage Collecation），也就是说，执行环境会负责管理代码执行过程中使用的内存。 原理：垃圾收集器会定期（周期性）找出那些不在继续使用的变量，然后释放其内存。 通常情况下有两种实现方式：">
+<meta name="description" content="目标为了更好的实施自动化测试，我们希望有一套简单但足够的自动化测试体系，能够从各个层面帮助我们开展自动化测试，从而交付高质量的软件代码。 本文包含三个部分，包括「测试流程」、「测试平台和工具」和「测试方法论」，各自关注不同的维度，整体形成一个良好的体系。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS 垃圾回收机制">
-<meta property="og:url" content="http://example.com/2023/01/15/garbage-recycling-mechanism/index.html">
+<meta property="og:title" content="自动化测试">
+<meta property="og:url" content="http://example.com/2023/01/15/auto-testing/index.html">
 <meta property="og:site_name" content="wm&#39;s blog">
-<meta property="og:description" content="一、垃圾回收机制——GCJavascript 具有自动垃圾回收机制（GC：Garbage Collecation），也就是说，执行环境会负责管理代码执行过程中使用的内存。 原理：垃圾收集器会定期（周期性）找出那些不在继续使用的变量，然后释放其内存。 通常情况下有两种实现方式：">
+<meta property="og:description" content="目标为了更好的实施自动化测试，我们希望有一套简单但足够的自动化测试体系，能够从各个层面帮助我们开展自动化测试，从而交付高质量的软件代码。 本文包含三个部分，包括「测试流程」、「测试平台和工具」和「测试方法论」，各自关注不同的维度，整体形成一个良好的体系。">
 <meta property="og:locale">
-<meta property="article:published_time" content="2023-01-15T06:52:19.000Z">
-<meta property="article:modified_time" content="2023-12-15T07:29:54.460Z">
+<meta property="og:image" content="http://example.com/images/test.png">
+<meta property="article:published_time" content="2023-01-15T07:32:04.000Z">
+<meta property="article:modified_time" content="2023-12-18T06:10:46.930Z">
 <meta property="article:author" content="wm">
-<meta property="article:tag" content="-JS">
+<meta property="article:tag" content="-测试">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/test.png">
 
 
 
@@ -122,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/2023/01/15/garbage-recycling-mechanism/"/>
+  <link rel="canonical" href="http://example.com/2023/01/15/auto-testing/"/>
 
 
 
 
 
-  <title>JS 垃圾回收机制 | wm's blog</title>
+  <title>自动化测试 | wm's blog</title>
   
 
 
@@ -295,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/15/garbage-recycling-mechanism/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/15/auto-testing/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -312,7 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JS 垃圾回收机制</h1>
+          <h1 class="post-title" itemprop="name headline">自动化测试</h1>
         
 
         <div class="post-meta">
@@ -324,7 +326,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-01-15T14:52:19+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-01-15T15:32:04+08:00">
                 2023-01-15
               </time>
             
@@ -347,8 +349,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JS/" itemprop="url" rel="index">
-                    <span itemprop="name">JS</span>
+                  <a href="/categories/%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index">
+                    <span itemprop="name">测试</span>
                   </a>
                 </span>
 
@@ -384,32 +386,105 @@
       
 
       
-        <h1 id="一、垃圾回收机制——GC"><a href="#一、垃圾回收机制——GC" class="headerlink" title="一、垃圾回收机制——GC"></a>一、垃圾回收机制——GC</h1><p>Javascript 具有自动垃圾回收机制（GC：Garbage Collecation），也就是说，执行环境会负责管理代码执行过程中使用的内存。</p>
-<p>原理：垃圾收集器会定期（周期性）找出那些不在继续使用的变量，然后释放其内存。</p>
-<p>通常情况下有两种实现方式：</p>
+        <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>为了更好的实施自动化测试，我们希望有一套简单但足够的自动化测试体系，能够从各个层面帮助我们开展自动化测试，从而交付高质量的软件代码。</p>
+<p>本文包含三个部分，包括「测试流程」、「测试平台和工具」和「测试方法论」，各自关注不同的维度，整体形成一个良好的体系。</p>
 <span id="more"></span>
 
-<h2 id="标记清除"><a href="#标记清除" class="headerlink" title="标记清除"></a>标记清除</h2><p>js 中最常用的垃圾回收方式就是标记清除。</p>
-<p>当变量进入环境时，例如，在函数中声明一个变量，就将这个变量<strong>标记为“进入环境”</strong>。从逻辑上讲，永远不能释放进入环境的变量所占用的内存，因为只要执行流进入相应的环境，就可能会用到它们。而当变量离开环境时，则将其<strong>标记为“离开环境”</strong>。</p>
-<h2 id="引用计数"><a href="#引用计数" class="headerlink" title="引用计数"></a>引用计数</h2><p><strong>跟踪记录每个值被引用的次数</strong></p>
-<p>当声明了一个变量并将一个引用类型值赋给该变量时，则这个值的引用次数就是 1。如果同一个值又被赋给另一个变量，则该值的引用次数加 1。相反，如果包含对这个值引用的变量又取得了另外一个值，则这个值的引用次数减 1。当这个值的引用次数变成 0 时，则说明没有办法再访问这个值了，因而就可以将其占用的内存空间回收回来。这样，当垃圾回收器下次再运行时，它就会释放那些引用次数为 0 的值所占用的内存。</p>
-<h1 id="二、内存管理"><a href="#二、内存管理" class="headerlink" title="二、内存管理"></a>二、内存管理</h1><ol>
-<li>Javascript 引擎基础 GC 方案是</li>
+<h1 id="测试流程"><a href="#测试流程" class="headerlink" title="测试流程"></a>测试流程</h1><p>测试流程关注测试开发的过程中，应该以怎样的流程来实施，以便测试的最佳效果。</p>
+<h2 id="用例设计"><a href="#用例设计" class="headerlink" title="用例设计"></a>用例设计</h2><p>测试用例的设计需要考虑多个层面，尽量全方位的考虑所有场景，包括但不限于如下层面：</p>
+<ol>
+<li>用户故事，特定功能需要满足的用户场景</li>
+<li>权限需求，不同权限可能的差异</li>
+<li>异常场景，一些异常可能出现的问题，如何恢复</li>
+<li>兼容性，对环境、设备、浏览器的要求</li>
+<li>性能层面，数据量是否很大，是否有极致的性能需求<br>这上面的东西，是测试用例设计的需求，在需求明确之后，就可以针对它们设计具体的测试用例。</li>
 </ol>
-<p>（simple GC）：mark and sweep（标记清除），即：</p>
-<p>1）遍历所有可访问的对象；</p>
-<p>2）回收已不可访问的对象。</p>
-<ol start="2">
-<li>GC 的缺陷</li>
+<p>好的测试用例是一个完备的集合，覆盖所有等价类与关键值，设计好的测试用例有三种常用的方式：</p>
+<ol>
+<li>等价类划</li>
+<li>边界值</li>
+<li>错误推测</li>
 </ol>
-<p>和其他语言一样，JavaScript 的 GC 策略也无法避免一个问题：<strong>GC 时，停止响应其他操作</strong>，这是为了安全考虑。而 Javascript 的 GC 在 100ms 甚至以上，对一般的应用还好，但对于 JS 游戏，动画对连贯性要求比较高的应用，就麻烦了。<br>这就是新引擎需要优化的点：避免 GC 造成的长时间停止响应。</p>
-<ol start="3">
-<li>GC 优化策略</li>
+<h2 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h2><p>测试用例的设计可以分为以下几个步骤：</p>
+<ol>
+<li>画一个较粗的业务流程图，包含所有的流程分支，图内每个节点可以较粗，比如“短信验证码登录”就是一个节点，先不用细分手机号是否已注册，或者对应的用户是什么身份。</li>
+<li>我们把流程图中最长的主流程称为基本流 1，其他分支也依次标号，然后就可以组合出该流程图中所有可能的子流程，比如 1 + 2 + 4。<br>○ 当流程图比较复杂导致组合情况过多时，可以寻找解耦点將它拆分为两个甚至多个彼此之间耦合度较低的流程图，也就是说一个流程以哪一条路径执行基本不影响另一个流程的正确性。然后对拆分后的流程图罗列组合。<br>○ 我们可以进一步降低流程图的复杂度，不把“表单验证失败”的节点写在流程图中，每个表单的验证可以做成单独的测试用例。比如“短信验证码登录”的失败原因分为手机号格式不对、验证码错误、验证码过期等等，这些可以单独汇总在一个测试用例中去测试。</li>
+<li>～～对上述的组合结果进行精简，依然从耦合度的角度去考虑。假设我们的组合中有 1 + 2、1 + 3 和 1 + 2 + 3，而分支 3 的执行与否对分支 2 的正确性几无影响，那么在已测试 1 + 2 和 1 + 3 的基础上，1 + 2 + 3 的性价比非常低，对测试效果的提升很小，可以被精简掉。这个比较依赖设计者的经验去判断哪些是“无意义”的组合。～～<br>○ 这一条先注释掉，不太好解释和实施，需要在实践中再打磨。</li>
+<li>为精简后的每一个组合编写一个测试用例。对于用例中的每一个节点步骤，此时要考虑它的细分场景。比如“短信验证码登录”，需要先按业务场景拆分为学生登录、老师登录、家长登录、未注册手机号登录 4 种可能性。<br>○ 原则上每一种可能性都应当是一个单独的测试用例，但为了不重复编写差别很小的用例，我们可以在一个用例中描述一个节点的多个输入值。在实际执行用例时，可以选择在一个节点上测试多个输入值再继续往下也可以每个输入值都跑一遍用例中的流程，这个也需要执行者依靠经验来灵活判断。<br>○ 我们需要同时在测试用例管理工具中保存业务流程图，为执行者理解测试用例和设计者将来随着业务变化更新测试用例提供方便。<br>○ 设计测试用例是一个再次检查产品逻辑严密性的好时机，遇到问题需要及时与产品经理沟通。<br>○ 很多用例，尤其是表单验证类的，需要用等价类划分和边界值的方法去设计多种输入值。</li>
+<li>然后设计者需要基于对业务的了解补充针对不在正常业务逻辑中的异常场景、安全性敏感场景、性能敏感场景的测试用例，就得到了完整的冒烟测试和黑盒测试集。<br>○ 有些“副作用”式的功能可以考虑集中在一个测试用例中描述，比如任务的推送，可以写一个测试用例集中测试，包括任务的创建、修改、驳回等各种情况的推送。</li>
+<li>最后我们需要根据黑盒测试集做 E2E UI 自动化测试，考虑到编写效率和运行效率，思路是一长多短：<br>a. 在一个模块的用例中取一个最长的基本流先实现。<br>b. 实现其他未被覆盖的短分支。</li>
 </ol>
-<p>1）分代回收（Generation GC）</p>
-<p>这个和 Java 回收策略思想是一致的。目的是通过区分“临时”与“持久”对象；多回收“临时对象”区（young generation），少回收“持久对象”区（tenured generation），减少每次需遍历的对象，从而减少每次 GC 的耗时。</p>
-<p>2）增量 GC</p>
-<p>这个方案的思想很简单，就是“每次处理一点，下次再处理一点”，如此类推。</p>
+<h2 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h2><p>这是一个 App 用手机号登录后选择身份进入主页的流程图，按照上文我们提供的方法：<br><img src="/images/test.png" alt="test"></p>
+<ol>
+<li>这个流程原本属于一个更长的流程，前面是手机号登录的流程，两部分加起来是一个完整的 App 登录流程，但是我们认为这个子流程之间的耦合度不高，所以选择了在中间解耦，变成两个流程分别测试。</li>
+<li>在编写黑盒测试用例时，我们得到的组合集是：<br>a. 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5<br>b. 1 -&gt; 4 -&gt; 5<br>c. 1 -&gt; 4 -&gt; 3 -&gt; 4 -&gt; 5<br>外加一个绑定新身份时的表单验证。</li>
+<li>在编写 E2E UI 自动化测试时，我们先实现最长基本流，然后实现剩下的短分支，所以最后编写的用例是：<br>a. 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5<br>b. 1 -&gt; 4 -&gt; 5<br>c. 1 -&gt; 4 -&gt; 3</li>
+</ol>
+<h2 id="测试规划"><a href="#测试规划" class="headerlink" title="测试规划"></a>测试规划</h2><p>在需求明确之后，有大致的测试用例之后，应该对测试的实施有一个大致的规划，一定程度的明确各个类型的测试做多少，怎么做。</p>
+<p>比如对于复杂的项目，我们可能需要更多的单元测试，从而保证逻辑的正确性，对于简单的项目，可能一定的功能测试和 E2E 测试就可以了。</p>
+<p>测试规划的时候，应该考虑到各种测试类型擅长的和不擅长的，合理安排比例以及覆盖场景，在成本可控的前提下实现效率的最大化。</p>
+<h2 id="测试开发"><a href="#测试开发" class="headerlink" title="测试开发"></a>测试开发</h2><p>规划完毕之后，就可以和代码开发一起，进入测试开发的环节，在开发的过程中，一定会发现之前没有考虑到的情况，或者发现效率更高的方法，这时及时调整策略，优化方案。</p>
+<h1 id="测试平台与工具"><a href="#测试平台与工具" class="headerlink" title="测试平台与工具"></a>测试平台与工具</h1><p>测试平台和工具包含测试工具相关的东西，通过优秀工具的使用和研发，让测试开发能够非常简单的进行，找到测试开发的乐趣。</p>
+<h2 id="测试数据管理平台"><a href="#测试数据管理平台" class="headerlink" title="测试数据管理平台"></a>测试数据管理平台</h2><p>测试数据是进行高效测试的基础，尤其是对于我们这种 toB 复杂业务逻辑来说，如果没有良好基础测试数据的支持，我们将花费大量时间在测试数据的准备上，测试的编写和维护将会变成一件很难受的工作。</p>
+<p>为了解决这个问题，我们引入测试数据管理平台，他能够帮助我们管理各种测试数据，需要的时候，通过很简单的方式就可能调用这些测试数据，减少人工构造的成本。</p>
+<p>这之中的测试数据将主要用到以下四个地方：</p>
+<ol>
+<li>后端功能测试</li>
+<li>前端 E2E 测试</li>
+<li>demo 系统</li>
+<li>开发环境</li>
+</ol>
+<p>对这个平台而言，它将提供如下功能：</p>
+<ol>
+<li>测试数据存储与管理</li>
+<li>测试数据的写入与生成</li>
+<li>多套后端服务的配置管理，同一个平台，可以向多个后端写入数据？</li>
+<li>通过对外 API，能够通过 API 执行指定的命令</li>
+<li>依据 client 请求执行单个&#x2F;批量数据请求&#x2F;写入操作</li>
+</ol>
+<p>目前这个平台主要提供一套相对固定的数据， 将来，它应该有能力按需及时生成一部分数据，能够用于对数据之间关系要求不高的场景。</p>
+<h2 id="后端测试工具"><a href="#后端测试工具" class="headerlink" title="后端测试工具"></a>后端测试工具</h2><p>为了改善后端测试的效率，我们已经&#x2F;需要开发一些测试工具，让测试开发更简单，主要包含如下几个部分：</p>
+<ol>
+<li>基础测试工具，是对开源工具的改善和封装，比如 UTL <a target="_blank" rel="noopener" href="https://git.seiue.com/open-source/utl/tree/master">https://git.seiue.com/open-source/utl/tree/master</a></li>
+<li>应用层相关工具，比如 <a target="_blank" rel="noopener" href="https://www.yuque.com/kovru3/gfdy75/ygtibk">https://www.yuque.com/kovru3/gfdy75/ygtibk</a> 这里面说的</li>
+<li>与测试数据平台的交互，交互方式是什么？类似 UDS 注册的机制？</li>
+<li>Reponse 与 schema 定义的一致性检查</li>
+</ol>
+<h2 id="前端测试工具"><a href="#前端测试工具" class="headerlink" title="前端测试工具"></a>前端测试工具</h2><p>同理，前端差不多，可能包含如下几个部分：</p>
+<ol>
+<li>基础测试工具最佳实践，封装</li>
+<li>数据 Mock 的机制，什么时候 Mock</li>
+<li>测试数据平台通信的方式</li>
+</ol>
+<h1 id="测试方法论"><a href="#测试方法论" class="headerlink" title="测试方法论"></a>测试方法论</h1><h2 id="编写可测试代码"><a href="#编写可测试代码" class="headerlink" title="编写可测试代码"></a>编写可测试代码</h2><p>为了良好的实施自动化测试，我们对各方实施一定的约束，以便能够高效的开展自动化测试，让自动化测试的效能最大化。</p>
+<h2 id="被测主体约束"><a href="#被测主体约束" class="headerlink" title="被测主体约束"></a>被测主体约束</h2><p>被测试主体（包括但不限于后端服务，前端组件，数据层）都应该提供良好的数据测试支持，这样测试代码才能够很好的与测试主体进行交互，从而高效的完成测试。</p>
+<p>比如，后端在进行 API 设计的时候需要考虑到测试的场景，能够通过 API 准备需要的测试数据，也可能需要给测试提供专用的 API。</p>
+<p>前端可能将数据数据操作接口暴露到外部，能够让测试代码直接操作内部方法和数据，以便方便高效的完成自动化测试（见附[1]）。</p>
+<p>被测试主体应该同时满足多方面的需求，包括但不限于：</p>
+<ol>
+<li>业务需求</li>
+<li>测试需求</li>
+<li>架构需求</li>
+</ol>
+<h3 id="代码约束"><a href="#代码约束" class="headerlink" title="代码约束"></a>代码约束</h3><p>为了进行良好的单元测试，对我们的代码也提出了更高的要求，我们的代码需要更好的可测试性，具体来说包含如下几个方面：</p>
+<ol>
+<li>功能划分清晰，职责分明，函数、类的实现应该高内聚，底耦合，一个方法只做一件事</li>
+<li>外部依赖显式化，依赖的东西应该单独测试 附[2]</li>
+<li>尽量避免副作用，输入输出应该简单统一</li>
+<li>More needed</li>
+</ol>
+<h2 id="数据与行为分离"><a href="#数据与行为分离" class="headerlink" title="数据与行为分离"></a>数据与行为分离</h2><p>在测试中，有很多时候我们需要对同一个场景使用不同的数据进行测试，同时期望获取不同的结果，这时如果测试数据和测试代码耦合在一起，就需要将他们同时复制多份，代码可读性和维护起来都是一个问题。</p>
+<p>这时，我们可以采用数据与行为分离的策略，将测试行为抽象出来，然后再用给定的数据跑测试。</p>
+<p>在 PHP 项目中，我们可以 PHPUnit 的 DataProvider 实现这样的策略，在前端的 Jest 中，也可以使用 jest.each 达成同样的效果。不同测试框架都应该有类似的支持（hmmm, Cypress 好像没有原生的支持）。</p>
+<h2 id="App-Actions"><a href="#App-Actions" class="headerlink" title="App Actions"></a>App Actions</h2><p>在 E2E 测试中，传统的做法是封装 PageObject，用来封装 UI 层的操作，以便让测试代码更加易于维护，但因为 UI 层的变化一般比较大，这一层的封装成本比较高，而且所有地方都通过 UI 来操作效率很低，稳定性也不好。</p>
+<p>所以，Cypress 采用了另外的思路，就是直接在测试代码中操作应用的内部逻辑，我们把这种方式称作 App Actions。某种程度上去掉了和简化了 PageObject 这个封装，从而减少的响应的成本。</p>
+<p>它的缺点是需要理解应用的内部状态，但因为我们是开发者自己写测试，所以这个反而变成了优点。</p>
+<p>读者具体可以查看 <a target="_blank" rel="noopener" href="https://www.cypress.io/blog/2019/01/03/stop-using-page-objects-and-start-using-app-actions/">Stop using Page Objects and Start using App Actions</a> 了解更详细的内容。</p>
+<h1 id="实施计划"><a href="#实施计划" class="headerlink" title="实施计划"></a>实施计划</h1><p>测试数据平台<br>[ ] 测试平台准备工作（P0）<br>[ ] 方案优化空间<br>[ ] 环境初始化<br>[ ] 对外提供 API (P1)</p>
+<p>测试数据<br>[ ] 用户数据 (P0)<br>[ ] What’s else?</p>
+<p>测试工具<br>[ ] 后端测试工具整理和规范 UTL<br>[ ] 后端针对 Event 和 Job 的测试工具<br>[ ] 后端 response 与 schema 的一致性检查 (P0)<br>[ ] 后端与测试平台的交互机制？(P0)<br>[ ] 前端测试工具的实践<br>[ ] 前端与测试平台的交互机制 (P0)<br>[ ] 前端 Mock 的场景与机制</p>
+<p>测试流程&#x2F;方法论<br>[ ] 形成最佳实践（跟随实践不断迭代）</p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><p>[1] <a target="_blank" rel="noopener" href="https://www.cypress.io/blog/2019/01/03/stop-using-page-objects-and-start-using-app-actions/">https://www.cypress.io/blog/2019/01/03/stop-using-page-objects-and-start-using-app-actions/</a><br>[2] <a target="_blank" rel="noopener" href="http://www.voidcn.com/article/p-uyjitnuy-bno.html">http://www.voidcn.com/article/p-uyjitnuy-bno.html</a></p>
 
       
     </div>
@@ -427,7 +502,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JS/" rel="tag"># -JS</a>
+            <a href="/tags/%E6%B5%8B%E8%AF%95/" rel="tag"># -测试</a>
           
         </div>
       
@@ -440,8 +515,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2022/12/14/img-lazyload/" rel="next" title="实现图片的懒加载">
-                <i class="fa fa-chevron-left"></i> 实现图片的懒加载
+              <a href="/2023/01/15/garbage-recycling-mechanism/" rel="next" title="JS 垃圾回收机制">
+                <i class="fa fa-chevron-left"></i> JS 垃圾回收机制
               </a>
             
           </div>
@@ -450,8 +525,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2023/01/15/auto-testing/" rel="prev" title="自动化测试">
-                自动化测试 <i class="fa fa-chevron-right"></i>
+              <a href="/2023/12/15/compatibility/" rel="prev" title="兼容性">
+                兼容性 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -586,7 +661,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E2%80%94%E2%80%94GC"><span class="nav-number">1.</span> <span class="nav-text">一、垃圾回收机制——GC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4"><span class="nav-number">1.1.</span> <span class="nav-text">标记清除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">引用计数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">二、内存管理</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87"><span class="nav-number">1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">测试流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1"><span class="nav-number">2.1.</span> <span class="nav-text">用例设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.2.</span> <span class="nav-text">具体步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BE%E4%B8%AA%E4%BE%8B%E5%AD%90"><span class="nav-number">2.3.</span> <span class="nav-text">举个例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E8%A7%84%E5%88%92"><span class="nav-number">2.4.</span> <span class="nav-text">测试规划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91"><span class="nav-number">2.5.</span> <span class="nav-text">测试开发</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0%E4%B8%8E%E5%B7%A5%E5%85%B7"><span class="nav-number">3.</span> <span class="nav-text">测试平台与工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0"><span class="nav-number">3.1.</span> <span class="nav-text">测试数据管理平台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7"><span class="nav-number">3.2.</span> <span class="nav-text">后端测试工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7"><span class="nav-number">3.3.</span> <span class="nav-text">前端测试工具</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA"><span class="nav-number">4.</span> <span class="nav-text">测试方法论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E5%8F%AF%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81"><span class="nav-number">4.1.</span> <span class="nav-text">编写可测试代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A2%AB%E6%B5%8B%E4%B8%BB%E4%BD%93%E7%BA%A6%E6%9D%9F"><span class="nav-number">4.2.</span> <span class="nav-text">被测主体约束</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%BA%A6%E6%9D%9F"><span class="nav-number">4.2.1.</span> <span class="nav-text">代码约束</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E4%B8%8E%E8%A1%8C%E4%B8%BA%E5%88%86%E7%A6%BB"><span class="nav-number">4.3.</span> <span class="nav-text">数据与行为分离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#App-Actions"><span class="nav-number">4.4.</span> <span class="nav-text">App Actions</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E6%96%BD%E8%AE%A1%E5%88%92"><span class="nav-number">5.</span> <span class="nav-text">实施计划</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%99%84%E5%BD%95"><span class="nav-number">6.</span> <span class="nav-text">附录</span></a></li></ol></div>
             
 
           </div>

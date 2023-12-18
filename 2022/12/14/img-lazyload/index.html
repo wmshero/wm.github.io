@@ -40,9 +40,7 @@
 
   
   
-    
-  
-  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -83,15 +81,15 @@
 
 
 
-<meta name="description" content="懒加载，顾名思义，在当前网页，滑动页面到能看到图片的时候再加载图片。 故问题拆分成两个：  如何判断图片出现在了当前视口 （即如何判断我们能够看到图片） 如何控制图片的加载">
+<meta name="description" content="图片的懒加载原理： 当图片元素出现在屏幕中时，才给图片的 src 赋值对应的链接，去加载对应的图片">
 <meta property="og:type" content="article">
 <meta property="og:title" content="实现图片的懒加载">
 <meta property="og:url" content="http://example.com/2022/12/14/img-lazyload/index.html">
 <meta property="og:site_name" content="wm&#39;s blog">
-<meta property="og:description" content="懒加载，顾名思义，在当前网页，滑动页面到能看到图片的时候再加载图片。 故问题拆分成两个：  如何判断图片出现在了当前视口 （即如何判断我们能够看到图片） 如何控制图片的加载">
+<meta property="og:description" content="图片的懒加载原理： 当图片元素出现在屏幕中时，才给图片的 src 赋值对应的链接，去加载对应的图片">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-12-14T08:00:19.000Z">
-<meta property="article:modified_time" content="2023-12-15T06:07:20.223Z">
+<meta property="article:modified_time" content="2023-12-18T05:55:47.163Z">
 <meta property="article:author" content="wm">
 <meta name="twitter:card" content="summary">
 
@@ -363,25 +361,13 @@
       
 
       
-        <p>懒加载，顾名思义，在当前网页，滑动页面到能看到图片的时候再加载图片。</p>
-<p>故问题拆分成两个：</p>
-<ul>
-<li>如何判断图片出现在了当前视口 （即如何判断我们能够看到图片）</li>
-<li>如何控制图片的加载</li>
-</ul>
+        <p>图片的懒加载原理： 当图片元素出现在屏幕中时，才给图片的 src 赋值对应的链接，去加载对应的图片</p>
 <span id="more"></span>
 
-<h2 id="方案一-位置计算-滚动事件-Scroll-DataSet-API"><a href="#方案一-位置计算-滚动事件-Scroll-DataSet-API" class="headerlink" title="方案一: 位置计算 + 滚动事件 (Scroll) + DataSet API"></a>方案一: 位置计算 + 滚动事件 (Scroll) + DataSet API</h2><p>如何判断图片出现在了当前视口</p>
-<p><code>clientTop</code>，<code>offsetTop</code>，<code>clientHeight</code> 以及 <code>scrollTop</code> 各种关于图片的高度作比对</p>
-<blockquote>
-<p>这些高度都代表了什么意思？</p>
-</blockquote>
-<p>这我以前有可能是知道的，那时候我比较单纯，喜欢死磕。我现在想通了，背不过的东西就不要背了</p>
-<p>所以它有一个问题：复杂琐碎不好理解！</p>
-<p>仅仅知道它静态的高度还不够，我们还需要知道动态的</p>
-<p>如何动态？监听 <code>window.scroll</code> 事件</p>
-<p>如何控制图片的加载<br><code>&lt;img data-src=&quot;demo.jpg&quot; /&gt;</code><br>首先设置一个临时 Data 属性 <code>data-src</code>，控制加载时使用 <code>src</code>代替 <code>data-src</code>，可利用 <code>DataSet API</code> 实现</p>
-<p><code>img.src = img.datset.src</code></p>
+<p>使用 <code>IntersectionObserver</code> 监听元素来判断是否出现在视口，当图片出现在视口时，给 <code>img.src</code> 赋值</p>
+<p><code>IntersectionObserver</code> 替代监听 <code>scroll</code> 事件来判断元素是否在视口中，性能更高</p>
+<p>图片懒加载示例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// html内容</span></span><br><span class="line"><span class="comment">// &lt;img src=&quot;./loading.jpg&quot; src=&quot;https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg&quot;&gt;</span></span><br><span class="line"><span class="comment">// &lt;img src=&quot;./loading.jpg&quot; src=&quot;https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg&quot;&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">observerImg</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> imgList = <span class="variable language_">document</span>.<span class="title function_">getElementsByTagName</span>(<span class="string">&quot;img&quot;</span>);</span><br><span class="line">  <span class="keyword">let</span> observer = <span class="keyword">new</span> <span class="title class_">IntersectionObserver</span>(<span class="function">(<span class="params">list</span>) =&gt;</span> &#123;</span><br><span class="line">    list.<span class="title function_">forEach</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 判断元素是否出现在视口</span></span><br><span class="line">      <span class="keyword">if</span> (item.<span class="property">intersectionRatio</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        item.<span class="property">target</span>.<span class="property">src</span> = item.<span class="property">target</span>.<span class="title function_">getAttribute</span>(<span class="string">&quot;src&quot;</span>);</span><br><span class="line">        observer.<span class="title function_">unobserve</span>(item.<span class="property">target</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; imgList.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// 监听每个img元素</span></span><br><span class="line">    observer.<span class="title function_">observe</span>(imgList[i]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -406,8 +392,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2022/10/01/countdown/" rel="next" title="倒计时">
-                <i class="fa fa-chevron-left"></i> 倒计时
+              <a href="/2022/03/08/react-components/" rel="next" title="React 组件的编写">
+                <i class="fa fa-chevron-left"></i> React 组件的编写
               </a>
             
           </div>
@@ -472,17 +458,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -497,7 +474,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -542,22 +519,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%B8%80-%E4%BD%8D%E7%BD%AE%E8%AE%A1%E7%AE%97-%E6%BB%9A%E5%8A%A8%E4%BA%8B%E4%BB%B6-Scroll-DataSet-API"><span class="nav-number">1.</span> <span class="nav-text">方案一: 位置计算 + 滚动事件 (Scroll) + DataSet API</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -645,32 +606,32 @@
 
   
   
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
 
   
   
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
   
 
   
   
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
   
 
   
   
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
   
   
-    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
   
   
-    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
 
 

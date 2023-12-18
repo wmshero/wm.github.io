@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="-JS," />
 
 
 
@@ -81,12 +81,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="wm&#39;s blog">
-<meta property="og:url" content="http://example.com/archives/2023/01/index.html">
+<meta name="description" content="在函数式编程当中有一个很重要的概念就是函数组合，实际上就是把处理数据的函数像管道一样连接起来，然后让数据穿过管道得到最终的结果 在多个框架源码中都有用到，比如 redux、koa 中多次遇到这个方法 效果：将一系列函数，通过 compose 函数组合起来，像管道一样连接起来，比如函数结合[f, g, h ]，通过 compose 最终达到这样的效果： f(g(h())) compose 函数要求：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="compose函数组合">
+<meta property="og:url" content="http://example.com/2019/10/10/compose/index.html">
 <meta property="og:site_name" content="wm&#39;s blog">
+<meta property="og:description" content="在函数式编程当中有一个很重要的概念就是函数组合，实际上就是把处理数据的函数像管道一样连接起来，然后让数据穿过管道得到最终的结果 在多个框架源码中都有用到，比如 redux、koa 中多次遇到这个方法 效果：将一系列函数，通过 compose 函数组合起来，像管道一样连接起来，比如函数结合[f, g, h ]，通过 compose 最终达到这样的效果： f(g(h())) compose 函数要求：">
 <meta property="og:locale">
+<meta property="article:published_time" content="2019-10-10T06:18:06.000Z">
+<meta property="article:modified_time" content="2023-12-18T06:30:33.611Z">
 <meta property="article:author" content="wm">
+<meta property="article:tag" content="-JS">
 <meta name="twitter:card" content="summary">
 
 
@@ -117,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/archives/2023/01/"/>
+  <link rel="canonical" href="http://example.com/2019/10/10/compose/"/>
 
 
 
 
 
-  <title>归档 | wm's blog</title>
+  <title>compose函数组合 | wm's blog</title>
   
 
 
@@ -142,7 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -276,111 +281,179 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 12 篇日志。 继续努力。
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2023">2023</h1>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/10/10/compose/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wm's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2023/01/15/auto-testing/" itemprop="url">
-              
-                <span itemprop="name">自动化测试</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">compose函数组合</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2023-01-15T15:32:04+08:00"
-              content="2023-01-15" >
-          01-15
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-10T14:18:06+08:00">
+                2019-10-10
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2023/01/15/garbage-recycling-mechanism/" itemprop="url">
-              
-                <span itemprop="name">JS 垃圾回收机制</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2023-01-15T14:52:19+08:00"
-              content="2023-01-15" >
-          01-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <p>在函数式编程当中有一个很重要的概念就是函数组合，实际上就是<strong>把处理数据的函数像管道一样连接起来，然后让数据穿过管道得到最终的结果</strong></p>
+<p>在多个框架源码中都有用到，比如 redux、koa 中多次遇到这个方法</p>
+<p>效果：将一系列函数，通过 <code>compose</code> 函数组合起来，像管道一样连接起来，比如函数结合<code>[f, g, h ]</code>，通过 <code>compose</code> 最终达到这样的效果： <code>f(g(h()))</code></p>
+<p>compose 函数要求：可执行同步方法，也可执行异步方法，两者都可以兼容</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">compose</span>(<span class="params">list</span>) &#123;</span><br><span class="line">  <span class="comment">// 取出第一个函数，当做reduce函数的初始值</span></span><br><span class="line">  <span class="keyword">const</span> init = list.<span class="title function_">shift</span>();</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params">...arg</span>) &#123;</span><br><span class="line">    <span class="comment">// 执行compose函数，返回一个函数</span></span><br><span class="line">    <span class="keyword">return</span> list.<span class="title function_">reduce</span>(</span><br><span class="line">      <span class="function">(<span class="params">pre, cur</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 返回list.reduce的结果，为一个promise实例，外部就可以通过then获取</span></span><br><span class="line">        <span class="keyword">return</span> pre.<span class="title function_">then</span>(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="comment">// pre始终为一个promise实例，result为结果的累加值</span></span><br><span class="line">          <span class="comment">// 在前一个函数的then中，执行当前的函数，并返回一个promise实例，实现累加传递的效果</span></span><br><span class="line">          <span class="keyword">return</span> cur.<span class="title function_">call</span>(<span class="literal">null</span>, result);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="comment">// Promise.resolve可以将非promise实例转为promise实例（一种兼容处理）</span></span><br><span class="line">      <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(init.<span class="title function_">apply</span>(<span class="literal">null</span>, arg))</span><br><span class="line">    );</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 同步方法案例</span></span><br><span class="line"><span class="keyword">let</span> <span class="title function_">sync1</span> = (<span class="params">data</span>) =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;sync1&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> data;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> <span class="title function_">sync2</span> = (<span class="params">data</span>) =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;sync2&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> data + <span class="number">1</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> <span class="title function_">sync3</span> = (<span class="params">data</span>) =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;sync3&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> data + <span class="number">2</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> syncFn = <span class="title function_">compose</span>([sync1, sync2, sync3]);</span><br><span class="line"><span class="title function_">syncFn</span>(<span class="number">0</span>).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 依次打印 sync1 → sync2 → sync3 → 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 异步方法案例</span></span><br><span class="line"><span class="keyword">let</span> <span class="title function_">async1</span> = (<span class="params">data</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;async1&quot;</span>);</span><br><span class="line">      <span class="title function_">resolve</span>(data);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> <span class="title function_">async2</span> = (<span class="params">data</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;async2&quot;</span>);</span><br><span class="line">      <span class="title function_">resolve</span>(data + <span class="number">1</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> <span class="title function_">async3</span> = (<span class="params">data</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;async3&quot;</span>);</span><br><span class="line">      <span class="title function_">resolve</span>(data + <span class="number">2</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> composeFn = <span class="title function_">compose</span>([async1, async2, async3]);</span><br><span class="line"><span class="title function_">composeFn</span>(<span class="number">0</span>).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 依次打印 async1 → async1 → async1 → 3</span></span><br></pre></td></tr></table></figure>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JS/" rel="tag"># -JS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/01/countdown/" rel="next" title="JS实现倒计时">
+                <i class="fa fa-chevron-left"></i> JS实现倒计时
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/12/18/sleep-function/" rel="prev" title="sleep 函数">
+                sleep 函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -388,6 +461,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -600,6 +677,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

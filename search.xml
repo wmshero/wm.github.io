@@ -1,6 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>compose函数组合</title>
+    <url>/2019/10/10/compose/</url>
+    <content><![CDATA[<p>在函数式编程当中有一个很重要的概念就是函数组合，实际上就是<strong>把处理数据的函数像管道一样连接起来，然后让数据穿过管道得到最终的结果</strong></p>
+<p>在多个框架源码中都有用到，比如 redux、koa 中多次遇到这个方法</p>
+<p>效果：将一系列函数，通过 <code>compose</code> 函数组合起来，像管道一样连接起来，比如函数结合<code>[f, g, h ]</code>，通过 <code>compose</code> 最终达到这样的效果： <code>f(g(h()))</code></p>
+<p>compose 函数要求：可执行同步方法，也可执行异步方法，两者都可以兼容</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">compose</span>(<span class="params">list</span>) &#123;</span><br><span class="line">  <span class="comment">// 取出第一个函数，当做reduce函数的初始值</span></span><br><span class="line">  <span class="keyword">const</span> init = list.<span class="title function_">shift</span>();</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params">...arg</span>) &#123;</span><br><span class="line">    <span class="comment">// 执行compose函数，返回一个函数</span></span><br><span class="line">    <span class="keyword">return</span> list.<span class="title function_">reduce</span>(</span><br><span class="line">      <span class="function">(<span class="params">pre, cur</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 返回list.reduce的结果，为一个promise实例，外部就可以通过then获取</span></span><br><span class="line">        <span class="keyword">return</span> pre.<span class="title function_">then</span>(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="comment">// pre始终为一个promise实例，result为结果的累加值</span></span><br><span class="line">          <span class="comment">// 在前一个函数的then中，执行当前的函数，并返回一个promise实例，实现累加传递的效果</span></span><br><span class="line">          <span class="keyword">return</span> cur.<span class="title function_">call</span>(<span class="literal">null</span>, result);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="comment">// Promise.resolve可以将非promise实例转为promise实例（一种兼容处理）</span></span><br><span class="line">      <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(init.<span class="title function_">apply</span>(<span class="literal">null</span>, arg))</span><br><span class="line">    );</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 同步方法案例</span></span><br><span class="line"><span class="keyword">let</span> <span class="title function_">sync1</span> = (<span class="params">data</span>) =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;sync1&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> data;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> <span class="title function_">sync2</span> = (<span class="params">data</span>) =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;sync2&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> data + <span class="number">1</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> <span class="title function_">sync3</span> = (<span class="params">data</span>) =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;sync3&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> data + <span class="number">2</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> syncFn = <span class="title function_">compose</span>([sync1, sync2, sync3]);</span><br><span class="line"><span class="title function_">syncFn</span>(<span class="number">0</span>).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 依次打印 sync1 → sync2 → sync3 → 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 异步方法案例</span></span><br><span class="line"><span class="keyword">let</span> <span class="title function_">async1</span> = (<span class="params">data</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;async1&quot;</span>);</span><br><span class="line">      <span class="title function_">resolve</span>(data);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> <span class="title function_">async2</span> = (<span class="params">data</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;async2&quot;</span>);</span><br><span class="line">      <span class="title function_">resolve</span>(data + <span class="number">1</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> <span class="title function_">async3</span> = (<span class="params">data</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;async3&quot;</span>);</span><br><span class="line">      <span class="title function_">resolve</span>(data + <span class="number">2</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> composeFn = <span class="title function_">compose</span>([async1, async2, async3]);</span><br><span class="line"><span class="title function_">composeFn</span>(<span class="number">0</span>).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 依次打印 async1 → async1 → async1 → 3</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>JS</category>
+      </categories>
+      <tags>
+        <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>兼容性</title>
+    <url>/2023/12/15/compatibility/</url>
+    <content><![CDATA[<h1 id="经常遇到的浏览器的兼容性有哪些？"><a href="#经常遇到的浏览器的兼容性有哪些？" class="headerlink" title="经常遇到的浏览器的兼容性有哪些？"></a>经常遇到的浏览器的兼容性有哪些？</h1><ol>
+<li><p>IE 浏览器不支持 <code>Promise</code><br>babel-polyfill → webpack.config.js 的 entry 中设置 [‘babel-polyfill’, ‘.&#x2F;src&#x2F;main.js’]</p>
+</li>
+<li><p>各浏览器之间默认样式的差异<br>normalize.css<br>与 reset 区别 → normalize.css 消除各浏览器之间默认样式的差异、保留有用的默认样式；<br>而 reset 会清除所有的默认样式，过于暴力，例如会让 h 标题标签不再默认加粗，ul li 前面默认的小圆点也没了）</p>
+<span id="more"></span></li>
+<li><p>html5 某些新增标签不被识别<br>html5shiv.js - 解决 ie9 以下对 html5 某些新增标签不识别的问题（e.g. video 标签不识别不显示）<br>用法：[if lt IE 9]&gt;<script> src="<a href="http://html5shim.googlecode.com/svn/trunk/html5.js">http://html5shim.googlecode.com/svn/trunk/html5.js</a>"</script>&lt;![endif]<br>通过 <code>document.createElement</code> 方法产生的标签， 可以利用这一特性让这些浏览器支持 HTML5 新标签，浏览器支持新标签后，还需要添加标签默认的样式。</p>
+</li>
+<li><p>CSS3 媒体查询失效<br>respond.js - 能解决 ie9 以下不支持媒体查询问题</p>
+</li>
+<li><p>自动添加浏览器前缀<br>posscss-loader+autoprefixer</p>
+</li>
+<li><p>ie6 不支持 <code>min-height/width</code><br>添加额外的 _min-height ie6 识别</p>
+</li>
+<li><p>常见 <code>hack</code>（针对特定 ie 版本的样式控制）<br>_color - ie6 识别<br>*color - ie6&#x2F;7 识别<br>color: red\9; ie8 及以下识别</p>
+</li>
+<li><p>ie 条件注释写法：(lt 小于 | gt 大于 | lte 小于等于 | gte 大于等于 | ! 不等于)</p>
+</li>
+</ol>
+<hr>
+<h1 id="移动端兼容性？"><a href="#移动端兼容性？" class="headerlink" title="移动端兼容性？"></a>移动端兼容性？</h1><ol>
+<li><p>移动端点透问题<a href="https://www.cnblogs.com/zhuzhenwei918/p/7588553.html">(解决办法)</a></p>
+</li>
+<li><p>ios 滚动卡顿<br>使用 better-scroll 插件</p>
+</li>
+<li><p>ios 顶部输入框 fixed 布局失效（当键盘弹起时）❌</p>
+</li>
+<li><p>安卓 键盘遮挡输入框 ❌</p>
+</li>
+<li><p>position:fixed; 在 android 下无效怎么处理？【❌ 待验证】</p>
+<blockquote>
+<p>原因：fixed 的元素是相对整个页面固定位置的，你在屏幕上滑动只是在移动这个所谓的 viewport ， 原来的网页还好好的在那，fixed 的内容也没有变过位置。</p>
+</blockquote>
+</li>
+</ol>
+<p>解决：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;meta</span><br><span class="line">  name=<span class="string">&quot;viewport&quot;</span></span><br><span class="line">  content=<span class="string">&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no&quot;</span></span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>移动端的点击事件的有延迟，时间是多久，为什么会有？ 怎么解决这个延时？❌<br>click 有 300ms 延迟,为了实现 safari 的双击事件的设计，浏览器要知道你是不是要双击操作。</li>
+</ol>
+<hr>
+<h1 id="Polyfill"><a href="#Polyfill" class="headerlink" title="Polyfill"></a>Polyfill</h1><h2 id="什么是-Polyfill"><a href="#什么是-Polyfill" class="headerlink" title="什么是 Polyfill"></a>什么是 Polyfill</h2><p>polyfill 是“在旧版浏览器上复制标准 API 的 JavaScript 补充”,可以动态地加载 JavaScript 代码或库，在不支持这些标准 API 的浏览器中模拟它们。</p>
+<p>例如，geolocation（地理位置）polyfill 可以在 navigator 对象上添加全局的 geolocation 对象，还能添加 getCurrentPosition 函数以及“坐标”回调对象， 所有这些都是 W3C 地理位置 API 定义的对象和函数。</p>
+<p>因为 polyfill 模拟标准 API，所以能够以一种面向所有浏览器未来的方式针对这些 API 进行开发， 一旦对这些 API 的支持变成绝对大多数，则可以方便地去掉 polyfill，无需做任何额外工作。</p>
+<ul>
+<li>做的项目中，有没有用过或自己实现一些 polyfill 方案（兼容性处理方案）？❌<br>比如： html5shiv、Geolocation、Placeholder</li>
+</ul>
+<hr>
+<h1 id="列举-IE-与其他浏览器不一样的特性？"><a href="#列举-IE-与其他浏览器不一样的特性？" class="headerlink" title="列举 IE 与其他浏览器不一样的特性？"></a>列举 IE 与其他浏览器不一样的特性？</h1><p><strong>事件目标对象</strong></p>
+<p>触发事件的元素被认为是目标（target）。而在 IE 中，目标包含在 <code>event</code> 对象的 <code>srcElement</code> 属性</p>
+<p><strong>获取字符代码</strong></p>
+<p>如果按键代表一个字符（shift、ctrl、alt 除外），IE 的 <code>keyCode</code> 会返回字符代码（Unicode），DOM 中按键的代码和字符是分离的，要获取字符代码，需要使用 <code>charCode</code> 属性</p>
+<p><strong>阻止某个事件的默认行为</strong></p>
+<p>IE 中阻止某个事件的默认行为，必须将 <code>returnValue</code> 属性设置为 <code>false</code>，Mozilla 中，需要调用 <code>preventDefault()</code> 方法</p>
+<p><strong>停止事件冒泡</strong></p>
+<p>IE 中阻止事件进一步冒泡，需要设置 <code>cancelBubble</code> 为 true，Mozzilla 中，需要调用 <code>stopPropagation()</code></p>
+]]></content>
+      <categories>
+        <category>浏览器</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>JSBridge</title>
+    <url>/2023/12/18/JSBridge/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>自动化测试</title>
     <url>/2023/01/15/auto-testing/</url>
     <content><![CDATA[<h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>为了更好的实施自动化测试，我们希望有一套简单但足够的自动化测试体系，能够从各个层面帮助我们开展自动化测试，从而交付高质量的软件代码。</p>
@@ -107,7 +194,7 @@
         <category>测试</category>
       </categories>
       <tags>
-        <tag>-测试</tag>
+        <tag>测试</tag>
       </tags>
   </entry>
   <entry>
@@ -119,72 +206,29 @@
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>倒计时<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;day&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;hour&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;minute&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;second&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> deadline = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="string">&quot;2019-10-1 00:00:00&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> dayElement = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.day&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> hourElement = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.hour&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> minuteElement = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.minute&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> secondElement = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.second&quot;</span>);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> <span class="title function_">countDown</span> = (<span class="params"></span>) =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> timeRemaining = deadline - <span class="keyword">new</span> <span class="title class_">Date</span>();</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">let</span> day, hour, minute, second;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">if</span> (timeRemaining &lt; <span class="number">0</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">return</span> <span class="number">0</span>;</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">        day = <span class="title class_">Math</span>.<span class="title function_">floor</span>(timeRemaining / <span class="number">1000</span> / <span class="number">60</span> / <span class="number">60</span> / <span class="number">24</span>);</span></span><br><span class="line"><span class="language-javascript">        hour = <span class="title class_">Math</span>.<span class="title function_">floor</span>((timeRemaining / <span class="number">1000</span> / <span class="number">60</span> / <span class="number">60</span>) % <span class="number">24</span>);</span></span><br><span class="line"><span class="language-javascript">        minute = <span class="title class_">Math</span>.<span class="title function_">floor</span>((timeRemaining / <span class="number">1000</span> / <span class="number">60</span>) % <span class="number">60</span>);</span></span><br><span class="line"><span class="language-javascript">        second = <span class="title class_">Math</span>.<span class="title function_">floor</span>((timeRemaining / <span class="number">1000</span>) % <span class="number">60</span>);</span></span><br><span class="line"><span class="language-javascript">        dayElement.<span class="property">innerHTML</span> = day + <span class="string">&quot;天&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">        hourElement.<span class="property">innerHTML</span> = hour + <span class="string">&quot;时&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">        minuteElement.<span class="property">innerHTML</span> = minute + <span class="string">&quot;分&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">        secondElement.<span class="property">innerHTML</span> = second + <span class="string">&quot;秒&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="built_in">setTimeout</span>(countDown, <span class="number">1000</span>);</span></span><br><span class="line"><span class="language-javascript">      &#125;;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="title function_">countDown</span>();</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
-        <tag>-JS</tag>
+        <tag>JS</tag>
       </tags>
   </entry>
   <entry>
-    <title>兼容性</title>
-    <url>/2023/12/15/compatibility/</url>
-    <content><![CDATA[<h1 id="经常遇到的浏览器的兼容性有哪些？"><a href="#经常遇到的浏览器的兼容性有哪些？" class="headerlink" title="经常遇到的浏览器的兼容性有哪些？"></a>经常遇到的浏览器的兼容性有哪些？</h1><ol>
-<li><p>IE 浏览器不支持 <code>Promise</code><br>babel-polyfill → webpack.config.js 的 entry 中设置 [‘babel-polyfill’, ‘.&#x2F;src&#x2F;main.js’]</p>
-</li>
-<li><p>各浏览器之间默认样式的差异<br>normalize.css<br>与 reset 区别 → normalize.css 消除各浏览器之间默认样式的差异、保留有用的默认样式；<br>而 reset 会清除所有的默认样式，过于暴力，例如会让 h 标题标签不再默认加粗，ul li 前面默认的小圆点也没了）</p>
-<span id="more"></span></li>
-<li><p>html5 某些新增标签不被识别<br>html5shiv.js - 解决 ie9 以下对 html5 某些新增标签不识别的问题（e.g. video 标签不识别不显示）<br>用法：[if lt IE 9]&gt;<script> src="<a href="http://html5shim.googlecode.com/svn/trunk/html5.js">http://html5shim.googlecode.com/svn/trunk/html5.js</a>"</script>&lt;![endif]<br>通过 <code>document.createElement</code> 方法产生的标签， 可以利用这一特性让这些浏览器支持 HTML5 新标签，浏览器支持新标签后，还需要添加标签默认的样式。</p>
-</li>
-<li><p>CSS3 媒体查询失效<br>respond.js - 能解决 ie9 以下不支持媒体查询问题</p>
-</li>
-<li><p>自动添加浏览器前缀<br>posscss-loader+autoprefixer</p>
-</li>
-<li><p>ie6 不支持 <code>min-height/width</code><br>添加额外的 _min-height ie6 识别</p>
-</li>
-<li><p>常见 <code>hack</code>（针对特定 ie 版本的样式控制）<br>_color - ie6 识别<br>*color - ie6&#x2F;7 识别<br>color: red\9; ie8 及以下识别</p>
-</li>
-<li><p>ie 条件注释写法：(lt 小于 | gt 大于 | lte 小于等于 | gte 大于等于 | ! 不等于)</p>
-</li>
-</ol>
-<hr>
-<h1 id="移动端兼容性？"><a href="#移动端兼容性？" class="headerlink" title="移动端兼容性？"></a>移动端兼容性？</h1><ol>
-<li><p>移动端点透问题<a href="https://www.cnblogs.com/zhuzhenwei918/p/7588553.html">(解决办法)</a></p>
-</li>
-<li><p>ios 滚动卡顿<br>使用 better-scroll 插件</p>
-</li>
-<li><p>ios 顶部输入框 fixed 布局失效（当键盘弹起时）❌</p>
-</li>
-<li><p>安卓 键盘遮挡输入框 ❌</p>
-</li>
-<li><p>position:fixed; 在 android 下无效怎么处理？【❌ 待验证】</p>
-<blockquote>
-<p>原因：fixed 的元素是相对整个页面固定位置的，你在屏幕上滑动只是在移动这个所谓的 viewport ， 原来的网页还好好的在那，fixed 的内容也没有变过位置。</p>
-</blockquote>
-</li>
-</ol>
-<p>解决：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;meta</span><br><span class="line">  name=<span class="string">&quot;viewport&quot;</span></span><br><span class="line">  content=<span class="string">&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no&quot;</span></span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
+    <title>防抖节流函数</title>
+    <url>/2023/12/18/debounce-throttle/</url>
+    <content><![CDATA[<h1 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h1><p>应用场景：搜索框输入文字后调用对应搜索接口</p>
+<p>利用闭包，不管触发频率多高，在停止触发 n 秒后才会执行，如果重复触发，会清空之前的定时器，重新计时，直到最后一次 n 秒后执行</p>
+<span id="more"></span>
 
-<ol start="6">
-<li>移动端的点击事件的有延迟，时间是多久，为什么会有？ 怎么解决这个延时？❌<br>click 有 300ms 延迟,为了实现 safari 的双击事件的设计，浏览器要知道你是不是要双击操作。</li>
-</ol>
-<hr>
-<h1 id="Polyfill"><a href="#Polyfill" class="headerlink" title="Polyfill"></a>Polyfill</h1><h2 id="什么是-Polyfill"><a href="#什么是-Polyfill" class="headerlink" title="什么是 Polyfill"></a>什么是 Polyfill</h2><p>polyfill 是“在旧版浏览器上复制标准 API 的 JavaScript 补充”,可以动态地加载 JavaScript 代码或库，在不支持这些标准 API 的浏览器中模拟它们。</p>
-<p>例如，geolocation（地理位置）polyfill 可以在 navigator 对象上添加全局的 geolocation 对象，还能添加 getCurrentPosition 函数以及“坐标”回调对象， 所有这些都是 W3C 地理位置 API 定义的对象和函数。</p>
-<p>因为 polyfill 模拟标准 API，所以能够以一种面向所有浏览器未来的方式针对这些 API 进行开发， 一旦对这些 API 的支持变成绝对大多数，则可以方便地去掉 polyfill，无需做任何额外工作。</p>
-<ul>
-<li>做的项目中，有没有用过或自己实现一些 polyfill 方案（兼容性处理方案）？❌<br>比如： html5shiv、Geolocation、Placeholder</li>
-</ul>
-<hr>
-<h1 id="列举-IE-与其他浏览器不一样的特性？"><a href="#列举-IE-与其他浏览器不一样的特性？" class="headerlink" title="列举 IE 与其他浏览器不一样的特性？"></a>列举 IE 与其他浏览器不一样的特性？</h1><p><strong>事件目标对象</strong></p>
-<p>触发事件的元素被认为是目标（target）。而在 IE 中，目标包含在 <code>event</code> 对象的 <code>srcElement</code> 属性</p>
-<p><strong>获取字符代码</strong></p>
-<p>如果按键代表一个字符（shift、ctrl、alt 除外），IE 的 <code>keyCode</code> 会返回字符代码（Unicode），DOM 中按键的代码和字符是分离的，要获取字符代码，需要使用 <code>charCode</code> 属性</p>
-<p><strong>阻止某个事件的默认行为</strong></p>
-<p>IE 中阻止某个事件的默认行为，必须将 <code>returnValue</code> 属性设置为 <code>false</code>，Mozilla 中，需要调用 <code>preventDefault()</code> 方法</p>
-<p><strong>停止事件冒泡</strong></p>
-<p>IE 中阻止事件进一步冒泡，需要设置 <code>cancelBubble</code> 为 true，Mozzilla 中，需要调用 <code>stopPropagation()</code></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;function&#125; fn - 需要防抖的函数</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; time - 多长时间执行一次</span></span><br><span class="line"><span class="comment"> * @param &#123;boolean&#125; flag - 第一次是否执行</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">debounce</span>(<span class="params">fn, time, flag</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> timer;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params">...args</span>) &#123;</span><br><span class="line">    <span class="comment">// 在time时间段内重复执行，会清空之前的定时器，然后重新计时</span></span><br><span class="line">    timer &amp;&amp; <span class="built_in">clearTimeout</span>(timer);</span><br><span class="line">    <span class="keyword">if</span> (flag &amp;&amp; !timer) &#123;</span><br><span class="line">      <span class="comment">// flag为true 第一次默认执行</span></span><br><span class="line">      fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, args);</span><br><span class="line">    &#125;</span><br><span class="line">    timer = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, args);</span><br><span class="line">    &#125;, time);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params">a</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;执行:&quot;</span>, a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> debounceFn = <span class="title function_">debounce</span>(fn, <span class="number">3000</span>, <span class="literal">true</span>);</span><br><span class="line"><span class="title function_">debounceFn</span>(<span class="number">1</span>);</span><br><span class="line"><span class="title function_">debounceFn</span>(<span class="number">2</span>);</span><br><span class="line"><span class="title function_">debounceFn</span>(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 先打印：执行: 1</span></span><br><span class="line"><span class="comment">// 3s后打印: 执行: 3</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="节流"><a href="#节流" class="headerlink" title="节流"></a>节流</h1><p>应用场景： 下拉滚动加载</p>
+<p>利用闭包，不管触发频率多高，每隔一段时间内执行一次</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;function&#125; fn - 需要防抖的函数</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; time - 多长时间执行一次</span></span><br><span class="line"><span class="comment"> * @param &#123;boolean&#125; flag - 第一次是否执行</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">throttle</span>(<span class="params">fn, time, flag</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> timer;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params">...args</span>) &#123;</span><br><span class="line">    <span class="comment">// flag控制第一次是否立即执行</span></span><br><span class="line">    <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">      fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, args);</span><br><span class="line">      <span class="comment">// 第一次执行完后，flag变为false；否则以后每次都会执行</span></span><br><span class="line">      flag = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!timer) &#123;</span><br><span class="line">      timer = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, args);</span><br><span class="line">        <span class="comment">// 每次执行完重置timer</span></span><br><span class="line">        timer = <span class="literal">null</span>;</span><br><span class="line">      &#125;, time);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;fn&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> throttleFn = <span class="title function_">throttle</span>(fn, <span class="number">3000</span>, <span class="literal">true</span>);</span><br><span class="line"><span class="built_in">setInterval</span>(throttleFn, <span class="number">500</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试结果，一开始就打印&quot;fn&quot;, 以后每隔3s打印一次&quot;fn&quot;</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>浏览器</category>
+        <category>JS</category>
       </categories>
+      <tags>
+        <tag>JS</tag>
+        <tag>优化</tag>
+      </tags>
   </entry>
   <entry>
     <title>设计模式</title>
@@ -231,11 +275,6 @@
       </tags>
   </entry>
   <entry>
-    <title>function</title>
-    <url>/2023/12/18/function/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>JS 垃圾回收机制</title>
     <url>/2023/01/15/garbage-recycling-mechanism/</url>
     <content><![CDATA[<h1 id="一、垃圾回收机制——GC"><a href="#一、垃圾回收机制——GC" class="headerlink" title="一、垃圾回收机制——GC"></a>一、垃圾回收机制——GC</h1><p>Javascript 具有自动垃圾回收机制（GC：Garbage Collecation），也就是说，执行环境会负责管理代码执行过程中使用的内存。</p>
@@ -269,7 +308,27 @@
         <category>JS</category>
       </categories>
       <tags>
-        <tag>-JS</tag>
+        <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sleep 函数</title>
+    <url>/2020/12/18/sleep-function/</url>
+    <content><![CDATA[<p>JS 没有语言内置的休眠（sleep or wait）函数，所谓的 sleep 只是实现一种延迟执行的效果</p>
+<p>等待指定时间后再执行对应方法</p>
+<h2 id="方法一：伪死循环阻塞主线程"><a href="#方法一：伪死循环阻塞主线程" class="headerlink" title="方法一：伪死循环阻塞主线程"></a>方法一：伪死循环阻塞主线程</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 因为JS是单线程的，所以通过这种方式可以实现真正意义上的sleep</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sleep1</span>(<span class="params">fn, time</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> start = <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>();</span><br><span class="line">  <span class="keyword">while</span> (<span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>() - start &lt; time) &#123;</span><br><span class="line">    <span class="keyword">continue</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">fn</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="方式二：-定时器"><a href="#方式二：-定时器" class="headerlink" title="方式二： 定时器"></a>方式二： 定时器</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">sleep2</span>(<span class="params">fn, time</span>) &#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(fn, time);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="方式三：promise"><a href="#方式三：promise" class="headerlink" title="方式三：promise"></a>方式三：promise</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function sleep3(fn, time) &#123;</span><br><span class="line">  new Promise(resolve =&gt; &#123;</span><br><span class="line">    setTimeout(resolve, time);</span><br><span class="line">  &#125;).then(() =&gt; &#123;</span><br><span class="line">    fn();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="方式四：async-await"><a href="#方式四：async-await" class="headerlink" title="方式四：async await"></a>方式四：async await</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">sleep4</span>(<span class="params">fn, time</span>) &#123;</span><br><span class="line">  <span class="keyword">await</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(resolve, time);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="title function_">fn</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;fn&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">sleep1</span>(fn, <span class="number">2000</span>);</span><br><span class="line"><span class="title function_">sleep2</span>(fn, <span class="number">2000</span>);</span><br><span class="line"><span class="title function_">sleep3</span>(fn, <span class="number">2000</span>);</span><br><span class="line"><span class="title function_">sleep4</span>(fn, <span class="number">2000</span>);</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>JS</category>
+      </categories>
+      <tags>
+        <tag>JS</tag>
       </tags>
   </entry>
   <entry>
@@ -283,6 +342,12 @@
 <p>图片懒加载示例</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// html内容</span></span><br><span class="line"><span class="comment">// &lt;img src=&quot;./loading.jpg&quot; src=&quot;https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg&quot;&gt;</span></span><br><span class="line"><span class="comment">// &lt;img src=&quot;./loading.jpg&quot; src=&quot;https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg&quot;&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">observerImg</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> imgList = <span class="variable language_">document</span>.<span class="title function_">getElementsByTagName</span>(<span class="string">&quot;img&quot;</span>);</span><br><span class="line">  <span class="keyword">let</span> observer = <span class="keyword">new</span> <span class="title class_">IntersectionObserver</span>(<span class="function">(<span class="params">list</span>) =&gt;</span> &#123;</span><br><span class="line">    list.<span class="title function_">forEach</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 判断元素是否出现在视口</span></span><br><span class="line">      <span class="keyword">if</span> (item.<span class="property">intersectionRatio</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        item.<span class="property">target</span>.<span class="property">src</span> = item.<span class="property">target</span>.<span class="title function_">getAttribute</span>(<span class="string">&quot;src&quot;</span>);</span><br><span class="line">        observer.<span class="title function_">unobserve</span>(item.<span class="property">target</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; imgList.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// 监听每个img元素</span></span><br><span class="line">    observer.<span class="title function_">observe</span>(imgList[i]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
+      <categories>
+        <category>JS</category>
+      </categories>
+      <tags>
+        <tag>优化</tag>
+      </tags>
   </entry>
   <entry>
     <title>React 组件的编写</title>
@@ -321,55 +386,7 @@
         <category>React</category>
       </categories>
       <tags>
-        <tag>-React</tag>
+        <tag>React</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>sleep 函数</title>
-    <url>/2020/12/18/sleep-function/</url>
-    <content><![CDATA[<p>JS 没有语言内置的休眠（sleep or wait）函数，所谓的 sleep 只是实现一种延迟执行的效果</p>
-<p>等待指定时间后再执行对应方法</p>
-<h2 id="方法一：伪死循环阻塞主线程"><a href="#方法一：伪死循环阻塞主线程" class="headerlink" title="方法一：伪死循环阻塞主线程"></a>方法一：伪死循环阻塞主线程</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 因为JS是单线程的，所以通过这种方式可以实现真正意义上的sleep</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sleep1</span>(<span class="params">fn, time</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> start = <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>();</span><br><span class="line">  <span class="keyword">while</span> (<span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>() - start &lt; time) &#123;</span><br><span class="line">    <span class="keyword">continue</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">fn</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="方式二：-定时器"><a href="#方式二：-定时器" class="headerlink" title="方式二： 定时器"></a>方式二： 定时器</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">sleep2</span>(<span class="params">fn, time</span>) &#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(fn, time);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="方式三：promise"><a href="#方式三：promise" class="headerlink" title="方式三：promise"></a>方式三：promise</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function sleep3(fn, time) &#123;</span><br><span class="line">  new Promise(resolve =&gt; &#123;</span><br><span class="line">    setTimeout(resolve, time);</span><br><span class="line">  &#125;).then(() =&gt; &#123;</span><br><span class="line">    fn();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="方式四：async-await"><a href="#方式四：async-await" class="headerlink" title="方式四：async await"></a>方式四：async await</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">sleep4</span>(<span class="params">fn, time</span>) &#123;</span><br><span class="line">  <span class="keyword">await</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(resolve, time);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="title function_">fn</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;fn&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">sleep1</span>(fn, <span class="number">2000</span>);</span><br><span class="line"><span class="title function_">sleep2</span>(fn, <span class="number">2000</span>);</span><br><span class="line"><span class="title function_">sleep3</span>(fn, <span class="number">2000</span>);</span><br><span class="line"><span class="title function_">sleep4</span>(fn, <span class="number">2000</span>);</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>JS</category>
-      </categories>
-      <tags>
-        <tag>-JS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>防抖节流函数</title>
-    <url>/2023/12/18/debounce-throttle/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>compose函数组合</title>
-    <url>/2019/10/10/compose/</url>
-    <content><![CDATA[<p>在函数式编程当中有一个很重要的概念就是函数组合，实际上就是<strong>把处理数据的函数像管道一样连接起来，然后让数据穿过管道得到最终的结果</strong></p>
-<p>在多个框架源码中都有用到，比如 redux、koa 中多次遇到这个方法</p>
-<p>效果：将一系列函数，通过 <code>compose</code> 函数组合起来，像管道一样连接起来，比如函数结合<code>[f, g, h ]</code>，通过 <code>compose</code> 最终达到这样的效果： <code>f(g(h()))</code></p>
-<p>compose 函数要求：可执行同步方法，也可执行异步方法，两者都可以兼容</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">compose</span>(<span class="params">list</span>) &#123;</span><br><span class="line">  <span class="comment">// 取出第一个函数，当做reduce函数的初始值</span></span><br><span class="line">  <span class="keyword">const</span> init = list.<span class="title function_">shift</span>();</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params">...arg</span>) &#123;</span><br><span class="line">    <span class="comment">// 执行compose函数，返回一个函数</span></span><br><span class="line">    <span class="keyword">return</span> list.<span class="title function_">reduce</span>(</span><br><span class="line">      <span class="function">(<span class="params">pre, cur</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 返回list.reduce的结果，为一个promise实例，外部就可以通过then获取</span></span><br><span class="line">        <span class="keyword">return</span> pre.<span class="title function_">then</span>(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="comment">// pre始终为一个promise实例，result为结果的累加值</span></span><br><span class="line">          <span class="comment">// 在前一个函数的then中，执行当前的函数，并返回一个promise实例，实现累加传递的效果</span></span><br><span class="line">          <span class="keyword">return</span> cur.<span class="title function_">call</span>(<span class="literal">null</span>, result);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="comment">// Promise.resolve可以将非promise实例转为promise实例（一种兼容处理）</span></span><br><span class="line">      <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(init.<span class="title function_">apply</span>(<span class="literal">null</span>, arg))</span><br><span class="line">    );</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 同步方法案例</span></span><br><span class="line"><span class="keyword">let</span> <span class="title function_">sync1</span> = (<span class="params">data</span>) =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;sync1&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> data;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> <span class="title function_">sync2</span> = (<span class="params">data</span>) =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;sync2&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> data + <span class="number">1</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> <span class="title function_">sync3</span> = (<span class="params">data</span>) =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;sync3&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> data + <span class="number">2</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> syncFn = <span class="title function_">compose</span>([sync1, sync2, sync3]);</span><br><span class="line"><span class="title function_">syncFn</span>(<span class="number">0</span>).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 依次打印 sync1 → sync2 → sync3 → 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 异步方法案例</span></span><br><span class="line"><span class="keyword">let</span> <span class="title function_">async1</span> = (<span class="params">data</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;async1&quot;</span>);</span><br><span class="line">      <span class="title function_">resolve</span>(data);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> <span class="title function_">async2</span> = (<span class="params">data</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;async2&quot;</span>);</span><br><span class="line">      <span class="title function_">resolve</span>(data + <span class="number">1</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> <span class="title function_">async3</span> = (<span class="params">data</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;async3&quot;</span>);</span><br><span class="line">      <span class="title function_">resolve</span>(data + <span class="number">2</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> composeFn = <span class="title function_">compose</span>([async1, async2, async3]);</span><br><span class="line"><span class="title function_">composeFn</span>(<span class="number">0</span>).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 依次打印 async1 → async1 → async1 → 3</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>JS</category>
-      </categories>
-      <tags>
-        <tag>-JS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JSBridge</title>
-    <url>/2023/12/18/JSBridge/</url>
-    <content><![CDATA[]]></content>
   </entry>
 </search>

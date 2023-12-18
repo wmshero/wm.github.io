@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="在函数式编程当中有一个很重要的概念就是函数组合，实际上就是把处理数据的函数像管道一样连接起来，然后让数据穿过管道得到最终的结果 在多个框架源码中都有用到，比如 redux、koa 中多次遇到这个方法 效果：将一系列函数，通过 compose 函数组合起来，像管道一样连接起来，比如函数结合[f, g, h ]，通过 compose 最终达到这样的效果： f(g(h())) compose 函数要求：">
+    <meta name="description" content="在函数式编程当中有一个很重要的概念就是函数组合，实际上就是把处理数据的函数像管道一样连接起来，然后让数据穿过管道得到最终的结果 在多个框架源码中都有用到，比如 redux、koa 中多次遇到这个方法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="compose函数组合">
 <meta property="og:url" content="http://example.com/2019/10/10/compose/index.html">
 <meta property="og:site_name" content="wm&#39;s blog">
-<meta property="og:description" content="在函数式编程当中有一个很重要的概念就是函数组合，实际上就是把处理数据的函数像管道一样连接起来，然后让数据穿过管道得到最终的结果 在多个框架源码中都有用到，比如 redux、koa 中多次遇到这个方法 效果：将一系列函数，通过 compose 函数组合起来，像管道一样连接起来，比如函数结合[f, g, h ]，通过 compose 最终达到这样的效果： f(g(h())) compose 函数要求：">
+<meta property="og:description" content="在函数式编程当中有一个很重要的概念就是函数组合，实际上就是把处理数据的函数像管道一样连接起来，然后让数据穿过管道得到最终的结果 在多个框架源码中都有用到，比如 redux、koa 中多次遇到这个方法">
 <meta property="og:locale">
 <meta property="article:published_time" content="2019-10-10T06:18:06.000Z">
-<meta property="article:modified_time" content="2023-12-18T07:41:22.081Z">
+<meta property="article:modified_time" content="2023-12-18T07:43:04.824Z">
 <meta property="article:author" content="wm">
 <meta property="article:tag" content="JS">
 <meta name="twitter:card" content="summary">
@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -207,7 +207,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-18 15:41:22" itemprop="dateModified" datetime="2023-12-18T15:41:22+08:00">2023-12-18</time>
+      <time title="Modified: 2023-12-18 15:43:04" itemprop="dateModified" datetime="2023-12-18T15:43:04+08:00">2023-12-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -230,6 +230,8 @@
     
     <div class="post-body" itemprop="articleBody"><p>在函数式编程当中有一个很重要的概念就是函数组合，实际上就是<strong>把处理数据的函数像管道一样连接起来，然后让数据穿过管道得到最终的结果</strong></p>
 <p>在多个框架源码中都有用到，比如 redux、koa 中多次遇到这个方法</p>
+<span id="more"></span>
+
 <p>效果：将一系列函数，通过 <code>compose</code> 函数组合起来，像管道一样连接起来，比如函数结合<code>[f, g, h ]</code>，通过 <code>compose</code> 最终达到这样的效果： <code>f(g(h()))</code></p>
 <p>compose 函数要求：可执行同步方法，也可执行异步方法，两者都可以兼容</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">compose</span>(<span class="params">list</span>) &#123;</span><br><span class="line">  <span class="comment">// 取出第一个函数，当做reduce函数的初始值</span></span><br><span class="line">  <span class="keyword">const</span> init = list.<span class="title function_">shift</span>();</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params">...arg</span>) &#123;</span><br><span class="line">    <span class="comment">// 执行compose函数，返回一个函数</span></span><br><span class="line">    <span class="keyword">return</span> list.<span class="title function_">reduce</span>(</span><br><span class="line">      <span class="function">(<span class="params">pre, cur</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 返回list.reduce的结果，为一个promise实例，外部就可以通过then获取</span></span><br><span class="line">        <span class="keyword">return</span> pre.<span class="title function_">then</span>(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="comment">// pre始终为一个promise实例，result为结果的累加值</span></span><br><span class="line">          <span class="comment">// 在前一个函数的then中，执行当前的函数，并返回一个promise实例，实现累加传递的效果</span></span><br><span class="line">          <span class="keyword">return</span> cur.<span class="title function_">call</span>(<span class="literal">null</span>, result);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="comment">// Promise.resolve可以将非promise实例转为promise实例（一种兼容处理）</span></span><br><span class="line">      <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(init.<span class="title function_">apply</span>(<span class="literal">null</span>, arg))</span><br><span class="line">    );</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -256,8 +258,8 @@
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/12/18/sleep-function/" rel="next" title="sleep 函数">
-                  sleep 函数 <i class="fa fa-angle-right"></i>
+                <a href="/2019/11/10/array-function/" rel="next" title="JS 数组方法">
+                  JS 数组方法 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>

@@ -19,23 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="wm&#39;s blog">
-<meta property="og:url" content="http://example.com/index.html">
+    <meta name="description" content="改变原数组的方法(9 个)1.splice() 添加 &#x2F; 删除数组元素splice() 方法向&#x2F;从数组中添加&#x2F;删除项目，然后返回被删除的项目 array.splice(index,howmany,item1,.....,itemX)  index：必需。整数，规定添加&#x2F;删除项目的位置，使用负数可从数组结尾处规定位置。howmany：可选。要删除的项目数量。如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS 数组方法">
+<meta property="og:url" content="http://example.com/2019/11/10/array-function/index.html">
 <meta property="og:site_name" content="wm&#39;s blog">
+<meta property="og:description" content="改变原数组的方法(9 个)1.splice() 添加 &#x2F; 删除数组元素splice() 方法向&#x2F;从数组中添加&#x2F;删除项目，然后返回被删除的项目 array.splice(index,howmany,item1,.....,itemX)  index：必需。整数，规定添加&#x2F;删除项目的位置，使用负数可从数组结尾处规定位置。howmany：可选。要删除的项目数量。如">
 <meta property="og:locale">
+<meta property="article:published_time" content="2019-11-10T08:15:45.000Z">
+<meta property="article:modified_time" content="2023-12-18T08:31:04.999Z">
 <meta property="article:author" content="wm">
+<meta property="article:tag" content="JS">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2019/11/10/array-function/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-Hans","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2019/11/10/array-function/","path":"2019/11/10/array-function/","title":"JS 数组方法"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>wm's blog</title>
+<title>JS 数组方法 | wm's blog</title>
   
 
 
@@ -68,7 +73,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">wm's blog</h1>
+      <p class="site-title">wm's blog</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -94,7 +99,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -107,6 +112,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%94%B9%E5%8F%98%E5%8E%9F%E6%95%B0%E7%BB%84%E7%9A%84%E6%96%B9%E6%B3%95-9-%E4%B8%AA"><span class="nav-number">1.</span> <span class="nav-text">改变原数组的方法(9 个)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-splice-%E6%B7%BB%E5%8A%A0-%E5%88%A0%E9%99%A4%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0"><span class="nav-number">1.1.</span> <span class="nav-text">1.splice() 添加 &#x2F; 删除数组元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0"><span class="nav-number">1.1.1.</span> <span class="nav-text">删除元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%B9%B6%E6%B7%BB%E5%8A%A0"><span class="nav-number">1.1.2.</span> <span class="nav-text">删除并添加</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%88%A0%E9%99%A4%E5%8F%AA%E6%B7%BB%E5%8A%A0"><span class="nav-number">1.1.3.</span> <span class="nav-text">不删除只添加</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-sort-%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F"><span class="nav-number">1.2.</span> <span class="nav-text">2.sort() 数组排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E4%BC%A0%E5%8F%82"><span class="nav-number">1.2.1.</span> <span class="nav-text">不传参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%8F%82%E6%95%B0%EF%BC%9A"><span class="nav-number">1.2.2.</span> <span class="nav-text">比较函数的两个参数：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E5%8D%87%E9%99%8D%E5%BA%8F"><span class="nav-number">1.2.3.</span> <span class="nav-text">数字升降序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shift-%E5%88%A0%E9%99%A4%E6%95%B0%E7%BB%84%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0"><span class="nav-number">1.3.</span> <span class="nav-text">shift() 删除数组的第一个元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#push-%E5%90%91%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%AB%E5%B0%BE%E6%B7%BB%E5%8A%A0%E5%85%83%E7%B4%A0"><span class="nav-number">1.4.</span> <span class="nav-text">push() 向数组的末尾添加元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unshift"><span class="nav-number">1.5.</span> <span class="nav-text">unshift()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reverse-%E9%A2%A0%E5%80%92%E6%95%B0%E7%BB%84%E4%B8%AD%E5%85%83%E7%B4%A0%E7%9A%84%E9%A1%BA%E5%BA%8F"><span class="nav-number">1.6.</span> <span class="nav-text">reverse() 颠倒数组中元素的顺序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8D%E6%94%B9%E5%8F%98%E5%8E%9F%E6%95%B0%E7%BB%84%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%888-%E4%B8%AA%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">不改变原数组的方法（8 个）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#slice-%E6%B5%85%E6%8B%B7%E8%B4%9D%E6%95%B0%E7%BB%84%E7%9A%84%E5%85%83%E7%B4%A0"><span class="nav-number">2.1.</span> <span class="nav-text">slice() 浅拷贝数组的元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#join-%E6%95%B0%E7%BB%84%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">2.2.</span> <span class="nav-text">join() 数组转字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#toLocaleString-%E6%95%B0%E7%BB%84%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">2.3.</span> <span class="nav-text">toLocaleString() 数组转字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#concat-%E5%90%88%E5%B9%B6%E6%95%B0%E7%BB%84"><span class="nav-number">2.4.</span> <span class="nav-text">concat 合并数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6-%E6%89%A9%E5%B1%95%E8%BF%90%E7%AE%97%E7%AC%A6-%E2%80%A6-%E5%90%88%E5%B9%B6%E6%95%B0%E7%BB%84"><span class="nav-number">2.5.</span> <span class="nav-text">ES6 扩展运算符 … 合并数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#indexOf-%E6%9F%A5%E6%89%BE%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9F%90%E4%B8%AA%E5%85%83%E7%B4%A0%EF%BC%8C%E8%BF%94%E5%9B%9E%E4%B8%8B%E6%A0%87"><span class="nav-number">2.6.</span> <span class="nav-text">indexOf() 查找数组是否存在某个元素，返回下标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A5%E6%A0%BC%E7%9B%B8%E7%AD%89%E7%9A%84%E6%90%9C%E7%B4%A2"><span class="nav-number">2.6.1.</span> <span class="nav-text">严格相等的搜索:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lastIndexOf-%E6%9F%A5%E6%89%BE%E6%8C%87%E5%AE%9A%E5%85%83%E7%B4%A0%E5%9C%A8%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE"><span class="nav-number">2.7.</span> <span class="nav-text">lastIndexOf() 查找指定元素在数组中的最后一个位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES7-includes-%E6%9F%A5%E6%89%BE%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%AB%E6%9F%90%E4%B8%AA%E5%85%83%E7%B4%A0-%E8%BF%94%E5%9B%9E%E5%B8%83%E5%B0%94"><span class="nav-number">2.8.</span> <span class="nav-text">ES7 includes() 查找数组是否包含某个元素 返回布尔</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -155,831 +161,17 @@
 
     </div>
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/18/debounce-throttle/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="wm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/18/debounce-throttle/" class="post-title-link" itemprop="url">防抖节流函数</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2023-12-18 14:11:27 / Modified: 15:40:56" itemprop="dateCreated datePublished" datetime="2023-12-18T14:11:27+08:00">2023-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JS/" itemprop="url" rel="index"><span itemprop="name">JS</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h1><p>应用场景：搜索框输入文字后调用对应搜索接口</p>
-<p>利用闭包，不管触发频率多高，在停止触发 n 秒后才会执行，如果重复触发，会清空之前的定时器，重新计时，直到最后一次 n 秒后执行</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/12/18/debounce-throttle/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/15/compatibility/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="wm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/15/compatibility/" class="post-title-link" itemprop="url">兼容性</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2023-12-15 14:31:46 / Modified: 14:46:18" itemprop="dateCreated datePublished" datetime="2023-12-15T14:31:46+08:00">2023-12-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">浏览器</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="经常遇到的浏览器的兼容性有哪些？"><a href="#经常遇到的浏览器的兼容性有哪些？" class="headerlink" title="经常遇到的浏览器的兼容性有哪些？"></a>经常遇到的浏览器的兼容性有哪些？</h1><ol>
-<li><p>IE 浏览器不支持 <code>Promise</code><br>babel-polyfill → webpack.config.js 的 entry 中设置 [‘babel-polyfill’, ‘.&#x2F;src&#x2F;main.js’]</p>
-</li>
-<li><p>各浏览器之间默认样式的差异<br>normalize.css<br>与 reset 区别 → normalize.css 消除各浏览器之间默认样式的差异、保留有用的默认样式；<br>而 reset 会清除所有的默认样式，过于暴力，例如会让 h 标题标签不再默认加粗，ul li 前面默认的小圆点也没了）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/12/15/compatibility/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/15/auto-testing/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="wm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/01/15/auto-testing/" class="post-title-link" itemprop="url">自动化测试</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-01-15 15:32:04" itemprop="dateCreated datePublished" datetime="2023-01-15T15:32:04+08:00">2023-01-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-18 15:41:02" itemprop="dateModified" datetime="2023-12-18T15:41:02+08:00">2023-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">测试</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>为了更好的实施自动化测试，我们希望有一套简单但足够的自动化测试体系，能够从各个层面帮助我们开展自动化测试，从而交付高质量的软件代码。</p>
-<p>本文包含三个部分，包括「测试流程」、「测试平台和工具」和「测试方法论」，各自关注不同的维度，整体形成一个良好的体系。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/01/15/auto-testing/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/15/garbage-recycling-mechanism/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="wm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/01/15/garbage-recycling-mechanism/" class="post-title-link" itemprop="url">JS 垃圾回收机制</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-01-15 14:52:19" itemprop="dateCreated datePublished" datetime="2023-01-15T14:52:19+08:00">2023-01-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-18 15:41:32" itemprop="dateModified" datetime="2023-12-18T15:41:32+08:00">2023-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JS/" itemprop="url" rel="index"><span itemprop="name">JS</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="一、垃圾回收机制——GC"><a href="#一、垃圾回收机制——GC" class="headerlink" title="一、垃圾回收机制——GC"></a>一、垃圾回收机制——GC</h1><p>Javascript 具有自动垃圾回收机制（GC：Garbage Collecation），也就是说，执行环境会负责管理代码执行过程中使用的内存。</p>
-<p>原理：垃圾收集器会定期（周期性）找出那些不在继续使用的变量，然后释放其内存。</p>
-<p>通常情况下有两种实现方式：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/01/15/garbage-recycling-mechanism/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/14/img-lazyload/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="wm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/12/14/img-lazyload/" class="post-title-link" itemprop="url">实现图片的懒加载</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-12-14 16:00:19" itemprop="dateCreated datePublished" datetime="2022-12-14T16:00:19+08:00">2022-12-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-18 15:41:37" itemprop="dateModified" datetime="2023-12-18T15:41:37+08:00">2023-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JS/" itemprop="url" rel="index"><span itemprop="name">JS</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>图片的懒加载原理： 当图片元素出现在屏幕中时，才给图片的 src 赋值对应的链接，去加载对应的图片</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/12/14/img-lazyload/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/08/react-components/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="wm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/03/08/react-components/" class="post-title-link" itemprop="url">React 组件的编写</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-03-08 15:25:49" itemprop="dateCreated datePublished" datetime="2022-03-08T15:25:49+08:00">2022-03-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-18 15:41:42" itemprop="dateModified" datetime="2023-12-18T15:41:42+08:00">2023-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在编写 React 组件时，有一些最佳实践需要遵循：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/03/08/react-components/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/14/design-patterns/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="wm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/10/14/design-patterns/" class="post-title-link" itemprop="url">设计模式</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-10-14 18:00:01" itemprop="dateCreated datePublished" datetime="2021-10-14T18:00:01+08:00">2021-10-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-18 15:41:29" itemprop="dateModified" datetime="2023-12-18T15:41:29+08:00">2023-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JS/" itemprop="url" rel="index"><span itemprop="name">JS</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>设计模式是从许多优秀的软件系统中，总结出的成功的、能够实现可维护性、复用的设计方案，使用这些方案将可以让我们避免做一些重复性的工作。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/10/14/design-patterns/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/18/sleep-function/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="wm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/12/18/sleep-function/" class="post-title-link" itemprop="url">sleep 函数</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-12-18 13:56:46" itemprop="dateCreated datePublished" datetime="2020-12-18T13:56:46+08:00">2020-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-18 15:43:22" itemprop="dateModified" datetime="2023-12-18T15:43:22+08:00">2023-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JS/" itemprop="url" rel="index"><span itemprop="name">JS</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>JS 没有语言内置的休眠（sleep or wait）函数，所谓的 sleep 只是实现一种延迟执行的效果</p>
-<p>等待指定时间后再执行对应方法</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/12/18/sleep-function/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/21/JSBridge/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="wm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/07/21/JSBridge/" class="post-title-link" itemprop="url">JSBridge</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-07-21 16:31:10" itemprop="dateCreated datePublished" datetime="2020-07-21T16:31:10+08:00">2020-07-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-18 16:13:26" itemprop="dateModified" datetime="2023-12-18T16:13:26+08:00">2023-12-18</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>随着移动端盛行，不管是混合开发（Hybrid）应用，还是 React-Native 都离不开 JSBridge，当然也包括在国内举足轻重的微信小程序。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/21/JSBridge/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://example.com/2019/11/10/array-function/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -993,13 +185,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wm's blog">
+      <meta itemprop="name" content="JS 数组方法 | wm's blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/11/10/array-function/" class="post-title-link" itemprop="url">JS 数组方法</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          JS 数组方法
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -1037,8 +229,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="改变原数组的方法-9-个"><a href="#改变原数组的方法-9-个" class="headerlink" title="改变原数组的方法(9 个)"></a>改变原数组的方法(9 个)</h1><h2 id="1-splice-添加-删除数组元素"><a href="#1-splice-添加-删除数组元素" class="headerlink" title="1.splice() 添加 &#x2F; 删除数组元素"></a>1.splice() 添加 &#x2F; 删除数组元素</h2><p>splice() 方法向&#x2F;从数组中添加&#x2F;删除项目，然后返回被删除的项目</p>
+    <div class="post-body" itemprop="articleBody"><h1 id="改变原数组的方法-9-个"><a href="#改变原数组的方法-9-个" class="headerlink" title="改变原数组的方法(9 个)"></a>改变原数组的方法(9 个)</h1><h2 id="1-splice-添加-删除数组元素"><a href="#1-splice-添加-删除数组元素" class="headerlink" title="1.splice() 添加 &#x2F; 删除数组元素"></a>1.splice() 添加 &#x2F; 删除数组元素</h2><p>splice() 方法向&#x2F;从数组中添加&#x2F;删除项目，然后返回被删除的项目</p>
 <p><code>array.splice(index,howmany,item1,.....,itemX)</code></p>
 <blockquote>
 <p>index：必需。整数，规定添加&#x2F;删除项目的位置，使用负数可从数组结尾处规定位置。<br>howmany：可选。要删除的项目数量。如果设置为 0，则不会删除项目。<br>item1, …, itemX： 可选。向数组添加的新项目。<br>返回值: 如果有元素被删除,返回包含被删除项目的新数组。</p>
@@ -1140,7 +331,6 @@
 
 <p>参考：<a target="_blank" rel="noopener" href="https://juejin.im/post/5b0903b26fb9a07a9d70c7e0">js 数组详细操作方法及解析合集</a></p>
 
-      
     </div>
 
     
@@ -1148,8 +338,24 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="post-tags">
+              <a href="/tags/JS/" rel="tag"># JS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/10/10/compose/" rel="prev" title="compose函数组合">
+                  <i class="fa fa-angle-left"></i> compose函数组合
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/07/21/JSBridge/" rel="next" title="JSBridge">
+                  JSBridge <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
     </footer>
   </article>
 </div>
@@ -1157,9 +363,7 @@
 
 
 
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+
 
 </div>
   </main>

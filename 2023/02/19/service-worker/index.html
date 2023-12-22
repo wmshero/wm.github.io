@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="了解 service work 前先了解一下 PWA，那么什么是 PWA 呢？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="service worker">
+<meta property="og:url" content="http://example.com/2023/02/19/service-worker/index.html">
+<meta property="og:site_name" content="wm&#39;s blog">
+<meta property="og:description" content="了解 service work 前先了解一下 PWA，那么什么是 PWA 呢？">
+<meta property="og:locale">
+<meta property="article:published_time" content="2023-02-19T02:09:38.000Z">
+<meta property="article:modified_time" content="2023-12-19T05:54:17.308Z">
+<meta property="article:author" content="wm">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2023/02/19/service-worker/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2023/02/19/service-worker/","path":"2023/02/19/service-worker/","title":"service worker"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>service worker | wm's blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">wm's blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%9E%B6%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">基本架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#web-worker"><span class="nav-number">1.1.</span> <span class="nav-text">web worker</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%89%B9%E6%80%A7"><span class="nav-number">2.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">3.</span> <span class="nav-text">生命周期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD%E5%92%8C%E7%94%A8%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">基本功能和用法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-Cache-API-%E7%BC%93%E5%AD%98%E8%B5%84%E6%BA%90"><span class="nav-number">4.1.</span> <span class="nav-text">使用 Cache API 缓存资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8-install-%E9%98%B6%E6%AE%B5%E7%BC%93%E5%AD%98%E8%B5%84%E6%BA%90"><span class="nav-number">4.2.</span> <span class="nav-text">在 install 阶段缓存资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E8%BF%90%E8%A1%8C%E6%97%B6%E8%AF%B7%E6%B1%82"><span class="nav-number">4.3.</span> <span class="nav-text">缓存运行时请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0-Service-Worker"><span class="nav-number">4.4.</span> <span class="nav-text">更新 Service Worker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8-activate-%E9%98%B6%E6%AE%B5%E6%B8%85%E7%90%86%E6%97%A7%E7%89%88%E6%9C%AC%E7%9A%84%E7%BC%93%E5%AD%98"><span class="nav-number">4.5.</span> <span class="nav-text">在 activate 阶段清理旧版本的缓存</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E9%87%8C%E9%9D%A2%E8%BF%9B%E8%A1%8C%E8%B0%83%E8%AF%95"><span class="nav-number">5.</span> <span class="nav-text">如何在浏览器里面进行调试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Update-on-reload"><span class="nav-number">5.1.</span> <span class="nav-text">Update on reload</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Offline-%E5%8F%AF%E4%BB%A5%E7%A6%BB%E7%BA%BF%E5%BA%94%E7%94%A8"><span class="nav-number">5.2.</span> <span class="nav-text">Offline 可以离线应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bypass-for-network-%E5%8F%AF%E4%BB%A5%E7%BB%95%E8%BF%87-Service-Worker-%E7%9A%84%E6%8E%A7%E5%88%B6"><span class="nav-number">5.3.</span> <span class="nav-text">Bypass for network 可以绕过 Service Worker 的控制</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">wm</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="/1494601749@qq.com" title="E-Mail → 1494601749@qq.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/19/service-worker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="wm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="service worker | wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          service worker
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-19 10:09:38" itemprop="dateCreated datePublished" datetime="2023-02-19T10:09:38+08:00">2023-02-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-12-19 13:54:17" itemprop="dateModified" datetime="2023-12-19T13:54:17+08:00">2023-12-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>了解 service work 前先了解一下 PWA，那么什么是 PWA 呢？</p>
+<span id="more"></span>
+
+<p><strong>渐进式网路应用 PWA</strong></p>
+<ol>
+<li>Web 应用和 Native 应用有着各自不同的优势和使用场景</li>
+<li>PWA 结合了二者的优势</li>
+<li>PWA 会越来越流行<blockquote>
+<ul>
+<li>Web 应用的资源存储在服务器，Native 的资源存储在本地。所以 Native 会比 Web 应用的加载速度和流畅性方面获得更好地表现；</li>
+<li>PWA 旨在创造拥有更加流畅的用户体验的 Web 应用，和创建类 Native App 的沉浸式效果，而非浏览器端那样的外观和体验；</li>
+<li>在各种网络和数据加载的条件下仍然可用－它可以在网络不稳定或者没有网络的情况下使用。</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<h1 id="基本架构"><a href="#基本架构" class="headerlink" title="基本架构"></a>基本架构</h1><p>Service Worker 是 PWA 的关键技术，可以支持一些原始应用的功能</p>
+<ul>
+<li>友好的弱网和离线体验</li>
+<li>定期的后台同步</li>
+<li>推送通知</li>
+</ul>
+<p>Service workers  本质上充当 Web 应用程序、浏览器与网络（可用时）之间的代理服务器。</p>
+<p>1.友好的弱网和离线体验<br>这个 API 旨在创建有效的离线体验，它会拦截网络请求并根据网络是否可用来采取适当的动作、更新来自服务器的的资源。它还提供入口以推送通知和访问后台同步 API。</p>
+<h2 id="web-worker"><a href="#web-worker" class="headerlink" title="web worker"></a>web worker</h2><ul>
+<li>JavaScript 是一个单线程的语言；</li>
+<li>异步编程通过调度一部分代码在 <code>event loop</code> 中执行，从而让程序流畅地运行；</li>
+<li>Web Workers 是真正的多线程</li>
+<li>Service Worker 是 Web Worker 的一个子类</li>
+</ul>
+<h1 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h1><ul>
+<li>它是一种 Web worker，不能直接访问 DOM</li>
+<li>它有自己独立的生命周期，不和特定网页相关联</li>
+<li>是一个由事件驱动的 worker，它由源和路径组成</li>
+<li>可以使用一些离线存储 API — Cache Storage 和 IndexedDB, 不能访问 localStorage</li>
+<li>大量使用了 Promise</li>
+<li>只能使用 HTTPS，localhost 也被允许</li>
+</ul>
+<h1 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h1><ul>
+<li>Service Worker 的生命周期和网页是相互独立的</li>
+</ul>
+<ul>
+<li>在网页的 JS 代码中调用 Service Worker 的注册方法开始安装。在安装阶段可以进行一些缓存工作，缓存失败安装就会失败。如果安装成功，代表了缓存也成功完成了</li>
+<li>安装成功后触发 activate 事件，Service Worker 处于激活状态</li>
+<li>激活后的 Service Worker 线程可以控制页面、监听事件了，它可以根据情况被中止或者唤起</li>
+</ul>
+<h1 id="基本功能和用法"><a href="#基本功能和用法" class="headerlink" title="基本功能和用法"></a>基本功能和用法</h1><ul>
+<li>install 事件会在注册完成之后触发。install 事件一般是被用来填充你的浏览器的离线缓存能力。</li>
+</ul>
+<p>为了达成这个目的，我们使用了 Service Worker 的新的标志性的存储 API — <strong>cache</strong> — 一个 service worker 上的全局对象，它使我们可以存储网络响应发来的资源，并且根据它们的请求来生成 key。<br>在安装事件的回调里我们需要完成一些缓存的工作，所以需要 <code>waitUntil()</code> 方法来暂时挂起代码，waitUntil 方法接受一个<code>promise</code>。</p>
+<h2 id="使用-Cache-API-缓存资源"><a href="#使用-Cache-API-缓存资源" class="headerlink" title="使用 Cache API 缓存资源"></a>使用 Cache API 缓存资源</h2><p>Cache 接口为缓存的 <code>Request / Response</code> 对象对提供存储机制</p>
+<p>一个域可以有多个命名 Cache 对象。</p>
+<p>你需要在你的脚本 (例如，在 ServiceWorker 中)中处理缓存更新的方式。除非明确地更新缓存，否则缓存将不会被更新；除非删除，否则缓存数据不会过期。</p>
+<p><code>CacheStorage</code> 接口表示 Cache 对象存储。</p>
+<p>使用通过全局 caches 属性来访问 CacheStorage，可以在 window、Service Worker 中访问。</p>
+<p><code>window.caches // CacheStorage&#123;&#125;</code></p>
+<p>使用 <code>CacheStorage.open(cacheName)</code> 打开一个 Cache 对象，再使用 Cache 对象的方法去处理缓存。</p>
+<blockquote>
+<p>activate 事件在脚本激活后触发，一般在这里处理旧版本的缓存<br>fetch 事件监听客户端的请求，包括任何被 service worker 控制的文档和文档内引用的资源。配合 respondWith()  方法，可以劫持 HTTP 响应</p>
+</blockquote>
+<hr>
+<ul>
+<li><p>CacheStorage.open()</p>
+</li>
+<li><p>CacheStorage.keys()</p>
+</li>
+<li><p>CacheStorage.match()</p>
+</li>
+<li><p>Cache.addAll(requests)</p>
+</li>
+<li><p>Cache.add(request)</p>
+</li>
+<li><p>Cache.put(request,response)</p>
+</li>
+<li><p>Cache.match(request)</p>
+</li>
+<li><p>Cache.delete(request)</p>
+</li>
+</ul>
+<h2 id="在-install-阶段缓存资源"><a href="#在-install-阶段缓存资源" class="headerlink" title="在 install 阶段缓存资源"></a>在 install 阶段缓存资源</h2><ul>
+<li>打开缓存</li>
+<li>缓存文件</li>
+<li>确认是否所有的静态资源已缓存</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">self.<span class="title function_">addEventListener</span>(<span class="string">&quot;install&quot;</span>, <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</span><br><span class="line">  event.<span class="title function_">waitUntil</span>(</span><br><span class="line">    caches.<span class="title function_">open</span>(<span class="variable constant_">CACHE_NAME</span>).<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">cache</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Opened cache&quot;</span>);</span><br><span class="line">      <span class="keyword">return</span> cache.<span class="title function_">addAll</span>(urlsToCache);</span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="缓存运行时请求"><a href="#缓存运行时请求" class="headerlink" title="缓存运行时请求"></a>缓存运行时请求</h2><ul>
+<li>event.respondWith() 会决定如何响应 fetch 事件。 caches.match() 查询请求及查找之前创建的缓存中是否有任意缓存结果并返回 promise。</li>
+<li>如果有，则返回该缓存数据。</li>
+<li>否则，执行 fetch 。</li>
+<li>检查返回的状态码是否是 200。同时检查响应类型是否为 basic，即检查请求是否同域。当前场景不缓存第三方资源的请求。</li>
+<li>把返回数据添加到缓存中。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">self.<span class="title function_">addEventListener</span>(<span class="string">&quot;fetch&quot;</span>, <span class="keyword">function</span> (<span class="params">event</span>) &#123;</span><br><span class="line">  event.<span class="title function_">respondWith</span>(</span><br><span class="line">    caches.<span class="title function_">match</span>(event.<span class="property">request</span>).<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">response</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (response) &#123;</span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">//复制请求。请求是一个流且只能被使用一次。因为之前已经通过缓存使用过一次了，所以为了在浏览器中使用fetch，需要复制下该请求。</span></span><br><span class="line">      <span class="keyword">var</span> fetchRequest = event.<span class="property">request</span>.<span class="title function_">clone</span>();</span><br><span class="line">      <span class="comment">//没有找到缓存。所以我们需要执行 fetch 以发起请求并返回请求数据。</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">fetch</span>(fetchRequest).<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">response</span>) &#123;</span><br><span class="line">        <span class="comment">//检测返回数据是否有效</span></span><br><span class="line">        <span class="keyword">if</span> (!response || response.<span class="property">status</span> !== <span class="number">200</span> || response.<span class="property">type</span> !== <span class="string">&quot;basic&quot;</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> response;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//复制返回数据，因为它也是流。因为我们想要浏览器和缓存一样使用返回数据，所以必须复制它。这样就有两个流</span></span><br><span class="line">        <span class="keyword">var</span> responseToCache = response.<span class="title function_">clone</span>();</span><br><span class="line">        caches,</span><br><span class="line">          <span class="title function_">open</span>(<span class="variable constant_">CACHE_NAME</span>).<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">cache</span>) &#123;</span><br><span class="line">            <span class="comment">//把请求添加到缓存中以备之后的查询用</span></span><br><span class="line">            cache.<span class="title function_">put</span>(event.<span class="property">request</span>, responseToCache);</span><br><span class="line">          &#125;);</span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="更新-Service-Worker"><a href="#更新-Service-Worker" class="headerlink" title="更新 Service Worker"></a>更新 Service Worker</h2><p>当用户访问网络应用的时候，浏览器会在后台重新下载包含 Service Worker 代码的  .js  文件。<br>如果下载下来的文件和当前的 Service Worker 代码文件不同，浏览器会认为文件发生了改变并且会创建一个新的 Service Worker。</p>
+<p>创建新的 Service Worker 的过程将会启动，然后触发  install  事件。然而，这时候，旧的 Service Worker 仍然控制着网络应用的页面意即新的 Service Worker 将会处于  waiting  状态。</p>
+<p>一旦关闭网络应用当前打开的页面，旧的 Service Worker 将会被浏览器杀死而新安装的 Service Worker 就可以上位了。这时候将会触发  activate  事件。</p>
+<p>这是为了避免在不同选项卡中同时运行不同版本的的网络应用所造成的问题－<br>一些在网页中实际存在的问题且有可能会产生新的 bug（比如当在浏览器中本地存储数据的时候却拥有不同的数据库结构）。</p>
+<h2 id="在-activate-阶段清理旧版本的缓存"><a href="#在-activate-阶段清理旧版本的缓存" class="headerlink" title="在 activate 阶段清理旧版本的缓存"></a>在 activate 阶段清理旧版本的缓存</h2><p>出现在 activate 回调中的一个常见任务是缓存管理。</p>
+<p>这么做的原因是，如果在安装步骤中清除了任何旧缓存，则继续控制所有当前页面的任何旧 Service Worker 将突然无法从缓存中提供文件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//清除了旧版本的缓存</span></span><br><span class="line">self.<span class="title function_">addEventListener</span>(<span class="string">&quot;activate&quot;</span>, <span class="keyword">function</span> (<span class="params">event</span>) &#123;</span><br><span class="line">  event.<span class="title function_">waitUntil</span>(</span><br><span class="line">    caches.<span class="title function_">keys</span>().<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">cacheNames</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">all</span>(</span><br><span class="line">        cacheNames.<span class="title function_">map</span>(<span class="keyword">function</span> (<span class="params">cacheName</span>) &#123;</span><br><span class="line">          <span class="keyword">if</span> (!expectedCaches.<span class="title function_">includes</span>(cacheNames)) &#123;</span><br><span class="line">            <span class="keyword">return</span> caches.<span class="title function_">delete</span>(key);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">      );</span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="如何在浏览器里面进行调试"><a href="#如何在浏览器里面进行调试" class="headerlink" title="如何在浏览器里面进行调试"></a>如何在浏览器里面进行调试</h1><h2 id="Update-on-reload"><a href="#Update-on-reload" class="headerlink" title="Update on reload"></a>Update on reload</h2><ul>
+<li>重新提取 Service Worker。</li>
+<li>即使字节完全相同，也将其作为新版本安装，这表示运行  install  事件并更新缓存。</li>
+<li>跳过等待阶段，以激活新 Service Worker。</li>
+<li>浏览页面。这意味着每次浏览时（包括刷新）都将进行更新，无需重新加载两次或关闭标签。</li>
+</ul>
+<h2 id="Offline-可以离线应用"><a href="#Offline-可以离线应用" class="headerlink" title="Offline 可以离线应用"></a>Offline 可以离线应用</h2><h2 id="Bypass-for-network-可以绕过-Service-Worker-的控制"><a href="#Bypass-for-network-可以绕过-Service-Worker-的控制" class="headerlink" title="Bypass for network 可以绕过 Service Worker 的控制"></a>Bypass for network 可以绕过 Service Worker 的控制</h2><p>Disable cache 选项不会影响 Service Worker 的缓存；<br>⌘ + ⇧ + R 强制刷新，会跳过 Service Worker 的控制；</p>
+<p>打开 <code>chrome://inspect/#service-workers</code> 管理浏览器中的 Service Worker</p>
+<p>参考资料：<br><a target="_blank" rel="noopener" href="https://github.com/ChangbaFE/presentation">ChangbaFE&#x2F;presentation</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/01/15/auto-testing/" rel="prev" title="自动化测试">
+                  <i class="fa fa-angle-left"></i> 自动化测试
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/03/19/pnpm/" rel="next" title="pnpm">
+                  pnpm <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2019 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">wm</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

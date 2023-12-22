@@ -119,7 +119,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -130,7 +130,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -156,6 +156,242 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/19/hard-symbol-link/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="wm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/12/19/hard-symbol-link/" class="post-title-link" itemprop="url">软链接和硬链接</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-12-19 17:28:13 / Modified: 17:30:18" itemprop="dateCreated datePublished" datetime="2023-12-19T17:28:13+08:00">2023-12-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>假设我们有一个文件，称为 <code>hello</code></p>
+<p>通过 <code>ln -s</code> 创建一个软链接，通过 <code>ln</code> 可以创建一个硬链接。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ ln -s hello hello-soft</span><br><span class="line">$ ln hello hello-hard</span><br><span class="line"></span><br><span class="line">$ ls -lh</span><br><span class="line">total 768</span><br><span class="line">45459612 -rw-r--r--  2 xiange  staff   153K 11 19 17:56 hello</span><br><span class="line">45459612 -rw-r--r--  2 xiange  staff   153K 11 19 17:56 hello-hard</span><br><span class="line">45463415 lrwxr-xr-x  1 xiange  staff     5B 11 19 19:40 hello-soft -&gt; hello</span><br></pre></td></tr></table></figure>
+
+<p>他们的区别有以下几点:</p>
+<ul>
+<li>软链接可理解为指向源文件的指针，它是单独的一个文件，仅仅只有几个字节，它拥有独立的 inode</li>
+<li>硬链接与源文件同时指向一个物理地址，它与源文件共享存储数据，它俩拥有相同的 inode</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/19/indexedDB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="wm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/12/19/indexedDB/" class="post-title-link" itemprop="url">indexedDB</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-12-19 14:57:14 / Modified: 16:04:54" itemprop="dateCreated datePublished" datetime="2023-12-19T14:57:14+08:00">2023-12-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h1><p>随着浏览器的功能不断增强，越来越多的网站开始考虑，将大量数据储存在客户端，这样可以减少从服务器获取数据，直接从本地获取数据。</p>
+<p>现有的浏览器数据储存方案，都不适合储存大量数据：Cookie 的大小不超过 4KB，且每次请求都会发送回服务器；LocalStorage 在 2.5MB 到 10MB 之间（各家浏览器不同），而且不提供搜索功能，不能建立自定义的索引。所以，需要一种新的解决方案，这就是 IndexedDB 诞生的背景。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/12/19/indexedDB/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/18/todo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="wm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/12/18/todo/" class="post-title-link" itemprop="url">todo</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-12-18 16:41:16" itemprop="dateCreated datePublished" datetime="2023-12-18T16:41:16+08:00">2023-12-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-12-20 17:34:53" itemprop="dateModified" datetime="2023-12-20T17:34:53+08:00">2023-12-20</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>图片标注<br>大文件上传<br>immer&#x2F;immutable<br>graphql&#x2F;node<br>navigator.online(rel)</p>
+<h1 id="npm-package"><a href="#npm-package" class="headerlink" title="npm package"></a>npm package</h1><ul>
+<li>包和模块的区别</li>
+<li>如何避免业务项目被发布到 npm</li>
+</ul>
+<h1 id="monorepo"><a href="#monorepo" class="headerlink" title="monorepo"></a>monorepo</h1>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -311,6 +547,172 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/12/15/compatibility/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/19/pnpm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="wm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/03/19/pnpm/" class="post-title-link" itemprop="url">pnpm</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-03-19 17:30:35" itemprop="dateCreated datePublished" datetime="2023-03-19T17:30:35+08:00">2023-03-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-12-20 16:12:29" itemprop="dateModified" datetime="2023-12-20T16:12:29+08:00">2023-12-20</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>pnpm(performant npm) 通过软、硬链接（hark link、symbolic link） + 全局存储（store）结合的依赖管理方式完全实现了依赖树结构的包管理方式，解决了 npm3 及 yarn 中的幽灵依赖和 npm 分身的问题，提升了依赖包的安装速度，减小了磁盘空间占用。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/03/19/pnpm/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/19/service-worker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="wm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/02/19/service-worker/" class="post-title-link" itemprop="url">service worker</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-19 10:09:38" itemprop="dateCreated datePublished" datetime="2023-02-19T10:09:38+08:00">2023-02-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-12-19 13:54:17" itemprop="dateModified" datetime="2023-12-19T13:54:17+08:00">2023-12-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>了解 service work 前先了解一下 PWA，那么什么是 PWA 呢？</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/02/19/service-worker/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -595,551 +997,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/08/react-components/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="wm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/03/08/react-components/" class="post-title-link" itemprop="url">React 组件的编写</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-03-08 15:25:49" itemprop="dateCreated datePublished" datetime="2022-03-08T15:25:49+08:00">2022-03-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-18 15:41:42" itemprop="dateModified" datetime="2023-12-18T15:41:42+08:00">2023-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在编写 React 组件时，有一些最佳实践需要遵循：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/03/08/react-components/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/14/design-patterns/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="wm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/10/14/design-patterns/" class="post-title-link" itemprop="url">设计模式</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-10-14 18:00:01" itemprop="dateCreated datePublished" datetime="2021-10-14T18:00:01+08:00">2021-10-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-18 15:41:29" itemprop="dateModified" datetime="2023-12-18T15:41:29+08:00">2023-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JS/" itemprop="url" rel="index"><span itemprop="name">JS</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>设计模式是从许多优秀的软件系统中，总结出的成功的、能够实现可维护性、复用的设计方案，使用这些方案将可以让我们避免做一些重复性的工作。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/10/14/design-patterns/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/18/sleep-function/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="wm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/12/18/sleep-function/" class="post-title-link" itemprop="url">sleep 函数</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-12-18 13:56:46" itemprop="dateCreated datePublished" datetime="2020-12-18T13:56:46+08:00">2020-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-18 15:43:22" itemprop="dateModified" datetime="2023-12-18T15:43:22+08:00">2023-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JS/" itemprop="url" rel="index"><span itemprop="name">JS</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>JS 没有语言内置的休眠（sleep or wait）函数，所谓的 sleep 只是实现一种延迟执行的效果</p>
-<p>等待指定时间后再执行对应方法</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/12/18/sleep-function/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/21/JSBridge/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="wm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/07/21/JSBridge/" class="post-title-link" itemprop="url">JSBridge</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-07-21 16:31:10" itemprop="dateCreated datePublished" datetime="2020-07-21T16:31:10+08:00">2020-07-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-18 16:13:26" itemprop="dateModified" datetime="2023-12-18T16:13:26+08:00">2023-12-18</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>随着移动端盛行，不管是混合开发（Hybrid）应用，还是 React-Native 都离不开 JSBridge，当然也包括在国内举足轻重的微信小程序。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/21/JSBridge/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/11/10/array-function/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="wm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/11/10/array-function/" class="post-title-link" itemprop="url">JS 数组方法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2019-11-10 16:15:45" itemprop="dateCreated datePublished" datetime="2019-11-10T16:15:45+08:00">2019-11-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-18 16:31:04" itemprop="dateModified" datetime="2023-12-18T16:31:04+08:00">2023-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JS/" itemprop="url" rel="index"><span itemprop="name">JS</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="改变原数组的方法-9-个"><a href="#改变原数组的方法-9-个" class="headerlink" title="改变原数组的方法(9 个)"></a>改变原数组的方法(9 个)</h1><h2 id="1-splice-添加-删除数组元素"><a href="#1-splice-添加-删除数组元素" class="headerlink" title="1.splice() 添加 &#x2F; 删除数组元素"></a>1.splice() 添加 &#x2F; 删除数组元素</h2><p>splice() 方法向&#x2F;从数组中添加&#x2F;删除项目，然后返回被删除的项目</p>
-<p><code>array.splice(index,howmany,item1,.....,itemX)</code></p>
-<blockquote>
-<p>index：必需。整数，规定添加&#x2F;删除项目的位置，使用负数可从数组结尾处规定位置。<br>howmany：可选。要删除的项目数量。如果设置为 0，则不会删除项目。<br>item1, …, itemX： 可选。向数组添加的新项目。<br>返回值: 如果有元素被删除,返回包含被删除项目的新数组。</p>
-</blockquote>
-<h3 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从数组下标0开始，删除3个元素</span></span><br><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>];</span><br><span class="line"><span class="keyword">let</span> item = a.<span class="title function_">splice</span>(<span class="number">0</span>, <span class="number">3</span>); <span class="comment">// [1,2,3]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// [4,5,6,7]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 从最后一个元素开始删除3个元素，因为最后一个元素，所以只删除了7</span></span><br><span class="line"><span class="keyword">let</span> item = a.<span class="title function_">splice</span>(-<span class="number">1</span>, <span class="number">3</span>); <span class="comment">// [7]</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="删除并添加"><a href="#删除并添加" class="headerlink" title="删除并添加"></a>删除并添加</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从数组下标0开始，删除3个元素，并添加元素&#x27;添加&#x27;</span></span><br><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>];</span><br><span class="line"><span class="keyword">let</span> item = a.<span class="title function_">splice</span>(<span class="number">0</span>, <span class="number">3</span>, <span class="string">&quot;添加&quot;</span>); <span class="comment">// [1,2,3]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// [&#x27;添加&#x27;,4,5,6,7]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 从数组最后第二个元素开始，删除3个元素，并添加两个元素&#x27;添加1&#x27;、&#x27;添加2&#x27;</span></span><br><span class="line"><span class="keyword">let</span> b = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>];</span><br><span class="line"><span class="keyword">let</span> item = b.<span class="title function_">splice</span>(-<span class="number">2</span>, <span class="number">3</span>, <span class="string">&quot;添加1&quot;</span>, <span class="string">&quot;添加2&quot;</span>); <span class="comment">// [6,7]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b); <span class="comment">// [1,2,3,4,5,&#x27;添加1&#x27;,&#x27;添加2&#x27;]</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="不删除只添加"><a href="#不删除只添加" class="headerlink" title="不删除只添加"></a>不删除只添加</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>];</span><br><span class="line"><span class="keyword">let</span> item = a.<span class="title function_">splice</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="string">&quot;添加1&quot;</span>, <span class="string">&quot;添加2&quot;</span>); <span class="comment">// [] 没有删除元素，返回空数组</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// [&#x27;添加1&#x27;,&#x27;添加2&#x27;,1,2,3,4,5,6,7]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> b = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>];</span><br><span class="line"><span class="keyword">let</span> item = b.<span class="title function_">splice</span>(-<span class="number">1</span>, <span class="number">0</span>, <span class="string">&quot;添加1&quot;</span>, <span class="string">&quot;添加2&quot;</span>); <span class="comment">// [] 没有删除元素，返回空数组</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b); <span class="comment">// [1,2,3,4,5,6,&#x27;添加1&#x27;,&#x27;添加2&#x27;,7] 在最后一个元素的前面添加两个元素</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="2-sort-数组排序"><a href="#2-sort-数组排序" class="headerlink" title="2.sort() 数组排序"></a>2.sort() 数组排序</h2><p>sort() 方法对数组元素进行排序，并返回这个数组。</p>
-<blockquote>
-<p>参数可选: 规定排序顺序的比较函数。<br>默认情况下 sort() 方法没有传比较函数的话，默认按字母升序，如果不是元素不是字符串的话，会调用 <code>toString()</code> 方法将元素转化为字符串的 <code>Unicode</code> (万国码)位点，然后再比较字符。</p>
-</blockquote>
-<h3 id="不传参"><a href="#不传参" class="headerlink" title="不传参"></a>不传参</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字符串排列 看起来很正常</span></span><br><span class="line"><span class="keyword">var</span> a = [<span class="string">&quot;Banana&quot;</span>, <span class="string">&quot;Orange&quot;</span>, <span class="string">&quot;Apple&quot;</span>, <span class="string">&quot;Mango&quot;</span>];</span><br><span class="line">a.<span class="title function_">sort</span>(); <span class="comment">// [&quot;Apple&quot;,&quot;Banana&quot;,&quot;Mango&quot;,&quot;Orange&quot;]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 数字排序的时候 因为转换成Unicode字符串之后，有些数字会比较大会排在后面 这显然不是我们想要的</span></span><br><span class="line"><span class="keyword">var</span> a = [<span class="number">10</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">20</span>, <span class="number">25</span>, <span class="number">8</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">sort</span>()); <span class="comment">// [1,10,20,25,3,8];</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="比较函数的两个参数："><a href="#比较函数的两个参数：" class="headerlink" title="比较函数的两个参数："></a>比较函数的两个参数：</h3><p>sort 的比较函数有两个默认参数，要在函数中接收这两个参数，这两个参数是数组中两个要比较的元素，通常我们用 a 和 b 接收两个将要比较的元素：</p>
-<ul>
-<li>若比较函数返回值 &lt;0 ，那么 a 将排到 b 的前面;</li>
-<li>若比较函数返回值 &#x3D;0 ，那么 a 和 b 相对位置不变；</li>
-<li>若比较函数返回值 &gt;0 ，那么 b 排在 a 将的前面；</li>
-</ul>
-<h3 id="数字升降序"><a href="#数字升降序" class="headerlink" title="数字升降序"></a>数字升降序</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> array = [<span class="number">10</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">20</span>, <span class="number">4</span>, <span class="number">25</span>, <span class="number">8</span>];</span><br><span class="line">array.<span class="title function_">sort</span>(<span class="keyword">function</span> (<span class="params">a, b</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> a - b;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array); <span class="comment">// [1,3,4,4,8,10,20,25];</span></span><br><span class="line"></span><br><span class="line">array.<span class="title function_">sort</span>(<span class="keyword">function</span> (<span class="params">a, b</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> b - a;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array); <span class="comment">// [25,20,10,8,4,4,3,1];</span></span><br></pre></td></tr></table></figure>
-
-<p>pop() 删除一个数组中的最后的一个元素<br>定义: pop() 方法删除一个数组中的最后的一个元素，并且返回这个元素。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> item = a.<span class="title function_">pop</span>(); <span class="comment">// 3</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// [1,2]</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="shift-删除数组的第一个元素"><a href="#shift-删除数组的第一个元素" class="headerlink" title="shift() 删除数组的第一个元素"></a>shift() 删除数组的第一个元素</h2><p>定义: shift()方法删除数组的第一个元素，并返回这个元素。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> item = a.<span class="title function_">shift</span>(); <span class="comment">// 1</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// [2,3]</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="push-向数组的末尾添加元素"><a href="#push-向数组的末尾添加元素" class="headerlink" title="push() 向数组的末尾添加元素"></a>push() 向数组的末尾添加元素</h2><p>定义：push() 方法可向数组的末尾添加一个或多个元素，并返回新的长度。</p>
-<p>参数: item1, item2, …, itemX ,要添加到数组末尾的元素</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> item = a.<span class="title function_">push</span>(<span class="string">&quot;末尾&quot;</span>, <span class="string">&quot;233&quot;</span>); <span class="comment">// 5</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// [1,2,3,&#x27;末尾&#x27;, &#x27;233&#x27;]</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="unshift"><a href="#unshift" class="headerlink" title="unshift()"></a>unshift()</h2><p>定义：unshift() 方法可向数组的开头添加一个或更多元素，并返回新的长度。</p>
-<p>参数: item1, item2, …, itemX ,要添加到数组开头的元素</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> item = a.<span class="title function_">unshift</span>(<span class="string">&quot;开头&quot;</span>, <span class="string">&quot;开头 2&quot;</span>); <span class="comment">// 5</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// [ &#x27;开头&#x27;, &#x27;开头 2&#x27;, 1, 2, 3 ]</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="reverse-颠倒数组中元素的顺序"><a href="#reverse-颠倒数组中元素的顺序" class="headerlink" title="reverse() 颠倒数组中元素的顺序"></a>reverse() 颠倒数组中元素的顺序</h2><p>定义: reverse() 方法用于颠倒数组中元素的顺序。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">a.<span class="title function_">reverse</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// [3,2,1]</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="不改变原数组的方法（8-个）"><a href="#不改变原数组的方法（8-个）" class="headerlink" title="不改变原数组的方法（8 个）"></a>不改变原数组的方法（8 个）</h1><h2 id="slice-浅拷贝数组的元素"><a href="#slice-浅拷贝数组的元素" class="headerlink" title="slice() 浅拷贝数组的元素"></a>slice() 浅拷贝数组的元素</h2><p>定义： 方法返回一个从开始到结束（不包括结束）选择的数组的一部分浅拷贝到一个新数组对象，且原数组不会被修改。</p>
-<p>语法：<code>array.slice(begin, end);</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="string">&quot;hello&quot;</span>, <span class="string">&quot;world&quot;</span>];</span><br><span class="line"><span class="keyword">let</span> b = a.<span class="title function_">slice</span>(<span class="number">0</span>, <span class="number">1</span>); <span class="comment">// [&#x27;hello&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 新数组是浅拷贝的，元素是简单数据类型，改变之后不会互相干扰。</span></span><br><span class="line"><span class="comment">// 如果是复杂数据类型(对象,数组)的话，改变其中一个，另外一个也会改变。</span></span><br><span class="line">a[<span class="number">0</span>] = <span class="string">&quot;改变原数组&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a, b); <span class="comment">// [&#x27;改变原数组&#x27;,&#x27;world&#x27;] [&#x27;hello&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = [&#123; <span class="attr">name</span>: <span class="string">&quot;OBKoro1&quot;</span> &#125;];</span><br><span class="line"><span class="keyword">let</span> b = a.<span class="title function_">slice</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b, a); <span class="comment">// [&#123;&quot;name&quot;:&quot;OBKoro1&quot;&#125;] [&#123;&quot;name&quot;:&quot;OBKoro1&quot;&#125;]</span></span><br><span class="line"><span class="comment">// a[0].name=&#x27;改变原数组&#x27;</span></span><br><span class="line"><span class="comment">// console.log(b,a) // [&#123;&quot;name&quot;:&quot;改变原数组&quot;&#125;] [&#123;&quot;name&quot;:&quot;改变原数组&quot;&#125;]</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="join-数组转字符串"><a href="#join-数组转字符串" class="headerlink" title="join() 数组转字符串"></a>join() 数组转字符串</h2><p>定义: join() 方法用于把数组中的所有元素通过指定的分隔符进行分隔放入一个字符串，返回生成的字符串。</p>
-<p>语法: <code>array.join(str)</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="string">&quot;hello&quot;</span>, <span class="string">&quot;world&quot;</span>];</span><br><span class="line"><span class="keyword">let</span> str = a.<span class="title function_">join</span>(); <span class="comment">// &#x27;hello,world&#x27;</span></span><br><span class="line"><span class="keyword">let</span> str2 = a.<span class="title function_">join</span>(<span class="string">&quot;+&quot;</span>); <span class="comment">// &#x27;hello+world&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = [[<span class="string">&quot;OBKoro1&quot;</span>, <span class="string">&quot;23&quot;</span>], <span class="string">&quot;test&quot;</span>];</span><br><span class="line"><span class="keyword">let</span> str1 = a.<span class="title function_">join</span>(); <span class="comment">// OBKoro1,23,test</span></span><br><span class="line"><span class="keyword">let</span> b = [&#123; <span class="attr">name</span>: <span class="string">&quot;OBKoro1&quot;</span>, <span class="attr">age</span>: <span class="string">&quot;23&quot;</span> &#125;, <span class="string">&quot;test&quot;</span>];</span><br><span class="line"><span class="keyword">let</span> str2 = b.<span class="title function_">join</span>(); <span class="comment">// [object Object],test</span></span><br><span class="line"><span class="comment">// 对象转字符串推荐 JSON.stringify(obj)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 结论：</span></span><br><span class="line"><span class="comment">// join()/toString() 方法在数组元素是数组的时候，会将里面的数组也调用 join()/toString() ,</span></span><br><span class="line"><span class="comment">// 如果是对象的话，对象会被转为 [object Object] 字符串。</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="toLocaleString-数组转字符串"><a href="#toLocaleString-数组转字符串" class="headerlink" title="toLocaleString() 数组转字符串"></a>toLocaleString() 数组转字符串</h2><p>定义: 返回一个表示数组元素的字符串。该字符串由数组中的每个元素的 <code>toLocaleString()</code> 返回值经调用 <code>join()</code> 方法连接（由逗号隔开）组成。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [&#123;</span><br><span class="line"><span class="attr">name</span>: <span class="string">&#x27;OBKoro1&#x27;</span></span><br><span class="line">&#125;, <span class="number">23</span>, <span class="string">&#x27;abcd&#x27;</span>, <span class="keyword">new</span> <span class="title class_">Date</span>()]</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">join</span>(<span class="string">&quot;,&quot;</span>))</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">toString</span>())</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">toLocaleString</span>(<span class="string">&#x27;en-us&#x27;</span>))</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">toLocaleString</span>(<span class="string">&#x27;zh-cn&#x27;</span>))</span><br><span class="line"></span><br><span class="line">[object <span class="title class_">Object</span>],<span class="number">23</span>,abcd,<span class="title class_">Tue</span> <span class="title class_">Feb</span> <span class="number">26</span> <span class="number">2019</span> <span class="number">11</span>:<span class="number">47</span>:<span class="number">03</span> <span class="variable constant_">GMT</span>+<span class="number">0800</span> (中国标准时间)</span><br><span class="line">[object <span class="title class_">Object</span>],<span class="number">23</span>,abcd,<span class="title class_">Tue</span> <span class="title class_">Feb</span> <span class="number">26</span> <span class="number">2019</span> <span class="number">11</span>:<span class="number">47</span>:<span class="number">03</span> <span class="variable constant_">GMT</span>+<span class="number">0800</span> (中国标准时间)</span><br><span class="line">[object <span class="title class_">Object</span>],<span class="number">23</span>,abcd,<span class="number">2</span>/<span class="number">26</span>/<span class="number">2019</span>, <span class="number">11</span>:<span class="number">47</span>:<span class="number">03</span> <span class="variable constant_">AM</span></span><br><span class="line">[object <span class="title class_">Object</span>],<span class="number">23</span>,abcd,<span class="number">2019</span>/<span class="number">2</span>/<span class="number">26</span> 上午 <span class="number">11</span>:<span class="number">47</span>:<span class="number">03</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="concat-合并数组"><a href="#concat-合并数组" class="headerlink" title="concat 合并数组"></a>concat 合并数组</h2><p>定义： 方法用于合并两个或多个数组，返回一个新数组。</p>
-<p>语法：<code>var newArr =oldArray.concat(arrayX,arrayX,......,arrayX)</code></p>
-<p>参数：arrayX（必须）：该参数可以是具体的值，也可以是数组对象。可以是任意多个。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> b = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];</span><br><span class="line"><span class="comment">//连接两个数组</span></span><br><span class="line"><span class="keyword">let</span> newVal = a.<span class="title function_">concat</span>(b); <span class="comment">// [1,2,3,4,5,6]</span></span><br><span class="line"><span class="comment">// 连接三个数组</span></span><br><span class="line"><span class="keyword">let</span> c = [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>];</span><br><span class="line"><span class="keyword">let</span> newVal2 = a.<span class="title function_">concat</span>(b, c); <span class="comment">// [1,2,3,4,5,6,7,8,9]</span></span><br><span class="line"><span class="comment">// 添加元素</span></span><br><span class="line"><span class="keyword">let</span> newVal3 = a.<span class="title function_">concat</span>(<span class="string">&quot;添加元素&quot;</span>, b, c, <span class="string">&quot;再加一个&quot;</span>);</span><br><span class="line"><span class="comment">// [1,2,3,&quot;添加元素&quot;,4,5,6,7,8,9,&quot;再加一个&quot;]</span></span><br><span class="line"><span class="comment">// 合并嵌套数组 会浅拷贝嵌套数组</span></span><br><span class="line"><span class="keyword">let</span> d = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">let</span> f = [<span class="number">3</span>, [<span class="number">4</span>]];</span><br><span class="line"><span class="keyword">let</span> newVal4 = d.<span class="title function_">concat</span>(f); <span class="comment">// [1,2,3,[4]]</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="ES6-扩展运算符-…-合并数组"><a href="#ES6-扩展运算符-…-合并数组" class="headerlink" title="ES6 扩展运算符 … 合并数组"></a>ES6 扩展运算符 … 合并数组</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">let</span> b = [<span class="number">4</span>, ...a, <span class="number">4</span>, <span class="number">4</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a, b); <span class="comment">//  [2, 3, 4, 5] [4,2,3,4,5,4,4]</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="indexOf-查找数组是否存在某个元素，返回下标"><a href="#indexOf-查找数组是否存在某个元素，返回下标" class="headerlink" title="indexOf() 查找数组是否存在某个元素，返回下标"></a>indexOf() 查找数组是否存在某个元素，返回下标</h2><p>定义: 返回在数组中可以找到一个给定元素的第一个索引，如果不存在，则返回-1。</p>
-<p>p.s. 字符串也有此方法，要注意当 ‘lance’.indexOf(‘’) 一个空字符串时，返回 0 而不是-1</p>
-<p>语法：<code>array.indexOf(searchElement,fromIndex)</code></p>
-<p>参数：</p>
-<blockquote>
-<p>searchElement (必须):被查找的元素<br>fromIndex (可选):开始查找的位置(不能大于等于数组的长度，返回-1)，接受负值，默认值为 0。</p>
-</blockquote>
-<h3 id="严格相等的搜索"><a href="#严格相等的搜索" class="headerlink" title="严格相等的搜索:"></a>严格相等的搜索:</h3><p>数组的 indexOf 搜索跟字符串的 indexOf 不一样,数组的 indexOf 使用严格相等&#x3D;&#x3D;&#x3D;搜索元素，即数组元素要完全匹配才能搜索成功。</p>
-<blockquote>
-<p>注意：indexOf() 不能识别 NaN</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="string">&quot;啦啦&quot;</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">24</span>, <span class="title class_">NaN</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">indexOf</span>(<span class="string">&quot;啦&quot;</span>)); <span class="comment">// -1</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">indexOf</span>(<span class="string">&quot;NaN&quot;</span>)); <span class="comment">// -1</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">indexOf</span>(<span class="string">&quot;啦啦&quot;</span>)); <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="lastIndexOf-查找指定元素在数组中的最后一个位置"><a href="#lastIndexOf-查找指定元素在数组中的最后一个位置" class="headerlink" title="lastIndexOf() 查找指定元素在数组中的最后一个位置"></a>lastIndexOf() 查找指定元素在数组中的最后一个位置</h2><p>定义: 方法返回指定元素,在数组中的最后一个的索引，如果不存在则返回 -1。（从数组后面往前查找）</p>
-<p>语法：<code>arr.lastIndexOf(searchElement,fromIndex)</code></p>
-<p>参数:</p>
-<blockquote>
-<p>searchElement(必须): 被查找的元素<br>fromIndex(可选): 逆向查找开始位置，默认值数组的 长度-1，即查找整个数组。</p>
-</blockquote>
-<p>关于 fromIndex 有三个规则:</p>
-<ul>
-<li>正值。如果该值大于或等于数组的长度，则整个数组会被查找。</li>
-<li>负值。将其视为从数组末尾向前的偏移。(比如-2，从数组最后第二个元素开始往前查找)</li>
-<li>负值。其绝对值大于数组长度，则方法返回 -1，即数组不会被查找。</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="string">&quot;OB&quot;</span>, <span class="number">4</span>, <span class="string">&quot;Koro1&quot;</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="string">&quot;Koro1&quot;</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="string">&quot;Koro1&quot;</span>]; <span class="comment">// 数组长度为 10</span></span><br><span class="line"><span class="comment">// let b=a.lastIndexOf(&#x27;Koro1&#x27;,4) // 从下标 4 开始往前找 返回下标 2</span></span><br><span class="line"><span class="comment">// let b=a.lastIndexOf(&#x27;Koro1&#x27;,100) // 大于或数组的长度 查找整个数组 返回 9</span></span><br><span class="line"><span class="comment">// let b=a.lastIndexOf(&#x27;Koro1&#x27;,-11) // -1 数组不会被查找</span></span><br><span class="line"><span class="keyword">let</span> b = a.<span class="title function_">lastIndexOf</span>(<span class="string">&quot;Koro1&quot;</span>, -<span class="number">9</span>); <span class="comment">// 从第二个元素 4 往前查找，没有找到 返回-1</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="ES7-includes-查找数组是否包含某个元素-返回布尔"><a href="#ES7-includes-查找数组是否包含某个元素-返回布尔" class="headerlink" title="ES7 includes() 查找数组是否包含某个元素 返回布尔"></a>ES7 includes() 查找数组是否包含某个元素 返回布尔</h2><p>定义： 返回一个布尔值，表示某个数组是否包含给定的值</p>
-<p>语法：<code>array.includes(searchElement,fromIndex=0)</code></p>
-<p>参数：</p>
-<blockquote>
-<p>searchElement (必须):被查找的元素<br>fromIndex (可选):默认值为 0 ，参数表示搜索的起始位置，接受负值。正值超过数组长度，数组不会被搜索，返回 false 。负值绝对值超过长数组度，重置从 0 开始搜索。</p>
-</blockquote>
-<ul>
-<li>includes 方法是为了弥补 indexOf 方法的缺陷而出现的:</li>
-<li>indexOf 方法不能识别 NaN</li>
-<li>indexOf 方法检查是否包含某个值不够语义化，需要判断是否不等于 -1 ，表达不够直观</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="string">&quot;OB&quot;</span>, <span class="string">&quot;Koro1&quot;</span>, <span class="number">1</span>, <span class="title class_">NaN</span>];</span><br><span class="line"><span class="comment">// let b=a.includes(NaN) // true 识别NaN</span></span><br><span class="line"><span class="comment">// let b=a.includes(&#x27;Koro1&#x27;,100) // false 超过数组长度 不搜索</span></span><br><span class="line"><span class="comment">// let b=a.includes(&#x27;Koro1&#x27;,-3)  // true 从倒数第三个元素开始搜索</span></span><br><span class="line"><span class="comment">// let b=a.includes(&#x27;Koro1&#x27;,-100)  // true 负值绝对值超过数组长度，搜索整个数组</span></span><br></pre></td></tr></table></figure>
-
-<p>参考：<a target="_blank" rel="noopener" href="https://juejin.im/post/5b0903b26fb9a07a9d70c7e0">js 数组详细操作方法及解析合集</a></p>
-
       
     </div>
 

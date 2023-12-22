@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="改变原数组的方法(9 个)1.splice() 添加 &#x2F; 删除数组元素splice() 方法向&#x2F;从数组中添加&#x2F;删除项目，然后返回被删除的项目 array.splice(index,howmany,item1,.....,itemX)  index：必需。整数，规定添加&#x2F;删除项目的位置，使用负数可从数组结尾处规定位置。howmany：可选。要删除的项目数量。如">
+    <meta name="description" content="改变原数组的方法(9 个)1.splice() 添加 &#x2F; 删除数组元素splice() 方法向&#x2F;从数组中添加&#x2F;删除项目，然后返回被删除的项目 array.splice(index,howmany,item1,.....,itemX)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS 数组方法">
 <meta property="og:url" content="http://example.com/2019/11/10/array-function/index.html">
 <meta property="og:site_name" content="wm&#39;s blog">
-<meta property="og:description" content="改变原数组的方法(9 个)1.splice() 添加 &#x2F; 删除数组元素splice() 方法向&#x2F;从数组中添加&#x2F;删除项目，然后返回被删除的项目 array.splice(index,howmany,item1,.....,itemX)  index：必需。整数，规定添加&#x2F;删除项目的位置，使用负数可从数组结尾处规定位置。howmany：可选。要删除的项目数量。如">
+<meta property="og:description" content="改变原数组的方法(9 个)1.splice() 添加 &#x2F; 删除数组元素splice() 方法向&#x2F;从数组中添加&#x2F;删除项目，然后返回被删除的项目 array.splice(index,howmany,item1,.....,itemX)">
 <meta property="og:locale">
 <meta property="article:published_time" content="2019-11-10T08:15:45.000Z">
-<meta property="article:modified_time" content="2023-12-18T08:31:04.999Z">
+<meta property="article:modified_time" content="2023-12-18T08:31:46.487Z">
 <meta property="article:author" content="wm">
 <meta property="article:tag" content="JS">
 <meta name="twitter:card" content="summary">
@@ -125,7 +125,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -136,7 +136,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -208,7 +208,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-18 16:31:04" itemprop="dateModified" datetime="2023-12-18T16:31:04+08:00">2023-12-18</time>
+      <time title="Modified: 2023-12-18 16:31:46" itemprop="dateModified" datetime="2023-12-18T16:31:46+08:00">2023-12-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -231,6 +231,8 @@
     
     <div class="post-body" itemprop="articleBody"><h1 id="改变原数组的方法-9-个"><a href="#改变原数组的方法-9-个" class="headerlink" title="改变原数组的方法(9 个)"></a>改变原数组的方法(9 个)</h1><h2 id="1-splice-添加-删除数组元素"><a href="#1-splice-添加-删除数组元素" class="headerlink" title="1.splice() 添加 &#x2F; 删除数组元素"></a>1.splice() 添加 &#x2F; 删除数组元素</h2><p>splice() 方法向&#x2F;从数组中添加&#x2F;删除项目，然后返回被删除的项目</p>
 <p><code>array.splice(index,howmany,item1,.....,itemX)</code></p>
+<span id="more"></span>
+
 <blockquote>
 <p>index：必需。整数，规定添加&#x2F;删除项目的位置，使用负数可从数组结尾处规定位置。<br>howmany：可选。要删除的项目数量。如果设置为 0，则不会删除项目。<br>item1, …, itemX： 可选。向数组添加的新项目。<br>返回值: 如果有元素被删除,返回包含被删除项目的新数组。</p>
 </blockquote>
@@ -351,8 +353,8 @@
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/07/21/JSBridge/" rel="next" title="JSBridge">
-                  JSBridge <i class="fa fa-angle-right"></i>
+                <a href="/2020/02/20/strong-cache/" rel="next" title="强缓存和协商缓存">
+                  强缓存和协商缓存 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>

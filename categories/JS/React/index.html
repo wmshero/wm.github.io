@@ -19,27 +19,23 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="假设我们有一个文件，称为 hello 通过 ln -s 创建一个软链接，通过 ln 可以创建一个硬链接。 12345678$ ln -s hello hello-soft$ ln hello hello-hard$ ls -lhtotal 76845459612 -rw-r--r--  2 xiange  staff   153K 11 19 17:56 hello45459612 -rw-r--">
-<meta property="og:type" content="article">
-<meta property="og:title" content="软链接和硬链接">
-<meta property="og:url" content="http://example.com/2023/12/19/hard-symbol-link/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="wm&#39;s blog">
+<meta property="og:url" content="http://example.com/categories/js/React/index.html">
 <meta property="og:site_name" content="wm&#39;s blog">
-<meta property="og:description" content="假设我们有一个文件，称为 hello 通过 ln -s 创建一个软链接，通过 ln 可以创建一个硬链接。 12345678$ ln -s hello hello-soft$ ln hello hello-hard$ ls -lhtotal 76845459612 -rw-r--r--  2 xiange  staff   153K 11 19 17:56 hello45459612 -rw-r--">
 <meta property="og:locale">
-<meta property="article:published_time" content="2023-12-19T09:28:13.000Z">
-<meta property="article:modified_time" content="2023-12-19T09:30:18.056Z">
 <meta property="article:author" content="wm">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2023/12/19/hard-symbol-link/">
+<link rel="canonical" href="http://example.com/categories/js/React/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2023/12/19/hard-symbol-link/","path":"2023/12/19/hard-symbol-link/","title":"软链接和硬链接"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-Hans","comments":"","permalink":"","path":"categories/js/React/index.html","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>软链接和硬链接 | wm's blog</title>
+<title>Category: React | wm's blog</title>
   
 
 
@@ -159,99 +155,50 @@
 
     </div>
 
-    <div class="main-inner post posts-expand">
+    <div class="main-inner category posts-collapse">
 
 
   
-
-
-<div class="post-block">
   
   
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/19/hard-symbol-link/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="wm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="软链接和硬链接 | wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          软链接和硬链接
+  <div class="post-block">
+    <div class="post-content">
+      <div class="collection-title">
+        <h1 class="collection-header">React
+          <small>Category</small>
         </h1>
+      </div>
 
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
       
-
-      <time title="Created: 2023-12-19 17:28:13 / Modified: 17:30:18" itemprop="dateCreated datePublished" datetime="2023-12-19T17:28:13+08:00">2023-12-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody"><p>假设我们有一个文件，称为 <code>hello</code></p>
-<p>通过 <code>ln -s</code> 创建一个软链接，通过 <code>ln</code> 可以创建一个硬链接。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ ln -s hello hello-soft</span><br><span class="line">$ ln hello hello-hard</span><br><span class="line"></span><br><span class="line">$ ls -lh</span><br><span class="line">total 768</span><br><span class="line">45459612 -rw-r--r--  2 xiange  staff   153K 11 19 17:56 hello</span><br><span class="line">45459612 -rw-r--r--  2 xiange  staff   153K 11 19 17:56 hello-hard</span><br><span class="line">45463415 lrwxr-xr-x  1 xiange  staff     5B 11 19 19:40 hello-soft -&gt; hello</span><br></pre></td></tr></table></figure>
-
-<p>他们的区别有以下几点:</p>
-<ul>
-<li>软链接可理解为指向源文件的指针，它是单独的一个文件，仅仅只有几个字节，它拥有独立的 inode</li>
-<li>硬链接与源文件同时指向一个物理地址，它与源文件共享存储数据，它俩拥有相同的 inode</li>
-</ul>
-
+    <div class="collection-year">
+      <span class="collection-header">2023</span>
     </div>
 
-    
-    
-    
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2023-12-22T10:24:03+08:00"
+              content="2023-12-22">
+          12-22
+        </time>
+      </div>
 
-    <footer class="post-footer">
+      <div class="post-title">
+        <a class="post-title-link" href="/2023/12/22/upload-big-file/" itemprop="url">
+          <span itemprop="name">前端文件流、切片下载和上传</span>
+        </a>
+      </div>
 
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2023/12/19/indexedDB/" rel="prev" title="indexedDB">
-                  <i class="fa fa-angle-left"></i> indexedDB
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2023/12/22/upload-big-file/" rel="next" title="前端文件流、切片下载和上传">
-                  前端文件流、切片下载和上传 <i class="fa fa-angle-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
+      
+    </header>
   </article>
-</div>
 
-
-
-
-
+    </div>
+  </div>
+  
+  
+  
 
 </div>
   </main>

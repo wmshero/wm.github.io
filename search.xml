@@ -963,12 +963,17 @@
   <entry>
     <title>todo</title>
     <url>/2023/12/18/todo/</url>
-    <content><![CDATA[<p>图片标注<br>大文件上传<br>immer&#x2F;immutable<br>graphql&#x2F;node<br>navigator.online(rel)</p>
+    <content><![CDATA[<p>图片标注<br>immer&#x2F;immutable<br>graphql&#x2F;node<br>navigator.online(rel)</p>
 <h1 id="npm-package"><a href="#npm-package" class="headerlink" title="npm package"></a>npm package</h1><ul>
 <li>包和模块的区别</li>
 <li>如何避免业务项目被发布到 npm</li>
 </ul>
-<h1 id="monorepo"><a href="#monorepo" class="headerlink" title="monorepo"></a>monorepo</h1>]]></content>
+<h1 id="monorepo"><a href="#monorepo" class="headerlink" title="monorepo"></a>monorepo</h1><p>ElectronJS</p>
+<p>Hybrid</p>
+<p>webpack、babel、postcss 等</p>
+<p>taiwind</p>
+<p>react 18</p>
+]]></content>
   </entry>
   <entry>
     <title>前端文件流、切片下载和上传</title>
@@ -1022,6 +1027,10 @@
 <p>在实现大文件上传时要考虑服务器端的处理能力和存储空间，以及安全性问题。同时，为了保障断点续传的准确性，应该尽量避免并发上传相同文件的情况，可以采用文件唯一标识符或用户会话标识符进行区分。</p>
 </blockquote>
 ]]></content>
+      <categories>
+        <category>js</category>
+        <category>React</category>
+      </categories>
       <tags>
         <tag>优化</tag>
         <tag>js</tag>

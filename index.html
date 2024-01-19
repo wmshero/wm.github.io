@@ -119,7 +119,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -130,7 +130,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -156,6 +156,211 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/01/16/nginx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="wm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/01/16/nginx/" class="post-title-link" itemprop="url">nginx</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-01-16 15:40:18" itemprop="dateCreated datePublished" datetime="2024-01-16T15:40:18+08:00">2024-01-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-01-19 14:27:01" itemprop="dateModified" datetime="2024-01-19T14:27:01+08:00">2024-01-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="1-包管理安装"><a href="#1-包管理安装" class="headerlink" title="1. 包管理安装"></a>1. 包管理安装</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install nginx</span><br></pre></td></tr></table></figure>
+
+<p>or</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install nginx</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-编译安装"><a href="#2-编译安装" class="headerlink" title="2. 编译安装"></a>2. 编译安装</h2><p>下载源码，预编译，编译，安装，比较灵活，可以自定义配置一些东西，但比较麻烦</p>
+<h2 id="3-使用-Docker-安装"><a href="#3-使用-Docker-安装" class="headerlink" title="3. 使用 Docker 安装"></a>3. 使用 Docker 安装</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull nginx</span><br></pre></td></tr></table></figure>
+
+<h1 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h1><ol>
+<li>启动命令：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>没有消息就是好消息</p>
+</blockquote>
+<ol start="2">
+<li><p>打开浏览器输入 localhost,能打开页面看到 Welcome to nginx! ,说明启动成功</p>
+</li>
+<li><p><code>ps -ef|grep nginx</code>可查看 nginx 进程</p>
+</li>
+<li><p>nginx -s signal<br>quit : 优雅停止<br>stop: 立即停止<br>reload：重新配置文件<br>reopen：重新打开日志文件</p>
+</li>
+<li><p>nginx -V<br>可以查看 Nginx 的安装目录，编译参数等等</p>
+</li>
+<li><p>如何查看 nginx 运行的网页的位置</p>
+</li>
+<li><p><code>nginx -V</code></p>
+</li>
+<li><p>找到–prefix，例如： –prefix&#x3D;&#x2F;opt&#x2F;homebrew&#x2F;Cellar&#x2F;nginx&#x2F;1.21.6_1</p>
+</li>
+<li><p><code>cd /opt/homebrew/Cellar/nginx/1.21.6_1</code></p>
+</li>
+<li><p><code>ls -ltr </code>可以看到列表中有 html</p>
+</li>
+<li><p><code>cd html</code></p>
+</li>
+<li><p><code>ls -ltr</code></p>
+</li>
+<li><p><code>code index.html</code></p>
+</li>
+</ol>
+<h1 id="搭建一个属于自己的个人博客网站"><a href="#搭建一个属于自己的个人博客网站" class="headerlink" title="搭建一个属于自己的个人博客网站"></a>搭建一个属于自己的个人博客网站</h1><ol>
+<li>新建博客</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">hexo init blog</span><br><span class="line">cd blog;npm install</span><br><span class="line">hexo server/ hexo s</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>部署到 nginx 上<br>然后将 hexo 生成的网页文件(在 public 目录下)，复制到 nginx 中</li>
+</ol>
+<p><code>cp -rf * /opt/homebrew/var/www</code></p>
+<h1 id="nginx-配置"><a href="#nginx-配置" class="headerlink" title="nginx 配置"></a>nginx 配置</h1><h2 id="1-基本的服务器配置"><a href="#1-基本的服务器配置" class="headerlink" title="1. 基本的服务器配置"></a>1. 基本的服务器配置</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80; # 监听端口</span><br><span class="line">    server_name example.com www.example.com; # 域名配置</span><br><span class="line">    root /path/to/your/webroot; # 网站根目录</span><br><span class="line">    index index.html index.htm; # 默认首页</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        # 其他配置</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-反向代理配置"><a href="#2-反向代理配置" class="headerlink" title="2. 反向代理配置"></a>2. 反向代理配置</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name example.com;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://backend_server; # 后端服务器地址</span><br><span class="line">        proxy_set_header Host $host;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        # 其他反向代理配置</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-负载均衡配置"><a href="#3-负载均衡配置" class="headerlink" title="3. 负载均衡配置"></a>3. 负载均衡配置</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">upstream backend &#123;</span><br><span class="line">    server backend1.example.com;</span><br><span class="line">    server backend2.example.com;</span><br><span class="line">    # 添加更多后端服务器</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name example.com;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://backend;</span><br><span class="line">        # 其他负载均衡配置</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-SSL-TLS-配置"><a href="#4-SSL-TLS-配置" class="headerlink" title="4. SSL&#x2F;TLS 配置"></a>4. SSL&#x2F;TLS 配置</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 443 ssl;</span><br><span class="line">    server_name secure.example.com;</span><br><span class="line"></span><br><span class="line">    ssl_certificate /path/to/ssl_certificate.crt;</span><br><span class="line">    ssl_certificate_key /path/to/ssl_certificate.key;</span><br><span class="line"></span><br><span class="line">    # 其他SSL/TLS配置</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="5-重定向配置"><a href="#5-重定向配置" class="headerlink" title="5. 重定向配置"></a>5. 重定向配置</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name www.example.com;</span><br><span class="line">    return 301 http://example.com$request_uri; # 重定向到非www域名</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="反向代理和负载均衡"><a href="#反向代理和负载均衡" class="headerlink" title="反向代理和负载均衡"></a>反向代理和负载均衡</h1><h2 id="正向代理和反向代理"><a href="#正向代理和反向代理" class="headerlink" title="正向代理和反向代理"></a>正向代理和反向代理</h2><p>正向代理 代理客户端（client）（VPN）<br>反向代理 代理服务端（server） （比如我们通过 Google 搜索内容，我们只通过一个域名访问，但其实转发到了后面很多个不同的服务器端上，从而隐藏了真实的服务器 IP 地址、端口等信息）</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><ol>
+<li>首先先用 go 生成一个简单的 web 页面，在端口 8000 监听，这里我是用 chatGPT 自动帮我生成：</li>
+</ol>
+<blockquote>
+<p>如果没有安装 go,请先安装，我这边直接用<code>brew install go</code></p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;net/http&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 设置路由</span></span><br><span class="line">	http.HandleFunc(<span class="string">&quot;/&quot;</span>, <span class="function"><span class="keyword">func</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line">		fmt.Fprintf(w, <span class="string">&quot;Hello, World!&quot;</span>)</span><br><span class="line">	&#125;)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 启动服务器并监听8000端口</span></span><br><span class="line">	port := <span class="number">8000</span></span><br><span class="line">	fmt.Printf(<span class="string">&quot;服务器正在监听端口 %d...\n&quot;</span>, port)</span><br><span class="line">	err := http.ListenAndServe(fmt.Sprintf(<span class="string">&quot;:%d&quot;</span>, port), <span class="literal">nil</span>)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;启动服务器时发生错误:&quot;</span>, err)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>我们将上面的文件再复制出两个文件，分别改写端口号为 8001、8002，分别运行在浏览器中。</p>
+</li>
+<li><p>然后我们再修改一下 nginx 的配置文件<br><code>code /opt/homebrew/etc/nginx/nginx.conf</code><br>添加<code>upstream</code>的配置，这个就是反向代理的配置</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">upstream backend&#123;</span><br><span class="line">      server 127.0.0.1:8000;</span><br><span class="line">      server 127.0.0.1:8001;</span><br><span class="line">      server 127.0.0.1:8002;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 下面的 server 配置中再添加一个 location 的配置，访问 app 都将代理到刚刚的配置中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location /app&#123;</span><br><span class="line">           proxy_pass http://backend;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>重新 reload 一下 nginx 配置<br><code>nginx -s reload </code></li>
+</ol>
+<h1 id="https-配置"><a href="#https-配置" class="headerlink" title="https 配置"></a>https 配置</h1><p>http + ssl 证书 -&gt; https<br>http 默认端口： 80<br>https 默认端口： 443<br>在主流的云平台（腾讯云，阿里云，AWS，GCP）上都可以申请免费的 ssl 证书，证书申请完后会得到证书文件(cacert.pem)和私钥文件（private.key），如果没有云平台也没有关系，我们可以通过 openssl 来自己生成一个自签名的证书</p>
+<h2 id="openssl-生成证书"><a href="#openssl-生成证书" class="headerlink" title="openssl 生成证书"></a>openssl 生成证书</h2><ol>
+<li>生成私钥文件（private key）<br><code>openssl genrsa -out private.key 2048</code></li>
+<li>根据私钥生成证书签名请求文件<br><code>openssl req -new -key private.key -out cert.csr</code></li>
+<li>使用私钥对证书申请进行签名从而生成证书（pem 文件）<br><code>openssl x509 -req -in cert.csr -out cacert.pem -signkey private.key</code></li>
+</ol>
+<h2 id="nginx-配置-1"><a href="#nginx-配置-1" class="headerlink" title="nginx 配置"></a>nginx 配置</h2><p>这两个文件需要放置到服务器上<code>证书文件(cacert.pem)和私钥文件（private.key）</code>,然后在 nginx 的配置文件中进行配置</p>
+<ol>
+<li>在监听后加上 ssl<br><code> listen    443 ssl;</code></li>
+<li>将证书和私钥填写进入</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssl_certificate    /opt/homebrew/etc/nginx/cacert.pem</span><br><span class="line">ssl_certificate_key    /opt/homebrew/etc/nginx/private.key</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>然后再加上一些验证配置和加密协议，这些配置基本是固定的</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 443 ssl;</span><br><span class="line">    server_name your_domain.com;</span><br><span class="line"></span><br><span class="line">    ssl_certificate /etc/nginx/ssl/your_domain.crt;</span><br><span class="line">    ssl_certificate_key /etc/nginx/ssl/your_domain.key;</span><br><span class="line"></span><br><span class="line">    # 可选：配置 SSL 优化和安全性</span><br><span class="line">    ssl_protocols TLSv1.2 TLSv1.3;</span><br><span class="line">    ssl_prefer_server_ciphers off;</span><br><span class="line">    ssl_ciphers &#x27;TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384&#x27;;</span><br><span class="line"></span><br><span class="line">    # 其他 SSL 配置...</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        # 配置其他相关的代理或静态文件服务...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>我们的证书是自签名的，没有经过 ca 认证，所以打开网站会提示不安全</p>
+</blockquote>
+<h3 id="配置-http-重定向到-https"><a href="#配置-http-重定向到-https" class="headerlink" title="配置 http 重定向到 https"></a>配置 http 重定向到 https</h3><p>server {<br>listen 80;<br>server_name your_domain.com <a target="_blank" rel="noopener" href="http://www.your_domain.com/">www.your_domain.com</a>;</p>
+<pre><code># 重定向到 HTTPS
+return 301 https://$host$request_uri;
+</code></pre>
+<p>}</p>
+<h1 id="虚拟主机"><a href="#虚拟主机" class="headerlink" title="虚拟主机"></a>虚拟主机</h1><p>虚拟主机可以在一个服务器上部署多个站点</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>nginx 中通过<code>server</code>块来配置虚拟主机，每个<code>server</code>块就是一个虚拟主机</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80; # 监听端口</span><br><span class="line"></span><br><span class="line">    server_name your_domain.com www.your_domain.com; # 替换为你的域名</span><br><span class="line"></span><br><span class="line">    root /path/to/your/webroot; # 替换为你的网站根目录</span><br><span class="line"></span><br><span class="line">    index index.html index.htm; # 默认首页</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        # 配置其他参数，比如代理、缓存等</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # 配置其他特定的location块，如果需要的话</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="如何将一个-vue-项目部署到服务器上"><a href="#如何将一个-vue-项目部署到服务器上" class="headerlink" title="如何将一个 vue 项目部署到服务器上"></a>如何将一个 vue 项目部署到服务器上</h2><ol>
+<li><p>创建一个 vue 项目，并打包好</p>
+</li>
+<li><p>open nginx 配置项目</p>
+</li>
+</ol>
+<ul>
+<li><code>cd /opt/homebrew/etc/nginx</code></li>
+<li><code>code .</code></li>
+<li>新建一个 servers 文件夹，在 servers 里建<code>vue.conf</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">    listen 5173;</span><br><span class="line">    server_name localhost;//替换成域名</span><br><span class="line">    location / &#123;</span><br><span class="line">        root /Users/mei/vue-demo/dist;//打包项目地址</span><br><span class="line">        index index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>nginx -s reload</code><br>在浏览器中输入 localhost:5173 就可以看到 vue 项目。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -895,89 +1100,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/12/15/compatibility/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/19/pnpm/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="wm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/03/19/pnpm/" class="post-title-link" itemprop="url">pnpm</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-03-19 17:30:35" itemprop="dateCreated datePublished" datetime="2023-03-19T17:30:35+08:00">2023-03-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-20 16:12:29" itemprop="dateModified" datetime="2023-12-20T16:12:29+08:00">2023-12-20</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>pnpm(performant npm) 通过软、硬链接（hark link、symbolic link） + 全局存储（store）结合的依赖管理方式完全实现了依赖树结构的包管理方式，解决了 npm3 及 yarn 中的幽灵依赖和 npm 分身的问题，提升了依赖包的安装速度，减小了磁盘空间占用。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/03/19/pnpm/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>

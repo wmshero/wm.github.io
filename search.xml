@@ -1364,36 +1364,42 @@ return 301 https://$host$request_uri;
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker --version</span><br></pre></td></tr></table></figure>
 
 <h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><p>Docker 提供了丰富的命令行工具，用于管理和操作 Docker 容器、镜像等。以下是一些常用的 Docker 命令：</p>
-<h2 id="镜像命令："><a href="#镜像命令：" class="headerlink" title="镜像命令："></a>镜像命令：</h2><p>查看本地镜像列表：<br>bash<br>Copy code<br>docker images<br>从 Docker Hub 下载镜像：<br>bash<br>Copy code<br>docker pull image_name:tag<br>构建镜像：<br>bash<br>Copy code<br>docker build -t image_name:tag .<br>删除本地镜像：<br>bash<br>Copy code<br>docker rmi image_name:tag</p>
+<h2 id="镜像命令："><a href="#镜像命令：" class="headerlink" title="镜像命令："></a>镜像命令：</h2><p>查看本地镜像列表：</p>
+<p><code>docker images</code><br>从 Docker Hub 下载镜像：</p>
+<p><code>docker pull image_name:tag</code><br>构建镜像：</p>
+<p><code>docker build -t image_name:tag .</code><br>删除本地镜像：</p>
+<p><code>docker rmi image_name:tag</code></p>
 <h2 id="容器命令："><a href="#容器命令：" class="headerlink" title="容器命令："></a>容器命令：</h2><ol>
-<li>启动容器：<br>bash<br>Copy code<br>docker run image_name:tag</li>
-<li>启动容器并指定名称：<br>bash<br>Copy code<br>docker run –name container_name image_name:tag</li>
-<li>查看运行中的容器：<br>bash<br>Copy code<br>docker ps</li>
-<li>查看所有容器（包括停止的）：<br>bash<br>Copy code<br>docker ps -a</li>
-<li>停止容器：<br>bash<br>Copy code<br>docker stop container_id&#x2F;container_name</li>
-<li>删除容器：<br>bash<br>Copy code<br>docker rm container_id&#x2F;container_name</li>
-<li>进入运行中的容器：<br>bash<br>Copy code<br>docker exec -it container_id&#x2F;container_name &#x2F;bin&#x2F;bash</li>
+<li>启动容器：<br><code>docker run image_name:tag</code></li>
+<li>启动容器并指定名称：<br><code>docker run --name container_name image_name:tag</code></li>
+<li>查看运行中的容器：<br><code>docker ps</code></li>
+<li>查看所有容器（包括停止的）：<br><code>docker ps -a</code></li>
+<li>停止容器：<br><code> docker stop container_id/container_name</code></li>
+<li>删除容器：<br><code>docker rm container_id/container_name</code></li>
+<li>进入运行中的容器：<br><code>docker exec -it container_id/container_name /bin/bash</code></li>
 </ol>
 <h2 id="日志和信息："><a href="#日志和信息：" class="headerlink" title="日志和信息："></a>日志和信息：</h2><ol>
-<li>查看容器日志：<br>bash<br>Copy code<br>docker logs container_id&#x2F;container_name</li>
-<li>查看容器详细信息：<br>bash<br>Copy code<br>docker inspect container_id&#x2F;container_name</li>
+<li><p>查看容器日志：<br><code>docker logs container_id/container_name</code></p>
+</li>
+<li><p>查看容器详细信息：<br><code>docker inspect container_id/container_name</code></p>
+</li>
 </ol>
 <h2 id="网络命令："><a href="#网络命令：" class="headerlink" title="网络命令："></a>网络命令：</h2><ol>
-<li>查看网络列表：<br>bash<br>Copy code<br>docker network ls</li>
-<li>查看网络详细信息：<br>bash<br>Copy code<br>docker network inspect network_name</li>
+<li>查看网络列表：<br><code>docker network ls</code></li>
+<li>查看网络详细信息：<br><code>docker network inspect network_name</code></li>
 </ol>
 <h2 id="其他常用命令："><a href="#其他常用命令：" class="headerlink" title="其他常用命令："></a>其他常用命令：</h2><ol>
-<li>查看 Docker 版本：<br>bash<br>Copy code<br>docker version</li>
-<li>查看 Docker 信息：<br>bash<br>Copy code<br>docker info</li>
-<li>清理无用资源（镜像、容器等）：<br>bash<br>Copy code<br>docker system prune</li>
-<li>查看 Docker 帮助：<br>bash<br>Copy code<br>docker –help</li>
+<li>查看 Docker 版本：<br><code>docker version</code></li>
+<li>查看 Docker 信息：<br><code>docker info</code></li>
+<li>清理无用资源（镜像、容器等）：<br><code>docker system prune</code></li>
+<li>查看 Docker 帮助：<br><code>docker --help</code></li>
 </ol>
-<h1 id="构造镜像、运行容器"><a href="#构造镜像、运行容器" class="headerlink" title="构造镜像、运行容器"></a>构造镜像、运行容器</h1><p>构建 Docker 镜像是通过定义一个 Dockerfile 文件来描述镜像的构建过程。以下是一个简单的 Dockerfile 示例，演示如何构建一个基于 Node.js 的简单 Web 应用的镜像</p>
+<h1 id="构造镜像、运行容器"><a href="#构造镜像、运行容器" class="headerlink" title="构造镜像、运行容器"></a>构造镜像、运行容器</h1><p>构建 Docker 镜像是通过定义一个 <code>Dockerfile</code> 文件来描述镜像的构建过程。以下是一个简单的 <code>Dockerfile</code> 示例，演示如何构建一个基于 Node.js 的简单 Web 应用的镜像</p>
 <figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用官方Node.js镜像作为基础镜像</span></span><br><span class="line"><span class="keyword">FROM</span> node:<span class="number">14</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置工作目录</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /app</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将应用程序的依赖项文件拷贝到工作目录</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> package*.json ./</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装应用程序的依赖项</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> npm install</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将应用程序文件拷贝到工作目录</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> . .</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 暴露应用程序监听的端口</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义启动命令</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;node&quot;</span>, <span class="string">&quot;app.js&quot;</span>]</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>上述 Dockerfile 的主要步骤包括：</p>
-<p>使用官方 Node.js 14 镜像作为基础镜像。<br>设置工作目录为&#x2F;app。<br>将应用程序的 package.json 和 package-lock.json 拷贝到工作目录。<br>运行 npm install 安装应用程序的依赖项。<br>将应用程序文件拷贝到工作目录。<br>暴露应用程序监听的端口（这里是 3000）。<br>定义启动容器时运行的命令。</p>
-<p>接下来，可以使用以下命令在 Dockerfile 所在的目录中构建镜像：</p>
+<p>使用官方 Node.js 14 镜像作为基础镜像。<br>设置工作目录为&#x2F;app。<br>将应用程序的 <code>package.json</code> 和 <code>package-lock.json</code> 拷贝到工作目录。<br>运行 <code>npm install</code> 安装应用程序的依赖项。<br>将应用程序文件拷贝到工作目录。<br>暴露应用程序监听的端口（这里是 3000）。<br>定义启动容器时运行的命令。</p>
+<p>接下来，可以使用以下命令在 <code>Dockerfile</code>所在的目录中构建镜像：</p>
 <p><code>docker build -t your_image_name:tag .</code><br>其中，your_image_name 是你为镜像定义的名称，tag 是版本标签。最后的点.表示 Dockerfile 所在的当前目录。</p>
 <p>构建完成后，你可以使用以下命令查看构建的镜像<br><code>docker images</code></p>
 <p>然后，你可以使用构建的镜像来运行容器：<br><code>docker run -p 3000:3000 -d your_image_name:tag</code></p>

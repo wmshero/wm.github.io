@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="基本概念Docker 是一个用于 构建、运行、传送 应用程序的平台。 将以下这些打包，以便在任何环境中都可以正确地运行：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker">
+<meta property="og:url" content="http://example.com/2024/01/19/docker/index.html">
+<meta property="og:site_name" content="wm&#39;s blog">
+<meta property="og:description" content="基本概念Docker 是一个用于 构建、运行、传送 应用程序的平台。 将以下这些打包，以便在任何环境中都可以正确地运行：">
+<meta property="og:locale">
+<meta property="article:published_time" content="2024-01-19T06:33:51.000Z">
+<meta property="article:modified_time" content="2024-01-19T08:05:35.239Z">
+<meta property="article:author" content="wm">
+<meta property="article:tag" content="docker">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2024/01/19/docker/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2024/01/19/docker/","path":"2024/01/19/docker/","title":"docker"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>docker | wm's blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">wm's blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8-Docker"><span class="nav-number">1.1.</span> <span class="nav-text">为什么要使用 Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-%E5%92%8C%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.2.</span> <span class="nav-text">Docker 和虚拟机的区别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">安装配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%95%9C%E5%83%8F%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="nav-number">3.1.</span> <span class="nav-text">镜像命令：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="nav-number">3.2.</span> <span class="nav-text">容器命令：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E5%92%8C%E4%BF%A1%E6%81%AF%EF%BC%9A"><span class="nav-number">3.3.</span> <span class="nav-text">日志和信息：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="nav-number">3.4.</span> <span class="nav-text">网络命令：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="nav-number">3.5.</span> <span class="nav-text">其他常用命令：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E9%95%9C%E5%83%8F%E3%80%81%E8%BF%90%E8%A1%8C%E5%AE%B9%E5%99%A8"><span class="nav-number">4.</span> <span class="nav-text">构造镜像、运行容器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker-Compose"><span class="nav-number">5.</span> <span class="nav-text">Docker Compose</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E7%82%B9%E5%92%8C%E7%94%A8%E9%80%94"><span class="nav-number">5.1.</span> <span class="nav-text">特点和用途:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-1"><span class="nav-number">5.1.1.</span> <span class="nav-text">基本概念:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-docker-compose-yml-%E6%96%87%E4%BB%B6"><span class="nav-number">5.1.1.1.</span> <span class="nav-text">示例 docker-compose.yml 文件</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">wm</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="/1494601749@qq.com" title="E-Mail → 1494601749@qq.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/01/19/docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="wm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="docker | wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          docker
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2024-01-19 14:33:51 / Modified: 16:05:35" itemprop="dateCreated datePublished" datetime="2024-01-19T14:33:51+08:00">2024-01-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>Docker 是一个用于 <strong>构建、运行、传送</strong> 应用程序的平台。</p>
+<p>将以下这些打包，以便在任何环境中都可以正确地运行：</p>
+<span id="more"></span>
+
+<ul>
+<li>配置文件、启动命令</li>
+<li>应用程序、环境变量</li>
+<li>第三方软件库和依赖包</li>
+<li>运行时环境</li>
+<li>操作系统（OS）</li>
+</ul>
+<h2 id="为什么要使用-Docker"><a href="#为什么要使用-Docker" class="headerlink" title="为什么要使用 Docker"></a>为什么要使用 Docker</h2><ol>
+<li><p>环境一致性： Docker 容器包含应用程序及其依赖项，确保在不同的环境中具有一致的运行结果。这有助于避免”在我的机器上可以运行”这类问题。</p>
+</li>
+<li><p>轻量级： Docker 容器与虚拟机相比更轻量，因为它们共享主机操作系统的内核。这使得 Docker 容器更快速启动、占用更少资源，并提供更高的性能。</p>
+</li>
+<li><p>快速部署： Docker 容器可以快速部署，几乎可以在任何支持 Docker 的环境中运行。这加速了应用程序的交付流程，使得新版本的应用程序可以更快地投入生产环境。</p>
+</li>
+<li><p>易于扩展： Docker 容器可以在分布式环境中轻松扩展，实现负载均衡和高可用性。通过使用 Docker Swarm 或 Kubernetes 等容器编排工具，可以方便地管理多个容器的部署和伸缩。</p>
+</li>
+<li><p>隔离性： Docker 容器提供了隔离的运行环境，每个容器之间相互隔离，不会相互影响。这使得应用程序更加安全，同时也更容易管理多个服务或应用。</p>
+</li>
+<li><p>版本控制和回滚： Docker 允许将应用程序和其依赖项打包成镜像，并通过版本控制来管理。这样，可以方便地回滚到之前的版本，降低了部署过程中的风险。</p>
+</li>
+<li><p>生态系统和社区支持： Docker 拥有庞大的社区，有大量的公开可用的镜像和工具。这使得开发人员可以轻松地获取和分享容器化的应用程序组件，加速了开发和部署过程。</p>
+</li>
+<li><p>跨平台： Docker 容器可以在各种操作系统上运行，包括 Linux、Windows 和 macOS 等。这种跨平台性使得开发、测试和部署更加灵活。</p>
+</li>
+</ol>
+<h2 id="Docker-和虚拟机的区别"><a href="#Docker-和虚拟机的区别" class="headerlink" title="Docker 和虚拟机的区别"></a>Docker 和虚拟机的区别</h2><p>Docker 容器和虚拟机（VM）是两种不同的虚拟化技术，它们在实现和性能方面存在一些关键的区别。以下是 Docker 容器和虚拟机之间的主要区别：</p>
+<ol>
+<li>架构差异：</li>
+</ol>
+<ul>
+<li>Docker 容器： Docker 容器共享主机操作系统的内核，但在容器中运行的应用程序有自己独立的用户空间。这使得 Docker 容器相对轻量，启动迅速。</li>
+<li>虚拟机： 虚拟机通过使用虚拟化层创建独立的虚拟硬件，每个虚拟机都运行一个完整的操作系统实例。这增加了虚拟机的重量和启动时间。</li>
+</ul>
+<ol start="2">
+<li>资源占用：</li>
+</ol>
+<ul>
+<li>Docker 容器： 由于容器共享主机内核，它们占用的资源更少，启动更快。容器可以在同一主机上运行成百上千个实例而不会显著增加资源开销。</li>
+<li>虚拟机： 每个虚拟机都需要独立的操作系统和虚拟硬件，因此它们通常占用更多的资源，并且启动时间较长。</li>
+</ul>
+<ol start="3">
+<li>隔离性：</li>
+</ol>
+<ul>
+<li>Docker 容器： 容器提供了一定程度的隔离，但容器共享主机内核，因此在安全性上相对较弱。</li>
+<li>虚拟机： 虚拟机提供更强的隔离，因为它们运行独立的操作系统。虚拟机通常在安全性方面更有优势。</li>
+</ul>
+<ol start="4">
+<li>跨平台性：</li>
+</ol>
+<ul>
+<li>Docker 容器： 容器可以在不同操作系统上运行，前提是它们使用相同的 Docker 引擎。这增加了跨平台的灵活性。</li>
+<li>虚拟机： 虚拟机通常依赖于特定的虚拟化技术和操作系统，因此在不同平台之间移植性较差。</li>
+</ul>
+<ol start="5">
+<li>镜像大小：</li>
+</ol>
+<ul>
+<li>Docker 容器： Docker 镜像通常比虚拟机镜像小得多，因为它们只包含应用程序及其依赖项，而不包括整个操作系统。</li>
+<li>虚拟机： 虚拟机镜像包含完整的操作系统，因此它们通常较大。</li>
+</ul>
+<p>根据应用程序的需求和部署场景，选择使用 Docker 容器还是虚拟机取决于具体情况。一些场景中它们也可以结合使用，例如在虚拟机中运行 Docker 容器。</p>
+<h1 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h1><ol>
+<li><p>下载 Docker Desktop for Mac：<br>访问 Docker 官方网站下载 Docker Desktop for Mac。安装程序将包含 Docker 引擎以及 Docker CLI 等组件。</p>
+</li>
+<li><p>安装 Docker Desktop：<br>双击下载的 Docker.dmg 文件，将 Docker 图标拖动到 Applications 文件夹中，然后在 Applications 文件夹中运行 Docker。</p>
+</li>
+<li><p>运行 Docker Desktop：<br>打开 Docker 应用程序，它将启动 Docker 引擎。</p>
+</li>
+<li><p>验证 Docker 安装：<br>打开终端（Terminal）并运行以下命令检查 Docker 版本</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker --version</span><br></pre></td></tr></table></figure>
+
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><p>Docker 提供了丰富的命令行工具，用于管理和操作 Docker 容器、镜像等。以下是一些常用的 Docker 命令：</p>
+<h2 id="镜像命令："><a href="#镜像命令：" class="headerlink" title="镜像命令："></a>镜像命令：</h2><p>查看本地镜像列表：<br>bash<br>Copy code<br>docker images<br>从 Docker Hub 下载镜像：<br>bash<br>Copy code<br>docker pull image_name:tag<br>构建镜像：<br>bash<br>Copy code<br>docker build -t image_name:tag .<br>删除本地镜像：<br>bash<br>Copy code<br>docker rmi image_name:tag</p>
+<h2 id="容器命令："><a href="#容器命令：" class="headerlink" title="容器命令："></a>容器命令：</h2><ol>
+<li>启动容器：<br>bash<br>Copy code<br>docker run image_name:tag</li>
+<li>启动容器并指定名称：<br>bash<br>Copy code<br>docker run –name container_name image_name:tag</li>
+<li>查看运行中的容器：<br>bash<br>Copy code<br>docker ps</li>
+<li>查看所有容器（包括停止的）：<br>bash<br>Copy code<br>docker ps -a</li>
+<li>停止容器：<br>bash<br>Copy code<br>docker stop container_id&#x2F;container_name</li>
+<li>删除容器：<br>bash<br>Copy code<br>docker rm container_id&#x2F;container_name</li>
+<li>进入运行中的容器：<br>bash<br>Copy code<br>docker exec -it container_id&#x2F;container_name &#x2F;bin&#x2F;bash</li>
+</ol>
+<h2 id="日志和信息："><a href="#日志和信息：" class="headerlink" title="日志和信息："></a>日志和信息：</h2><ol>
+<li>查看容器日志：<br>bash<br>Copy code<br>docker logs container_id&#x2F;container_name</li>
+<li>查看容器详细信息：<br>bash<br>Copy code<br>docker inspect container_id&#x2F;container_name</li>
+</ol>
+<h2 id="网络命令："><a href="#网络命令：" class="headerlink" title="网络命令："></a>网络命令：</h2><ol>
+<li>查看网络列表：<br>bash<br>Copy code<br>docker network ls</li>
+<li>查看网络详细信息：<br>bash<br>Copy code<br>docker network inspect network_name</li>
+</ol>
+<h2 id="其他常用命令："><a href="#其他常用命令：" class="headerlink" title="其他常用命令："></a>其他常用命令：</h2><ol>
+<li>查看 Docker 版本：<br>bash<br>Copy code<br>docker version</li>
+<li>查看 Docker 信息：<br>bash<br>Copy code<br>docker info</li>
+<li>清理无用资源（镜像、容器等）：<br>bash<br>Copy code<br>docker system prune</li>
+<li>查看 Docker 帮助：<br>bash<br>Copy code<br>docker –help</li>
+</ol>
+<h1 id="构造镜像、运行容器"><a href="#构造镜像、运行容器" class="headerlink" title="构造镜像、运行容器"></a>构造镜像、运行容器</h1><p>构建 Docker 镜像是通过定义一个 Dockerfile 文件来描述镜像的构建过程。以下是一个简单的 Dockerfile 示例，演示如何构建一个基于 Node.js 的简单 Web 应用的镜像</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用官方Node.js镜像作为基础镜像</span></span><br><span class="line"><span class="keyword">FROM</span> node:<span class="number">14</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置工作目录</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /app</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将应用程序的依赖项文件拷贝到工作目录</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> package*.json ./</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装应用程序的依赖项</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> npm install</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将应用程序文件拷贝到工作目录</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> . .</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 暴露应用程序监听的端口</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义启动命令</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;node&quot;</span>, <span class="string">&quot;app.js&quot;</span>]</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上述 Dockerfile 的主要步骤包括：</p>
+<p>使用官方 Node.js 14 镜像作为基础镜像。<br>设置工作目录为&#x2F;app。<br>将应用程序的 package.json 和 package-lock.json 拷贝到工作目录。<br>运行 npm install 安装应用程序的依赖项。<br>将应用程序文件拷贝到工作目录。<br>暴露应用程序监听的端口（这里是 3000）。<br>定义启动容器时运行的命令。</p>
+<p>接下来，可以使用以下命令在 Dockerfile 所在的目录中构建镜像：</p>
+<p><code>docker build -t your_image_name:tag .</code><br>其中，your_image_name 是你为镜像定义的名称，tag 是版本标签。最后的点.表示 Dockerfile 所在的当前目录。</p>
+<p>构建完成后，你可以使用以下命令查看构建的镜像<br><code>docker images</code></p>
+<p>然后，你可以使用构建的镜像来运行容器：<br><code>docker run -p 3000:3000 -d your_image_name:tag</code></p>
+<h1 id="Docker-Compose"><a href="#Docker-Compose" class="headerlink" title="Docker Compose"></a>Docker Compose</h1><h2 id="特点和用途"><a href="#特点和用途" class="headerlink" title="特点和用途:"></a>特点和用途:</h2><p>Docker Compose 是 Docker 官方提供的工具，用于定义和运行多容器的 Docker 应用。<br>使用 <code>YAML</code> 文件定义多容器应用的服务、网络和卷等配置。<br>主要用于开发和测试环境，以便在本地一次性启动多个相关联的容器。<br>简化了通过 <code>docker-compose up</code> 一键启动整个应用程序的过程。</p>
+<h3 id="基本概念-1"><a href="#基本概念-1" class="headerlink" title="基本概念:"></a>基本概念:</h3><ul>
+<li>services: 定义应用中的各个服务，每个服务对应一个容器。</li>
+<li>networks: 定义服务之间的网络连接。</li>
+<li>volumes: 定义服务使用的数据卷。</li>
+</ul>
+<h4 id="示例-docker-compose-yml-文件"><a href="#示例-docker-compose-yml-文件" class="headerlink" title="示例 docker-compose.yml 文件"></a>示例 docker-compose.yml 文件</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">web:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">nginx</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;8080:80&quot;</span></span><br><span class="line">  <span class="attr">app:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">your_app_image</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;5000:5000&quot;</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/docker/" rel="tag"># docker</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/01/16/nginx/" rel="prev" title="nginx">
+                  <i class="fa fa-angle-left"></i> nginx
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2019 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">wm</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

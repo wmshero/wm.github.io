@@ -1134,7 +1134,20 @@
   <entry>
     <title>nginx</title>
     <url>/2024/01/16/nginx/</url>
-    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="1-包管理安装"><a href="#1-包管理安装" class="headerlink" title="1. 包管理安装"></a>1. 包管理安装</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew install nginx</span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Nginx（发音为”engine-x”）是一个高性能的开源 Web 服务器和反向代理服务器。以下是 Nginx 的一些关键特点和简介：</p>
+<p><strong>高性能</strong>： Nginx 以高性能而著称，能够处理大量并发连接，同时占用较少的系统资源。它的事件驱动架构和非阻塞 IO 模型有助于实现高效的性能。</p>
+<p><strong>轻量级和可扩展</strong>： Nginx 的设计目标之一是保持简单、轻量级且可扩展。它的模块化架构使得用户可以根据需要选择性地添加功能模块。</p>
+<p><strong>反向代理</strong>： Nginx 可以用作反向代理服务器，接收客户端请求并将其转发到后端服务器。这使得它成为负载均衡和提高 Web 应用性能的理想选择。</p>
+<p><strong>负载均衡</strong>： Nginx 支持基于轮询、IP 哈希等算法的负载均衡，能够平均分配流量到多个后端服务器，提高系统的可用性和稳定性。</p>
+<span id="more"></span>
+
+<p><strong>静态文件服务</strong>： Nginx 非常擅长提供静态文件服务，可以快速地传送静态内容，减轻后端服务器的负担。</p>
+<p><strong>SSL&#x2F;TLS 支持</strong>： Nginx 支持 SSL&#x2F;TLS 协议，能够提供安全的加密通信，用于保护网站和应用程序的数据传输。</p>
+<p><strong>虚拟主机</strong>： Nginx 支持虚拟主机配置，允许多个域名共享同一台服务器，并根据域名或其他条件进行不同的配置。</p>
+<p><strong>日志记录</strong>： Nginx 提供详细的访问日志和错误日志，有助于进行故障排除和性能优化。</p>
+<p><strong>社区支持和活跃</strong>： Nginx 是一个开源项目，拥有庞大的用户社区，有许多第三方模块和插件可用。它也有商业版本（NGINX Plus）提供额外的功能和支持。</p>
+<p>总体而言，Nginx 是一个强大、灵活且高性能的 Web 服务器，适用于处理各种 Web 应用程序和场景。由于其卓越的性能和可扩展性，它被广泛用于互联网和企业环境中</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="1-包管理安装"><a href="#1-包管理安装" class="headerlink" title="1. 包管理安装"></a>1. 包管理安装</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew install nginx</span><br></pre></td></tr></table></figure>
 
 <p>or</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install nginx</span><br></pre></td></tr></table></figure>

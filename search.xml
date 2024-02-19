@@ -1590,9 +1590,11 @@ return 301 https://$host$request_uri;
       </tags>
   </entry>
   <entry>
-    <title>xss</title>
-    <url>/2024/02/19/xss/</url>
+    <title>xss攻击</title>
+    <url>/2021/01/19/xss/</url>
     <content><![CDATA[<p>XSS（Cross-Site Scripting，跨站脚本攻击）是一种常见的 Web 安全漏洞，攻击者利用这种漏洞向网页中<strong>插入恶意脚本</strong>，从而在用户的浏览器中执行恶意代码。XSS 攻击通常分为三种类型：</p>
+<span id="more"></span>
+
 <h3 id="1-存储型-XSS："><a href="#1-存储型-XSS：" class="headerlink" title="1. 存储型 XSS："></a>1. 存储型 XSS：</h3><p>存储型 XSS 攻击，也称为持久型 XSS 攻击，是攻击者将恶意脚本存储在服务器端的数据库中。当用户访问包含恶意脚本的页面时，这些脚本从服务器端获取并执行，从而对用户进行攻击。</p>
 <h3 id="2-反射型-XSS："><a href="#2-反射型-XSS：" class="headerlink" title="2. 反射型 XSS："></a>2. 反射型 XSS：</h3><p>反射型 XSS 攻击，也称为非持久型 XSS 攻击，是攻击者将恶意脚本作为 URL 参数发送给受害者。当受害者点击包含恶意脚本的链接时，这些脚本会反射到受害者的浏览器中执行，从而对用户进行攻击。</p>
 <h3 id="3-DOM-型-XSS："><a href="#3-DOM-型-XSS：" class="headerlink" title="3. DOM 型 XSS："></a>3. DOM 型 XSS：</h3><p>DOM 型 XSS 攻击是攻击者利用客户端的漏洞，通过修改页面的 <code>DOM</code> 结构来执行恶意脚本。与存储型和反射型 XSS 不同，DOM 型 XSS 攻击不会将恶意脚本发送到服务器端，而是直接操作客户端的 DOM 来实现攻击。</p>
@@ -1609,6 +1611,33 @@ return 301 https://$host$request_uri;
       </categories>
       <tags>
         <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>virtual-dom-fiber</title>
+    <url>/2023/11/10/virtual-dom-fiber/</url>
+    <content><![CDATA[<p>在 React 中，Virtual DOM（虚拟 DOM）是一种内存中的表示，它是由 React 创建和维护的一种树形结构，用于表示真实 DOM 的抽象。当状态发生变化时，React 会通过比较新的 Virtual DOM 和旧的 Virtual DOM 的差异来确定需要更新的部分，并将这些变化应用到真实的 DOM 中，从而实现页面的更新。</p>
+<span id="more"></span>
+
+<h2 id="Virtual-DOM-的引入带来了以下好处："><a href="#Virtual-DOM-的引入带来了以下好处：" class="headerlink" title="Virtual DOM 的引入带来了以下好处："></a>Virtual DOM 的引入带来了以下好处：</h2><ol>
+<li><p><strong>提高性能</strong>：<br>Virtual DOM 通过将真实 DOM 的操作转换为对虚拟 DOM 的操作，然后批量更新到真实 DOM 中，减少了对真实 DOM 的频繁操作。这样可以提高页面渲染的性能，减少了浏览器重绘和重排的次数，提升了用户体验。</p>
+</li>
+<li><p><strong>简化开发</strong>：<br>使用 Virtual DOM 可以使开发人员更专注于应用程序的逻辑和数据，而不必过多地关注 DOM 操作的细节。通过使用组件化开发模式，开发人员可以将 UI 拆分成小而独立的组件，每个组件都有自己的状态和行为，这样可以更容易地管理和维护应用程序的代码。</p>
+</li>
+<li><p><strong>跨平台兼容性</strong>：<br>由于 Virtual DOM 是一个与平台无关的抽象层，因此可以轻松地将 React 应用程序移植到不同的平台上，包括 Web、移动端和桌面端等。这样可以提高应用程序的可移植性和跨平台兼容性。</p>
+</li>
+<li><p><strong>方便的测试</strong>：<br>使用 Virtual DOM 可以方便地进行单元测试和集成测试，因为可以在内存中操作虚拟 DOM，而无需真实的浏览器环境。这样可以加快测试速度，提高开发效率。</p>
+</li>
+</ol>
+<h2 id="Fiber"><a href="#Fiber" class="headerlink" title="Fiber"></a>Fiber</h2><p>Fiber 是 React v16 中引入的一种新的协调算法，用于调度和管理 React 的渲染和更新过程。Fiber 的目标是使 React 应用程序更加流畅和响应，减少页面卡顿和掉帧的情况。<br>Fiber 的核心思想是将 React 的渲染过程分解为可中断的小任务，并且可以根据优先级来调度这些任务的执行顺序。这样可以使 React 在执行渲染任务时更加灵活，可以根据页面的需要来调整任务的优先级和执行顺序，从而提高用户体验。</p>
+<p>Fiber 的引入使得 React 具备了更高的并发能力和更灵活的调度策略，使得 React 应用程序可以更好地适应不同的场景和用户需求。</p>
+<p>综上所述，Virtual DOM 和 Fiber 是 React 内部机制中的两个关键概念，它们共同作用于 React 的渲染和更新过程中，提高了 React 应用程序的性能、效率和响应能力。Virtual DOM 优化了对真实 DOM 的操作，而 Fiber 则优化了 React 的渲染和更新调度过程。</p>
+]]></content>
+      <categories>
+        <category>React</category>
+      </categories>
+      <tags>
+        <tag>React</tag>
       </tags>
   </entry>
 </search>

@@ -19,28 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="XSS（Cross-Site Scripting，跨站脚本攻击）是一种常见的 Web 安全漏洞，攻击者利用这种漏洞向网页中插入恶意脚本，从而在用户的浏览器中执行恶意代码。XSS 攻击通常分为三种类型： 1. 存储型 XSS：存储型 XSS 攻击，也称为持久型 XSS 攻击，是攻击者将恶意脚本存储在服务器端的数据库中。当用户访问包含恶意脚本的页面时，这些脚本从服务器端获取并执行，从而对用户进行攻击。">
+    <meta name="description" content="XSS（Cross-Site Scripting，跨站脚本攻击）是一种常见的 Web 安全漏洞，攻击者利用这种漏洞向网页中插入恶意脚本，从而在用户的浏览器中执行恶意代码。XSS 攻击通常分为三种类型：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="xss">
-<meta property="og:url" content="http://example.com/2024/02/19/xss/index.html">
+<meta property="og:title" content="xss攻击">
+<meta property="og:url" content="http://example.com/2021/01/19/xss/index.html">
 <meta property="og:site_name" content="wm&#39;s blog">
-<meta property="og:description" content="XSS（Cross-Site Scripting，跨站脚本攻击）是一种常见的 Web 安全漏洞，攻击者利用这种漏洞向网页中插入恶意脚本，从而在用户的浏览器中执行恶意代码。XSS 攻击通常分为三种类型： 1. 存储型 XSS：存储型 XSS 攻击，也称为持久型 XSS 攻击，是攻击者将恶意脚本存储在服务器端的数据库中。当用户访问包含恶意脚本的页面时，这些脚本从服务器端获取并执行，从而对用户进行攻击。">
+<meta property="og:description" content="XSS（Cross-Site Scripting，跨站脚本攻击）是一种常见的 Web 安全漏洞，攻击者利用这种漏洞向网页中插入恶意脚本，从而在用户的浏览器中执行恶意代码。XSS 攻击通常分为三种类型：">
 <meta property="og:locale">
-<meta property="article:published_time" content="2024-02-19T06:06:09.000Z">
-<meta property="article:modified_time" content="2024-02-19T06:08:52.925Z">
+<meta property="article:published_time" content="2021-01-19T06:06:09.000Z">
+<meta property="article:modified_time" content="2024-02-19T06:09:44.190Z">
 <meta property="article:author" content="wm">
 <meta property="article:tag" content="http">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2024/02/19/xss/">
+<link rel="canonical" href="http://example.com/2021/01/19/xss/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2024/02/19/xss/","path":"2024/02/19/xss/","title":"xss"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2021/01/19/xss/","path":"2021/01/19/xss/","title":"xss攻击"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>xss | wm's blog</title>
+<title>xss攻击 | wm's blog</title>
   
 
 
@@ -125,7 +125,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -172,7 +172,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/19/xss/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/19/xss/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -185,12 +185,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="xss | wm's blog">
+      <meta itemprop="name" content="xss攻击 | wm's blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          xss
+          xss攻击
         </h1>
 
         <div class="post-meta-container">
@@ -200,9 +200,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2024-02-19 14:06:09 / Modified: 14:08:52" itemprop="dateCreated datePublished" datetime="2024-02-19T14:06:09+08:00">2024-02-19</time>
+      <time title="Created: 2021-01-19 14:06:09" itemprop="dateCreated datePublished" datetime="2021-01-19T14:06:09+08:00">2021-01-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-02-19 14:09:44" itemprop="dateModified" datetime="2024-02-19T14:09:44+08:00">2024-02-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -224,6 +230,8 @@
     
     
     <div class="post-body" itemprop="articleBody"><p>XSS（Cross-Site Scripting，跨站脚本攻击）是一种常见的 Web 安全漏洞，攻击者利用这种漏洞向网页中<strong>插入恶意脚本</strong>，从而在用户的浏览器中执行恶意代码。XSS 攻击通常分为三种类型：</p>
+<span id="more"></span>
+
 <h3 id="1-存储型-XSS："><a href="#1-存储型-XSS：" class="headerlink" title="1. 存储型 XSS："></a>1. 存储型 XSS：</h3><p>存储型 XSS 攻击，也称为持久型 XSS 攻击，是攻击者将恶意脚本存储在服务器端的数据库中。当用户访问包含恶意脚本的页面时，这些脚本从服务器端获取并执行，从而对用户进行攻击。</p>
 <h3 id="2-反射型-XSS："><a href="#2-反射型-XSS：" class="headerlink" title="2. 反射型 XSS："></a>2. 反射型 XSS：</h3><p>反射型 XSS 攻击，也称为非持久型 XSS 攻击，是攻击者将恶意脚本作为 URL 参数发送给受害者。当受害者点击包含恶意脚本的链接时，这些脚本会反射到受害者的浏览器中执行，从而对用户进行攻击。</p>
 <h3 id="3-DOM-型-XSS："><a href="#3-DOM-型-XSS：" class="headerlink" title="3. DOM 型 XSS："></a>3. DOM 型 XSS：</h3><p>DOM 型 XSS 攻击是攻击者利用客户端的漏洞，通过修改页面的 <code>DOM</code> 结构来执行恶意脚本。与存储型和反射型 XSS 不同，DOM 型 XSS 攻击不会将恶意脚本发送到服务器端，而是直接操作客户端的 DOM 来实现攻击。</p>
@@ -250,11 +258,14 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/01/29/cjs-commonjs/" rel="prev" title="cjs-commonjs">
-                  <i class="fa fa-angle-left"></i> cjs-commonjs
+                <a href="/2020/12/18/sleep-function/" rel="prev" title="sleep 函数">
+                  <i class="fa fa-angle-left"></i> sleep 函数
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2021/10/14/design-patterns/" rel="next" title="设计模式">
+                  设计模式 <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>

@@ -19,30 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="组件初始化—-render 方法—-&gt;生成虚拟 DOM—ReactDOM.render 方法—&gt;真实 DOM 组件更新—- render 方法—-&gt;生成新的虚拟 DOM—-diff 算法—-&gt;定位出两次虚拟 DOM 的差异">
+    <meta name="description" content="在 React 中，Virtual DOM（虚拟 DOM）是一种内存中的表示，它是由 React 创建和维护的一种树形结构，用于表示真实 DOM 的抽象。当状态发生变化时，React 会通过比较新的 Virtual DOM 和旧的 Virtual DOM 的差异来确定需要更新的部分，并将这些变化应用到真实的 DOM 中，从而实现页面的更新。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="react">
-<meta property="og:url" content="http://example.com/2024/01/02/react/index.html">
+<meta property="og:title" content="virtual-dom-fiber">
+<meta property="og:url" content="http://example.com/2023/11/10/virtual-dom-fiber/index.html">
 <meta property="og:site_name" content="wm&#39;s blog">
-<meta property="og:description" content="组件初始化—-render 方法—-&gt;生成虚拟 DOM—ReactDOM.render 方法—&gt;真实 DOM 组件更新—- render 方法—-&gt;生成新的虚拟 DOM—-diff 算法—-&gt;定位出两次虚拟 DOM 的差异">
+<meta property="og:description" content="在 React 中，Virtual DOM（虚拟 DOM）是一种内存中的表示，它是由 React 创建和维护的一种树形结构，用于表示真实 DOM 的抽象。当状态发生变化时，React 会通过比较新的 Virtual DOM 和旧的 Virtual DOM 的差异来确定需要更新的部分，并将这些变化应用到真实的 DOM 中，从而实现页面的更新。">
 <meta property="og:locale">
-<meta property="og:image" content="http://example.com/2024/01/02/react/dom.png">
-<meta property="article:published_time" content="2024-01-02T08:08:53.000Z">
-<meta property="article:modified_time" content="2024-01-02T08:18:21.403Z">
+<meta property="article:published_time" content="2023-11-10T06:14:05.000Z">
+<meta property="article:modified_time" content="2024-02-19T06:18:09.645Z">
 <meta property="article:author" content="wm">
-<meta property="article:tag" content="react">
+<meta property="article:tag" content="React">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2024/01/02/react/dom.png">
 
 
-<link rel="canonical" href="http://example.com/2024/01/02/react/">
+<link rel="canonical" href="http://example.com/2023/11/10/virtual-dom-fiber/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2024/01/02/react/","path":"2024/01/02/react/","title":"react"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2023/11/10/virtual-dom-fiber/","path":"2023/11/10/virtual-dom-fiber/","title":"virtual-dom-fiber"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>react | wm's blog</title>
+<title>virtual-dom-fiber | wm's blog</title>
   
 
 
@@ -101,7 +99,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -114,6 +112,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Virtual-DOM-%E7%9A%84%E5%BC%95%E5%85%A5%E5%B8%A6%E6%9D%A5%E4%BA%86%E4%BB%A5%E4%B8%8B%E5%A5%BD%E5%A4%84%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">Virtual DOM 的引入带来了以下好处：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fiber"><span class="nav-number">2.</span> <span class="nav-text">Fiber</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -173,7 +172,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/01/02/react/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/10/virtual-dom-fiber/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -186,12 +185,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="react | wm's blog">
+      <meta itemprop="name" content="virtual-dom-fiber | wm's blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          react
+          virtual-dom-fiber
         </h1>
 
         <div class="post-meta-container">
@@ -201,9 +200,24 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2024-01-02 16:08:53 / Modified: 16:18:21" itemprop="dateCreated datePublished" datetime="2024-01-02T16:08:53+08:00">2024-01-02</time>
+      <time title="Created: 2023-11-10 14:14:05" itemprop="dateCreated datePublished" datetime="2023-11-10T14:14:05+08:00">2023-11-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-02-19 14:18:09" itemprop="dateModified" datetime="2024-02-19T14:18:09+08:00">2024-02-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
+        </span>
     </span>
 
   
@@ -215,10 +229,22 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><img src="/2024/01/02/react/dom.png" class title="dom">
+    <div class="post-body" itemprop="articleBody"><p>在 React 中，Virtual DOM（虚拟 DOM）是一种内存中的表示，它是由 React 创建和维护的一种树形结构，用于表示真实 DOM 的抽象。当状态发生变化时，React 会通过比较新的 Virtual DOM 和旧的 Virtual DOM 的差异来确定需要更新的部分，并将这些变化应用到真实的 DOM 中，从而实现页面的更新。</p>
+<span id="more"></span>
 
-<p>组件初始化—-render 方法—-&gt;生成虚拟 DOM—ReactDOM.render 方法—&gt;真实 DOM</p>
-<p>组件更新—- render 方法—-&gt;生成新的虚拟 DOM—-diff 算法—-&gt;定位出两次虚拟 DOM 的差异</p>
+<h2 id="Virtual-DOM-的引入带来了以下好处："><a href="#Virtual-DOM-的引入带来了以下好处：" class="headerlink" title="Virtual DOM 的引入带来了以下好处："></a>Virtual DOM 的引入带来了以下好处：</h2><ol>
+<li><p><strong>提高性能</strong>：<br>Virtual DOM 通过将真实 DOM 的操作转换为对虚拟 DOM 的操作，然后批量更新到真实 DOM 中，减少了对真实 DOM 的频繁操作。这样可以提高页面渲染的性能，减少了浏览器重绘和重排的次数，提升了用户体验。</p>
+</li>
+<li><p><strong>简化开发</strong>：<br>使用 Virtual DOM 可以使开发人员更专注于应用程序的逻辑和数据，而不必过多地关注 DOM 操作的细节。通过使用组件化开发模式，开发人员可以将 UI 拆分成小而独立的组件，每个组件都有自己的状态和行为，这样可以更容易地管理和维护应用程序的代码。</p>
+</li>
+<li><p><strong>跨平台兼容性</strong>：<br>由于 Virtual DOM 是一个与平台无关的抽象层，因此可以轻松地将 React 应用程序移植到不同的平台上，包括 Web、移动端和桌面端等。这样可以提高应用程序的可移植性和跨平台兼容性。</p>
+</li>
+<li><p><strong>方便的测试</strong>：<br>使用 Virtual DOM 可以方便地进行单元测试和集成测试，因为可以在内存中操作虚拟 DOM，而无需真实的浏览器环境。这样可以加快测试速度，提高开发效率。</p>
+</li>
+</ol>
+<h2 id="Fiber"><a href="#Fiber" class="headerlink" title="Fiber"></a>Fiber</h2><p>Fiber 是 React v16 中引入的一种新的协调算法，用于调度和管理 React 的渲染和更新过程。Fiber 的目标是使 React 应用程序更加流畅和响应，减少页面卡顿和掉帧的情况。<br>Fiber 的核心思想是将 React 的渲染过程分解为可中断的小任务，并且可以根据优先级来调度这些任务的执行顺序。这样可以使 React 在执行渲染任务时更加灵活，可以根据页面的需要来调整任务的优先级和执行顺序，从而提高用户体验。</p>
+<p>Fiber 的引入使得 React 具备了更高的并发能力和更灵活的调度策略，使得 React 应用程序可以更好地适应不同的场景和用户需求。</p>
+<p>综上所述，Virtual DOM 和 Fiber 是 React 内部机制中的两个关键概念，它们共同作用于 React 的渲染和更新过程中，提高了 React 应用程序的性能、效率和响应能力。Virtual DOM 优化了对真实 DOM 的操作，而 Fiber 则优化了 React 的渲染和更新调度过程。</p>
 
     </div>
 
@@ -228,20 +254,20 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/react/" rel="tag"># react</a>
+              <a href="/tags/React/" rel="tag"># React</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/12/27/NodeJs-Express/" rel="prev" title="NodeJs-Express">
-                  <i class="fa fa-angle-left"></i> NodeJs-Express
+                <a href="/2023/03/19/pnpm/" rel="prev" title="pnpm">
+                  <i class="fa fa-angle-left"></i> pnpm
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/01/16/BFF/" rel="next" title="BFF(Backend For Frontend)">
-                  BFF(Backend For Frontend) <i class="fa fa-angle-right"></i>
+                <a href="/2023/12/15/compatibility/" rel="next" title="兼容性">
+                  兼容性 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>

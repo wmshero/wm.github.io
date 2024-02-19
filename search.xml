@@ -1511,4 +1511,35 @@ return 301 https://$host$request_uri;
         <tag>http</tag>
       </tags>
   </entry>
+  <entry>
+    <title>ssl</title>
+    <url>/2024/02/19/ssl/</url>
+    <content><![CDATA[<p>SSL（Secure Sockets Layer，安全套接层）是一种用于<strong>保护网络通信安全</strong>的协议。SSL 最初由网景公司（Netscape）开发，后来发展为 <strong>TLS</strong>（Transport Layer Security，传输层安全），TLS 取代了 SSL 成为更安全和更先进的协议。然而，人们通常仍然使用术语 SSL 来指代 TLS。</p>
+<p>SSL&#x2F;TLS 协议提供了以下主要功能：</p>
+<ol>
+<li><p>加密（Encryption）：<br>SSL&#x2F;TLS 使用加密技术对数据进行加密，从而确保在网络上传输的数据在传输过程中不会被未经授权的人员窃听或窃取。常用的加密算法包括<strong>对称加密</strong>（如 AES）和<strong>非对称加密</strong>（如 RSA）。</p>
+</li>
+<li><p>身份认证（Authentication）：<br>SSL&#x2F;TLS 协议使用<strong>数字证书</strong>来验证通信双方的身份。数字证书由可信的第三方机构（CA，Certificate Authority）颁发，用于证明通信实体的身份。这样，通信双方可以确保他们正在与预期的对方进行通信，而不是中间人（Man-in-the-Middle）攻击。</p>
+</li>
+<li><p>数据完整性（Data Integrity）：<br>SSL&#x2F;TLS 使用哈希函数和消息认证码（MAC，Message Authentication Code）来保证数据在传输过程中不会被篡改。这确保了数据在传输过程中的完整性，即接收方能够检测到任何数据被篡改的情况。</p>
+</li>
+</ol>
+<p><strong>SSL&#x2F;TLS 协议的工作流程大致如下</strong>：</p>
+<ul>
+<li><p>握手阶段：客户端发送一个连接请求给服务器，服务器在确认客户端的身份后，发送数字证书给客户端。客户端验证数字证书，然后生成一个随机密钥，用服务器的公钥加密后发送给服务器。接着，服务器使用私钥解密随机密钥。这样，双方就拥有了共享的密钥，用于后续的加密和解密操作。</p>
+</li>
+<li><p>加密通信：双方使用共享密钥进行加密和解密操作，确保了数据在传输过程中的安全性。</p>
+</li>
+<li><p>断开连接：通信结束后，双方发送关闭连接的通知，然后安全地关闭连接。</p>
+</li>
+</ul>
+<p>SSL&#x2F;TLS 协议被广泛应用于 Web 浏览器和服务器之间的安全通信，以及其他需要保护通信安全性的场景，如电子邮件传输、文件传输等。</p>
+]]></content>
+      <categories>
+        <category>http</category>
+      </categories>
+      <tags>
+        <tag>http</tag>
+      </tags>
+  </entry>
 </search>

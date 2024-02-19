@@ -970,7 +970,7 @@
   </entry>
   <entry>
     <title>todo</title>
-    <url>/2023/12/18/todo/</url>
+    <url>/2019/12/18/todo/</url>
     <content><![CDATA[<span id="more"></span>
 
 <p>图片标注<br>immer&#x2F;immutable<br>graphql&#x2F;node<br>navigator.online(rel)</p>
@@ -1699,6 +1699,29 @@ return 301 https://$host$request_uri;
       </categories>
       <tags>
         <tag>前端质量保障</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>react-key</title>
+    <url>/2024/02/19/react-key/</url>
+    <content><![CDATA[<p>在 React 或 Vue 项目中，在列表组件中为每个列表项指定一个唯一的 key 是很重要的，其作用主要有以下几点：</p>
+<ol>
+<li><p>优化性能：<br>在进行列表渲染时，React 和 Vue 都会使用虚拟 DOM（Virtual DOM）来比较新旧 DOM 树，从而确定需要更新的部分。使用 key 可以帮助 React 或 Vue 识别每个列表项的身份，从而更准确地确定哪些列表项需要更新，从而优化渲染性能。</p>
+</li>
+<li><p>避免重复元素：<br>如果列表项没有指定唯一的 key，当列表中的元素发生增删操作时，React 或 Vue 可能会错误地将新元素与旧列表中的元素混淆，导致不正确的更新或重复渲染相同的元素。</p>
+</li>
+<li><p>保持组件状态：<br>在 React 中，当组件重新渲染时，React 会尽量保持每个元素的状态不变，即使元素的位置发生了变化。通过为每个列表项指定唯一的 key，React 可以更好地跟踪元素的状态，从而确保组件的状态正确地保持在每个列表项上。</p>
+</li>
+<li><p>便于查找和调试：<br>使用 key 可以使得列表项在 React 或 Vue 的开发者工具中更易于查找和调试。你可以通过 key 来追踪每个列表项的变化，更好地理解渲染逻辑，并快速定位问题。</p>
+</li>
+</ol>
+<p>因此，无论是在 React 还是 Vue 项目中，在列表组件中为每个列表项指定一个唯一的 key 是很重要的，它能够提高性能、避免问题、保持组件状态，并且方便调试。</p>
+]]></content>
+      <categories>
+        <category>React</category>
+      </categories>
+      <tags>
+        <tag>React</tag>
       </tags>
   </entry>
 </search>

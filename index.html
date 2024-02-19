@@ -119,7 +119,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -156,6 +156,95 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/19/xss/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="wm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/02/19/xss/" class="post-title-link" itemprop="url">xss</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2024-02-19 14:06:09 / Modified: 14:08:52" itemprop="dateCreated datePublished" datetime="2024-02-19T14:06:09+08:00">2024-02-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/http/" itemprop="url" rel="index"><span itemprop="name">http</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>XSS（Cross-Site Scripting，跨站脚本攻击）是一种常见的 Web 安全漏洞，攻击者利用这种漏洞向网页中<strong>插入恶意脚本</strong>，从而在用户的浏览器中执行恶意代码。XSS 攻击通常分为三种类型：</p>
+<h3 id="1-存储型-XSS："><a href="#1-存储型-XSS：" class="headerlink" title="1. 存储型 XSS："></a>1. 存储型 XSS：</h3><p>存储型 XSS 攻击，也称为持久型 XSS 攻击，是攻击者将恶意脚本存储在服务器端的数据库中。当用户访问包含恶意脚本的页面时，这些脚本从服务器端获取并执行，从而对用户进行攻击。</p>
+<h3 id="2-反射型-XSS："><a href="#2-反射型-XSS：" class="headerlink" title="2. 反射型 XSS："></a>2. 反射型 XSS：</h3><p>反射型 XSS 攻击，也称为非持久型 XSS 攻击，是攻击者将恶意脚本作为 URL 参数发送给受害者。当受害者点击包含恶意脚本的链接时，这些脚本会反射到受害者的浏览器中执行，从而对用户进行攻击。</p>
+<h3 id="3-DOM-型-XSS："><a href="#3-DOM-型-XSS：" class="headerlink" title="3. DOM 型 XSS："></a>3. DOM 型 XSS：</h3><p>DOM 型 XSS 攻击是攻击者利用客户端的漏洞，通过修改页面的 <code>DOM</code> 结构来执行恶意脚本。与存储型和反射型 XSS 不同，DOM 型 XSS 攻击不会将恶意脚本发送到服务器端，而是直接操作客户端的 DOM 来实现攻击。</p>
+<p><strong>为了防止 XSS 攻击，可以采取以下措施</strong> ：</p>
+<h3 id="1-输入验证："><a href="#1-输入验证：" class="headerlink" title="1.输入验证："></a>1.输入验证：</h3><p>对所有用户输入的数据进行验证和过滤，防止恶意脚本的注入。可以使用白名单机制来限制输入数据的类型和格式，过滤掉所有不合法的输入。</p>
+<h3 id="2-输出编码："><a href="#2-输出编码：" class="headerlink" title="2.输出编码："></a>2.输出编码：</h3><p>在将用户输入的数据输出到页面时，使用适当的编码方式对数据进行转义，防止恶意脚本的执行。常用的编码方式包括 HTML 实体编码、JavaScript 转义编码等。</p>
+<h3 id="3-设置-HTTP-头部："><a href="#3-设置-HTTP-头部：" class="headerlink" title="3.设置 HTTP 头部："></a>3.设置 HTTP 头部：</h3><p>使用<code>X-Content-Type-Options</code> 头部来防止浏览器的 MIME 类型猜测行为，使用 <code>Content-Security-Policy</code> 头部来限制页面加载的资源来源，防止恶意脚本的执行。</p>
+<h3 id="4-Cookie-安全："><a href="#4-Cookie-安全：" class="headerlink" title="4.Cookie 安全："></a>4.Cookie 安全：</h3><p>设置 <code>HTTPOnly</code> 属性来限制 <code>Cookie</code> 只能通过 HTTP 协议传输，防止 JavaScript 脚本获取 <code>Cookie</code> 信息，从而减少受到 XSS 攻击的可能性。</p>
+<h3 id="5-安全的开发实践："><a href="#5-安全的开发实践：" class="headerlink" title="5. 安全的开发实践："></a>5. 安全的开发实践：</h3><p>开发人员应当采用安全的编码实践，如避免使用 <code>eval</code> 函数、使用 CSP（Content Security Policy）等来限制页面加载的资源来源。</p>
+<p>通过以上措施，可以有效地减少 XSS 攻击的风险，并提升 Web 应用程序的安全性</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -906,86 +995,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/19/indexedDB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="wm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/19/indexedDB/" class="post-title-link" itemprop="url">indexedDB</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2023-12-19 14:57:14 / Modified: 16:04:54" itemprop="dateCreated datePublished" datetime="2023-12-19T14:57:14+08:00">2023-12-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h1><p>随着浏览器的功能不断增强，越来越多的网站开始考虑，将大量数据储存在客户端，这样可以减少从服务器获取数据，直接从本地获取数据。</p>
-<p>现有的浏览器数据储存方案，都不适合储存大量数据：Cookie 的大小不超过 4KB，且每次请求都会发送回服务器；LocalStorage 在 2.5MB 到 10MB 之间（各家浏览器不同），而且不提供搜索功能，不能建立自定义的索引。所以，需要一种新的解决方案，这就是 IndexedDB 诞生的背景。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/12/19/indexedDB/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

@@ -19,28 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="JS 没有语言内置的休眠（sleep or wait）函数，所谓的 sleep 只是实现一种延迟执行的效果 等待指定时间后再执行对应方法">
+    <meta name="description" content="XSS（Cross-Site Scripting，跨站脚本攻击）是一种常见的 Web 安全漏洞，攻击者利用这种漏洞向网页中插入恶意脚本，从而在用户的浏览器中执行恶意代码。XSS 攻击通常分为三种类型： 1. 存储型 XSS：存储型 XSS 攻击，也称为持久型 XSS 攻击，是攻击者将恶意脚本存储在服务器端的数据库中。当用户访问包含恶意脚本的页面时，这些脚本从服务器端获取并执行，从而对用户进行攻击。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sleep 函数">
-<meta property="og:url" content="http://example.com/2020/12/18/sleep-function/index.html">
+<meta property="og:title" content="xss">
+<meta property="og:url" content="http://example.com/2024/02/19/xss/index.html">
 <meta property="og:site_name" content="wm&#39;s blog">
-<meta property="og:description" content="JS 没有语言内置的休眠（sleep or wait）函数，所谓的 sleep 只是实现一种延迟执行的效果 等待指定时间后再执行对应方法">
+<meta property="og:description" content="XSS（Cross-Site Scripting，跨站脚本攻击）是一种常见的 Web 安全漏洞，攻击者利用这种漏洞向网页中插入恶意脚本，从而在用户的浏览器中执行恶意代码。XSS 攻击通常分为三种类型： 1. 存储型 XSS：存储型 XSS 攻击，也称为持久型 XSS 攻击，是攻击者将恶意脚本存储在服务器端的数据库中。当用户访问包含恶意脚本的页面时，这些脚本从服务器端获取并执行，从而对用户进行攻击。">
 <meta property="og:locale">
-<meta property="article:published_time" content="2020-12-18T05:56:46.000Z">
-<meta property="article:modified_time" content="2023-12-18T07:43:22.123Z">
+<meta property="article:published_time" content="2024-02-19T06:06:09.000Z">
+<meta property="article:modified_time" content="2024-02-19T06:08:52.925Z">
 <meta property="article:author" content="wm">
-<meta property="article:tag" content="JS">
+<meta property="article:tag" content="http">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2020/12/18/sleep-function/">
+<link rel="canonical" href="http://example.com/2024/02/19/xss/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2020/12/18/sleep-function/","path":"2020/12/18/sleep-function/","title":"sleep 函数"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2024/02/19/xss/","path":"2024/02/19/xss/","title":"xss"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>sleep 函数 | wm's blog</title>
+<title>xss | wm's blog</title>
   
 
 
@@ -112,7 +112,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E4%BC%AA%E6%AD%BB%E5%BE%AA%E7%8E%AF%E9%98%BB%E5%A1%9E%E4%B8%BB%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">方法一：伪死循环阻塞主线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%BA%8C%EF%BC%9A-%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="nav-number">2.</span> <span class="nav-text">方式二： 定时器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%89%EF%BC%9Apromise"><span class="nav-number">3.</span> <span class="nav-text">方式三：promise</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E5%9B%9B%EF%BC%9Aasync-await"><span class="nav-number">4.</span> <span class="nav-text">方式四：async await</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%AD%98%E5%82%A8%E5%9E%8B-XSS%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">1. 存储型 XSS：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%8F%8D%E5%B0%84%E5%9E%8B-XSS%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">2. 反射型 XSS：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-DOM-%E5%9E%8B-XSS%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">3. DOM 型 XSS：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%BE%93%E5%85%A5%E9%AA%8C%E8%AF%81%EF%BC%9A"><span class="nav-number">4.</span> <span class="nav-text">1.输入验证：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%BE%93%E5%87%BA%E7%BC%96%E7%A0%81%EF%BC%9A"><span class="nav-number">5.</span> <span class="nav-text">2.输出编码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%AE%BE%E7%BD%AE-HTTP-%E5%A4%B4%E9%83%A8%EF%BC%9A"><span class="nav-number">6.</span> <span class="nav-text">3.设置 HTTP 头部：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Cookie-%E5%AE%89%E5%85%A8%EF%BC%9A"><span class="nav-number">7.</span> <span class="nav-text">4.Cookie 安全：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%AE%89%E5%85%A8%E7%9A%84%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5%EF%BC%9A"><span class="nav-number">8.</span> <span class="nav-text">5. 安全的开发实践：</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -172,7 +172,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/18/sleep-function/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/19/xss/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -185,12 +185,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="sleep 函数 | wm's blog">
+      <meta itemprop="name" content="xss | wm's blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          sleep 函数
+          xss
         </h1>
 
         <div class="post-meta-container">
@@ -200,15 +200,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2020-12-18 13:56:46" itemprop="dateCreated datePublished" datetime="2020-12-18T13:56:46+08:00">2020-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-18 15:43:22" itemprop="dateModified" datetime="2023-12-18T15:43:22+08:00">2023-12-18</time>
+      <time title="Created: 2024-02-19 14:06:09 / Modified: 14:08:52" itemprop="dateCreated datePublished" datetime="2024-02-19T14:06:09+08:00">2024-02-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -216,7 +210,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JS/" itemprop="url" rel="index"><span itemprop="name">JS</span></a>
+          <a href="/categories/http/" itemprop="url" rel="index"><span itemprop="name">http</span></a>
         </span>
     </span>
 
@@ -229,17 +223,17 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>JS 没有语言内置的休眠（sleep or wait）函数，所谓的 sleep 只是实现一种延迟执行的效果</p>
-<p>等待指定时间后再执行对应方法</p>
-<span id="more"></span>
-
-<h2 id="方法一：伪死循环阻塞主线程"><a href="#方法一：伪死循环阻塞主线程" class="headerlink" title="方法一：伪死循环阻塞主线程"></a>方法一：伪死循环阻塞主线程</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 因为JS是单线程的，所以通过这种方式可以实现真正意义上的sleep</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sleep1</span>(<span class="params">fn, time</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> start = <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>();</span><br><span class="line">  <span class="keyword">while</span> (<span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>() - start &lt; time) &#123;</span><br><span class="line">    <span class="keyword">continue</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">fn</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="方式二：-定时器"><a href="#方式二：-定时器" class="headerlink" title="方式二： 定时器"></a>方式二： 定时器</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">sleep2</span>(<span class="params">fn, time</span>) &#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(fn, time);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="方式三：promise"><a href="#方式三：promise" class="headerlink" title="方式三：promise"></a>方式三：promise</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function sleep3(fn, time) &#123;</span><br><span class="line">  new Promise(resolve =&gt; &#123;</span><br><span class="line">    setTimeout(resolve, time);</span><br><span class="line">  &#125;).then(() =&gt; &#123;</span><br><span class="line">    fn();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="方式四：async-await"><a href="#方式四：async-await" class="headerlink" title="方式四：async await"></a>方式四：async await</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">sleep4</span>(<span class="params">fn, time</span>) &#123;</span><br><span class="line">  <span class="keyword">await</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(resolve, time);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="title function_">fn</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;fn&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">sleep1</span>(fn, <span class="number">2000</span>);</span><br><span class="line"><span class="title function_">sleep2</span>(fn, <span class="number">2000</span>);</span><br><span class="line"><span class="title function_">sleep3</span>(fn, <span class="number">2000</span>);</span><br><span class="line"><span class="title function_">sleep4</span>(fn, <span class="number">2000</span>);</span><br></pre></td></tr></table></figure>
+    <div class="post-body" itemprop="articleBody"><p>XSS（Cross-Site Scripting，跨站脚本攻击）是一种常见的 Web 安全漏洞，攻击者利用这种漏洞向网页中<strong>插入恶意脚本</strong>，从而在用户的浏览器中执行恶意代码。XSS 攻击通常分为三种类型：</p>
+<h3 id="1-存储型-XSS："><a href="#1-存储型-XSS：" class="headerlink" title="1. 存储型 XSS："></a>1. 存储型 XSS：</h3><p>存储型 XSS 攻击，也称为持久型 XSS 攻击，是攻击者将恶意脚本存储在服务器端的数据库中。当用户访问包含恶意脚本的页面时，这些脚本从服务器端获取并执行，从而对用户进行攻击。</p>
+<h3 id="2-反射型-XSS："><a href="#2-反射型-XSS：" class="headerlink" title="2. 反射型 XSS："></a>2. 反射型 XSS：</h3><p>反射型 XSS 攻击，也称为非持久型 XSS 攻击，是攻击者将恶意脚本作为 URL 参数发送给受害者。当受害者点击包含恶意脚本的链接时，这些脚本会反射到受害者的浏览器中执行，从而对用户进行攻击。</p>
+<h3 id="3-DOM-型-XSS："><a href="#3-DOM-型-XSS：" class="headerlink" title="3. DOM 型 XSS："></a>3. DOM 型 XSS：</h3><p>DOM 型 XSS 攻击是攻击者利用客户端的漏洞，通过修改页面的 <code>DOM</code> 结构来执行恶意脚本。与存储型和反射型 XSS 不同，DOM 型 XSS 攻击不会将恶意脚本发送到服务器端，而是直接操作客户端的 DOM 来实现攻击。</p>
+<p><strong>为了防止 XSS 攻击，可以采取以下措施</strong> ：</p>
+<h3 id="1-输入验证："><a href="#1-输入验证：" class="headerlink" title="1.输入验证："></a>1.输入验证：</h3><p>对所有用户输入的数据进行验证和过滤，防止恶意脚本的注入。可以使用白名单机制来限制输入数据的类型和格式，过滤掉所有不合法的输入。</p>
+<h3 id="2-输出编码："><a href="#2-输出编码：" class="headerlink" title="2.输出编码："></a>2.输出编码：</h3><p>在将用户输入的数据输出到页面时，使用适当的编码方式对数据进行转义，防止恶意脚本的执行。常用的编码方式包括 HTML 实体编码、JavaScript 转义编码等。</p>
+<h3 id="3-设置-HTTP-头部："><a href="#3-设置-HTTP-头部：" class="headerlink" title="3.设置 HTTP 头部："></a>3.设置 HTTP 头部：</h3><p>使用<code>X-Content-Type-Options</code> 头部来防止浏览器的 MIME 类型猜测行为，使用 <code>Content-Security-Policy</code> 头部来限制页面加载的资源来源，防止恶意脚本的执行。</p>
+<h3 id="4-Cookie-安全："><a href="#4-Cookie-安全：" class="headerlink" title="4.Cookie 安全："></a>4.Cookie 安全：</h3><p>设置 <code>HTTPOnly</code> 属性来限制 <code>Cookie</code> 只能通过 HTTP 协议传输，防止 JavaScript 脚本获取 <code>Cookie</code> 信息，从而减少受到 XSS 攻击的可能性。</p>
+<h3 id="5-安全的开发实践："><a href="#5-安全的开发实践：" class="headerlink" title="5. 安全的开发实践："></a>5. 安全的开发实践：</h3><p>开发人员应当采用安全的编码实践，如避免使用 <code>eval</code> 函数、使用 CSP（Content Security Policy）等来限制页面加载的资源来源。</p>
+<p>通过以上措施，可以有效地减少 XSS 攻击的风险，并提升 Web 应用程序的安全性</p>
 
     </div>
 
@@ -249,21 +243,18 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/JS/" rel="tag"># JS</a>
+              <a href="/tags/http/" rel="tag"># http</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/07/21/JSBridge/" rel="prev" title="JSBridge">
-                  <i class="fa fa-angle-left"></i> JSBridge
+                <a href="/2024/01/29/cjs-commonjs/" rel="prev" title="cjs-commonjs">
+                  <i class="fa fa-angle-left"></i> cjs-commonjs
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/10/14/design-patterns/" rel="next" title="设计模式">
-                  设计模式 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>

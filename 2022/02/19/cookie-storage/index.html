@@ -19,28 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="一、垃圾回收机制——GCJavascript 具有自动垃圾回收机制（GC：Garbage Collecation），也就是说，执行环境会负责管理代码执行过程中使用的内存。 原理：垃圾收集器会定期（周期性）找出那些不在继续使用的变量，然后释放其内存。 通常情况下有两种实现方式：">
+    <meta name="description" content="cookie、sessionStorage 和 localStorage 都是在 Web 浏览器中用于存储数据的机制，但它们之间有一些重要的区别。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS 垃圾回收机制">
-<meta property="og:url" content="http://example.com/2023/01/15/garbage-recycling-mechanism/index.html">
+<meta property="og:title" content="Cookie、sessionStorage、localStorage 的区别">
+<meta property="og:url" content="http://example.com/2022/02/19/cookie-storage/index.html">
 <meta property="og:site_name" content="wm&#39;s blog">
-<meta property="og:description" content="一、垃圾回收机制——GCJavascript 具有自动垃圾回收机制（GC：Garbage Collecation），也就是说，执行环境会负责管理代码执行过程中使用的内存。 原理：垃圾收集器会定期（周期性）找出那些不在继续使用的变量，然后释放其内存。 通常情况下有两种实现方式：">
+<meta property="og:description" content="cookie、sessionStorage 和 localStorage 都是在 Web 浏览器中用于存储数据的机制，但它们之间有一些重要的区别。">
 <meta property="og:locale">
-<meta property="article:published_time" content="2023-01-15T06:52:19.000Z">
-<meta property="article:modified_time" content="2023-12-18T07:41:32.798Z">
+<meta property="article:published_time" content="2022-02-19T03:22:46.000Z">
+<meta property="article:modified_time" content="2024-02-19T03:27:22.241Z">
 <meta property="article:author" content="wm">
-<meta property="article:tag" content="JS">
+<meta property="article:tag" content="http">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2023/01/15/garbage-recycling-mechanism/">
+<link rel="canonical" href="http://example.com/2022/02/19/cookie-storage/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2023/01/15/garbage-recycling-mechanism/","path":"2023/01/15/garbage-recycling-mechanism/","title":"JS 垃圾回收机制"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2022/02/19/cookie-storage/","path":"2022/02/19/cookie-storage/","title":"Cookie、sessionStorage、localStorage 的区别"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>JS 垃圾回收机制 | wm's blog</title>
+<title>Cookie、sessionStorage、localStorage 的区别 | wm's blog</title>
   
 
 
@@ -112,7 +112,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E2%80%94%E2%80%94GC"><span class="nav-number">1.</span> <span class="nav-text">一、垃圾回收机制——GC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4"><span class="nav-number">1.1.</span> <span class="nav-text">标记清除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">引用计数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">二、内存管理</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-cookie%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">1. cookie：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie-%E7%9A%84%E7%89%B9%E7%82%B9%E5%8C%85%E6%8B%AC%EF%BC%9A"><span class="nav-number">1.0.1.</span> <span class="nav-text">Cookie 的特点包括：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-sessionStorage%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">2. sessionStorage：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sessionStorage-%E7%9A%84%E7%89%B9%E7%82%B9%E5%8C%85%E6%8B%AC%EF%BC%9A"><span class="nav-number">2.0.1.</span> <span class="nav-text">sessionStorage 的特点包括：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-localStorage%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">3. localStorage：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#localStorage-%E7%9A%84%E7%89%B9%E7%82%B9%E5%8C%85%E6%8B%AC%EF%BC%9A"><span class="nav-number">3.0.1.</span> <span class="nav-text">localStorage 的特点包括：</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -172,7 +172,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/15/garbage-recycling-mechanism/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/19/cookie-storage/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -185,12 +185,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="JS 垃圾回收机制 | wm's blog">
+      <meta itemprop="name" content="Cookie、sessionStorage、localStorage 的区别 | wm's blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          JS 垃圾回收机制
+          Cookie、sessionStorage、localStorage 的区别
         </h1>
 
         <div class="post-meta-container">
@@ -201,14 +201,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2023-01-15 14:52:19" itemprop="dateCreated datePublished" datetime="2023-01-15T14:52:19+08:00">2023-01-15</time>
+      <time title="Created: 2022-02-19 11:22:46" itemprop="dateCreated datePublished" datetime="2022-02-19T11:22:46+08:00">2022-02-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-18 15:41:32" itemprop="dateModified" datetime="2023-12-18T15:41:32+08:00">2023-12-18</time>
+      <time title="Modified: 2024-02-19 11:27:22" itemprop="dateModified" datetime="2024-02-19T11:27:22+08:00">2024-02-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -216,7 +216,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JS/" itemprop="url" rel="index"><span itemprop="name">JS</span></a>
+          <a href="/categories/http/" itemprop="url" rel="index"><span itemprop="name">http</span></a>
         </span>
     </span>
 
@@ -229,32 +229,30 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="一、垃圾回收机制——GC"><a href="#一、垃圾回收机制——GC" class="headerlink" title="一、垃圾回收机制——GC"></a>一、垃圾回收机制——GC</h1><p>Javascript 具有自动垃圾回收机制（GC：Garbage Collecation），也就是说，执行环境会负责管理代码执行过程中使用的内存。</p>
-<p>原理：垃圾收集器会定期（周期性）找出那些不在继续使用的变量，然后释放其内存。</p>
-<p>通常情况下有两种实现方式：</p>
+    <div class="post-body" itemprop="articleBody"><p>cookie、sessionStorage 和 localStorage 都是在 Web 浏览器中用于存储数据的机制，但它们之间有一些重要的区别。</p>
 <span id="more"></span>
 
-<h2 id="标记清除"><a href="#标记清除" class="headerlink" title="标记清除"></a>标记清除</h2><p>js 中最常用的垃圾回收方式就是标记清除。</p>
-<p>当变量进入环境时，例如，在函数中声明一个变量，就将这个变量<strong>标记为“进入环境”</strong>。从逻辑上讲，永远不能释放进入环境的变量所占用的内存，因为只要执行流进入相应的环境，就可能会用到它们。而当变量离开环境时，则将其<strong>标记为“离开环境”</strong>。</p>
-<h2 id="引用计数"><a href="#引用计数" class="headerlink" title="引用计数"></a>引用计数</h2><p><strong>跟踪记录每个值被引用的次数</strong></p>
-<p>当声明了一个变量并将一个引用类型值赋给该变量时，则这个值的引用次数就是 1。如果同一个值又被赋给另一个变量，则该值的引用次数加 1。相反，如果包含对这个值引用的变量又取得了另外一个值，则这个值的引用次数减 1。当这个值的引用次数变成 0 时，则说明没有办法再访问这个值了，因而就可以将其占用的内存空间回收回来。这样，当垃圾回收器下次再运行时，它就会释放那些引用次数为 0 的值所占用的内存。</p>
-<h1 id="二、内存管理"><a href="#二、内存管理" class="headerlink" title="二、内存管理"></a>二、内存管理</h1><ol>
-<li>Javascript 引擎基础 GC 方案是</li>
-</ol>
-<p>（simple GC）：mark and sweep（标记清除），即：</p>
-<p>1）遍历所有可访问的对象；</p>
-<p>2）回收已不可访问的对象。</p>
-<ol start="2">
-<li>GC 的缺陷</li>
-</ol>
-<p>和其他语言一样，JavaScript 的 GC 策略也无法避免一个问题：<strong>GC 时，停止响应其他操作</strong>，这是为了安全考虑。而 Javascript 的 GC 在 100ms 甚至以上，对一般的应用还好，但对于 JS 游戏，动画对连贯性要求比较高的应用，就麻烦了。<br>这就是新引擎需要优化的点：避免 GC 造成的长时间停止响应。</p>
-<ol start="3">
-<li>GC 优化策略</li>
-</ol>
-<p>1）分代回收（Generation GC）</p>
-<p>这个和 Java 回收策略思想是一致的。目的是通过区分“临时”与“持久”对象；多回收“临时对象”区（young generation），少回收“持久对象”区（tenured generation），减少每次需遍历的对象，从而减少每次 GC 的耗时。</p>
-<p>2）增量 GC</p>
-<p>这个方案的思想很简单，就是“每次处理一点，下次再处理一点”，如此类推。</p>
+<h1 id="1-cookie："><a href="#1-cookie：" class="headerlink" title="1. cookie："></a>1. cookie：</h1><p>cookie 是由服务器发送到客户端并存储在客户端的文本文件，每次客户端向同一服务器发送请求时都会附上这些 cookie。主要用于跟踪用户的会话状态、记录用户的偏好设置等。</p>
+<h3 id="Cookie-的特点包括："><a href="#Cookie-的特点包括：" class="headerlink" title="Cookie 的特点包括："></a>Cookie 的特点包括：</h3><ul>
+<li>存储容量较小（每个 Cookie 通常限制在 4KB 左右）。</li>
+<li>每次 HTTP 请求都会发送到服务器，包括 Cookie 信息，因此可能会影响性能。</li>
+<li>可以设置 Cookie 的过期时间，使得 Cookie 在一定时间后失效。</li>
+</ul>
+<h1 id="2-sessionStorage："><a href="#2-sessionStorage：" class="headerlink" title="2. sessionStorage："></a>2. sessionStorage：</h1><p>sessionStorage 是 HTML5 引入的新特性，用于在客户端临时存储会话数据，该数据在当前会话期间有效，关闭标签页或浏览器时会被清除。</p>
+<h3 id="sessionStorage-的特点包括："><a href="#sessionStorage-的特点包括：" class="headerlink" title="sessionStorage 的特点包括："></a>sessionStorage 的特点包括：</h3><ul>
+<li>数据仅在当前会话期间有效，关闭标签页或浏览器时会被清除。</li>
+<li>存储容量较大，通常比 Cookie 大得多（通常限制在 5MB 左右）。</li>
+</ul>
+<ul>
+<li>数据仅在同一标签页或同一窗口中共享，不同标签页或窗口间不共享。</li>
+</ul>
+<h1 id="3-localStorage："><a href="#3-localStorage：" class="headerlink" title="3. localStorage："></a>3. localStorage：</h1><p>localStorage 也是 HTML5 引入的新特性，与 sessionStorage 相似，用于在客户端存储数据。不同的是，localStorage 中存储的数据在关闭标签页或浏览器后仍然保留，直到被用户手动清除。</p>
+<h3 id="localStorage-的特点包括："><a href="#localStorage-的特点包括：" class="headerlink" title="localStorage 的特点包括："></a>localStorage 的特点包括：</h3><ul>
+<li>存储容量较大，通常比 Cookie 大得多（通常限制在 5MB 左右）。</li>
+<li>数据在浏览器关闭后仍然保留，直到被用户手动清除。</li>
+<li>数据在同一域名下的所有标签页和窗口中共享。</li>
+</ul>
+<p>综上所述，Cookie 主要用于在客户端和服务器之间传递会话信息，而 sessionStorage 和 localStorage 用于在客户端存储临时数据。其中，sessionStorage 的数据在当前会话期间有效，而 localStorage 的数据则持久保存在客户端，直到被用户清除。localStorage 和 sessionStorage 的存储容量通常比 Cookie 大得多，并且可以更高效地使用。</p>
 
     </div>
 
@@ -264,20 +262,20 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/JS/" rel="tag"># JS</a>
+              <a href="/tags/http/" rel="tag"># http</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/12/14/img-lazyload/" rel="prev" title="实现图片的懒加载">
-                  <i class="fa fa-angle-left"></i> 实现图片的懒加载
+                <a href="/2022/02/19/ssl/" rel="prev" title="ssl">
+                  <i class="fa fa-angle-left"></i> ssl
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/01/15/auto-testing/" rel="next" title="自动化测试">
-                  自动化测试 <i class="fa fa-angle-right"></i>
+                <a href="/2022/03/08/react-components/" rel="next" title="React 组件的编写">
+                  React 组件的编写 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>

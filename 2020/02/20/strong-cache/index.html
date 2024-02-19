@@ -19,17 +19,18 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="强缓存所谓强缓存，可以理解为强制缓存的意思，即浏览器在访问某个资源时会判断是否使用本地缓存里已经存在的资源文件，使用本地缓存的话则不会发送请求到服务器，从而达到减轻服务器访问压力的作用，且由于直接从本地缓存读取资源文件，大大提高了加载速度。 强缓存的具体流程为：浏览器第一次请求远程服务器的某个资源时，如果服务器希望浏览器得到该资源后一段时间内不要再发送请求过来，直接从浏览器里的缓存里取，则服务器可">
+    <meta name="description" content="强缓存所谓强缓存，可以理解为强制缓存的意思，即浏览器在访问某个资源时会判断是否使用本地缓存里已经存在的资源文件，使用本地缓存的话则不会发送请求到服务器，从而达到减轻服务器访问压力的作用，且由于直接从本地缓存读取资源文件，大大提高了加载速度。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="强缓存和协商缓存">
 <meta property="og:url" content="http://example.com/2020/02/20/strong-cache/index.html">
 <meta property="og:site_name" content="wm&#39;s blog">
-<meta property="og:description" content="强缓存所谓强缓存，可以理解为强制缓存的意思，即浏览器在访问某个资源时会判断是否使用本地缓存里已经存在的资源文件，使用本地缓存的话则不会发送请求到服务器，从而达到减轻服务器访问压力的作用，且由于直接从本地缓存读取资源文件，大大提高了加载速度。 强缓存的具体流程为：浏览器第一次请求远程服务器的某个资源时，如果服务器希望浏览器得到该资源后一段时间内不要再发送请求过来，直接从浏览器里的缓存里取，则服务器可">
+<meta property="og:description" content="强缓存所谓强缓存，可以理解为强制缓存的意思，即浏览器在访问某个资源时会判断是否使用本地缓存里已经存在的资源文件，使用本地缓存的话则不会发送请求到服务器，从而达到减轻服务器访问压力的作用，且由于直接从本地缓存读取资源文件，大大提高了加载速度。">
 <meta property="og:locale">
 <meta property="og:image" content="http://example.com/2020/02/20/strong-cache/max-age.png">
 <meta property="article:published_time" content="2020-02-20T08:30:46.000Z">
-<meta property="article:modified_time" content="2023-12-20T08:58:06.114Z">
+<meta property="article:modified_time" content="2024-02-19T03:23:08.278Z">
 <meta property="article:author" content="wm">
+<meta property="article:tag" content="http">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2020/02/20/strong-cache/max-age.png">
 
@@ -126,7 +127,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -209,7 +210,16 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-20 16:58:06" itemprop="dateModified" datetime="2023-12-20T16:58:06+08:00">2023-12-20</time>
+      <time title="Modified: 2024-02-19 11:23:08" itemprop="dateModified" datetime="2024-02-19T11:23:08+08:00">2024-02-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/http/" itemprop="url" rel="index"><span itemprop="name">http</span></a>
+        </span>
     </span>
 
   
@@ -222,6 +232,8 @@
     
     
     <div class="post-body" itemprop="articleBody"><h1 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h1><p>所谓强缓存，可以理解为强制缓存的意思，即<strong>浏览器在访问某个资源时会判断是否使用本地缓存里已经存在的资源文件，使用本地缓存的话则不会发送请求到服务器，从而达到减轻服务器访问压力的作用</strong>，且由于直接从本地缓存读取资源文件，大大提高了加载速度。</p>
+<span id="more"></span>
+
 <h2 id="强缓存的具体流程为："><a href="#强缓存的具体流程为：" class="headerlink" title="强缓存的具体流程为："></a>强缓存的具体流程为：</h2><p>浏览器第一次请求远程服务器的某个资源时，如果服务器希望浏览器得到该资源后一段时间内不要再发送请求过来，直接从浏览器里的缓存里取，则服务器可以通过在响应头里设置 <code>Cache-Control: max-age=31536000</code>，<code>max-age</code> 代表缓存时间，单位为秒，这里的数据换算过来就是一年，意味着在一年内浏览器不会再向服务器发送请求。</p>
 <img src="/2020/02/20/strong-cache/max-age.png" class title="max-age">
 
@@ -255,6 +267,9 @@
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/http/" rel="tag"># http</a>
+          </div>
 
         
 

@@ -119,7 +119,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -165,6 +165,170 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/01/29/cjs-commonjs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="wm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/01/29/cjs-commonjs/" class="post-title-link" itemprop="url">cjs-commonjs</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-01-29 13:54:59" itemprop="dateCreated datePublished" datetime="2024-01-29T13:54:59+08:00">2024-01-29</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/01/23/webpack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="wm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/01/23/webpack/" class="post-title-link" itemprop="url">webpack</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-01-23 16:56:45" itemprop="dateCreated datePublished" datetime="2024-01-23T16:56:45+08:00">2024-01-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-01-29 13:53:39" itemprop="dateModified" datetime="2024-01-29T13:53:39+08:00">2024-01-29</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="如何提升-webpack-的构造性能"><a href="#如何提升-webpack-的构造性能" class="headerlink" title="如何提升 webpack 的构造性能"></a>如何提升 webpack 的构造性能</h1><h2 id="1-speed-measure-webpack-plugin"><a href="#1-speed-measure-webpack-plugin" class="headerlink" title="1. speed-measure-webpack-plugin"></a>1. speed-measure-webpack-plugin</h2><p>优化你的 webpack 构建速度的第一步是要知道你应该把注意力集中在哪里，在这里推荐一个插件：<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/speed-measure-webpack-plugin">speed-measure-webpack-plugin</a>，这个插件可以测量你的 webpack 构建速度</p>
+<h3 id="install"><a href="#install" class="headerlink" title="install"></a>install</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev speed-measure-webpack-plugin</span><br></pre></td></tr></table></figure>
+
+<p>or</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add -D speed-measure-webpack-plugin</span><br></pre></td></tr></table></figure>
+
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpackConfig = &#123;</span><br><span class="line">  <span class="attr">plugins</span>: [<span class="keyword">new</span> <span class="title class_">MyPlugin</span>(), <span class="keyword">new</span> <span class="title class_">MyOtherPlugin</span>()],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>to</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">SpeedMeasurePlugin</span> = <span class="built_in">require</span>(<span class="string">&quot;speed-measure-webpack-plugin&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> smp = <span class="keyword">new</span> <span class="title class_">SpeedMeasurePlugin</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> webpackConfig = smp.<span class="title function_">wrap</span>(&#123;</span><br><span class="line">  <span class="attr">plugins</span>: [<span class="keyword">new</span> <span class="title class_">MyPlugin</span>(), <span class="keyword">new</span> <span class="title class_">MyOtherPlugin</span>()],</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-更快的-loader：swc"><a href="#2-更快的-loader：swc" class="headerlink" title="2. 更快的 loader：swc"></a>2. 更快的 loader：swc</h2><p>在 webpack 中耗时最久的当属负责 AST 转换的 loader。我们可以使用速度更快的<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/swc-loader">swc</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">module</span>: &#123;</span><br><span class="line">  <span class="attr">rules</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">test</span>: <span class="regexp">/\.m?js$/</span>,</span><br><span class="line">      <span class="attr">exclude</span>: <span class="regexp">/(node_modules|bower_components)/</span>,</span><br><span class="line">      <span class="attr">use</span>: &#123;</span><br><span class="line">        <span class="comment">// Use `.swcrc` to configure swc</span></span><br><span class="line">        <span class="attr">loader</span>: <span class="string">&quot;swc-loader&quot;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  ];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何配置-swc"><a href="#如何配置-swc" class="headerlink" title="如何配置 swc"></a>如何配置 swc</h3><p>SWC can be configured with an .swcrc file.</p>
+<p>this is <a target="_blank" rel="noopener" href="https://www.swc.net.cn/docs/configuration/swcrc">Compilation</a></p>
+<p>如果你是使用的 babel,swc 官方网站拥有提供从 babel 迁移到 swc 的<a target="_blank" rel="noopener" href="https://swc.rs/docs/migrating-from-babel">指南</a></p>
+<h2 id="3-持久化缓存：cache"><a href="#3-持久化缓存：cache" class="headerlink" title="3. 持久化缓存：cache"></a>3. 持久化缓存：cache</h2><p>webpack5 内置了关于缓存的插件，可以通过配置来开启，它将<code>Module</code>、<code>Chunk</code>、<code>ModuleChunk</code>等信息序列化到磁盘中，二次构建避免重复编译计算，编译速度得到很大的提升</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">cache</span>: &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="string">&quot;filesystem&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当开启了持久化缓存功能，最耗时的 AST 解析将能够从磁盘的缓存中获取，再次编译时无需再次进行解析 AST。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/01/19/docker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -195,7 +359,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2024-01-19 14:33:51 / Modified: 16:17:57" itemprop="dateCreated datePublished" datetime="2024-01-19T14:33:51+08:00">2024-01-19</time>
+      <time title="Created: 2024-01-19 14:33:51 / Modified: 16:54:35" itemprop="dateCreated datePublished" datetime="2024-01-19T14:33:51+08:00">2024-01-19</time>
     </span>
 
   
@@ -798,179 +962,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/12/19/indexedDB/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/18/todo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="wm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/18/todo/" class="post-title-link" itemprop="url">todo</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-12-18 16:41:16" itemprop="dateCreated datePublished" datetime="2023-12-18T16:41:16+08:00">2023-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-01-16 14:53:50" itemprop="dateModified" datetime="2024-01-16T14:53:50+08:00">2024-01-16</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>图片标注<br>immer&#x2F;immutable<br>graphql&#x2F;node<br>navigator.online(rel)</p>
-<h1 id="npm-package"><a href="#npm-package" class="headerlink" title="npm package"></a>npm package</h1><ul>
-<li>包和模块的区别</li>
-<li>如何避免业务项目被发布到 npm</li>
-</ul>
-<h1 id="monorepo"><a href="#monorepo" class="headerlink" title="monorepo"></a>monorepo</h1><p>ElectronJS</p>
-<p>Hybrid</p>
-<p>webpack、babel、postcss 等</p>
-<p>taiwind</p>
-<p>react 18</p>
-<p>bff 层</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/18/debounce-throttle/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="wm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/18/debounce-throttle/" class="post-title-link" itemprop="url">防抖节流函数</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2023-12-18 14:11:27 / Modified: 15:40:56" itemprop="dateCreated datePublished" datetime="2023-12-18T14:11:27+08:00">2023-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JS/" itemprop="url" rel="index"><span itemprop="name">JS</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h1><p>应用场景：搜索框输入文字后调用对应搜索接口</p>
-<p>利用闭包，不管触发频率多高，在停止触发 n 秒后才会执行，如果重复触发，会清空之前的定时器，重新计时，直到最后一次 n 秒后执行</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/12/18/debounce-throttle/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>

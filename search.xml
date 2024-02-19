@@ -1417,4 +1417,72 @@ return 301 https://$host$request_uri;
         <tag>docker</tag>
       </tags>
   </entry>
+  <entry>
+    <title>webpack</title>
+    <url>/2024/01/23/webpack/</url>
+    <content><![CDATA[<h1 id="如何提升-webpack-的构造性能"><a href="#如何提升-webpack-的构造性能" class="headerlink" title="如何提升 webpack 的构造性能"></a>如何提升 webpack 的构造性能</h1><h2 id="1-speed-measure-webpack-plugin"><a href="#1-speed-measure-webpack-plugin" class="headerlink" title="1. speed-measure-webpack-plugin"></a>1. speed-measure-webpack-plugin</h2><p>优化你的 webpack 构建速度的第一步是要知道你应该把注意力集中在哪里，在这里推荐一个插件：<a href="https://www.npmjs.com/package/speed-measure-webpack-plugin">speed-measure-webpack-plugin</a>，这个插件可以测量你的 webpack 构建速度</p>
+<h3 id="install"><a href="#install" class="headerlink" title="install"></a>install</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install --save-dev speed-measure-webpack-plugin</span><br></pre></td></tr></table></figure>
+
+<p>or</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yarn add -D speed-measure-webpack-plugin</span><br></pre></td></tr></table></figure>
+
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> webpackConfig = &#123;</span><br><span class="line">  <span class="attr">plugins</span>: [<span class="keyword">new</span> <span class="title class_">MyPlugin</span>(), <span class="keyword">new</span> <span class="title class_">MyOtherPlugin</span>()],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>to</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">SpeedMeasurePlugin</span> = <span class="built_in">require</span>(<span class="string">&quot;speed-measure-webpack-plugin&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> smp = <span class="keyword">new</span> <span class="title class_">SpeedMeasurePlugin</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> webpackConfig = smp.<span class="title function_">wrap</span>(&#123;</span><br><span class="line">  <span class="attr">plugins</span>: [<span class="keyword">new</span> <span class="title class_">MyPlugin</span>(), <span class="keyword">new</span> <span class="title class_">MyOtherPlugin</span>()],</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-更快的-loader：swc"><a href="#2-更快的-loader：swc" class="headerlink" title="2. 更快的 loader：swc"></a>2. 更快的 loader：swc</h2><p>在 webpack 中耗时最久的当属负责 AST 转换的 loader。我们可以使用速度更快的<a href="https://www.npmjs.com/package/swc-loader">swc</a></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="attr">module</span>: &#123;</span><br><span class="line">  <span class="attr">rules</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">test</span>: <span class="regexp">/\.m?js$/</span>,</span><br><span class="line">      <span class="attr">exclude</span>: <span class="regexp">/(node_modules|bower_components)/</span>,</span><br><span class="line">      <span class="attr">use</span>: &#123;</span><br><span class="line">        <span class="comment">// Use `.swcrc` to configure swc</span></span><br><span class="line">        <span class="attr">loader</span>: <span class="string">&quot;swc-loader&quot;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  ];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何配置-swc"><a href="#如何配置-swc" class="headerlink" title="如何配置 swc"></a>如何配置 swc</h3><p>SWC can be configured with an .swcrc file.</p>
+<p>this is <a href="https://www.swc.net.cn/docs/configuration/swcrc">Compilation</a></p>
+<p>如果你是使用的 babel,swc 官方网站拥有提供从 babel 迁移到 swc 的<a href="https://swc.rs/docs/migrating-from-babel">指南</a></p>
+<h2 id="3-持久化缓存：cache"><a href="#3-持久化缓存：cache" class="headerlink" title="3. 持久化缓存：cache"></a>3. 持久化缓存：cache</h2><p>webpack5 内置了关于缓存的插件，可以通过配置来开启，它将<code>Module</code>、<code>Chunk</code>、<code>ModuleChunk</code>等信息序列化到磁盘中，二次构建避免重复编译计算，编译速度得到很大的提升</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">cache</span>: &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="string">&quot;filesystem&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当开启了持久化缓存功能，最耗时的 AST 解析将能够从磁盘的缓存中获取，再次编译时无需再次进行解析 AST。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>cjs-commonjs</title>
+    <url>/2024/01/29/cjs-commonjs/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>对称加密和非对称加密</title>
+    <url>/2023/02/19/encryption/</url>
+    <content><![CDATA[<h2 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h2><p>对称加密采用了对称密码编码技术，它的特点是文件加密和解密使用<strong>相同的密钥</strong>加密。</p>
+<span id="more"></span>
+
+<p>也就是密钥也可以用作解密密钥，这种方法在密码学中叫做对称加密算法，对称加密算法使用起来简单快捷，密钥较短，且破译困难，除了数据加密标准（DES），另一个对称密钥加密系统是国际数据加密算法（IDEA），它比 DES 的加密性好，而且对计算机功能要求也没有那么高</p>
+<h3 id="对称加密算法在电子商务交易过程中存在几个问题："><a href="#对称加密算法在电子商务交易过程中存在几个问题：" class="headerlink" title="对称加密算法在电子商务交易过程中存在几个问题："></a>对称加密算法在电子商务交易过程中存在几个问题：</h3><p>1、要求提供一条安全的渠道使通讯双方在首次通讯时协商一个共同的密钥。直接的面对面协商可能是不现实而且难于实施的，所以双方可能需要借助于邮件和电话等其它相对不够安全的手段来进行协商；</p>
+<p>2、密钥的数目难于管理。因为对于每一个合作者都需要使用不同的密钥，很难适应开放社会中大量的信息交流；</p>
+<p>3、对称加密算法一般不能提供信息完整性的鉴别。它无法验证发送者和接受者的身份；</p>
+<p>4、对称密钥的管理和分发工作是一件具有潜在危险的和烦琐的过程。对称加密是基于共同保守秘密来实现的，采用对称加密技术的贸易双方必须保证采用的是相同的密钥，保证彼此密钥的交换是安全可靠的，同时还要设定防止密钥泄密和更改密钥的程序。</p>
+<p>假设两个用户需要使用对称加密方法加密然后交换数据，则用户最少需要 2 个密钥并交换使用，如果企业内用户有 n 个，则整个企业共需要 n×(n-1) 个密钥，密钥的生成和分发将成为企业信息部门的恶梦。</p>
+<p>常见的对称加密算法有 DES、3DES、Blowfish、IDEA、RC4、RC5、RC6 和 AES</p>
+<h2 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h2><p>与对称加密算法不同，非对称加密算法需要两个密钥：<strong>公开密钥</strong>（publickey）和<strong>私有密钥</strong>（privatekey）。</p>
+<ul>
+<li>公钥用于加密数据，私钥用于解密数据。这意味着公钥可以公开分享，而私钥必须保持机密。</li>
+<li>公钥用于加密的数据只能使用相应的私钥进行解密，这使得非对称加密适合用于安全通信和数字签名等场景</li>
+</ul>
+<p>常见的非对称加密算法包括 RSA（Rivest-Shamir-Adleman）、DSA（Digital Signature Algorithm）、ECC（Elliptic Curve Cryptography）等。</p>
+<h3 id="非对称加密算法实现机密信息交换的基本过程"><a href="#非对称加密算法实现机密信息交换的基本过程" class="headerlink" title="非对称加密算法实现机密信息交换的基本过程"></a>非对称加密算法实现机密信息交换的基本过程</h3><p>甲方生成一对密钥并将其中的一把作为公用密钥向其它方公开；得到该公用密钥的乙方使用该密钥对机密信息进行加密后再发送给甲方；甲方再用自己保存的另一把专用密钥对加密后的信息进行解密。甲方只能用其专用密钥解密由其公用密钥加密后的任何信息。</p>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p><strong>1、对称加密中加密和解密使用的秘钥是同一个；非对称加密中采用两个密钥，一般使用公钥进行加密，私钥进行解密。</strong></p>
+<blockquote>
+<p>对称加密的加密过程和解密过程使用的同一个密钥，加密过程相当于用原文+密钥可以传输出密文，同时解密过程用密文-密钥可以推导出原文。<br>但非对称加密采用了两个密钥，一般使用公钥进行加密，使用私钥进行解密。</p>
+</blockquote>
+<p><strong>2、对称加密解密的速度比较快，非对称加密和解密花费的时间长、速度相对较慢。</strong></p>
+<blockquote>
+<p>对称加密解密的速度比较快，适合数据比较长时的使用。非对称加密和解密花费的时间长、速度相对较慢，只适合对少量数据的使用。</p>
+</blockquote>
+<p><strong>3、对称加密的安全性相对较低，非对称加密的安全性较高。</strong></p>
+<blockquote>
+<p>对称加密的过程中无法确保密钥被安全传递，密文在传输过程中是可能被第三方截获的，如果密码本也被第三方截获，则传输的密码信息将被第三方破获，安全性相对较低。</p>
+</blockquote>
+<blockquote>
+<p>非对称加密算法中私钥是基于不同的算法生成不同的随机数，私钥通过一定的加密算法推导出公钥，但私钥到公钥的推导过程是单向的，也就是说公钥无法反推导出私钥。所以安全性较高。</p>
+</blockquote>
+]]></content>
+  </entry>
 </search>

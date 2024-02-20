@@ -1827,15 +1827,15 @@ return 301 https://$host$request_uri;
 <span id="more"></span>
 
 <ol>
-<li><p>启动 HMR 服务器：<br>当你在 Webpack 配置中启用了热更新时，Webpack 会启动一个内置的 HMR 服务器，用于监听文件变化并通知浏览器进行更新。</p>
+<li><p><strong>启动 HMR 服务器</strong>：<br>当你在 Webpack 配置中启用了热更新时，Webpack 会启动一个内置的 HMR 服务器，用于监听文件变化并通知浏览器进行更新。</p>
 </li>
-<li><p>监视文件变化：<br>当你修改了一个文件并保存时，Webpack 会检测到文件的变化，并根据配置文件中的规则决定哪些模块需要进行热更新。</p>
+<li><p><strong>监视文件变化</strong>：<br>当你修改了一个文件并保存时，Webpack 会检测到文件的变化，并根据配置文件中的规则决定哪些模块需要进行热更新。</p>
 </li>
-<li><p>构建新模块：<br>一旦 Webpack 确定了哪些模块需要更新，它会重新构建这些模块，并生成新的模块代码。</p>
+<li><p><strong>构建新模块</strong>：<br>一旦 Webpack 确定了哪些模块需要更新，它会重新构建这些模块，并生成新的模块代码。</p>
 </li>
-<li><p>向浏览器发送更新通知：<br>完成模块的重新构建后，Webpack 会将更新的模块代码通过 <code>WebSocket</code> 或者 <code>XHR</code> 等方式发送到浏览器端。</p>
+<li><p><strong>向浏览器发送更新通知</strong>：<br>完成模块的重新构建后，Webpack 会将更新的模块代码通过 <code>WebSocket</code> 或者 <code>XHR</code> 等方式发送到浏览器端。</p>
 </li>
-<li><p>浏览器端更新模块：<br>浏览器接收到更新的模块代码后，会利用 Webpack 的运行时环境（runtime）来替换对应的模块，从而实现页面的更新。Webpack 的运行时环境会自动地将新模块的代码注入到当前页面中，并更新相关的组件、样式等，同时保持页面的状态不变。</p>
+<li><p><strong>浏览器端更新模块</strong>：<br>浏览器接收到更新的模块代码后，会利用 Webpack 的运行时环境（runtime）来替换对应的模块，从而实现页面的更新。Webpack 的运行时环境会自动地将新模块的代码注入到当前页面中，并更新相关的组件、样式等，同时保持页面的状态不变。</p>
 </li>
 </ol>
 <p>通过这种方式，Webpack 的热更新技术使得开发者可以在修改代码后立即查看到更新效果，无需手动刷新浏览器页面，提高了开发效率和体验。需要注意的是，热更新仅适用于开发环境，在生产环境中仍然需要手动刷新页面以获取最新的代码。</p>
@@ -1845,6 +1845,36 @@ return 301 https://$host$request_uri;
       </categories>
       <tags>
         <tag>webpack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>React 中的合成事件</title>
+    <url>/2024/01/11/React-SyntheticEvent/</url>
+    <content><![CDATA[<p>React 中的合成事件（SyntheticEvent）是一种封装了原生浏览器事件的虚拟事件对象。React 通过合成事件来处理浏览器事件，而不直接使用原生的事件对象。这样做的原因有以下几点：</p>
+<span id="more"></span>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyComponent</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line">  handleClick = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 阻止事件的默认行为</span></span><br><span class="line">    event.<span class="title function_">preventDefault</span>();</span><br><span class="line">    <span class="comment">// 输出事件对象</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Clicked!&quot;</span>, event);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.handleClick&#125;</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">MyComponent</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在这个示例中，我们定义了一个 MyComponent 组件，并在组件中定义了一个点击事件处理函数 handleClick。在 render 方法中，我们将 handleClick 函数绑定到了按钮的 onClick 事件上。当按钮被点击时，React 会自动创建一个合成事件对象，并将它传递给 handleClick 函数。在 handleClick 函数中，我们可以像使用原生事件对象一样使用合成事件对象，例如阻止默认行为、获取事件目标等。</p>
+</blockquote>
+<ol>
+<li><p><strong>跨浏览器兼容性</strong>：<br>React 的合成事件是跨浏览器兼容的，它会自动处理不同浏览器之间的差异，使得开发者无需关心不同浏览器的兼容性问题。</p>
+</li>
+<li><p><strong>性能优化</strong>：<br>React 的合成事件采用了事件委托机制，将事件处理逻辑集中在顶层容器上，而不是将事件处理函数直接绑定到每个 DOM 元素上。这样可以减少内存占用和事件绑定数量，提高页面性能。</p>
+</li>
+<li><p><strong>事件池</strong>：<br>React 的合成事件采用了事件池（Event Pool）机制，重用了事件对象，减少了对象创建和销毁的开销。当事件处理函数执行完毕后，事件对象会被重置并放回到事件池中，以供下次使用。</p>
+</li>
+<li><p><strong>事件系统扩展</strong>：<br>React 的合成事件系统提供了丰富的 API 和功能，可以方便地进行事件的捕获、冒泡、阻止默认行为、停止事件传播等操作，同时还支持事件委托和事件代理等高级特性。</p>
+</li>
+</ol>
+<p>综上所述，React 使用合成事件来统一处理浏览器事件，提供了跨浏览器兼容性、性能优化和丰富的事件处理功能，使得开发者可以更轻松地编写可维护、高性能的 React 应用。</p>
+]]></content>
+      <categories>
+        <category>React</category>
+      </categories>
+      <tags>
+        <tag>React</tag>
       </tags>
   </entry>
 </search>

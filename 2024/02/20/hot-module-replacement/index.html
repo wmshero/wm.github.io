@@ -19,30 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="组件初始化—-render 方法—-&gt;生成虚拟 DOM—ReactDOM.render 方法—&gt;真实 DOM 组件更新—- render 方法—-&gt;生成新的虚拟 DOM—-diff 算法—-&gt;定位出两次虚拟 DOM 的差异">
+    <meta name="description" content="Webpack 的热更新（Hot Module Replacement，HMR）是一种使得开发者在修改代码时，无需手动刷新浏览器页面即可立即查看到更新效果的技术。其原理如下：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="react">
-<meta property="og:url" content="http://example.com/2024/01/02/react/index.html">
+<meta property="og:title" content="webpack的热更新原理">
+<meta property="og:url" content="http://example.com/2024/02/20/hot-module-replacement/index.html">
 <meta property="og:site_name" content="wm&#39;s blog">
-<meta property="og:description" content="组件初始化—-render 方法—-&gt;生成虚拟 DOM—ReactDOM.render 方法—&gt;真实 DOM 组件更新—- render 方法—-&gt;生成新的虚拟 DOM—-diff 算法—-&gt;定位出两次虚拟 DOM 的差异">
+<meta property="og:description" content="Webpack 的热更新（Hot Module Replacement，HMR）是一种使得开发者在修改代码时，无需手动刷新浏览器页面即可立即查看到更新效果的技术。其原理如下：">
 <meta property="og:locale">
-<meta property="og:image" content="http://example.com/2024/01/02/react/dom.png">
-<meta property="article:published_time" content="2024-01-02T08:08:53.000Z">
-<meta property="article:modified_time" content="2024-02-19T06:50:38.585Z">
+<meta property="article:published_time" content="2024-02-20T10:10:36.000Z">
+<meta property="article:modified_time" content="2024-02-20T10:12:41.695Z">
 <meta property="article:author" content="wm">
-<meta property="article:tag" content="React">
+<meta property="article:tag" content="webpack">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2024/01/02/react/dom.png">
 
 
-<link rel="canonical" href="http://example.com/2024/01/02/react/">
+<link rel="canonical" href="http://example.com/2024/02/20/hot-module-replacement/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2024/01/02/react/","path":"2024/01/02/react/","title":"react"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2024/02/20/hot-module-replacement/","path":"2024/02/20/hot-module-replacement/","title":"webpack的热更新原理"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>react | wm's blog</title>
+<title>webpack的热更新原理 | wm's blog</title>
   
 
 
@@ -173,7 +171,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/01/02/react/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/20/hot-module-replacement/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -186,12 +184,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="react | wm's blog">
+      <meta itemprop="name" content="webpack的热更新原理 | wm's blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          react
+          webpack的热更新原理
         </h1>
 
         <div class="post-meta-container">
@@ -201,15 +199,18 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2024-01-02 16:08:53" itemprop="dateCreated datePublished" datetime="2024-01-02T16:08:53+08:00">2024-01-02</time>
+      <time title="Created: 2024-02-20 18:10:36 / Modified: 18:12:41" itemprop="dateCreated datePublished" datetime="2024-02-20T18:10:36+08:00">2024-02-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
+        <i class="far fa-folder"></i>
       </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-02-19 14:50:38" itemprop="dateModified" datetime="2024-02-19T14:50:38+08:00">2024-02-19</time>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/webpack/" itemprop="url" rel="index"><span itemprop="name">webpack</span></a>
+        </span>
     </span>
 
   
@@ -221,10 +222,22 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><img src="/2024/01/02/react/dom.png" class title="dom">
+    <div class="post-body" itemprop="articleBody"><p>Webpack 的热更新（Hot Module Replacement，HMR）是一种使得开发者在修改代码时，无需手动刷新浏览器页面即可立即查看到更新效果的技术。其原理如下：</p>
+<span id="more"></span>
 
-<p>组件初始化—-render 方法—-&gt;生成虚拟 DOM—ReactDOM.render 方法—&gt;真实 DOM</p>
-<p>组件更新—- render 方法—-&gt;生成新的虚拟 DOM—-diff 算法—-&gt;定位出两次虚拟 DOM 的差异</p>
+<ol>
+<li><p>启动 HMR 服务器：<br>当你在 Webpack 配置中启用了热更新时，Webpack 会启动一个内置的 HMR 服务器，用于监听文件变化并通知浏览器进行更新。</p>
+</li>
+<li><p>监视文件变化：<br>当你修改了一个文件并保存时，Webpack 会检测到文件的变化，并根据配置文件中的规则决定哪些模块需要进行热更新。</p>
+</li>
+<li><p>构建新模块：<br>一旦 Webpack 确定了哪些模块需要更新，它会重新构建这些模块，并生成新的模块代码。</p>
+</li>
+<li><p>向浏览器发送更新通知：<br>完成模块的重新构建后，Webpack 会将更新的模块代码通过 <code>WebSocket</code> 或者 <code>XHR</code> 等方式发送到浏览器端。</p>
+</li>
+<li><p>浏览器端更新模块：<br>浏览器接收到更新的模块代码后，会利用 Webpack 的运行时环境（runtime）来替换对应的模块，从而实现页面的更新。Webpack 的运行时环境会自动地将新模块的代码注入到当前页面中，并更新相关的组件、样式等，同时保持页面的状态不变。</p>
+</li>
+</ol>
+<p>通过这种方式，Webpack 的热更新技术使得开发者可以在修改代码后立即查看到更新效果，无需手动刷新浏览器页面，提高了开发效率和体验。需要注意的是，热更新仅适用于开发环境，在生产环境中仍然需要手动刷新页面以获取最新的代码。</p>
 
     </div>
 
@@ -234,21 +247,18 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/React/" rel="tag"># React</a>
+              <a href="/tags/webpack/" rel="tag"># webpack</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/12/27/NodeJs-Express/" rel="prev" title="NodeJs-Express">
-                  <i class="fa fa-angle-left"></i> NodeJs-Express
+                <a href="/2024/02/19/ModularDevelopmentHistory/" rel="prev" title="模块化发展历程">
+                  <i class="fa fa-angle-left"></i> 模块化发展历程
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/01/16/BFF/" rel="next" title="BFF(Backend For Frontend)">
-                  BFF(Backend For Frontend) <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>

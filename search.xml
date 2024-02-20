@@ -1820,4 +1820,31 @@ return 301 https://$host$request_uri;
         <tag>js</tag>
       </tags>
   </entry>
+  <entry>
+    <title>webpack的热更新原理</title>
+    <url>/2024/02/20/hot-module-replacement/</url>
+    <content><![CDATA[<p>Webpack 的热更新（Hot Module Replacement，HMR）是一种使得开发者在修改代码时，无需手动刷新浏览器页面即可立即查看到更新效果的技术。其原理如下：</p>
+<span id="more"></span>
+
+<ol>
+<li><p>启动 HMR 服务器：<br>当你在 Webpack 配置中启用了热更新时，Webpack 会启动一个内置的 HMR 服务器，用于监听文件变化并通知浏览器进行更新。</p>
+</li>
+<li><p>监视文件变化：<br>当你修改了一个文件并保存时，Webpack 会检测到文件的变化，并根据配置文件中的规则决定哪些模块需要进行热更新。</p>
+</li>
+<li><p>构建新模块：<br>一旦 Webpack 确定了哪些模块需要更新，它会重新构建这些模块，并生成新的模块代码。</p>
+</li>
+<li><p>向浏览器发送更新通知：<br>完成模块的重新构建后，Webpack 会将更新的模块代码通过 <code>WebSocket</code> 或者 <code>XHR</code> 等方式发送到浏览器端。</p>
+</li>
+<li><p>浏览器端更新模块：<br>浏览器接收到更新的模块代码后，会利用 Webpack 的运行时环境（runtime）来替换对应的模块，从而实现页面的更新。Webpack 的运行时环境会自动地将新模块的代码注入到当前页面中，并更新相关的组件、样式等，同时保持页面的状态不变。</p>
+</li>
+</ol>
+<p>通过这种方式，Webpack 的热更新技术使得开发者可以在修改代码后立即查看到更新效果，无需手动刷新浏览器页面，提高了开发效率和体验。需要注意的是，热更新仅适用于开发环境，在生产环境中仍然需要手动刷新页面以获取最新的代码。</p>
+]]></content>
+      <categories>
+        <category>webpack</category>
+      </categories>
+      <tags>
+        <tag>webpack</tag>
+      </tags>
+  </entry>
 </search>

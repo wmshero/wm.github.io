@@ -21,13 +21,13 @@
 
     <meta name="description" content="在 React 中，Virtual DOM（虚拟 DOM）是一种内存中的表示，它是由 React 创建和维护的一种树形结构，用于表示真实 DOM 的抽象。当状态发生变化时，React 会通过比较新的 Virtual DOM 和旧的 Virtual DOM 的差异来确定需要更新的部分，并将这些变化应用到真实的 DOM 中，从而实现页面的更新。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="virtual-dom-fiber">
+<meta property="og:title" content="虚拟DOM和fiber">
 <meta property="og:url" content="http://example.com/2023/11/10/virtual-dom-fiber/index.html">
 <meta property="og:site_name" content="wm&#39;s blog">
 <meta property="og:description" content="在 React 中，Virtual DOM（虚拟 DOM）是一种内存中的表示，它是由 React 创建和维护的一种树形结构，用于表示真实 DOM 的抽象。当状态发生变化时，React 会通过比较新的 Virtual DOM 和旧的 Virtual DOM 的差异来确定需要更新的部分，并将这些变化应用到真实的 DOM 中，从而实现页面的更新。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2023-11-10T06:14:05.000Z">
-<meta property="article:modified_time" content="2024-02-19T06:18:09.645Z">
+<meta property="article:modified_time" content="2024-02-20T10:05:47.575Z">
 <meta property="article:author" content="wm">
 <meta property="article:tag" content="React">
 <meta name="twitter:card" content="summary">
@@ -37,10 +37,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2023/11/10/virtual-dom-fiber/","path":"2023/11/10/virtual-dom-fiber/","title":"virtual-dom-fiber"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2023/11/10/virtual-dom-fiber/","path":"2023/11/10/virtual-dom-fiber/","title":"虚拟DOM和fiber"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>virtual-dom-fiber | wm's blog</title>
+<title>虚拟DOM和fiber | wm's blog</title>
   
 
 
@@ -125,18 +125,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -185,12 +185,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="virtual-dom-fiber | wm's blog">
+      <meta itemprop="name" content="虚拟DOM和fiber | wm's blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          virtual-dom-fiber
+          虚拟DOM和fiber
         </h1>
 
         <div class="post-meta-container">
@@ -208,7 +208,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-02-19 14:18:09" itemprop="dateModified" datetime="2024-02-19T14:18:09+08:00">2024-02-19</time>
+      <time title="Modified: 2024-02-20 18:05:47" itemprop="dateModified" datetime="2024-02-20T18:05:47+08:00">2024-02-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -261,8 +261,8 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/03/19/pnpm/" rel="prev" title="pnpm">
-                  <i class="fa fa-angle-left"></i> pnpm
+                <a href="/2023/09/20/generate-dom/" rel="prev" title="Dom树怎么形成">
+                  <i class="fa fa-angle-left"></i> Dom树怎么形成
                 </a>
             </div>
             <div class="post-nav-item">

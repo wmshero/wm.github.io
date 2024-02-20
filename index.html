@@ -119,18 +119,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -165,7 +165,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/19/react-key/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/19/ModularDevelopmentHistory/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -183,7 +183,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/02/19/react-key/" class="post-title-link" itemprop="url">react-key</a>
+          <a href="/2024/02/19/ModularDevelopmentHistory/" class="post-title-link" itemprop="url">模块化发展历程</a>
         </h2>
 
         <div class="post-meta-container">
@@ -193,9 +193,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2024-02-19 15:15:14 / Modified: 15:16:27" itemprop="dateCreated datePublished" datetime="2024-02-19T15:15:14+08:00">2024-02-19</time>
+      <time title="Created: 2024-02-19 15:26:28" itemprop="dateCreated datePublished" datetime="2024-02-19T15:26:28+08:00">2024-02-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-02-20 14:38:47" itemprop="dateModified" datetime="2024-02-20T14:38:47+08:00">2024-02-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -203,7 +209,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
+          <a href="/categories/%E6%A8%A1%E5%9D%97%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">模块化</span></a>
         </span>
     </span>
 
@@ -217,19 +223,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>在 React 或 Vue 项目中，在列表组件中为每个列表项指定一个唯一的 key 是很重要的，其作用主要有以下几点：</p>
-<ol>
-<li><p>优化性能：<br>在进行列表渲染时，React 和 Vue 都会使用虚拟 DOM（Virtual DOM）来比较新旧 DOM 树，从而确定需要更新的部分。使用 key 可以帮助 React 或 Vue 识别每个列表项的身份，从而更准确地确定哪些列表项需要更新，从而优化渲染性能。</p>
-</li>
-<li><p>避免重复元素：<br>如果列表项没有指定唯一的 key，当列表中的元素发生增删操作时，React 或 Vue 可能会错误地将新元素与旧列表中的元素混淆，导致不正确的更新或重复渲染相同的元素。</p>
-</li>
-<li><p>保持组件状态：<br>在 React 中，当组件重新渲染时，React 会尽量保持每个元素的状态不变，即使元素的位置发生了变化。通过为每个列表项指定唯一的 key，React 可以更好地跟踪元素的状态，从而确保组件的状态正确地保持在每个列表项上。</p>
-</li>
-<li><p>便于查找和调试：<br>使用 key 可以使得列表项在 React 或 Vue 的开发者工具中更易于查找和调试。你可以通过 key 来追踪每个列表项的变化，更好地理解渲染逻辑，并快速定位问题。</p>
-</li>
-</ol>
-<p>因此，无论是在 React 还是 Vue 项目中，在列表组件中为每个列表项指定一个唯一的 key 是很重要的，它能够提高性能、避免问题、保持组件状态，并且方便调试。</p>
-
+          <p>模块化的发展历程经历了多个阶段，从早期的自执行函数（IIFE）到现代的 ES Module，每个阶段都在不断地解决代码组织、依赖管理和模块加载等问题。下面是模块化发展历程的简要介绍：</p>
+<h2 id="1-IIFE（立即执行函数）："><a href="#1-IIFE（立即执行函数）：" class="headerlink" title="1. IIFE（立即执行函数）："></a>1. IIFE（立即执行函数）：</h2><p>在早期的 JavaScript 开发中，为了避免全局变量的污染和命名冲突，开发者经常使用自执行函数（Immediately Invoked Function Expression，IIFE）来创建一个独立的作用域，将代码封装起来，达到模块化的效果。但是这种方式并没有真正解决模块化的问题，只是通过作用域的隔离来减少了全局污染的风险。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/02/19/ModularDevelopmentHistory/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

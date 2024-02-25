@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="当我们在浏览器地址栏输入 url(统一资源定位符)，例如： https:&#x2F;&#x2F;example.com, 浏览器会执行以下步骤： 1. URL 解析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从浏览器地址栏输入url到请求返回发生了什么">
+<meta property="og:url" content="http://example.com/2020/08/25/input-url-brower/index.html">
+<meta property="og:site_name" content="wm&#39;s blog">
+<meta property="og:description" content="当我们在浏览器地址栏输入 url(统一资源定位符)，例如： https:&#x2F;&#x2F;example.com, 浏览器会执行以下步骤： 1. URL 解析">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-08-25T02:22:04.000Z">
+<meta property="article:modified_time" content="2024-02-25T02:52:19.925Z">
+<meta property="article:author" content="wm">
+<meta property="article:tag" content="浏览器">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2020/08/25/input-url-brower/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2020/08/25/input-url-brower/","path":"2020/08/25/input-url-brower/","title":"从浏览器地址栏输入url到请求返回发生了什么"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>从浏览器地址栏输入url到请求返回发生了什么 | wm's blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">wm's blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-URL-%E8%A7%A3%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">1. URL 解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-DNS-%E8%A7%A3%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">2. DNS 解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">2.1.</span> <span class="nav-text">DNS 是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS-%E8%A7%A3%E6%9E%90"><span class="nav-number">2.2.</span> <span class="nav-text">DNS 解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98"><span class="nav-number">2.2.1.</span> <span class="nav-text">1. 浏览器缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BC%93%E5%AD%98"><span class="nav-number">2.2.2.</span> <span class="nav-text">2. 操作系统缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%9C%AC%E5%9C%B0-DNS-%E8%A7%A3%E6%9E%90%E5%99%A8"><span class="nav-number">2.2.3.</span> <span class="nav-text">3. 本地 DNS 解析器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2"><span class="nav-number">2.2.4.</span> <span class="nav-text">4. 递归查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E8%BF%AD%E4%BB%A3%E6%9F%A5%E8%AF%A2"><span class="nav-number">2.2.5.</span> <span class="nav-text">5. 迭代查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E6%9D%83%E5%A8%81%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9F%A5%E8%AF%A2"><span class="nav-number">2.2.6.</span> <span class="nav-text">6. 权威域名服务器查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-%E8%BF%94%E5%9B%9E%E8%A7%A3%E6%9E%90%E7%BB%93%E6%9E%9C"><span class="nav-number">2.2.7.</span> <span class="nav-text">7. 返回解析结果</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%BB%BA%E7%AB%8B-TCP-%E8%BF%9E%E6%8E%A5"><span class="nav-number">3.</span> <span class="nav-text">3. 建立 TCP 连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%8F%91%E8%B5%B7-HTTP-%E8%AF%B7%E6%B1%82"><span class="nav-number">4.</span> <span class="nav-text">4. 发起 HTTP 请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%A4%84%E7%90%86%E8%AF%B7%E6%B1%82"><span class="nav-number">5.</span> <span class="nav-text">5. 服务器处理请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E8%BF%94%E5%9B%9E-HTTP-%E5%93%8D%E5%BA%94"><span class="nav-number">6.</span> <span class="nav-text">6. 返回 HTTP 响应</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E6%B5%8F%E8%A7%88%E5%99%A8%E5%A4%84%E7%90%86%E5%93%8D%E5%BA%94"><span class="nav-number">7.</span> <span class="nav-text">7. 浏览器处理响应</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E6%98%BE%E7%A4%BA%E9%A1%B5%E9%9D%A2"><span class="nav-number">8.</span> <span class="nav-text">8. 显示页面</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">wm</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="/1494601749@qq.com" title="E-Mail → 1494601749@qq.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/25/input-url-brower/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="wm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="从浏览器地址栏输入url到请求返回发生了什么 | wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          从浏览器地址栏输入url到请求返回发生了什么
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-08-25 10:22:04" itemprop="dateCreated datePublished" datetime="2020-08-25T10:22:04+08:00">2020-08-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-02-25 10:52:19" itemprop="dateModified" datetime="2024-02-25T10:52:19+08:00">2024-02-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">浏览器</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>当我们在浏览器地址栏输入 url(统一资源定位符)，例如： <a href="https://example.com/">https://example.com</a>, 浏览器会执行以下步骤：</p>
+<h2 id="1-URL-解析"><a href="#1-URL-解析" class="headerlink" title="1. URL 解析"></a>1. URL 解析</h2><span id="more"></span>
+
+<p>浏览器会解析你输入的 URL，提取出协议（HTTP&#x2F;HTTPS）、主机名（例如 <a target="_blank" rel="noopener" href="http://www.example.com)、路径(例如/path/to/resource%EF%BC%89%E7%AD%89%E4%BF%A1%E6%81%AF%E3%80%82">www.example.com）、路径（例如/path/to/resource）等信息。</a></p>
+<h2 id="2-DNS-解析"><a href="#2-DNS-解析" class="headerlink" title="2. DNS 解析"></a>2. DNS 解析</h2><p>如果主机名是一个域名而不是 IP 地址，浏览器会执行 DNS 解析，将域名解析为对应的 IP 地址。这通常涉及向 DNS 服务器发送查询请求，获取到对应的 IP 地址。</p>
+<h3 id="DNS-是什么"><a href="#DNS-是什么" class="headerlink" title="DNS 是什么"></a>DNS 是什么</h3><p>DNS（Domain Name System，域名系统）是互联网中用于将域名（如 example.com）转换为相应 IP 地址的分布式命名系统。它充当了互联网上域名和 IP 地址之间的映射关系数据库。</p>
+<h3 id="DNS-解析"><a href="#DNS-解析" class="headerlink" title="DNS 解析"></a>DNS 解析</h3><p>DNS 解析是指将域名解析成相应的 IP 地址的过程。当你在浏览器中输入一个域名时，例如 <a target="_blank" rel="noopener" href="http://www.example.com,浏览器首先需要将这个域名解析为对应的/">www.example.com，浏览器首先需要将这个域名解析为对应的</a> IP 地址，才能向服务器发送请求。DNS 解析的过程如下：</p>
+<h4 id="1-浏览器缓存"><a href="#1-浏览器缓存" class="headerlink" title="1. 浏览器缓存"></a>1. 浏览器缓存</h4><p>浏览器会首先检查自己的 DNS 缓存，看是否已经解析过这个域名。如果之前已经解析过，并且缓存未过期，浏览器会直接使用缓存中的 IP 地址，无需进行 DNS 查询。</p>
+<h4 id="2-操作系统缓存"><a href="#2-操作系统缓存" class="headerlink" title="2. 操作系统缓存"></a>2. 操作系统缓存</h4><p>如果浏览器缓存中没有找到对应的记录，浏览器会检查操作系统的 DNS 缓存。操作系统也会缓存之前解析过的域名和 IP 地址，以提高解析效率。</p>
+<h4 id="3-本地-DNS-解析器"><a href="#3-本地-DNS-解析器" class="headerlink" title="3. 本地 DNS 解析器"></a>3. 本地 DNS 解析器</h4><p>如果在操作系统缓存中也没有找到对应的记录，浏览器会向本地 DNS 解析器发起查询请求。通常，本地 DNS 解析器由你的 ISP（互联网服务提供商）或者其他网络服务提供商提供。本地 DNS 解析器会首先查看自己的缓存，如果有相应的记录，则返回 IP 地址；否则，它会向根域名服务器发起查询请求。</p>
+<h4 id="4-递归查询"><a href="#4-递归查询" class="headerlink" title="4. 递归查询"></a>4. 递归查询</h4><p>如果本地 DNS 解析器在缓存中没有找到对应的记录，它会向根域名服务器发送递归查询请求。根域名服务器复杂存储顶级域名服务器（如.com、.org、.net 等）的 IP 地址。根域名服务器会返回顶级域名服务器的 IP 地址给本地 DNS 解析器。</p>
+<h4 id="5-迭代查询"><a href="#5-迭代查询" class="headerlink" title="5. 迭代查询"></a>5. 迭代查询</h4><p>本地 DNS 解析器收到顶级域名服务器的 IP 地址后，会向顶级域名服务器发起迭代查询请求，询问下一级域名服务器的 IP 地址。例如，如果要解析的域名是<a target="_blank" rel="noopener" href="http://www.example.com,那么顶级域名服务器会返回.com域的权威域名服务器的ip地址./">www.example.com,那么顶级域名服务器会返回.com域的权威域名服务器的IP地址。</a></p>
+<h4 id="6-权威域名服务器查询"><a href="#6-权威域名服务器查询" class="headerlink" title="6. 权威域名服务器查询"></a>6. 权威域名服务器查询</h4><p>本地 DNS 解析器收到权威域名服务器的 IP 地址后，会向权威域名服务器发起查询请求，获取要解析域名的具体 IP 地址。例如，权威域名服务器会返回 <a target="_blank" rel="noopener" href="http://www.example.com/">www.example.com</a> 的 IP 地址给本地 DNS 解析器。</p>
+<h4 id="7-返回解析结果"><a href="#7-返回解析结果" class="headerlink" title="7. 返回解析结果"></a>7. 返回解析结果</h4><p>本地 DNS 解析器收到 IP 地址后，会将结果返回给浏览器，浏览器会将这个 IP 地址用于建立 TCP 连接，并向服务器发送请求。</p>
+<h2 id="3-建立-TCP-连接"><a href="#3-建立-TCP-连接" class="headerlink" title="3. 建立 TCP 连接"></a>3. 建立 TCP 连接</h2><p>浏览器通过 IP 地址和端口号（默认 HTTP 的端口是 80，HTTPS 的端口是 443）与服务器建立 TCP 连接。这个过程中会进行三次握手以确立连接。</p>
+<h2 id="4-发起-HTTP-请求"><a href="#4-发起-HTTP-请求" class="headerlink" title="4. 发起 HTTP 请求"></a>4. 发起 HTTP 请求</h2><p>一旦建立了 TCP 连接，浏览器就会发送一个 HTTP 请求到服务器。这个请求包含了之前解析得到的 URL 中的信息，例如主机名、路径等，以及其他的请求头部信息（如用户代理、cookie 等）。</p>
+<h2 id="5-服务器处理请求"><a href="#5-服务器处理请求" class="headerlink" title="5. 服务器处理请求"></a>5. 服务器处理请求</h2><p>服务器收到请求后，会根据请求的内容进行处理，可能会访问数据库、执行后端代码等操作，然后生成一个 HTTP 响应。</p>
+<h2 id="6-返回-HTTP-响应"><a href="#6-返回-HTTP-响应" class="headerlink" title="6. 返回 HTTP 响应"></a>6. 返回 HTTP 响应</h2><p>服务器会将生成的 HTTP 响应发送回浏览器。这个响应包括一个状态码（例如 200 表示成功，404 表示未找到资源等）、响应头部（包含内容类型、内容长度等信息），以及响应体（实际的内容）。</p>
+<h2 id="7-浏览器处理响应"><a href="#7-浏览器处理响应" class="headerlink" title="7. 浏览器处理响应"></a>7. 浏览器处理响应</h2><p>浏览器收到响应后，会根据响应的内容进行相应的处理。这可能涉及渲染 HTML、执行 JavaScript、应用 CSS 样式等操作。</p>
+<blockquote>
+<p>浏览器会根据响应头部中的内容类型（Content-Type）来确定如何处理响应体。常见的内容类型包括：</p>
+</blockquote>
+<ul>
+<li>text&#x2F;html：HTML 文档。</li>
+<li>text&#x2F;css：CSS 样式表。</li>
+<li>application&#x2F;javascript：JavaScript 文件。</li>
+<li>image&#x2F;png、image&#x2F;jpeg：图片文件等。<br>如果是 HTML 文档，浏览器会将其解析成 DOM 树，并开始渲染页面；如果是 CSS 文件，浏览器会应用样式；如果是 JavaScript 文件，浏览器会执行其中的脚本代码等等。</li>
+</ul>
+<p>一旦浏览器解析了 HTML 文档并构建了 DOM 树，它会开始渲染页面。这个过程包括:</p>
+<ul>
+<li>根据 DOM 树和 CSS 样式计算每个元素的大小、位置等属性。</li>
+<li>将元素布局到页面上的正确位置。</li>
+<li>将元素绘制到屏幕上</li>
+</ul>
+<p>在渲染过程中，浏览器还会处理 JavaScript 代码的执行、事件绑定等操作。</p>
+<h2 id="8-显示页面"><a href="#8-显示页面" class="headerlink" title="8. 显示页面"></a>8. 显示页面</h2><p>最后，浏览器会根据响应的内容将页面呈现给用户，在用户界面中显示网页内容。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" rel="tag"># 浏览器</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/07/21/JSBridge/" rel="prev" title="JSBridge">
+                  <i class="fa fa-angle-left"></i> JSBridge
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/12/18/sleep-function/" rel="next" title="sleep 函数">
+                  sleep 函数 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2019 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">wm</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

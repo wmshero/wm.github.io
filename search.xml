@@ -1629,6 +1629,30 @@ return 301 https://$host$request_uri;
 <li><p><strong>方便的测试</strong>：<br>使用 Virtual DOM 可以方便地进行单元测试和集成测试，因为可以在内存中操作虚拟 DOM，而无需真实的浏览器环境。这样可以加快测试速度，提高开发效率。</p>
 </li>
 </ol>
+<h3 id="实现虚拟-DOM-例子"><a href="#实现虚拟-DOM-例子" class="headerlink" title="实现虚拟 DOM 例子"></a>实现虚拟 DOM 例子</h3><ol>
+<li>定义虚拟 DOM 元素</li>
+<li>创建文本节点</li>
+<li>将虚拟 DOM 渲染为真实 DOM</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义虚拟 DOM 元素</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">createElement</span> = (<span class="params">type, props, ...children</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    type,</span><br><span class="line">    <span class="attr">props</span>: &#123;</span><br><span class="line">      ...props,</span><br><span class="line">      <span class="attr">children</span>: children.<span class="title function_">map</span>(<span class="function">(<span class="params">child</span>) =&gt;</span></span><br><span class="line">        <span class="keyword">typeof</span> child === <span class="string">&quot;object&quot;</span> ? child : <span class="title function_">createTextElement</span>(child)</span><br><span class="line">      ),</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建文本节点</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">createTextElement</span> = (<span class="params">text</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="string">&quot;TEXT_ELEMENT&quot;</span>,</span><br><span class="line">    <span class="attr">props</span>: &#123;</span><br><span class="line">      <span class="attr">nodeValue</span>: text,</span><br><span class="line">      <span class="attr">children</span>: [],</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将虚拟 DOM 渲染为真实 DOM</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">render</span> = (<span class="params">element, container</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> dom =</span><br><span class="line">    element.<span class="property">type</span> === <span class="string">&quot;TEXT_ELEMENT&quot;</span></span><br><span class="line">      ? <span class="variable language_">document</span>.<span class="title function_">createTextNode</span>(<span class="string">&quot;&quot;</span>)</span><br><span class="line">      : <span class="variable language_">document</span>.<span class="title function_">createElement</span>(element.<span class="property">type</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">isProperty</span> = (<span class="params">key</span>) =&gt; key !== <span class="string">&quot;children&quot;</span>;</span><br><span class="line">  <span class="title class_">Object</span>.<span class="title function_">keys</span>(element.<span class="property">props</span>)</span><br><span class="line">    .<span class="title function_">filter</span>(isProperty)</span><br><span class="line">    .<span class="title function_">forEach</span>(<span class="function">(<span class="params">name</span>) =&gt;</span> &#123;</span><br><span class="line">      dom[name] = element.<span class="property">props</span>[name];</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">  element.<span class="property">props</span>.<span class="property">children</span>.<span class="title function_">forEach</span>(<span class="function">(<span class="params">child</span>) =&gt;</span> <span class="title function_">render</span>(child, dom));</span><br><span class="line">  container.<span class="title function_">appendChild</span>(dom);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// React 的 createElement 和 render 函数使用</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">MyReact</span> = &#123;</span><br><span class="line">  createElement,</span><br><span class="line">  render,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用示例</span></span><br><span class="line"><span class="keyword">const</span> element = <span class="title class_">MyReact</span>.<span class="title function_">createElement</span>(</span><br><span class="line">  <span class="string">&quot;div&quot;</span>,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="string">&quot;container&quot;</span> &#125;,</span><br><span class="line">  <span class="title class_">MyReact</span>.<span class="title function_">createElement</span>(<span class="string">&quot;h1&quot;</span>, <span class="literal">null</span>, <span class="string">&quot;Hello, World!&quot;</span>),</span><br><span class="line">  <span class="title class_">MyReact</span>.<span class="title function_">createElement</span>(<span class="string">&quot;p&quot;</span>, <span class="literal">null</span>, <span class="string">&quot;This is a paragraph.&quot;</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> container = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;root&quot;</span>);</span><br><span class="line"><span class="title class_">MyReact</span>.<span class="title function_">render</span>(element, container);</span><br></pre></td></tr></table></figure>
+
+<h3 id="diff-算法"><a href="#diff-算法" class="headerlink" title="diff 算法"></a>diff 算法</h3><ol>
+<li><p>虚拟 DOM 树比较：在进行更新时，React 会将当前的虚拟 DOM 树与新的虚拟 DOM 树进行比较，找出差异。</p>
+</li>
+<li><p>差异检测：React 使用 深度优先搜索算法（DFS）对比两棵虚拟 DOM 树，找出两棵树之间的差异。它会逐个比较节点及其子节点，找出哪些节点需要更新、添加或删除。</p>
+</li>
+<li><p>Diff 策略：React 使用了一些优化策略来减少 DOM 操作次数：</p>
+</li>
+</ol>
+<ul>
+<li>同层比较：React 只会对比相同层级的节点，不会跨层级比较。</li>
+<li>唯一标识：在进行节点比较时，React 会使用节点的唯一标识（通常是 key 属性）来判断节点是否相同，从而避免不必要的更新操作。</li>
+<li>节点移动：React 会尽量复用已存在的节点，而不是重新创建新的节点。如果节点顺序改变，React 会尝试通过移动节点来达到更新效果，而不是直接删除和重新插入节点。</li>
+<li>批量更新：React 会将多个更新操作合并成一个批量更新，然后一次性更新到真实 DOM 中，以减少页面重绘和重排的次数。</li>
+</ul>
+<ol start="4">
+<li>应用差异：一旦找到了两棵虚拟 DOM 树之间的差异，React 就会根据这些差异来进行相应的操作，更新真实 DOM。</li>
+</ol>
 <h2 id="Fiber"><a href="#Fiber" class="headerlink" title="Fiber"></a>Fiber</h2><p>Fiber 是 React v16 中引入的一种新的协调算法，用于调度和管理 React 的渲染和更新过程。Fiber 的目标是使 React 应用程序更加流畅和响应，减少页面卡顿和掉帧的情况。<br>Fiber 的核心思想是将 React 的渲染过程分解为可中断的小任务，并且可以根据优先级来调度这些任务的执行顺序。这样可以使 React 在执行渲染任务时更加灵活，可以根据页面的需要来调整任务的优先级和执行顺序，从而提高用户体验。</p>
 <p>Fiber 的引入使得 React 具备了更高的并发能力和更灵活的调度策略，使得 React 应用程序可以更好地适应不同的场景和用户需求。</p>
 <p>综上所述，Virtual DOM 和 Fiber 是 React 内部机制中的两个关键概念，它们共同作用于 React 的渲染和更新过程中，提高了 React 应用程序的性能、效率和响应能力。Virtual DOM 优化了对真实 DOM 的操作，而 Fiber 则优化了 React 的渲染和更新调度过程。</p>
@@ -1922,6 +1946,54 @@ return 301 https://$host$request_uri;
       </categories>
       <tags>
         <tag>浏览器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CI环境下的npm优化及工程化问题解析</title>
+    <url>/2024/02/25/ci-npm/</url>
+    <content><![CDATA[<h2 id="CI-环境下的-npm-优化"><a href="#CI-环境下的-npm-优化" class="headerlink" title="CI 环境下的 npm 优化"></a>CI 环境下的 npm 优化</h2><p>CI 环境下的 npm 配置 和 本地环境下的 npm 操作有些许不同，我们首先来看看 CI 环境下的 npm 优化方法</p>
+<h3 id="1-合理使用-npm-ci-命令-和-npm-install-命令"><a href="#1-合理使用-npm-ci-命令-和-npm-install-命令" class="headerlink" title="1. 合理使用 npm ci 命令 和 npm install 命令"></a>1. 合理使用 npm ci 命令 和 npm install 命令</h3><p>顾名思义，<code>npm ci</code> 命令就是专门为 CI 环境准备的安装命令，相比于 <code>npm install</code>命令，它的不同之处有以下几点。</p>
+<span id="more"></span>
+
+<ul>
+<li><code>npm ci</code> 命令要求项目中必须存在 package-lock.json 或 <code>npm-shrinkwrap.json</code>命令</li>
+<li><code>npm ci</code> 命令完全根据 package-lock.json 文件安装依赖，这样可以保证开发团队成员使用版本一致的依赖。</li>
+<li>因为 <code>npm ci</code> 命令完全根据 package-lock.json 文件安装依赖，因此在安装过程中，它不需要求解依赖满足问题及构造依赖树，安装过程更加迅速。</li>
+<li><code>npm ci</code> 命令在执行安装时会先删除项目中现有的 <code>node_modules</code> 目录，重新安装。</li>
+<li><code>npm ci</code> 命令只能一次性安装项目中所有的依赖包，无法安装单个依赖包。</li>
+<li>如果 package-lock.json 文件和 package.json 文件冲突，那么执行 <code>npm ci</code> 命令时会直接报错。</li>
+<li>执行 <code>npm ci</code> 命令永远不会改变 package.json 和 package-lock.json 文件的内容。</li>
+</ul>
+<p>基于以上特效，我们在 CI 环境下使用 <code>npm ci</code> 命令代替 <code>npm install</code> 命令时，一般会获得更加稳定、一致、迅速的安装体验</p>
+<h3 id="2-使用-package-lock-json-文件缩短依赖安装时间"><a href="#2-使用-package-lock-json-文件缩短依赖安装时间" class="headerlink" title="2. 使用 package-lock.json 文件缩短依赖安装时间"></a>2. 使用 package-lock.json 文件缩短依赖安装时间</h3><p>项目中使用 package-lock.json 文件一般可以显著缩短依赖安装时间。这是因为 package-lock.json 文件中已经缓存了每个包的具体版本信息和下载链接，不要再去远程仓库进行查询即可直接进入文件完整性校验环节，减少大量网络请求。</p>
+<p>除了以上内容之外，在 CI 环境下，缓存 <code>node_modules</code> 目录文件也是企业使用包管理工具常用的优化方法。</p>
+<h2 id="为什么有-xxxDependencies"><a href="#为什么有-xxxDependencies" class="headerlink" title="为什么有 xxxDependencies"></a>为什么有 xxxDependencies</h2><p>npm 设计了以下几种依赖类型声明</p>
+<ul>
+<li>dependencies： 项目依赖</li>
+<li>devDependencies： 开发依赖</li>
+<li>peerDependencies： 同版本依赖</li>
+<li>bundledDependencies： 捆绑依赖</li>
+<li>optionalDependencies： 可选依赖</li>
+</ul>
+<h3 id="1-dependencies：-项目依赖"><a href="#1-dependencies：-项目依赖" class="headerlink" title="1.dependencies： 项目依赖"></a>1.dependencies： 项目依赖</h3><p>这些依赖会成为线上生产环节中代码组成部分，当它关联的 npm 包会下载时，dependencies 下的模块也会作为依赖一起被下载。</p>
+<h3 id="2-devDependencies：-开发依赖"><a href="#2-devDependencies：-开发依赖" class="headerlink" title="2.devDependencies： 开发依赖"></a>2.devDependencies： 开发依赖</h3><p>不会自动下载，因为 devDependencies 一般只在开发阶段起作用，或只在开发环境中被用到。 如 webpack,预处理器 babel-loader、scss-loader,测试工具 E2E、Chai 等，这些都是辅助开发的工具包，无须在生产环境中使用。</p>
+<blockquote>
+<p>并不是只有 dependencies 下的模块才会被一起打包，而 devDependencies 下的模块一定不会被打包。实际上，模块是否作为依赖被打包，完全取决于项目里是否引入了该模块。</p>
+</blockquote>
+<h3 id="3-peerDependencies：-同版本依赖"><a href="#3-peerDependencies：-同版本依赖" class="headerlink" title="3.peerDependencies： 同版本依赖"></a>3.peerDependencies： 同版本依赖</h3><p>简单来说： 如果你安装了我，最好你也安装我的依赖。</p>
+<h3 id="4-bundledDependencies：-捆绑依赖"><a href="#4-bundledDependencies：-捆绑依赖" class="headerlink" title="4.bundledDependencies： 捆绑依赖"></a>4.bundledDependencies： 捆绑依赖</h3><p>和 npm pack 打包命令有关。</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;test&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;dependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;dep&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^0.0.2&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;devDependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;devD1&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^0.0.2&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;bundledDependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;bundleD1&quot;</span><span class="punctuation">,</span> <span class="string">&quot;bundleD1&quot;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>需要注意：bundledDependencies 中指定的依赖包必须先在 dependencies 和 devDependencies 中声明过，否则执行 <code>npm pack</code> 命令阶段会报错。</p>
+</blockquote>
+<h3 id="5-optionalDependencies：-可选依赖"><a href="#5-optionalDependencies：-可选依赖" class="headerlink" title="5.optionalDependencies： 可选依赖"></a>5.optionalDependencies： 可选依赖</h3><p>该依赖如果安装失败，也不会影响整个安装过程。一般很少使用它，也不建议使用，会增加项目的不确定性和复杂性。</p>
+]]></content>
+      <categories>
+        <category>前端质量保障</category>
+      </categories>
+      <tags>
+        <tag>前端质量保障</tag>
       </tags>
   </entry>
 </search>

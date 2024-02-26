@@ -27,7 +27,7 @@
 <meta property="og:description" content="在 React 中，Virtual DOM（虚拟 DOM）是一种内存中的表示，它是由 React 创建和维护的一种树形结构，用于表示真实 DOM 的抽象。当状态发生变化时，React 会通过比较新的 Virtual DOM 和旧的 Virtual DOM 的差异来确定需要更新的部分，并将这些变化应用到真实的 DOM 中，从而实现页面的更新。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2023-11-10T06:14:05.000Z">
-<meta property="article:modified_time" content="2024-02-20T10:05:47.575Z">
+<meta property="article:modified_time" content="2024-02-26T08:42:21.615Z">
 <meta property="article:author" content="wm">
 <meta property="article:tag" content="React">
 <meta name="twitter:card" content="summary">
@@ -112,7 +112,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Virtual-DOM-%E7%9A%84%E5%BC%95%E5%85%A5%E5%B8%A6%E6%9D%A5%E4%BA%86%E4%BB%A5%E4%B8%8B%E5%A5%BD%E5%A4%84%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">Virtual DOM 的引入带来了以下好处：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fiber"><span class="nav-number">2.</span> <span class="nav-text">Fiber</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Virtual-DOM-%E7%9A%84%E5%BC%95%E5%85%A5%E5%B8%A6%E6%9D%A5%E4%BA%86%E4%BB%A5%E4%B8%8B%E5%A5%BD%E5%A4%84%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">Virtual DOM 的引入带来了以下好处：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E8%99%9A%E6%8B%9F-DOM-%E4%BE%8B%E5%AD%90"><span class="nav-number">1.1.</span> <span class="nav-text">实现虚拟 DOM 例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#diff-%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">diff 算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fiber"><span class="nav-number">2.</span> <span class="nav-text">Fiber</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -125,7 +125,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -136,7 +136,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -208,7 +208,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-02-20 18:05:47" itemprop="dateModified" datetime="2024-02-20T18:05:47+08:00">2024-02-20</time>
+      <time title="Modified: 2024-02-26 16:42:21" itemprop="dateModified" datetime="2024-02-26T16:42:21+08:00">2024-02-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -241,6 +241,30 @@
 </li>
 <li><p><strong>方便的测试</strong>：<br>使用 Virtual DOM 可以方便地进行单元测试和集成测试，因为可以在内存中操作虚拟 DOM，而无需真实的浏览器环境。这样可以加快测试速度，提高开发效率。</p>
 </li>
+</ol>
+<h3 id="实现虚拟-DOM-例子"><a href="#实现虚拟-DOM-例子" class="headerlink" title="实现虚拟 DOM 例子"></a>实现虚拟 DOM 例子</h3><ol>
+<li>定义虚拟 DOM 元素</li>
+<li>创建文本节点</li>
+<li>将虚拟 DOM 渲染为真实 DOM</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义虚拟 DOM 元素</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">createElement</span> = (<span class="params">type, props, ...children</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    type,</span><br><span class="line">    <span class="attr">props</span>: &#123;</span><br><span class="line">      ...props,</span><br><span class="line">      <span class="attr">children</span>: children.<span class="title function_">map</span>(<span class="function">(<span class="params">child</span>) =&gt;</span></span><br><span class="line">        <span class="keyword">typeof</span> child === <span class="string">&quot;object&quot;</span> ? child : <span class="title function_">createTextElement</span>(child)</span><br><span class="line">      ),</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建文本节点</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">createTextElement</span> = (<span class="params">text</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="string">&quot;TEXT_ELEMENT&quot;</span>,</span><br><span class="line">    <span class="attr">props</span>: &#123;</span><br><span class="line">      <span class="attr">nodeValue</span>: text,</span><br><span class="line">      <span class="attr">children</span>: [],</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将虚拟 DOM 渲染为真实 DOM</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">render</span> = (<span class="params">element, container</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> dom =</span><br><span class="line">    element.<span class="property">type</span> === <span class="string">&quot;TEXT_ELEMENT&quot;</span></span><br><span class="line">      ? <span class="variable language_">document</span>.<span class="title function_">createTextNode</span>(<span class="string">&quot;&quot;</span>)</span><br><span class="line">      : <span class="variable language_">document</span>.<span class="title function_">createElement</span>(element.<span class="property">type</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">isProperty</span> = (<span class="params">key</span>) =&gt; key !== <span class="string">&quot;children&quot;</span>;</span><br><span class="line">  <span class="title class_">Object</span>.<span class="title function_">keys</span>(element.<span class="property">props</span>)</span><br><span class="line">    .<span class="title function_">filter</span>(isProperty)</span><br><span class="line">    .<span class="title function_">forEach</span>(<span class="function">(<span class="params">name</span>) =&gt;</span> &#123;</span><br><span class="line">      dom[name] = element.<span class="property">props</span>[name];</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">  element.<span class="property">props</span>.<span class="property">children</span>.<span class="title function_">forEach</span>(<span class="function">(<span class="params">child</span>) =&gt;</span> <span class="title function_">render</span>(child, dom));</span><br><span class="line">  container.<span class="title function_">appendChild</span>(dom);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// React 的 createElement 和 render 函数使用</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">MyReact</span> = &#123;</span><br><span class="line">  createElement,</span><br><span class="line">  render,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用示例</span></span><br><span class="line"><span class="keyword">const</span> element = <span class="title class_">MyReact</span>.<span class="title function_">createElement</span>(</span><br><span class="line">  <span class="string">&quot;div&quot;</span>,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="string">&quot;container&quot;</span> &#125;,</span><br><span class="line">  <span class="title class_">MyReact</span>.<span class="title function_">createElement</span>(<span class="string">&quot;h1&quot;</span>, <span class="literal">null</span>, <span class="string">&quot;Hello, World!&quot;</span>),</span><br><span class="line">  <span class="title class_">MyReact</span>.<span class="title function_">createElement</span>(<span class="string">&quot;p&quot;</span>, <span class="literal">null</span>, <span class="string">&quot;This is a paragraph.&quot;</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> container = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;root&quot;</span>);</span><br><span class="line"><span class="title class_">MyReact</span>.<span class="title function_">render</span>(element, container);</span><br></pre></td></tr></table></figure>
+
+<h3 id="diff-算法"><a href="#diff-算法" class="headerlink" title="diff 算法"></a>diff 算法</h3><ol>
+<li><p>虚拟 DOM 树比较：在进行更新时，React 会将当前的虚拟 DOM 树与新的虚拟 DOM 树进行比较，找出差异。</p>
+</li>
+<li><p>差异检测：React 使用 深度优先搜索算法（DFS）对比两棵虚拟 DOM 树，找出两棵树之间的差异。它会逐个比较节点及其子节点，找出哪些节点需要更新、添加或删除。</p>
+</li>
+<li><p>Diff 策略：React 使用了一些优化策略来减少 DOM 操作次数：</p>
+</li>
+</ol>
+<ul>
+<li>同层比较：React 只会对比相同层级的节点，不会跨层级比较。</li>
+<li>唯一标识：在进行节点比较时，React 会使用节点的唯一标识（通常是 key 属性）来判断节点是否相同，从而避免不必要的更新操作。</li>
+<li>节点移动：React 会尽量复用已存在的节点，而不是重新创建新的节点。如果节点顺序改变，React 会尝试通过移动节点来达到更新效果，而不是直接删除和重新插入节点。</li>
+<li>批量更新：React 会将多个更新操作合并成一个批量更新，然后一次性更新到真实 DOM 中，以减少页面重绘和重排的次数。</li>
+</ul>
+<ol start="4">
+<li>应用差异：一旦找到了两棵虚拟 DOM 树之间的差异，React 就会根据这些差异来进行相应的操作，更新真实 DOM。</li>
 </ol>
 <h2 id="Fiber"><a href="#Fiber" class="headerlink" title="Fiber"></a>Fiber</h2><p>Fiber 是 React v16 中引入的一种新的协调算法，用于调度和管理 React 的渲染和更新过程。Fiber 的目标是使 React 应用程序更加流畅和响应，减少页面卡顿和掉帧的情况。<br>Fiber 的核心思想是将 React 的渲染过程分解为可中断的小任务，并且可以根据优先级来调度这些任务的执行顺序。这样可以使 React 在执行渲染任务时更加灵活，可以根据页面的需要来调整任务的优先级和执行顺序，从而提高用户体验。</p>
 <p>Fiber 的引入使得 React 具备了更高的并发能力和更灵活的调度策略，使得 React 应用程序可以更好地适应不同的场景和用户需求。</p>

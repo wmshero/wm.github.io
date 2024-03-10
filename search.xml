@@ -1455,6 +1455,9 @@ return 301 https://$host$request_uri;
 
 <p>当开启了持久化缓存功能，最耗时的 AST 解析将能够从磁盘的缓存中获取，再次编译时无需再次进行解析 AST。</p>
 ]]></content>
+      <categories>
+        <category>webpack</category>
+      </categories>
   </entry>
   <entry>
     <title>对称加密和非对称加密</title>
@@ -1994,6 +1997,68 @@ return 301 https://$host$request_uri;
       </categories>
       <tags>
         <tag>前端质量保障</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JSDoc</title>
+    <url>/2018/03/04/JSDoc/</url>
+    <content><![CDATA[<p>这个是<a href="https://jsdoc.bootcss.com/">JSDoc 官方文档</a>，我这边简单做一些介绍。</p>
+<span id="more"></span>
+
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>JSDoc 3 是一个用于 JavaScript 的 API 文档生成器，类似于 Javadoc 或 phpDocumentor。可以将文档注释直接添加到源代码中。JSDoc 工具将扫描您的源代码并为您生成一个 HTML 文档网站。</p>
+<h1 id="向代码中添加文档注释"><a href="#向代码中添加文档注释" class="headerlink" title="向代码中添加文档注释"></a>向代码中添加文档注释</h1><p>JSDoc 的目的是记录 JavaScript 应用程序或库的 API。假设您想要记录诸如模块、名称空间、类、方法、方法参数等内容。</p>
+<p>JSDoc 注释通常应该放在记录代码之前。为了被 JSDoc 解析器识别，每个注释必须以 &#x2F;** 序列开头。以 &#x2F;<em>、&#x2F;</em>**开头或超过 3 颗星的注释将被忽略。这个特性用于控制解析注释块的功能。</p>
+<p>可以使用特殊的 JSDoc 标签 来提供更多信息。例如，如果函数是类的构造函数，则可以通过添加 @constructor 标记来表示。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Represents a book.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@constructor</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">string</span>&#125; <span class="variable">title</span> - The title of the book.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">string</span>&#125; <span class="variable">author</span> - The author of the book.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Book</span>(<span class="params">title, author</span>) &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="生成网站"><a href="#生成网站" class="headerlink" title="生成网站"></a>生成网站</h3><p>一旦你的代码是已注释的，你可以是用 JSDoc 3 的工具从源文件中生成一个 HTML 网站。</p>
+<p>默认情况下，JSDoc 使用内置的“默认”模板将文档转换为 HTML。您可以根据自己的需要编辑此模板，或者创建一个全新的模板（如果您喜欢的话）。</p>
+<p>在命令行上运行文档生成器：</p>
+<p><code>jsdoc book.js</code></p>
+<p>此命令将在当前工作目录中创建名为 <code>out/</code> 的目录。在该目录中，您将找到生成的 HTML 页面。</p>
+]]></content>
+      <tags>
+        <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Asset Modules资源模块</title>
+    <url>/2024/03/10/asset-module/</url>
+    <content><![CDATA[<p>Asset Modules 资源模块，针对于图片字体等这一类型的文件模块，无须额外的预处理器，webpack 可以通过一些配置完成对它们的解析，这是 webpack5 新加入的，和 <code>file-loader</code>,<code>raw-loader</code>,<code>url-loader</code> 预处理器功能相似</p>
+<span id="more"></span>
+
+<h2 id="type"><a href="#type" class="headerlink" title="type"></a>type</h2><p>Asset Modules 类型通过添加 4 个新的模块 type 来取代所有这些 loader</p>
+<ul>
+<li><strong>asset&#x2F;resource</strong> 发出一个单独的文件并导出 URL。和 <code>file-loader</code> 类似</li>
+<li><strong>asset&#x2F;inline</strong> 和 <code>url-loader</code>相似，处理文件导入地址并将其替换成 data URL,默认是 <code>Base64</code> 格式编码的 URL</li>
+<li><strong>asset&#x2F;source</strong> 和<code>raw-loader</code>很像，以字符串形式导出文件资源</li>
+<li><strong>asset</strong> 在导出单独的文件 和 data URL 间自动选择，可以通过修改配置项影响自动选择的标准</li>
+</ul>
+<h2 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&quot;./a.js&quot;</span>,</span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="attr">path</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&quot;&quot;</span>),</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&quot;bundle.js&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.jpg$/</span>,</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&quot;asset/resource&quot;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">mode</span>: <span class="string">&quot;none&quot;</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>打包入口文件是<code>a.js</code><br>a.js 文件内容：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> img <span class="keyword">from</span> <span class="string">&quot;./sky.jpg&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(img);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> dom = <span class="string">`&lt;img src=&#x27;<span class="subst">$&#123;img&#125;</span>&#x27; /&gt;`</span>;</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">onload</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;main&quot;</span>).<span class="property">innerHTML</span> = dom;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>打包后目录里生成<code>6d99f3aefcfa4bj41a7f.jpg</code>,这个是 sky.jpg 被 asset&#x2F;resource 处理后生成的。</p>
+<h2 id="自定义文件名称"><a href="#自定义文件名称" class="headerlink" title="自定义文件名称"></a>自定义文件名称</h2><h3 id="1-通过-generator-filename-配置"><a href="#1-通过-generator-filename-配置" class="headerlink" title="1. 通过 generator.filename 配置"></a>1. 通过 generator.filename 配置</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="attr">module</span>: &#123;</span><br><span class="line">  <span class="attr">rules</span>: [&#123;</span><br><span class="line">    <span class="attr">test</span>: <span class="regexp">/\.jpg$/</span>,</span><br><span class="line">    <span class="attr">type</span>: <span class="string">&#x27;asset/resource&#x27;</span>,</span><br><span class="line">    <span class="attr">generator</span>: &#123;</span><br><span class="line">      <span class="attr">filename</span>: <span class="string">&#x27;static/[hash:8][ext][query]&#x27;</span> <span class="comment">//8位hash值与后缀名的组合</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;]</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-在-output-里配置"><a href="#2-在-output-里配置" class="headerlink" title="2. 在 output 里配置"></a>2. 在 output 里配置</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&quot;./a.js&quot;</span>,</span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="attr">path</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&quot;&quot;</span>),</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&quot;bundle.js&quot;</span>,</span><br><span class="line">    <span class="attr">assetModuleFilename</span>: <span class="string">&quot;static/[hash:6][ext][query]&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.jpg$/</span>,</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&quot;asset/resource&quot;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">mode</span>: <span class="string">&quot;none&quot;</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这两种方式配置资源文件名称的效果是一样，并且只能用于 type 是 <code>asset</code> 和 <code>asset/resource</code> 的情况</p>
+<h2 id="asset-inline"><a href="#asset-inline" class="headerlink" title="asset&#x2F;inline"></a>asset&#x2F;inline</h2><p>打包后文件目录没有新增图片，原始图片被处理成 Base64 编码的 data URL 并直接存放在打包生成的 <code>bundle.js</code> 文件里</p>
+<p>dataURL 默认使用 Base64 编码，可以配置 <code>generator.dataURL</code> 进行自定义编码算法。</p>
+<h2 id="asset"><a href="#asset" class="headerlink" title="asset"></a>asset</h2><p>webpack 默认对于大于 8 KB 的资源 以 asset&#x2F;resource 处理，否则以 asset&#x2F;inline 处理</p>
+<p>但是我们也可以修改这个资源大小的阙值，在 module.rule 的 <code>parser.dataURLCondition.maxSize</code> 中配置.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&quot;./a.js&quot;</span>,</span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="attr">path</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&quot;&quot;</span>),</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&quot;bundle.js&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.(jpg|png)$/</span>,</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&quot;asset&quot;</span>,</span><br><span class="line">        <span class="attr">parser</span>: &#123;</span><br><span class="line">          <span class="attr">dataUrlCondition</span>: &#123;</span><br><span class="line">            <span class="attr">maxSize</span>: <span class="number">6</span> * <span class="number">1024</span>, <span class="comment">// 6kb</span></span><br><span class="line">          &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">mode</span>: <span class="string">&quot;none&quot;</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>Asset Modules 虽然可以代替部分预处理器的功能，但是要进行个性化配置的时候还是使用预处理器更方便。<br>比如，目前如果要给预处理器配置 publicPath，目前是做不到，而且 Asset Modules 存在 BUG，还需要修复。</p>
+<p>但是 Asset Modules 是 webpack 的未来，文件资源预处理器后续已经不进行维护了，随着 Asset Modules 功能的优化，未来可能会取代 file-loader 等预处理器，我们需要留意 Asset Modules 的最新状态</p>
+]]></content>
+      <categories>
+        <category>webpack</category>
+      </categories>
+      <tags>
+        <tag>webpack</tag>
       </tags>
   </entry>
 </search>

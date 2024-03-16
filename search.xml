@@ -1841,10 +1841,10 @@ return 301 https://$host$request_uri;
 <p>通过这些步骤，浏览器可以将 HTML 文档解析并渲染成用户可见的页面，同时构建出一棵表示页面结构和内容的 DOM 树，开发者可以通过 JavaScript 来操作这棵树，实现页面的动态交互和更新。</p>
 ]]></content>
       <categories>
-        <category>js</category>
+        <category>JS</category>
       </categories>
       <tags>
-        <tag>js</tag>
+        <tag>JS</tag>
       </tags>
   </entry>
   <entry>

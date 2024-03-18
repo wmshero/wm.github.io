@@ -2205,8 +2205,33 @@ return 301 https://$host$request_uri;
 <p>我们可以定义自己的输入，可以切换模式：探索模式和电子讲座模式，也可以暂停和播放动画展示，也可以调整速度，网站也对每个步骤算法进行说明。</p>
 <p>不仅于此，该网站还提供了一些算法练习题供学生训练，以便更进一步巩固自己的算法知识。</p>
 ]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
       <tags>
         <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vmin和vw</title>
+    <url>/2024/03/18/vmin/</url>
+    <content><![CDATA[<h1 id="vw-vh-和-vmin-vmax"><a href="#vw-vh-和-vmin-vmax" class="headerlink" title="vw&#x2F;vh 和 vmin&#x2F;vmax"></a>vw&#x2F;vh 和 vmin&#x2F;vmax</h1><p>vmin 可以照顾手机端 <strong>横屏和竖屏</strong> 的显示效果</p>
+<span id="more"></span>
+
+<h2 id="vw-vh"><a href="#vw-vh" class="headerlink" title="vw&#x2F;vh"></a>vw&#x2F;vh</h2><p>vh 和 vw 与视口的宽度和高度有关<br>1vw 就是视口宽度的 1%</p>
+<h2 id="vmin-vmax"><a href="#vmin-vmax" class="headerlink" title="vmin&#x2F;vmax"></a>vmin&#x2F;vmax</h2><p>vmin 和 vmax 是与当下屏幕的宽度和高度的最大值或最小值有关，<br>取决于哪个更大和更小。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">app &#123;</span><br><span class="line">  <span class="comment">/* width: 100vw; */</span></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100vmin</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>vim: 当前 vw 和 vh 中较小的一个值(即相对于视窗中较短的一边)</li>
+<li>vmax: 当前 vw 和 vh 中较大的一个值(即相对于视窗中较长的一边)</li>
+</ul>
+]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
       </tags>
   </entry>
 </search>

@@ -119,13 +119,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-count">49</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -156,6 +156,98 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/10/react-key/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="wm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/12/10/react-key/" class="post-title-link" itemprop="url">react和Vue中的key</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-12-10 15:15:14" itemprop="dateCreated datePublished" datetime="2023-12-10T15:15:14+08:00">2023-12-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-02-19 15:18:51" itemprop="dateModified" datetime="2024-02-19T15:18:51+08:00">2024-02-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在 React 或 Vue 项目中，在列表组件中为每个列表项指定一个唯一的 key 是很重要的，其作用主要有以下几点：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/12/10/react-key/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -971,99 +1063,6 @@
 
 <h2 id="如何实现一个事件发布订阅"><a href="#如何实现一个事件发布订阅" class="headerlink" title="如何实现一个事件发布订阅"></a>如何实现一个事件发布订阅</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">EventEmitter</span> &#123;</span><br><span class="line">  handlers = &#123;&#125;;</span><br><span class="line">  <span class="title function_">on</span>(<span class="params">type, handler, once = <span class="literal">false</span></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="property">handlers</span>[type]) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">handlers</span>[type] = [];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="property">handlers</span>[type].<span class="title function_">includes</span>(handler)) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">handlers</span>[type].<span class="title function_">push</span>(handler);</span><br><span class="line">      handler.<span class="property">once</span> = once;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">once</span>(<span class="params">type, handler</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">on</span>(type, handler, <span class="literal">true</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">off</span>(<span class="params">type, handler</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">handlers</span>[type]) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">handlers</span>[type] = <span class="variable language_">this</span>.<span class="property">handlers</span>[type].<span class="title function_">filter</span>(<span class="function">(<span class="params">h</span>) =&gt;</span> h !== handler);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">trigger</span>(<span class="params">type</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">handlers</span>[type]) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">handlers</span>[type].<span class="title function_">forEach</span>(<span class="function">(<span class="params">handler</span>) =&gt;</span> &#123;</span><br><span class="line">        handler.<span class="title function_">call</span>(<span class="variable language_">this</span>);</span><br><span class="line">        <span class="keyword">if</span> (handler.<span class="property">once</span>) &#123;</span><br><span class="line">          <span class="variable language_">this</span>.<span class="title function_">off</span>(type, handler);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ev = <span class="keyword">new</span> <span class="title class_">EventEmitter</span>();</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handler1</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;handler1&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handler2</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;handler2&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handler3</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;handler3&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ev.<span class="title function_">on</span>(<span class="string">&quot;test&quot;</span>, handler1);</span><br><span class="line">ev.<span class="title function_">once</span>(<span class="string">&quot;test&quot;</span>, handler2);</span><br><span class="line">ev.<span class="title function_">on</span>(<span class="string">&quot;test&quot;</span>, handler3);</span><br><span class="line"></span><br><span class="line">ev.<span class="title function_">trigger</span>(<span class="string">&quot;test&quot;</span>);</span><br><span class="line">ev.<span class="title function_">trigger</span>(<span class="string">&quot;test&quot;</span>);</span><br></pre></td></tr></table></figure>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/15/auto-testing/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="wm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/01/15/auto-testing/" class="post-title-link" itemprop="url">自动化测试</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-01-15 15:32:04" itemprop="dateCreated datePublished" datetime="2023-01-15T15:32:04+08:00">2023-01-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-18 15:41:02" itemprop="dateModified" datetime="2023-12-18T15:41:02+08:00">2023-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">测试</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>为了更好的实施自动化测试，我们希望有一套简单但足够的自动化测试体系，能够从各个层面帮助我们开展自动化测试，从而交付高质量的软件代码。</p>
-<p>本文包含三个部分，包括「测试流程」、「测试平台和工具」和「测试方法论」，各自关注不同的维度，整体形成一个良好的体系。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/01/15/auto-testing/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 

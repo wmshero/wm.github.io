@@ -19,23 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="wm&#39;s blog">
-<meta property="og:url" content="http://example.com/archives/2018/03/index.html">
+    <meta name="description" content="vw&#x2F;vh 和 vmin&#x2F;vmaxvmin 可以照顾手机端 横屏和竖屏 的显示效果">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vmin和vw">
+<meta property="og:url" content="http://example.com/2024/03/18/vmin/index.html">
 <meta property="og:site_name" content="wm&#39;s blog">
+<meta property="og:description" content="vw&#x2F;vh 和 vmin&#x2F;vmaxvmin 可以照顾手机端 横屏和竖屏 的显示效果">
 <meta property="og:locale">
+<meta property="article:published_time" content="2024-03-18T03:09:07.000Z">
+<meta property="article:modified_time" content="2024-03-18T03:29:36.722Z">
 <meta property="article:author" content="wm">
+<meta property="article:tag" content="CSS">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/archives/2018/03/">
+<link rel="canonical" href="http://example.com/2024/03/18/vmin/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-Hans","comments":"","permalink":"","path":"archives/2018/03/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2024/03/18/vmin/","path":"2024/03/18/vmin/","title":"vmin和vw"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Archive | wm's blog</title>
+<title>vmin和vw | wm's blog</title>
   
 
 
@@ -68,7 +73,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">wm's blog</h1>
+      <p class="site-title">wm's blog</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -94,7 +99,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -107,6 +112,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vw-vh-%E5%92%8C-vmin-vmax"><span class="nav-number">1.</span> <span class="nav-text">vw&#x2F;vh 和 vmin&#x2F;vmax</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#vw-vh"><span class="nav-number">1.1.</span> <span class="nav-text">vw&#x2F;vh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vmin-vmax"><span class="nav-number">1.2.</span> <span class="nav-text">vmin&#x2F;vmax</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -155,50 +161,110 @@
 
     </div>
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/03/18/vmin/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="wm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="vmin和vw | wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vmin和vw
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2024-03-18 11:09:07 / Modified: 11:29:36" itemprop="dateCreated datePublished" datetime="2024-03-18T11:09:07+08:00">2024-03-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="vw-vh-和-vmin-vmax"><a href="#vw-vh-和-vmin-vmax" class="headerlink" title="vw&#x2F;vh 和 vmin&#x2F;vmax"></a>vw&#x2F;vh 和 vmin&#x2F;vmax</h1><p>vmin 可以照顾手机端 <strong>横屏和竖屏</strong> 的显示效果</p>
+<span id="more"></span>
+
+<h2 id="vw-vh"><a href="#vw-vh" class="headerlink" title="vw&#x2F;vh"></a>vw&#x2F;vh</h2><p>vh 和 vw 与视口的宽度和高度有关<br>1vw 就是视口宽度的 1%</p>
+<h2 id="vmin-vmax"><a href="#vmin-vmax" class="headerlink" title="vmin&#x2F;vmax"></a>vmin&#x2F;vmax</h2><p>vmin 和 vmax 是与当下屏幕的宽度和高度的最大值或最小值有关，<br>取决于哪个更大和更小。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app &#123;</span><br><span class="line">  <span class="comment">/* width: 100vw; */</span></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100vmin</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>vim: 当前 vw 和 vh 中较小的一个值(即相对于视窗中较短的一边)</li>
+<li>vmax: 当前 vw 和 vh 中较大的一个值(即相对于视窗中较长的一边)</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CSS/" rel="tag"># CSS</a>
+          </div>
+
         
-        <span class="collection-header">OK! 49 posts in total. Keep on posting.</span>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2018</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2018-03-04T15:06:16+08:00"
-              content="2018-03-04">
-          03-04
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/2018/03/04/JSDoc/" itemprop="url">
-          <span itemprop="name">JSDoc</span>
-        </a>
-      </div>
-
-      
-    </header>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/03/18/algorithm-share/" rel="prev" title="算法可视化网站分享">
+                  <i class="fa fa-angle-left"></i> 算法可视化网站分享
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
+
+
+
 
 </div>
   </main>

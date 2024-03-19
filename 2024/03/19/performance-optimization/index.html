@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="指标 首屏速度，白屏时间等 操作速度以及渲染速度  白屏时间： 资源记载时间， 首屏 js 执行渲染页面：首屏数据请求，Dom 渲染 如何缩短首屏速度？效果比较好的操作 减少首屏资源体积   打包工具的压缩 异步加载（分析能够异步加载的，比较体积大，但又不是马上需要的功能，和首屏渲染没关系） 更新为体积更小的新版本（把一些老版本的库替换成新版本的支持 tree-shaking） 编写代码尽量减少体">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端性能优化">
+<meta property="og:url" content="http://example.com/2024/03/19/performance-optimization/index.html">
+<meta property="og:site_name" content="wm&#39;s blog">
+<meta property="og:description" content="指标 首屏速度，白屏时间等 操作速度以及渲染速度  白屏时间： 资源记载时间， 首屏 js 执行渲染页面：首屏数据请求，Dom 渲染 如何缩短首屏速度？效果比较好的操作 减少首屏资源体积   打包工具的压缩 异步加载（分析能够异步加载的，比较体积大，但又不是马上需要的功能，和首屏渲染没关系） 更新为体积更小的新版本（把一些老版本的库替换成新版本的支持 tree-shaking） 编写代码尽量减少体">
+<meta property="og:locale">
+<meta property="article:published_time" content="2024-03-19T07:49:59.000Z">
+<meta property="article:modified_time" content="2024-03-19T09:12:31.894Z">
+<meta property="article:author" content="wm">
+<meta property="article:tag" content="性能优化">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2024/03/19/performance-optimization/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2024/03/19/performance-optimization/","path":"2024/03/19/performance-optimization/","title":"前端性能优化"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>前端性能优化 | wm's blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">wm's blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%87%E6%A0%87"><span class="nav-number">1.</span> <span class="nav-text">指标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E7%BC%A9%E7%9F%AD%E9%A6%96%E5%B1%8F%E9%80%9F%E5%BA%A6%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">如何缩短首屏速度？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E6%9E%9C%E6%AF%94%E8%BE%83%E5%A5%BD%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-number">2.1.</span> <span class="nav-text">效果比较好的操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E6%9E%9C%E4%B8%8D%E5%A4%AA%E5%A5%BD%E6%88%96%E8%80%85%E5%9C%A8%E7%89%B9%E6%AE%8A%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84%E4%BC%98%E5%8C%96%E6%93%8D%E4%BD%9C"><span class="nav-number">2.2.</span> <span class="nav-text">效果不太好或者在特殊情况下的优化操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E9%80%9F%E5%BA%A6%E5%92%8C%E6%B8%B2%E6%9F%93%E9%80%9F%E5%BA%A6"><span class="nav-number">3.</span> <span class="nav-text">操作速度和渲染速度</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%80%E6%AC%A1%E6%80%A7-%E6%93%8D%E4%BD%9C%E5%A4%A7%E9%87%8F"><span class="nav-number">3.1.</span> <span class="nav-text">1. 一次性 操作大量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%95%BF%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93"><span class="nav-number">3.1.1.</span> <span class="nav-text">长列表渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5%E6%B8%B2%E6%9F%93"><span class="nav-number">3.1.2.</span> <span class="nav-text">异步渲染</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%BF%9B%E8%A1%8C%E4%BA%86%E5%A4%8D%E6%9D%82%E5%BA%A6%E9%AB%98%E7%9A%84%E8%BF%90%E7%AE%97%EF%BC%88eg-%E5%BE%AA%E7%8E%AF%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">2. 进行了复杂度高的运算（eg:循环）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-vue-%E5%92%8C-react-%E9%A1%B9%E7%9B%AE%E4%B8%AD%EF%BC%8C%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84%E6%B8%B2%E6%9F%93%E5%A4%AA%E5%A4%9A"><span class="nav-number">3.3.</span> <span class="nav-text">3. vue 和 react 项目中，不必要的渲染太多</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vue"><span class="nav-number">3.3.1.</span> <span class="nav-text">vue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#react"><span class="nav-number">3.3.2.</span> <span class="nav-text">react</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98"><span class="nav-number">4.</span> <span class="nav-text">数据缓存</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">wm</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="/1494601749@qq.com" title="E-Mail → 1494601749@qq.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/03/19/performance-optimization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="wm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="前端性能优化 | wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          前端性能优化
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2024-03-19 15:49:59 / Modified: 17:12:31" itemprop="dateCreated datePublished" datetime="2024-03-19T15:49:59+08:00">2024-03-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="指标"><a href="#指标" class="headerlink" title="指标"></a>指标</h1><ol>
+<li>首屏速度，白屏时间等</li>
+<li>操作速度以及渲染速度</li>
+</ol>
+<p>白屏时间： 资源记载时间， 首屏 js 执行<br>渲染页面：首屏数据请求，Dom 渲染</p>
+<h1 id="如何缩短首屏速度？"><a href="#如何缩短首屏速度？" class="headerlink" title="如何缩短首屏速度？"></a>如何缩短首屏速度？</h1><h2 id="效果比较好的操作"><a href="#效果比较好的操作" class="headerlink" title="效果比较好的操作"></a>效果比较好的操作</h2><ol>
+<li>减少首屏资源体积</li>
+</ol>
+<ul>
+<li>打包工具的压缩</li>
+<li>异步加载（分析能够异步加载的，比较体积大，但又不是马上需要的功能，和首屏渲染没关系）</li>
+<li>更新为体积更小的新版本（把一些老版本的库替换成新版本的支持 tree-shaking）</li>
+<li>编写代码尽量减少体积</li>
+<li>去除大的 base64 体积（打包工具默认将图片转成 base64，小图片可以转，但是 大图片和媒体资源 建议不要转成 base64）</li>
+<li>能不用第三方库就不用第三方库（eg:时间格式化）</li>
+</ul>
+<h2 id="效果不太好或者在特殊情况下的优化操作"><a href="#效果不太好或者在特殊情况下的优化操作" class="headerlink" title="效果不太好或者在特殊情况下的优化操作"></a>效果不太好或者在特殊情况下的优化操作</h2><ol>
+<li>首屏数据尽量并行，如果可行让小数据量接口合并到其他接口</li>
+<li>页面包含大量 dom 可以分批随滚动渲染</li>
+<li>骨架屏，loading，先让屏幕不白，减少用户焦虑</li>
+</ol>
+<h1 id="操作速度和渲染速度"><a href="#操作速度和渲染速度" class="headerlink" title="操作速度和渲染速度"></a>操作速度和渲染速度</h1><p>什么情况下会造成操作卡顿和渲染慢？</p>
+<h2 id="1-一次性-操作大量"><a href="#1-一次性-操作大量" class="headerlink" title="1. 一次性 操作大量"></a>1. 一次性 操作大量</h2><pre><code>长列表渲染和异步渲染
+</code></pre>
+<h3 id="长列表渲染"><a href="#长列表渲染" class="headerlink" title="长列表渲染"></a>长列表渲染</h3><ol>
+<li>虚拟化列表技术<br>只渲染可见区域的数据项，而不是渲染整个列表</li>
+<li>分页加载<br>将长列表分割成多个页面，一次性只加载当前页面的数据，而不是全部数据。当用户滚动或者翻页时，再加载下一页的数据</li>
+<li>使用列表项重用<br>保持列表项的可重用性，避免频繁地创建和销毁 DOM 元素。这可以通过使用列表项池来维护已渲染的列表项，然后根据需要更新其内容。</li>
+</ol>
+<h3 id="异步渲染"><a href="#异步渲染" class="headerlink" title="异步渲染"></a>异步渲染</h3><ol>
+<li>分批加载<br>将大量数据分成多个小批次进行加载和渲染，而不是一次性加载全部数据。这样可以减少单次操作的负担，提高页面的响应速度。</li>
+<li>利用 setTimeout 或 requestAnimationFrame<br>在渲染大量数据时，可以使用 <code>setTimeout</code> 或 <code>requestAnimationFrame</code> 来将渲染任务分解成多个小任务，并给浏览器一些空闲时间来处理其他任务，从而减少卡顿和提高渲染性能。</li>
+<li>使用 Web Workers<br>可以将一些耗时的计算或处理任务放在 <code>Web Workers</code> 中进行，以避免阻塞主线程，从而提高页面的响应性能</li>
+<li>懒加载<br>对于某些不是立即需要的数据或组件，可以延迟加载，直到用户需要时再进行加载和渲染。这可以通过 React 中的 <code>React.lazy()</code> 和 Vue 中的 <code>vue-router</code> 的懒加载功能来实现。</li>
+<li>使用分片加载<br>对于大型数据集，可以将数据分成多个片段进行加载，并在每个片段加载完成后进行渲染。这样可以降低单次操作的负担，提高渲染的效率</li>
+</ol>
+<h2 id="2-进行了复杂度高的运算（eg-循环）"><a href="#2-进行了复杂度高的运算（eg-循环）" class="headerlink" title="2. 进行了复杂度高的运算（eg:循环）"></a>2. 进行了复杂度高的运算（eg:循环）</h2><pre><code>循环中操作尽量精简（可能效果不明显）
+</code></pre>
+<h2 id="3-vue-和-react-项目中，不必要的渲染太多"><a href="#3-vue-和-react-项目中，不必要的渲染太多" class="headerlink" title="3. vue 和 react 项目中，不必要的渲染太多"></a>3. vue 和 react 项目中，不必要的渲染太多</h2><h3 id="vue"><a href="#vue" class="headerlink" title="vue"></a>vue</h3><p>vue 中有依赖收集， 配合上 vue3 的静态节点标记，已经基本上避免了因为数据改变引起的无意义渲染</p>
+<ol>
+<li>频繁切换的显隐内容用 <code>v-show</code> 也就是 display 来控制隐藏，只有打开就一次性决定显示与否的用 <code>v-if</code> 不去创建</li>
+<li>循环，动态切换内容加好 key 值</li>
+<li>keep-alive 缓存</li>
+<li>区分请求粒度，减少请求范围，也能减少更新</li>
+</ol>
+<h3 id="react"><a href="#react" class="headerlink" title="react"></a>react</h3><ol>
+<li><code>PureComponent</code> 或 <code>React.memo</code>来减少不必要的重新渲染</li>
+<li>通过实现<code>shouldComponentUpdate</code>生命周期方法来手动控制是否进行组件重新渲染。</li>
+<li>避免在<code>render</code>方法中直接修改 state 或 props，因为这会触发组件的重新渲染。而是应该使用<code>setState</code>来更新<code>state</code>。</li>
+<li>避免在渲染函数中执行昂贵的操作，例如大量计算、数据请求等，这会影响渲染性能。可以将这些操作移到生命周期方法中，或者使用异步渲染技术进行优化。</li>
+</ol>
+<h1 id="数据缓存"><a href="#数据缓存" class="headerlink" title="数据缓存"></a>数据缓存</h1><ul>
+<li>不变数据，定期时效可以缓存在 <code>cookies</code> 或者 <code>localStorage</code> 中，比如 token,用户名</li>
+<li>可以考虑做一个缓存队列，存于内存中（全局对象，vuex）。这样能保证刷新就更新数据，也能一定程度上缓存数据</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag"># 性能优化</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/03/18/vmin/" rel="prev" title="vmin和vw">
+                  <i class="fa fa-angle-left"></i> vmin和vw
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2019 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">wm</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

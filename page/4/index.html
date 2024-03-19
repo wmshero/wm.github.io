@@ -82,7 +82,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a></li>
   </ul>
 </nav>
 
@@ -119,18 +119,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -156,6 +156,110 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/13/js-handwriting-function/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="wm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/02/13/js-handwriting-function/" class="post-title-link" itemprop="url">js 手写函数</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-13 16:09:58" itemprop="dateCreated datePublished" datetime="2023-02-13T16:09:58+08:00">2023-02-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-03-19 16:55:36" itemprop="dateModified" datetime="2024-03-19T16:55:36+08:00">2024-03-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <span id="more"></span>
+
+<h2 id="unshift"><a href="#unshift" class="headerlink" title="unshift()"></a>unshift()</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2.3</span>];</span><br><span class="line">arr.<span class="title function_">myUnshift</span>(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>);</span><br><span class="line"><span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">myUnshift</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> len = <span class="variable language_">arguments</span>.<span class="property">length</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = len - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">slice</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="variable language_">arguments</span>[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">length</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr.<span class="title function_">myUnshift</span>(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>), arr);</span><br></pre></td></tr></table></figure>
+
+<h2 id="去重"><a href="#去重" class="headerlink" title="去重"></a>去重</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//(method) Array&lt;any&gt;.indexOf(searchElement: any, fromIndex?: number | undefined): number</span></span><br><span class="line"></span><br><span class="line"><span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">myUnique</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">filter</span>(<span class="function">(<span class="params">v, idx</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">indexOf</span>(v, <span class="number">0</span>) === idx;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取指定范围内的随机数"><a href="#获取指定范围内的随机数" class="headerlink" title="获取指定范围内的随机数"></a>获取指定范围内的随机数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params">min, max</span>) &#123;</span><br><span class="line">  <span class="comment">//(min,max)</span></span><br><span class="line">  <span class="comment">//   return Math.round(Math.random() * (max - min - 2) + (min + 1));</span></span><br><span class="line">  <span class="comment">//[min,max]</span></span><br><span class="line">  <span class="comment">//   return Math.round(Math.random() * (max - min ) + min);</span></span><br><span class="line">  <span class="comment">//(min,max)</span></span><br><span class="line">  <span class="comment">//   return Math.ceil(Math.random() * (max - min) + (min));</span></span><br><span class="line">  <span class="comment">//(min,max)</span></span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>() * (max - min) + min);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="打印-100-之内的质数"><a href="#打印-100-之内的质数" class="headerlink" title="打印 100 之内的质数"></a>打印 100 之内的质数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> count;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">1</span>; j &lt;= i; j++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (i % j === <span class="number">0</span>) &#123;</span><br><span class="line">      count++;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//质数只能被1和它本身整除</span></span><br><span class="line">  <span class="keyword">if</span> (count === <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(i);</span><br><span class="line">  &#125;</span><br><span class="line">  count = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="如何提取-URL-中的参数"><a href="#如何提取-URL-中的参数" class="headerlink" title="如何提取 URL 中的参数"></a>如何提取 URL 中的参数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> url = <span class="string">&quot;https://baidu.com?a=1&amp;b=2&amp;c=3#hash&quot;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">queryURLParams</span>(<span class="params">URL</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> url = <span class="variable constant_">URL</span>.<span class="title function_">split</span>(<span class="string">&quot;?&quot;</span>)[<span class="number">1</span>];</span><br><span class="line">  <span class="keyword">const</span> urlSearchParams = <span class="keyword">new</span> <span class="title class_">URLSearchParams</span>(url);</span><br><span class="line">  <span class="keyword">const</span> params = <span class="title class_">Object</span>.<span class="title function_">fromEntries</span>(urlSearchParams.<span class="title function_">entries</span>());</span><br><span class="line">  <span class="keyword">return</span> params;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">queryURLParams</span>(url));</span><br></pre></td></tr></table></figure>
+
+<h2 id="数组随机排序"><a href="#数组随机排序" class="headerlink" title="数组随机排序"></a>数组随机排序</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">result</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> randomIndex = <span class="built_in">parseInt</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>() * arr.<span class="property">length</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> curNum = arr[i];</span><br><span class="line">    arr[i] = arr[randomIndex];</span><br><span class="line">    arr[randomIndex] = curNum;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>];</span><br><span class="line">arr.<span class="title function_">sort</span>(<span class="function">() =&gt;</span> <span class="title class_">Math</span>.<span class="title function_">random</span>() - <span class="number">0.5</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br></pre></td></tr></table></figure>
+
+<h2 id="实现迭代的方式实现-flatten"><a href="#实现迭代的方式实现-flatten" class="headerlink" title="实现迭代的方式实现 flatten"></a>实现迭代的方式实现 flatten</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>], <span class="number">6</span>, [<span class="number">7</span>, [<span class="number">8</span>, <span class="number">9</span>, [<span class="number">10</span>, [<span class="number">11</span>, <span class="number">12</span>]]]]];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> flatten = <span class="keyword">function</span> (<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">while</span> (arr.<span class="title function_">some</span>(<span class="function">(<span class="params">v</span>) =&gt;</span> <span class="title class_">Array</span>.<span class="title function_">isArray</span>(v))) &#123;</span><br><span class="line">    arr = [].<span class="title function_">concat</span>(...arr);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> flatten = <span class="keyword">function</span> (<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> [].<span class="title function_">concat</span>(...arr.<span class="title function_">map</span>(<span class="function">(<span class="params">v</span>) =&gt;</span> (<span class="title class_">Array</span>.<span class="title function_">isArray</span>(v) ? <span class="title function_">flatten</span>(v) : v)));</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="两数之和"><a href="#两数之和" class="headerlink" title="两数之和"></a>两数之和</h2><p>&#x2F;&#x2F; nums target</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nums = [<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">17</span>];</span><br><span class="line"><span class="keyword">const</span> target = <span class="number">9</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">twoSum</span>(<span class="params">nums, target</span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nums.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> targetIndex = nums.<span class="title function_">indexOf</span>(target - nums[i]);</span><br><span class="line">    <span class="keyword">if</span> (targetIndex &gt; -<span class="number">1</span> &amp;&amp; targetIndex !== i) &#123;</span><br><span class="line">      <span class="keyword">return</span> [i, targetIndex];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="给-a-b-c-三个请求，c-在-a-b-获取完数据之后再发送请求"><a href="#给-a-b-c-三个请求，c-在-a-b-获取完数据之后再发送请求" class="headerlink" title="给 a,b,c 三个请求，c 在 a,b 获取完数据之后再发送请求"></a>给 a,b,c 三个请求，c 在 a,b 获取完数据之后再发送请求</h2><p>&#x2F;&#x2F; 1. promise.all</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&quot;fs&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> arr = [];</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params">data</span>) &#123;</span><br><span class="line">  arr.<span class="title function_">push</span>(data);</span><br><span class="line">  <span class="keyword">if</span> (arr.<span class="property">length</span> === <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fs.<span class="title function_">readFile</span>(<span class="string">&quot;./a.text&quot;</span>, <span class="string">&quot;utf-8&quot;</span>, <span class="function">(<span class="params">err, data</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">fn</span>(data);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">fs.<span class="title function_">readFile</span>(<span class="string">&quot;./b.text&quot;</span>, <span class="string">&quot;utf-8&quot;</span>, <span class="function">(<span class="params">err, data</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">fn</span>(data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="如何实现一个事件发布订阅"><a href="#如何实现一个事件发布订阅" class="headerlink" title="如何实现一个事件发布订阅"></a>如何实现一个事件发布订阅</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">EventEmitter</span> &#123;</span><br><span class="line">  handlers = &#123;&#125;;</span><br><span class="line">  <span class="title function_">on</span>(<span class="params">type, handler, once = <span class="literal">false</span></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="property">handlers</span>[type]) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">handlers</span>[type] = [];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="property">handlers</span>[type].<span class="title function_">includes</span>(handler)) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">handlers</span>[type].<span class="title function_">push</span>(handler);</span><br><span class="line">      handler.<span class="property">once</span> = once;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">once</span>(<span class="params">type, handler</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">on</span>(type, handler, <span class="literal">true</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">off</span>(<span class="params">type, handler</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">handlers</span>[type]) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">handlers</span>[type] = <span class="variable language_">this</span>.<span class="property">handlers</span>[type].<span class="title function_">filter</span>(<span class="function">(<span class="params">h</span>) =&gt;</span> h !== handler);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">trigger</span>(<span class="params">type</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">handlers</span>[type]) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">handlers</span>[type].<span class="title function_">forEach</span>(<span class="function">(<span class="params">handler</span>) =&gt;</span> &#123;</span><br><span class="line">        handler.<span class="title function_">call</span>(<span class="variable language_">this</span>);</span><br><span class="line">        <span class="keyword">if</span> (handler.<span class="property">once</span>) &#123;</span><br><span class="line">          <span class="variable language_">this</span>.<span class="title function_">off</span>(type, handler);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ev = <span class="keyword">new</span> <span class="title class_">EventEmitter</span>();</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handler1</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;handler1&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handler2</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;handler2&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handler3</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;handler3&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ev.<span class="title function_">on</span>(<span class="string">&quot;test&quot;</span>, handler1);</span><br><span class="line">ev.<span class="title function_">once</span>(<span class="string">&quot;test&quot;</span>, handler2);</span><br><span class="line">ev.<span class="title function_">on</span>(<span class="string">&quot;test&quot;</span>, handler3);</span><br><span class="line"></span><br><span class="line">ev.<span class="title function_">trigger</span>(<span class="string">&quot;test&quot;</span>);</span><br><span class="line">ev.<span class="title function_">trigger</span>(<span class="string">&quot;test&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -201,16 +305,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-18 15:41:02" itemprop="dateModified" datetime="2023-12-18T15:41:02+08:00">2023-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">测试</span></a>
-        </span>
+      <time title="Modified: 2024-03-19 16:54:16" itemprop="dateModified" datetime="2024-03-19T16:54:16+08:00">2024-03-19</time>
     </span>
 
   
@@ -294,16 +389,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-18 15:41:32" itemprop="dateModified" datetime="2023-12-18T15:41:32+08:00">2023-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JS/" itemprop="url" rel="index"><span itemprop="name">JS</span></a>
-        </span>
+      <time title="Modified: 2024-03-19 16:55:14" itemprop="dateModified" datetime="2024-03-19T16:55:14+08:00">2024-03-19</time>
     </span>
 
   
@@ -388,16 +474,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-18 15:41:37" itemprop="dateModified" datetime="2023-12-18T15:41:37+08:00">2023-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JS/" itemprop="url" rel="index"><span itemprop="name">JS</span></a>
-        </span>
+      <time title="Modified: 2024-03-19 16:55:23" itemprop="dateModified" datetime="2024-03-19T16:55:23+08:00">2024-03-19</time>
     </span>
 
   
@@ -480,16 +557,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-02-19 11:14:47" itemprop="dateModified" datetime="2024-02-19T11:14:47+08:00">2024-02-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/http/" itemprop="url" rel="index"><span itemprop="name">http</span></a>
-        </span>
+      <time title="Modified: 2024-03-19 16:56:29" itemprop="dateModified" datetime="2024-03-19T16:56:29+08:00">2024-03-19</time>
     </span>
 
   
@@ -572,16 +640,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-03-18 10:57:17" itemprop="dateModified" datetime="2024-03-18T10:57:17+08:00">2024-03-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JS/" itemprop="url" rel="index"><span itemprop="name">JS</span></a>
-        </span>
+      <time title="Modified: 2024-03-19 16:55:54" itemprop="dateModified" datetime="2024-03-19T16:55:54+08:00">2024-03-19</time>
     </span>
 
   
@@ -664,16 +723,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-18 15:41:42" itemprop="dateModified" datetime="2023-12-18T15:41:42+08:00">2023-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
-        </span>
+      <time title="Modified: 2024-03-19 16:56:01" itemprop="dateModified" datetime="2024-03-19T16:56:01+08:00">2024-03-19</time>
     </span>
 
   
@@ -756,16 +806,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-02-19 11:27:22" itemprop="dateModified" datetime="2024-02-19T11:27:22+08:00">2024-02-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/http/" itemprop="url" rel="index"><span itemprop="name">http</span></a>
-        </span>
+      <time title="Modified: 2024-03-19 16:54:50" itemprop="dateModified" datetime="2024-03-19T16:54:50+08:00">2024-03-19</time>
     </span>
 
   
@@ -848,16 +889,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-02-19 11:14:58" itemprop="dateModified" datetime="2024-02-19T11:14:58+08:00">2024-02-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/http/" itemprop="url" rel="index"><span itemprop="name">http</span></a>
-        </span>
+      <time title="Modified: 2024-03-19 16:56:27" itemprop="dateModified" datetime="2024-03-19T16:56:27+08:00">2024-03-19</time>
     </span>
 
   
@@ -940,16 +972,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-18 15:41:29" itemprop="dateModified" datetime="2023-12-18T15:41:29+08:00">2023-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JS/" itemprop="url" rel="index"><span itemprop="name">JS</span></a>
-        </span>
+      <time title="Modified: 2024-03-19 16:55:02" itemprop="dateModified" datetime="2024-03-19T16:55:02+08:00">2024-03-19</time>
     </span>
 
   
@@ -966,98 +989,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/10/14/design-patterns/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/19/xss/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="wm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/01/19/xss/" class="post-title-link" itemprop="url">xss攻击</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-01-19 14:06:09" itemprop="dateCreated datePublished" datetime="2021-01-19T14:06:09+08:00">2021-01-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-02-19 14:09:44" itemprop="dateModified" datetime="2024-02-19T14:09:44+08:00">2024-02-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/http/" itemprop="url" rel="index"><span itemprop="name">http</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>XSS（Cross-Site Scripting，跨站脚本攻击）是一种常见的 Web 安全漏洞，攻击者利用这种漏洞向网页中<strong>插入恶意脚本</strong>，从而在用户的浏览器中执行恶意代码。XSS 攻击通常分为三种类型：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/01/19/xss/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>

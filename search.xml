@@ -2152,6 +2152,8 @@ return 301 https://$host$request_uri;
 <li>操作速度以及渲染速度</li>
 </ol>
 <p>白屏时间： 资源记载时间， 首屏 js 执行<br>渲染页面：首屏数据请求，Dom 渲染</p>
+<span id="more"></span>
+
 <h1 id="如何缩短首屏速度？"><a href="#如何缩短首屏速度？" class="headerlink" title="如何缩短首屏速度？"></a>如何缩短首屏速度？</h1><h2 id="效果比较好的操作"><a href="#效果比较好的操作" class="headerlink" title="效果比较好的操作"></a>效果比较好的操作</h2><ol>
 <li>减少首屏资源体积</li>
 </ol>
@@ -2169,22 +2171,38 @@ return 301 https://$host$request_uri;
 <li>骨架屏，loading，先让屏幕不白，减少用户焦虑</li>
 </ol>
 <h1 id="操作速度和渲染速度"><a href="#操作速度和渲染速度" class="headerlink" title="操作速度和渲染速度"></a>操作速度和渲染速度</h1><p>什么情况下会造成操作卡顿和渲染慢？</p>
-<h2 id="1-一次性-操作大量"><a href="#1-一次性-操作大量" class="headerlink" title="1. 一次性 操作大量"></a>1. 一次性 操作大量</h2><pre><code>长列表渲染和异步渲染
-</code></pre>
+<h2 id="1-一次性-操作大量"><a href="#1-一次性-操作大量" class="headerlink" title="1. 一次性 操作大量"></a>1. 一次性 操作大量</h2><p>长列表渲染和异步渲染</p>
 <h3 id="长列表渲染"><a href="#长列表渲染" class="headerlink" title="长列表渲染"></a>长列表渲染</h3><ol>
 <li>虚拟化列表技术<br>只渲染可见区域的数据项，而不是渲染整个列表</li>
 <li>分页加载<br>将长列表分割成多个页面，一次性只加载当前页面的数据，而不是全部数据。当用户滚动或者翻页时，再加载下一页的数据</li>
 <li>使用列表项重用<br>保持列表项的可重用性，避免频繁地创建和销毁 DOM 元素。这可以通过使用列表项池来维护已渲染的列表项，然后根据需要更新其内容。</li>
 </ol>
-<h3 id="异步渲染"><a href="#异步渲染" class="headerlink" title="异步渲染"></a>异步渲染</h3><ol>
-<li>分批加载<br>将大量数据分成多个小批次进行加载和渲染，而不是一次性加载全部数据。这样可以减少单次操作的负担，提高页面的响应速度。</li>
-<li>利用 setTimeout 或 requestAnimationFrame<br>在渲染大量数据时，可以使用 <code>setTimeout</code> 或 <code>requestAnimationFrame</code> 来将渲染任务分解成多个小任务，并给浏览器一些空闲时间来处理其他任务，从而减少卡顿和提高渲染性能。</li>
-<li>使用 Web Workers<br>可以将一些耗时的计算或处理任务放在 <code>Web Workers</code> 中进行，以避免阻塞主线程，从而提高页面的响应性能</li>
-<li>懒加载<br>对于某些不是立即需要的数据或组件，可以延迟加载，直到用户需要时再进行加载和渲染。这可以通过 React 中的 <code>React.lazy()</code> 和 Vue 中的 <code>vue-router</code> 的懒加载功能来实现。</li>
-<li>使用分片加载<br>对于大型数据集，可以将数据分成多个片段进行加载，并在每个片段加载完成后进行渲染。这样可以降低单次操作的负担，提高渲染的效率</li>
+<h3 id="异步渲染"><a href="#异步渲染" class="headerlink" title="异步渲染"></a>异步渲染</h3><h4 id="1-prefetch-加载"><a href="#1-prefetch-加载" class="headerlink" title="1. prefetch 加载"></a>1. prefetch 加载</h4><p>假设 page1,page2 是同步加载，page3 是异步加载（prefetch）,首屏打开都会给这个三个创建 link 标签加载，但是没用标记 prefetch 的 link 会先加载，然后首屏展示完之后，再加载 prefetch 资源</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&quot;/&quot;</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;Home&quot;</span>,</span><br><span class="line">    <span class="attr">component</span>: <span class="title class_">Home</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&quot;/about&quot;</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;About&quot;</span>,</span><br><span class="line">    <span class="attr">component</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">import</span>(<span class="string">&quot;../views/About.vue&quot;</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<p>如果将网速调慢， 从 network 中也可以看出来，虽然先创建了 about.js 请求，但是需要等其他的请求完成之后再加载的 about</p>
+<h4 id="2-script-加载"><a href="#2-script-加载" class="headerlink" title="2. script 加载"></a>2. script 加载</h4><p>App.js（page1,page2）-&gt;首页加载完成-&gt;进入 page3-&gt;执行 js，创建一个 script 标签引入 page3 相关 js-&gt;page3.js-&gt;page3 页面看到</p>
+<h4 id="prefetch-和-script-加载-对比："><a href="#prefetch-和-script-加载-对比：" class="headerlink" title="prefetch 和 script 加载 对比："></a>prefetch 和 script 加载 对比：</h4><p><strong>script 加载</strong>:</p>
+<ol>
+<li>做到了充分按需引入，用到的时候在加载，不用永不加载，充分节省了带宽</li>
+<li>最大问题是，切换需要等待，体验不是很流畅</li>
 </ol>
-<h2 id="2-进行了复杂度高的运算（eg-循环）"><a href="#2-进行了复杂度高的运算（eg-循环）" class="headerlink" title="2. 进行了复杂度高的运算（eg:循环）"></a>2. 进行了复杂度高的运算（eg:循环）</h2><pre><code>循环中操作尽量精简（可能效果不明显）
-</code></pre>
+<p><strong>prefetch 加载</strong>:</p>
+<ol>
+<li>充分利用使用者不占用带宽的浏览时间，切换到异步加载的页面是可能早已经加载好的，用户体验更流畅</li>
+<li>一些本次行为不会打开的页面也会加载，一定程度上浪费了带宽</li>
+</ol>
+<h4 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h4><ol>
+<li>按需引入 <code>import &#123;read, utils&#125; from &#39;xlsx&#39; </code></li>
+<li>一些非马上使用的操作，改成异步</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">change</span>(<span class="params"></span>)&#123;</span><br><span class="line">   <span class="keyword">import</span>(<span class="string">&#x27;jquery&#x27;</span>).<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">      <span class="keyword">let</span> $=res.<span class="property">default</span></span><br><span class="line">      <span class="keyword">let</span> a =$(<span class="string">&#x27;.test&#x27;</span>)</span><br><span class="line">      a.<span class="title function_">html</span>(<span class="string">&quot;hello&quot;</span>)</span><br><span class="line">   &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-利用-setTimeout-或-requestAnimationFrame"><a href="#3-利用-setTimeout-或-requestAnimationFrame" class="headerlink" title="3. 利用 setTimeout 或 requestAnimationFrame"></a>3. 利用 setTimeout 或 requestAnimationFrame</h4><p>在渲染大量数据时，可以使用 <code>setTimeout</code> 或 <code>requestAnimationFrame</code> 来将渲染任务分解成多个小任务，并给浏览器一些空闲时间来处理其他任务，从而减少卡顿和提高渲染性能。</p>
+<h4 id="4-使用-Web-Workers"><a href="#4-使用-Web-Workers" class="headerlink" title="4. 使用 Web Workers"></a>4. 使用 Web Workers</h4><p>可以将一些耗时的计算或处理任务放在 <code>Web Workers</code> 中进行，以避免阻塞主线程，从而提高页面的响应性能</p>
+<h4 id="5-懒加载"><a href="#5-懒加载" class="headerlink" title="5. 懒加载"></a>5. 懒加载</h4><p>对于某些不是立即需要的数据或组件，可以延迟加载，直到用户需要时再进行加载和渲染。这可以通过 React 中的 <code>React.lazy()</code> 和 Vue 中的 <code>vue-router</code> 的懒加载功能来实现。</p>
+<h4 id="6-使用分片加载"><a href="#6-使用分片加载" class="headerlink" title="6. 使用分片加载"></a>6. 使用分片加载</h4><p>对于大型数据集，可以将数据分成多个片段进行加载，并在每个片段加载完成后进行渲染。这样可以降低单次操作的负担，提高渲染的效率</p>
+<h2 id="2-进行了复杂度高的运算（eg-循环）"><a href="#2-进行了复杂度高的运算（eg-循环）" class="headerlink" title="2. 进行了复杂度高的运算（eg:循环）"></a>2. 进行了复杂度高的运算（eg:循环）</h2><p>循环中操作尽量精简（可能效果不明显）</p>
 <h2 id="3-vue-和-react-项目中，不必要的渲染太多"><a href="#3-vue-和-react-项目中，不必要的渲染太多" class="headerlink" title="3. vue 和 react 项目中，不必要的渲染太多"></a>3. vue 和 react 项目中，不必要的渲染太多</h2><h3 id="vue"><a href="#vue" class="headerlink" title="vue"></a>vue</h3><p>vue 中有依赖收集， 配合上 vue3 的静态节点标记，已经基本上避免了因为数据改变引起的无意义渲染</p>
 <ol>
 <li>频繁切换的显隐内容用 <code>v-show</code> 也就是 display 来控制隐藏，只有打开就一次性决定显示与否的用 <code>v-if</code> 不去创建</li>

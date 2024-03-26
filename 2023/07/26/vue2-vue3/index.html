@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="性能优化Vue 3 在性能方面有显著提升。它引入了一个全新的虚拟 DOM 算法（Faster Virtual DOM），该算法使用了更有效的数据结构和算法，使得在渲染大型组件树时更快速。另外，Vue 3 还引入了静态树提升（Static Tree Hoisting）技术，通过在编译阶段将静态部分的节点提升为常量，进一步减少了运行时的开销。 虚拟 DOM 算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue2和vue3的区别">
+<meta property="og:url" content="http://example.com/2023/07/26/vue2-vue3/index.html">
+<meta property="og:site_name" content="wm&#39;s blog">
+<meta property="og:description" content="性能优化Vue 3 在性能方面有显著提升。它引入了一个全新的虚拟 DOM 算法（Faster Virtual DOM），该算法使用了更有效的数据结构和算法，使得在渲染大型组件树时更快速。另外，Vue 3 还引入了静态树提升（Static Tree Hoisting）技术，通过在编译阶段将静态部分的节点提升为常量，进一步减少了运行时的开销。 虚拟 DOM 算法">
+<meta property="og:locale">
+<meta property="article:published_time" content="2023-07-26T06:38:32.000Z">
+<meta property="article:modified_time" content="2024-03-26T07:00:41.034Z">
+<meta property="article:author" content="wm">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2023/07/26/vue2-vue3/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2023/07/26/vue2-vue3/","path":"2023/07/26/vue2-vue3/","title":"vue2和vue3的区别"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>vue2和vue3的区别 | wm's blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">wm's blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F-DOM-%E7%AE%97%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">虚拟 DOM 算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%89%87%E6%AE%B5%EF%BC%88Fragment%EF%BC%89%E5%92%8C%E5%90%88%E5%B9%B6%EF%BC%88Patch%EF%BC%89%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 片段（Fragment）和合并（Patch）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%9D%99%E6%80%81%E6%A0%91%E6%8F%90%E5%8D%87%EF%BC%88Static-Tree-Hoisting%EF%BC%89%EF%BC%9A"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 静态树提升（Static Tree Hoisting）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BA%8B%E4%BB%B6%E4%BE%A6%E5%90%AC%E5%99%A8%E7%9A%84%E4%BC%98%E5%8C%96%EF%BC%9A"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. 事件侦听器的优化：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%89%B9%E9%87%8F%E6%9B%B4%E6%96%B0%EF%BC%9A"><span class="nav-number">1.1.4.</span> <span class="nav-text">4. 批量更新：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Composition-API"><span class="nav-number">2.</span> <span class="nav-text">Composition API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Composition-API-%E5%92%8C-Options-API"><span class="nav-number">2.1.</span> <span class="nav-text">Composition API 和 Options API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Options-API"><span class="nav-number">2.1.1.</span> <span class="nav-text">1. Options API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Composition-API"><span class="nav-number">2.1.2.</span> <span class="nav-text">2. Composition API</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tree-shaking-%E6%94%AF%E6%8C%81"><span class="nav-number">3.</span> <span class="nav-text">Tree-shaking 支持</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TypeScript-%E6%94%AF%E6%8C%81"><span class="nav-number">4.</span> <span class="nav-text">TypeScript 支持</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E6%80%A7%E7%B3%BB%E7%BB%9F%E9%87%8D%E6%9E%84"><span class="nav-number">5.</span> <span class="nav-text">响应性系统重构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Object-defineProperty"><span class="nav-number">5.1.</span> <span class="nav-text">1. Object.defineProperty</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Proxy"><span class="nav-number">5.2.</span> <span class="nav-text">2. Proxy</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Teleport"><span class="nav-number">6.</span> <span class="nav-text">Teleport</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Suspense"><span class="nav-number">7.</span> <span class="nav-text">Suspense</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">wm</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="/1494601749@qq.com" title="E-Mail → 1494601749@qq.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/26/vue2-vue3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="wm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="vue2和vue3的区别 | wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vue2和vue3的区别
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-07-26 14:38:32" itemprop="dateCreated datePublished" datetime="2023-07-26T14:38:32+08:00">2023-07-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-03-26 15:00:41" itemprop="dateModified" datetime="2024-03-26T15:00:41+08:00">2024-03-26</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h1><p>Vue 3 在性能方面有显著提升。它引入了一个全新的虚拟 DOM 算法（Faster Virtual DOM），该算法使用了更有效的数据结构和算法，使得在渲染大型组件树时更快速。<br>另外，Vue 3 还引入了静态树提升（Static Tree Hoisting）技术，通过在编译阶段将静态部分的节点提升为常量，进一步减少了运行时的开销。</p>
+<h2 id="虚拟-DOM-算法"><a href="#虚拟-DOM-算法" class="headerlink" title="虚拟 DOM 算法"></a>虚拟 DOM 算法</h2><span id="more"></span>
+
+<h3 id="1-片段（Fragment）和合并（Patch）："><a href="#1-片段（Fragment）和合并（Patch）：" class="headerlink" title="1. 片段（Fragment）和合并（Patch）："></a>1. 片段（Fragment）和合并（Patch）：</h3><p>Vue 3 引入了 Fragment 的概念，它将组件的模板划分为多个小片段。这样一来，在更新时可以只更新发生变化的部分，而不需要重新渲染整个组件。这种局部更新的机制可以大大提高渲染性能。<br>Patch 是 Vue 3 中的一个关键概念，用于将虚拟 DOM 节点的变化应用到实际的 DOM 上。Vue 3 通过对比新旧虚拟 DOM 树的差异，并将这些差异应用到实际的 DOM 上，来完成更新操作。</p>
+<h3 id="2-静态树提升（Static-Tree-Hoisting）："><a href="#2-静态树提升（Static-Tree-Hoisting）：" class="headerlink" title="2. 静态树提升（Static Tree Hoisting）："></a>2. 静态树提升（Static Tree Hoisting）：</h3><p>静态树提升是 Vue 3 的一个优化技术，它允许编译器在编译时识别出组件模板中的静态部分，并将其提升为常量。这样一来，每次渲染时都不需要重新计算静态部分，从而减少了渲染的开销。<br>静态树提升使得 Vue 3 在处理静态内容时能够更快地完成渲染，尤其是对于大型组件树的渲染效率提升尤为显著。</p>
+<h3 id="3-事件侦听器的优化："><a href="#3-事件侦听器的优化：" class="headerlink" title="3. 事件侦听器的优化："></a>3. 事件侦听器的优化：</h3><p>在 Vue 3 中，事件侦听器的绑定和解绑过程得到了优化，使得事件处理的性能得到提升。Vue 3 使用更有效的数据结构来管理事件侦听器，减少了事件绑定和解绑的开销。<br>这种优化使得在频繁触发事件的情况下，Vue 3 的性能表现更好，同时也降低了内存的占用。</p>
+<h3 id="4-批量更新："><a href="#4-批量更新：" class="headerlink" title="4. 批量更新："></a>4. 批量更新：</h3><p>Vue 3 引入了批量更新机制，通过将多个更新操作合并成一个更新批次来减少渲染的次数。这样可以避免不必要的重复渲染，提高了渲染效率。<br>批量更新机制还可以降低触发重排和重绘的次数，从而减少了浏览器的性能开销，提升了整体的渲染性能。</p>
+<h1 id="Composition-API"><a href="#Composition-API" class="headerlink" title="Composition API"></a>Composition API</h1><p>Vue 3 引入了 Composition API，这是一个基于函数的 API，允许开发者根据逻辑功能组织代码，而不是像 Vue 2 中的 Options API 那样基于选项的组件定义。Composition API 更加灵活，使得代码复用和组件逻辑的组织更加清晰。</p>
+<h2 id="Composition-API-和-Options-API"><a href="#Composition-API-和-Options-API" class="headerlink" title="Composition API 和 Options API"></a>Composition API 和 Options API</h2><h3 id="1-Options-API"><a href="#1-Options-API" class="headerlink" title="1. Options API"></a>1. Options API</h3><p>Options API 是 Vue 2.x 中默认使用的 API。它通过将组件的选项（options）放置在一个对象中来组织组件的逻辑。这些选项可以包括 <code>data</code>、<code>methods</code>、<code>computed</code>、<code>watch</code> 等。</p>
+<p>Options API 适合于较小规模的组件或者简单的应用程序。通过将相关的逻辑放置在对应的选项中，使得组件的结构相对清晰，易于理解和维护。</p>
+<p>Options API 的缺点在于，当组件变得较大或者复杂时，所有的选项都放在一个对象中会导致代码结构变得混乱，不易于复用和组织。</p>
+<h3 id="2-Composition-API"><a href="#2-Composition-API" class="headerlink" title="2. Composition API"></a>2. Composition API</h3><p>Composition API 是 Vue 3.x 中引入的一种新的 API。它通过使用函数来组织和管理组件的逻辑，使得代码更加灵活和可组合。<br>Composition API 允许开发者将组件的逻辑代码按照功能划分为多个函数，然后通过在组件中使用这些函数来组装组件的逻辑。这样一来，可以更自然地组织和复用代码，使得组件的结构更清晰。<br>Composition API 提供了更多的灵活性，使得开发者可以更轻松地处理复杂的逻辑需求。它也更适合于跨组件共享逻辑或者在不同组件之间进行代码复用。</p>
+<h1 id="Tree-shaking-支持"><a href="#Tree-shaking-支持" class="headerlink" title="Tree-shaking 支持"></a>Tree-shaking 支持</h1><p>Vue 3 对 Tree-shaking 有更好的支持。通过对模块的静态分析，Vue 3 可以更有效地移除未使用的代码，从而减小最终构建产物的大小。</p>
+<h1 id="TypeScript-支持"><a href="#TypeScript-支持" class="headerlink" title="TypeScript 支持"></a>TypeScript 支持</h1><p>Vue 3 对 TypeScript 的支持更加完善。它提供了更全面和精确的类型定义，使得在使用 <code>TypeScript</code> 开发 Vue 应用时更加顺畅。</p>
+<p>原先 vue2 中 对 <code>javascript</code> 使用 <code>flow</code> 进行类型检测</p>
+<h1 id="响应性系统重构"><a href="#响应性系统重构" class="headerlink" title="响应性系统重构"></a>响应性系统重构</h1><p>Vue 3 对其响应性系统进行了重构，使其更为强大和高效。Vue 3 采用了 <code>Proxy</code> 来实现响应式，相比 Vue 2 中的 <code>Object.defineProperty</code>，Proxy 具有更好的性能和更灵活的用法。</p>
+<h2 id="1-Object-defineProperty"><a href="#1-Object-defineProperty" class="headerlink" title="1. Object.defineProperty"></a>1. Object.defineProperty</h2><p><code>Object.defineProperty</code> 是 <code>ES5</code> 中引入的一种对象属性定义方法，用于直接在一个对象上定义一个新属性，或者修改一个已经存在的属性。<br>它通过定义属性的 <code>get</code> 和 <code>set</code> 方法来实现对属性的拦截和代理。通过这种方式，可以在属性被读取或者赋值时执行一些自定义的逻辑。<br><code>Object.defineProperty</code> 是针对<strong>单个属性</strong>进行操作的，需要针对每个需要代理的属性分别定义，相对来说比较繁琐。</p>
+<h2 id="2-Proxy"><a href="#2-Proxy" class="headerlink" title="2. Proxy"></a>2. Proxy</h2><p><code>Proxy</code> 是 <code>ES6</code> 中引入的一种全新的代理机制，它提供了一种通用的方法来拦截对象的操作，并且可以对<strong>整个对象</strong>进行代理，而不是针对单个属性。<br>通过 Proxy，可以拦截对象的诸多操作，包括属性的读取、赋值、删除等。它提供了一系列的拦截方法，比如 <code>get</code>、<code>set</code>、<code>deleteProperty</code> 等。<br>Proxy 是一种更加灵活和强大的代理机制，相比于 <code>Object.defineProperty</code>，它可以更方便地实现对整个对象的代理，并且可以对所有属性进行统一的处理。</p>
+<p><strong><code>Object.defineProperty</code> 主要用于对单个属性进行拦截和代理，而 <code>Proxy</code> 则是一种更为通用和强大的代理机制，可以对整个对象进行代理，并且提供了更多的拦截方法</strong>。在现代的 JavaScript 开发中，通常推荐使用 Proxy 来实现对象的拦截和代理，因为它提供了更多的功能和更灵活的使用方式。</p>
+<h1 id="Teleport"><a href="#Teleport" class="headerlink" title="Teleport"></a>Teleport</h1><p>Vue 3 引入了 Teleport 特性，这是一种可以将<strong>子组件的内容渲染到父组件的指定<code>DOM</code> 位置</strong>的机制。Teleport 可以用于实现模态框、弹出菜单等组件，使得它们的位置更加灵活。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;button @click=&quot;toggleModal&quot;&gt;Toggle Modal&lt;/button&gt;</span><br><span class="line">    &lt;teleport to=&quot;body&quot;&gt;</span><br><span class="line">      &lt;modal v-if=&quot;showModal&quot; /&gt;</span><br><span class="line">    &lt;/teleport&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; ref &#125; from &quot;vue&quot;;</span><br><span class="line">import Modal from &quot;./Modal.vue&quot;;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    Modal,</span><br><span class="line">  &#125;,</span><br><span class="line">  setup() &#123;</span><br><span class="line">    const showModal = ref(false);</span><br><span class="line"></span><br><span class="line">    const toggleModal = () =&gt; &#123;</span><br><span class="line">      showModal.value = !showModal.value;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    return &#123;</span><br><span class="line">      showModal,</span><br><span class="line">      toggleModal,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的例子中，我们通过 Teleport 将 Modal 组件的内容传送到了 body 元素下，从而实现了模态框的渲染。</p>
+<h1 id="Suspense"><a href="#Suspense" class="headerlink" title="Suspense"></a>Suspense</h1><p>Vue 3 引入了 Suspense 特性，这是一种用于处理异步组件渲染的机制。开发者可以使用 Suspense 来优雅地处理组件加载过程中的加载状态，以及在组件加载失败时的错误处理。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;suspense&gt;</span><br><span class="line">    &lt;template #default&gt;</span><br><span class="line">      &lt;async-component /&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">    &lt;template #fallback&gt;</span><br><span class="line">      &lt;div&gt;Loading...&lt;/div&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">  &lt;/suspense&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; defineAsyncComponent &#125; from &quot;vue&quot;;</span><br><span class="line"></span><br><span class="line">const AsyncComponent = defineAsyncComponent(() =&gt;</span><br><span class="line">  import(&quot;./AsyncComponent.vue&quot;)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    AsyncComponent,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的例子中，Suspense 包裹了一个异步组件<code>AsyncComponent</code>，并通过<code>fallback</code>插槽提供了一个加载状态的占位符。当异步组件加载时，会先显示 fallback 中的内容，直到异步组件加载完成后，才会显示 AsyncComponent 的内容</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vue/" rel="tag"># vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/06/20/closure/" rel="prev" title="闭包">
+                  <i class="fa fa-angle-left"></i> 闭包
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/09/20/generate-dom/" rel="next" title="Dom树怎么形成">
+                  Dom树怎么形成 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2019 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">wm</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

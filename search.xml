@@ -816,6 +816,13 @@
 <li>Web Workers 是真正的多线程</li>
 <li>Service Worker 是 Web Worker 的一个子类</li>
 </ul>
+<blockquote>
+<p>webpack 最常见的应用是耗时的计算，比如可视化操作，绘画，web 游戏，电子表单那种上万的数据</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">let worker = new Worker(&quot;http://localhots:5157/list.js&quot;, &#123;</span><br><span class="line">  type: &quot;module&quot;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">worker.addEventListener(&quot;message&quot;, (e) =&gt; &#123;</span><br><span class="line">  console.log(e.data);</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;button</span><br><span class="line">    @click=&quot;</span><br><span class="line">      () =&gt; &#123;</span><br><span class="line">        worker.postMessage(&#123;</span><br><span class="line">          a: 123,</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &quot;</span><br><span class="line">  &gt;</span><br><span class="line">    发消息给worker</span><br><span class="line">  &lt;/button&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// list.js</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">1</span> + <span class="number">1</span>;</span><br><span class="line">self.<span class="title function_">postMessage</span>(a);</span><br><span class="line">self.<span class="title function_">addEventListener</span>(<span class="string">&quot;message&quot;</span>, <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(e);</span><br><span class="line">  self.<span class="title function_">postMessage</span>(<span class="string">&quot;收到&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <h1 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h1><ul>
 <li>它是一种 Web worker，不能直接访问 DOM</li>
 <li>它有自己独立的生命周期，不和特定网页相关联</li>
@@ -899,6 +906,9 @@
 <p>打开 <code>chrome://inspect/#service-workers</code> 管理浏览器中的 Service Worker</p>
 <p>参考资料：<br><a href="https://github.com/ChangbaFE/presentation">ChangbaFE&#x2F;presentation</a></p>
 ]]></content>
+      <tags>
+        <tag>web</tag>
+      </tags>
   </entry>
   <entry>
     <title>sleep 函数</title>
@@ -2378,6 +2388,109 @@ return 301 https://$host$request_uri;
 ]]></content>
       <tags>
         <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>js中精度丢失问题</title>
+    <url>/2023/06/26/precision-loss/</url>
+    <content><![CDATA[<p>JavaScript 精度丢失问题通常指的是浮点数精度丢失的情况，这是由于 JavaScript 中的浮点数采用 <code>IEEE 754</code> 标准表示，而该标准无法准确表示一些十进制小数。这可能导致在进行浮点数运算时出现意外的结果或精度损失。</p>
+<p><code>0.1 + 0.2 // 返回0.30000000000000004</code></p>
+<p>这种情况的出现是因为 0.1 和 0.2 的二进制表示无法精确地表示为有限位数的浮点数，因此在进行加法运算时会产生微小的误差。</p>
+<p>为了解决 JavaScript 中的精度丢失问题，可以采用以下方法之一：</p>
+<ol>
+<li>避免直接比较浮点数：在比较浮点数时，尽量避免直接使用相等运算符（例如 &#x3D;&#x3D;），而是使用一个误差范围来比较，例如：</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> epsilon = <span class="number">0.000001</span>;</span><br><span class="line"><span class="title class_">Math</span>.<span class="title function_">abs</span>(<span class="number">0.1</span> + <span class="number">0.2</span> - <span class="number">0.3</span>) &lt; epsilon; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>使用专门的库：一些专门的 JavaScript 库（例如 <code>BigNumber.js</code>）提供了高精度的数学运算，可以避免浮点数精度丢失的问题。</p>
+</li>
+<li><p>转换为整数处理：在一些情况下，将浮点数转换为整数处理可以避免精度丢失问题，例如乘以一个适当的倍数后进行整数运算，然后再将结果转换回浮点数。</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> floatNumber = <span class="number">0.1</span> + <span class="number">0.2</span>;</span><br><span class="line"><span class="comment">// 定义一个倍数（可以是 10 的幂，根据需要调整）</span></span><br><span class="line"><span class="keyword">const</span> multiplier = <span class="number">1000000</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将浮点数乘以倍数并转换为整数</span></span><br><span class="line"><span class="keyword">const</span> integerNumber = <span class="title class_">Math</span>.<span class="title function_">round</span>(floatNumber * multiplier);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> result = integerNumber + <span class="number">12345</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将结果再除以相同的倍数来还原为原始的浮点数</span></span><br><span class="line"><span class="keyword">const</span> finalResult = result / multiplier;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(finalResult); <span class="comment">// 0.300012345</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>使用 toFixed()方法：在显示浮点数时，可以使用 <code>toFixed()</code> 方法将浮点数转换为指定小数位数的字符串，以避免精度丢失问题：</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> number = <span class="number">0.1</span> + <span class="number">0.2</span>;</span><br><span class="line"><span class="keyword">const</span> fixedNumber = (<span class="number">0.1</span> + <span class="number">0.2</span>).<span class="title function_">toFixed</span>(<span class="number">2</span>); <span class="comment">// 将结果四舍五入到小数点后两位</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(fixedNumber); <span class="comment">// 输出 &quot;0.30&quot;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git</title>
+    <url>/2022/11/18/git/</url>
+    <content><![CDATA[<h1 id="merge-vs-rebase"><a href="#merge-vs-rebase" class="headerlink" title="merge vs rebase"></a>merge vs rebase</h1><p>在 Git 中，Merge 和 Rebase 是两种常见的分支合并策略，它们分别用于将一个分支的更改合并到另一个分支上，但它们的工作方式和影响略有不同。</p>
+<h2 id="Merge（合并）"><a href="#Merge（合并）" class="headerlink" title="Merge（合并）"></a>Merge（合并）</h2><p>Merge 操作将两个分支的历史合并为一个新的合并提交。这个合并提交有两个父提交，分别代表了合并前的两个分支。Merge 操作会保留原始分支的历史记录，因此在分支图中会形成一个新的合并节点。</p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li><p><strong>保留分支历史</strong>：Merge 操作会保留原始分支的完整历史记录，包括合并提交。这使得分支的历史记录更加清晰可见。</p>
+</li>
+<li><p><strong>生成合并提交</strong>：Merge 操作会生成一个新的合并提交，该提交包含了合并前的两个分支的更改。</p>
+</li>
+<li><p><strong>保留分支结构</strong>：Merge 操作会保留分支的结构，不会改变提交的顺序或线性性。</p>
+</li>
+</ul>
+<h2 id="Rebase（变基）"><a href="#Rebase（变基）" class="headerlink" title="Rebase（变基）"></a>Rebase（变基）</h2><p>Rebase 操作是将当前分支的提交重新应用到另一个分支上。它会将当前分支的提交逐个应用到目标分支的最新提交上，并在此过程中解决可能出现的冲突。Rebase 操作会改变提交的顺序和历史，使得合并后的提交历史更加线性化。</p>
+<h3 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h3><ul>
+<li><p><strong>线性化提交历史</strong>：Rebase 操作会将当前分支的提交逐个应用到目标分支的最新提交上，从而使得提交历史更加线性化。</p>
+</li>
+<li><p><strong>不产生合并提交</strong>：与 Merge 不同，Rebase 不会生成新的合并提交，而是将当前分支的提交直接放置在目标分支的顶部。</p>
+</li>
+<li><p><strong>改变提交的哈希值</strong>：由于 Rebase 改变了提交的历史，因此会改变提交的哈希值。因此，不建议对已发布的提交进行 Rebase 操作。</p>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><code>Merge</code> 适用于合并两个独立开发的分支，而 <code>Rebase</code> 则适用于保持提交历史的线性化。</p>
+<h1 id="revert-vs-reset"><a href="#revert-vs-reset" class="headerlink" title="revert vs reset"></a>revert vs reset</h1><h2 id="revert"><a href="#revert" class="headerlink" title="revert"></a>revert</h2><p>git revert 命令用于撤销之前的提交，但是通过创建一个<strong>新的提交</strong>来实现。新的提交包含了撤销了原来提交的更改。使用 revert 命令可以在撤销提交的同时保留提交历史，不会改变历史记录。</p>
+<h2 id="reset"><a href="#reset" class="headerlink" title="reset"></a>reset</h2><p><code>git reset</code> 命令用于将 HEAD 指针移动到另一个提交，并且可以选择保留或丢弃修改。reset 命令有三种模式：<code>--soft</code>、<code>--mixed</code> 和 <code>--hard</code>。</p>
+<ul>
+<li><code>--soft</code> 模式：仅移动 HEAD 指针，不会修改暂存区和工作目录的内容。</li>
+<li><code>--mixed</code> 模式（默认模式）：移动 HEAD 指针，并且重置暂存区，但是不会修改工作目录的内容。</li>
+<li><code>--hard</code> 模式：移动 HEAD 指针，并且重置暂存区和工作目录的内容，将其回退到指定提交的状态。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --soft &lt;commit&gt;</span><br><span class="line">git reset --mixed &lt;commit&gt;</span><br><span class="line">git reset --hard &lt;commit&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>虚拟列表</title>
+    <url>/2023/08/10/virtual-list/</url>
+    <content><![CDATA[<p>前端的虚拟列表（Virtual List）是一种优化大型数据列表性能的技术。当需要在网页或应用程序中展示大量数据时，传统的方式是一次性渲染所有数据，这可能导致页面加载缓慢和性能下降。虚拟列表通过只渲染用户可见区域内的数据项，以及动态地加载和卸载数据项，来解决这个问题</p>
+<h1 id="怎么做？"><a href="#怎么做？" class="headerlink" title="怎么做？"></a>怎么做？</h1><ol>
+<li>分页显示：虚拟列表将数据分页显示，只渲染用户当前可见区域内的数据项，而不是一次性渲染所有数据。</li>
+</ol>
+<span id="more"></span>
+
+<ol start="2">
+<li><p>动态加载：随着用户滚动页面或列表，虚拟列表会根据用户的滚动位置，动态地加载新的数据项进入可见区域，同时卸载不再可见的数据项，以减少渲染开销。</p>
+</li>
+<li><p>缓存机制：为了提高性能，虚拟列表通常会采用缓存机制，预先渲染一些超出可见区域的数据项，以便在用户滚动时能够快速显示。</p>
+</li>
+<li><p>列表项高度统一化：为了更好地计算和控制可见区域内的数据项，虚拟列表通常要求所有列表项的高度是统一的，或者能够以某种方式被统一。</p>
+</li>
+</ol>
+<h1 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h1><ol>
+<li><p>性能优化：虚拟列表可以极大地提升页面或应用程序对大型数据列表的性能表现，减少初始化和渲染时间，提高用户体验。</p>
+</li>
+<li><p>内存消耗低：由于只渲染可见区域的数据项，虚拟列表可以大大降低内存消耗，尤其在处理大数据量时尤为明显。</p>
+</li>
+<li><p>流畅滚动：通过动态加载和卸载数据项，虚拟列表可以实现流畅的滚动效果，即使数据量很大也能够保持良好的性能。</p>
+</li>
+</ol>
+<h1 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h1><ol>
+<li><p>复杂性：实现虚拟列表可能需要较高的技术要求，涉及到数据分页、滚动监听、缓存管理等复杂逻辑，增加了开发的复杂性。</p>
+</li>
+<li><p>不适用于所有场景：虽然虚拟列表适用于大型数据列表的展示，但在一些特定场景下，例如列表项高度不固定或数据项需要频繁变动的情况下，虚拟列表可能不太适用。</p>
+</li>
+<li><p>滚动条问题：由于虚拟列表动态加载数据，可能会影响浏览器原生滚动条的行为，需要额外处理滚动事件以保证滚动体验的一致性。</p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>性能优化</tag>
       </tags>
   </entry>
 </search>

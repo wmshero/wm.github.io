@@ -19,25 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="article">
-<meta property="og:title" content="requestAnimationFrame">
-<meta property="og:url" content="http://example.com/2024/03/13/requestAnimationFrame/index.html">
+    <meta name="description" content="在 Vue.js 中， nextTick方法用于在 DOM 更新之后执行回调函数。它的使用方式是调用 this.$nextTick()，并传入一个回调函数作为参数。回调函数将在 DOM 更新之后被执行，这样可以确保在修改数据之后立即操作 DOM。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue中的nextTick">
+<meta property="og:url" content="http://example.com/2023/12/26/vue-nextTick/index.html">
 <meta property="og:site_name" content="wm&#39;s blog">
+<meta property="og:description" content="在 Vue.js 中， nextTick方法用于在 DOM 更新之后执行回调函数。它的使用方式是调用 this.$nextTick()，并传入一个回调函数作为参数。回调函数将在 DOM 更新之后被执行，这样可以确保在修改数据之后立即操作 DOM。">
 <meta property="og:locale">
-<meta property="article:published_time" content="2024-03-13T10:16:26.000Z">
-<meta property="article:modified_time" content="2024-03-13T10:16:26.388Z">
+<meta property="article:published_time" content="2023-12-26T10:55:59.000Z">
+<meta property="article:modified_time" content="2024-03-26T11:03:34.700Z">
 <meta property="article:author" content="wm">
+<meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2024/03/13/requestAnimationFrame/">
+<link rel="canonical" href="http://example.com/2023/12/26/vue-nextTick/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2024/03/13/requestAnimationFrame/","path":"2024/03/13/requestAnimationFrame/","title":"requestAnimationFrame"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2023/12/26/vue-nextTick/","path":"2023/12/26/vue-nextTick/","title":"vue中的nextTick"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>requestAnimationFrame | wm's blog</title>
+<title>vue中的nextTick | wm's blog</title>
   
 
 
@@ -96,7 +99,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -109,6 +112,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81-nextTick"><span class="nav-number">1.</span> <span class="nav-text">为什么要 nextTick</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -132,7 +136,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -168,7 +172,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/03/13/requestAnimationFrame/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/26/vue-nextTick/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -181,12 +185,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="requestAnimationFrame | wm's blog">
+      <meta itemprop="name" content="vue中的nextTick | wm's blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          requestAnimationFrame
+          vue中的nextTick
         </h1>
 
         <div class="post-meta-container">
@@ -197,7 +201,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2024-03-13 18:16:26" itemprop="dateCreated datePublished" datetime="2024-03-13T18:16:26+08:00">2024-03-13</time>
+      <time title="Created: 2023-12-26 18:55:59" itemprop="dateCreated datePublished" datetime="2023-12-26T18:55:59+08:00">2023-12-26</time>
     </span>
 
   
@@ -209,7 +213,19 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body" itemprop="articleBody"><p>在 Vue.js 中， <code>nextTick</code>方法用于在 DOM 更新之后执行回调函数。它的使用方式是调用 <code>this.$nextTick()</code>，并传入一个回调函数作为参数。回调函数将在 DOM 更新之后被执行，这样可以确保在修改数据之后立即操作 DOM。</p>
+<span id="more"></span>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createApp, nextTick &#125; <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">createApp</span>(&#123;</span><br><span class="line">  <span class="title function_">setup</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> message = <span class="title function_">ref</span>(<span class="string">&quot;Hello!&quot;</span>);</span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">changeMessage</span> = <span class="keyword">async</span> (<span class="params">newMessage</span>) =&gt; &#123;</span><br><span class="line">      message.<span class="property">value</span> = newMessage;</span><br><span class="line">      <span class="comment">// 这里获取DOM的value是旧值</span></span><br><span class="line">      <span class="keyword">await</span> <span class="title function_">nextTick</span>();</span><br><span class="line">      <span class="comment">// nextTick 后获取DOM的value是更新后的值</span></span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Now DOM is updated&quot;</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><code>nextTick</code> 方法的原理是利用 JavaScript 的<strong>事件循环机制</strong>。当你修改了 Vue 实例的数据后，Vue 引擎会在下一个事件循环周期中异步地执行 DOM 更新。而 <code>nextTick</code> 方法正是在当前的事件循环周期结束时注册一个<strong>微任务</strong>，确保其回调函数在下一个 DOM 更新之后执行。</p>
+<p>具体来说，nextTick 方法会利用浏览器提供的 <code>Promise</code>、<code>MutationObserver</code> 或 <code>setImmediate</code>（如果可用）等异步任务调度机制，在下一个微任务或宏任务中执行注册的回调函数。这样可以确保回调函数在 DOM 更新之后被调用，从而避免了在修改数据之后立即操作 DOM 可能导致的问题。</p>
+<h1 id="为什么要-nextTick"><a href="#为什么要-nextTick" class="headerlink" title="为什么要 nextTick"></a>为什么要 nextTick</h1><p>一个例子让大家明白，如果没有 nextTick 更新机制，那么 num 每次更新值都会触发视图更新，有了 nextTick 机制，只需要更新一次，所以为什么有 nextTick 存在，相信大家心里已经有答案了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;num&#125;&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">let</span> i=0; i&lt;100000; i++)&#123;</span><br><span class="line">	num = i</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>nextTick 是 vue 中的更新策略，也是性能优化手段，基于 JS 执行机制实现</p>
+<p>vue 中我们改变数据时不会立即触发视图，如果需要实时获取到最新的 DOM，这个时候可以手动调用 nextTick</p>
+
     </div>
 
     
@@ -217,18 +233,21 @@
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vue/" rel="tag"># vue</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/03/10/asset-module/" rel="prev" title="Asset Modules资源模块">
-                  <i class="fa fa-angle-left"></i> Asset Modules资源模块
+                <a href="/2023/12/22/upload-big-file/" rel="prev" title="前端文件流、切片下载和上传">
+                  <i class="fa fa-angle-left"></i> 前端文件流、切片下载和上传
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/03/18/algorithm-share/" rel="next" title="算法可视化网站分享">
-                  算法可视化网站分享 <i class="fa fa-angle-right"></i>
+                <a href="/2023/12/27/NodeJs-Express/" rel="next" title="NodeJs-Express">
+                  NodeJs-Express <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>

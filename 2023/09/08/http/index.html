@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="怎么知道网站用的 http 协议版本？F12-&gt; network -&gt;右击 Tab,勾选 Protocal">
+<meta property="og:type" content="article">
+<meta property="og:title" content="http协议">
+<meta property="og:url" content="http://example.com/2023/09/08/http/index.html">
+<meta property="og:site_name" content="wm&#39;s blog">
+<meta property="og:description" content="怎么知道网站用的 http 协议版本？F12-&gt; network -&gt;右击 Tab,勾选 Protocal">
+<meta property="og:locale">
+<meta property="article:published_time" content="2023-09-08T07:26:38.000Z">
+<meta property="article:modified_time" content="2024-03-28T08:41:03.239Z">
+<meta property="article:author" content="wm">
+<meta property="article:tag" content="http">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2023/09/08/http/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2023/09/08/http/","path":"2023/09/08/http/","title":"http协议"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>http协议 | wm's blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">wm's blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E7%9F%A5%E9%81%93%E7%BD%91%E7%AB%99%E7%94%A8%E7%9A%84-http-%E5%8D%8F%E8%AE%AE%E7%89%88%E6%9C%AC%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">怎么知道网站用的 http 协议版本？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP-%E5%92%8C-HTTPS-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">2.</span> <span class="nav-text">HTTP 和 HTTPS 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE"><span class="nav-number">2.1.</span> <span class="nav-text">HTTP: 超文本传输协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS-%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%AE%89%E5%85%A8%E5%8D%8F%E8%AE%AE"><span class="nav-number">2.2.</span> <span class="nav-text">HTTPS: 超文本传输安全协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS-%E7%9A%84%E6%9C%BA%E5%AF%86"><span class="nav-number">2.3.</span> <span class="nav-text">HTTPS 的机密</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTPS-%E5%8A%A0%E5%AF%86%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">2.3.1.</span> <span class="nav-text">HTTPS 加密的工作流程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP1-1%E3%80%81-HTTP2%E3%80%81HTTP3"><span class="nav-number">3.</span> <span class="nav-text">HTTP1.1、 HTTP2、HTTP3</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-1-1"><span class="nav-number">3.1.</span> <span class="nav-text">HTTP&#x2F;1.1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="nav-number">3.1.1.</span> <span class="nav-text">特点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9%EF%BC%9A"><span class="nav-number">3.1.2.</span> <span class="nav-text">缺点：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP2"><span class="nav-number">3.2.</span> <span class="nav-text">HTTP2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E7%82%B9%EF%BC%9A-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">特点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%82%B9%EF%BC%9A"><span class="nav-number">3.2.2.</span> <span class="nav-text">优点：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP3"><span class="nav-number">3.3.</span> <span class="nav-text">HTTP3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E7%82%B9%EF%BC%9A-2"><span class="nav-number">3.3.1.</span> <span class="nav-text">特点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%82%B9%EF%BC%9A-1"><span class="nav-number">3.3.2.</span> <span class="nav-text">优点：</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">wm</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="/1494601749@qq.com" title="E-Mail → 1494601749@qq.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/08/http/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="wm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="http协议 | wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          http协议
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-09-08 15:26:38" itemprop="dateCreated datePublished" datetime="2023-09-08T15:26:38+08:00">2023-09-08</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="怎么知道网站用的-http-协议版本？"><a href="#怎么知道网站用的-http-协议版本？" class="headerlink" title="怎么知道网站用的 http 协议版本？"></a>怎么知道网站用的 http 协议版本？</h1><p>F12-&gt; network -&gt;右击 Tab,勾选 Protocal</p>
+<span id="more"></span>
+
+<h1 id="HTTP-和-HTTPS-的区别"><a href="#HTTP-和-HTTPS-的区别" class="headerlink" title="HTTP 和 HTTPS 的区别"></a>HTTP 和 HTTPS 的区别</h1><p>s</p>
+<h2 id="HTTP-超文本传输协议"><a href="#HTTP-超文本传输协议" class="headerlink" title="HTTP: 超文本传输协议"></a>HTTP: 超文本传输协议</h2><ol>
+<li>端口 ：80</li>
+<li>明文传输，没有数据加密，不安全</li>
+<li>不需要证书</li>
+</ol>
+<h2 id="HTTPS-超文本传输安全协议"><a href="#HTTPS-超文本传输安全协议" class="headerlink" title="HTTPS: 超文本传输安全协议"></a>HTTPS: 超文本传输安全协议</h2><ol>
+<li>端口： 443</li>
+<li>SSL&#x2F;TLS 加密传输协议</li>
+<li>https 需要 ca 证书，一般没有免费证书，需要一定的费用</li>
+</ol>
+<h2 id="HTTPS-的机密"><a href="#HTTPS-的机密" class="headerlink" title="HTTPS 的机密"></a>HTTPS 的机密</h2><p>HTTPS 的加密使用了对称加密和非对称加密的组合</p>
+<h3 id="HTTPS-加密的工作流程"><a href="#HTTPS-加密的工作流程" class="headerlink" title="HTTPS 加密的工作流程"></a>HTTPS 加密的工作流程</h3><ol>
+<li>建立连接</li>
+</ol>
+<ul>
+<li>客户端向服务器发送连接请求。</li>
+<li>服务器响应，并返回其 SSL 证书，其中包含了公钥。</li>
+</ul>
+<ol start="2">
+<li>验证证书</li>
+</ol>
+<ul>
+<li>客户端收到服务器的证书后，会验证证书的有效性。这包括检查证书是否由受信任的证书颁发机构（CA）签发，以及是否在有效期内。</li>
+<li>如果证书有效，则客户端生成一个随机的对称密钥，并使用服务器的公钥对其进行加密，然后将其发送回服务器。</li>
+</ul>
+<ol start="3">
+<li>建立安全连接</li>
+</ol>
+<ul>
+<li>服务器接收到客户端发送的加密后的对称密钥，并使用私钥解密。</li>
+<li>之后，客户端和服务器都拥有了相同的对称密钥，用于加密和解密通信内容。</li>
+</ul>
+<ol start="4">
+<li>安全通信</li>
+</ol>
+<ul>
+<li>客户端和服务器使用这个对称密钥来加密和解密其之间的通信数据。</li>
+<li>通信数据在传输过程中保持加密状态，从而防止被窃听或篡改。</li>
+</ul>
+<p>关于加密过程中使用的加密算法：</p>
+<ul>
+<li><p><strong>对称加密</strong>：对称加密使用相同的密钥进行加密和解密。在 HTTPS 连接建立过程中，对称加密算法用于加密实际的数据传输，因为对称加密算法通常速度较快，适合大量数据的加密和解密。</p>
+</li>
+<li><p><strong>非对称加密</strong>：非对称加密使用一对密钥，即公钥和私钥。公钥用于加密数据，私钥用于解密数据。在 HTTPS 连接建立过程中，服务器的公钥用于加密客户端生成的对称密钥，确保只有服务器持有对应的私钥才能解密对称密钥，从而保证通信的机密性。</p>
+</li>
+</ul>
+<h1 id="HTTP1-1、-HTTP2、HTTP3"><a href="#HTTP1-1、-HTTP2、HTTP3" class="headerlink" title="HTTP1.1、 HTTP2、HTTP3"></a>HTTP1.1、 HTTP2、HTTP3</h1><h2 id="HTTP-1-1"><a href="#HTTP-1-1" class="headerlink" title="HTTP&#x2F;1.1"></a>HTTP&#x2F;1.1</h2><p>HTTP&#x2F;1.1 是最早的标准化版本，最初定义于 RFC 2616。</p>
+<h3 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h3><ul>
+<li>每次请求都需要建立新的 TCP 连接。</li>
+<li>串行传输：在同一连接上，客户端和服务器一次只能发送一个请求或响应。</li>
+<li>阻塞：某个请求&#x2F;响应的延迟会阻塞后续请求&#x2F;响应。</li>
+<li>头部冗余：每个请求都会携带相同的头部信息。</li>
+</ul>
+<h3 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h3><ul>
+<li>性能瓶颈：多个资源请求会受到连接数限制，影响性能。</li>
+<li>网络利用率低：因为串行传输和头部冗余，导致网络利用率低下。</li>
+</ul>
+<h2 id="HTTP2"><a href="#HTTP2" class="headerlink" title="HTTP2"></a>HTTP2</h2><p>HTTP&#x2F;2 是 HTTP&#x2F;1.1 的进化版本，通过 Google 的 SPDY 协议演化而来，目前由 RFC 7540 定义。</p>
+<h3 id="特点：-1"><a href="#特点：-1" class="headerlink" title="特点："></a>特点：</h3><ul>
+<li>多路复用：在同一连接上，允许多个请求和响应同时交错传输。</li>
+<li>头部压缩：减少了头部信息的大小，降低了数据传输量。</li>
+<li>服务器推送：服务器可以主动向客户端推送资源，提高性能。</li>
+<li>优化流程：通过二进制协议优化了数据传输流程。</li>
+</ul>
+<h3 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h3><ul>
+<li>性能提升：多路复用和头部压缩等特性大幅提高了性能。</li>
+<li>资源利用率提高：同一连接上多个请求共享资源，提高了网络利用率</li>
+</ul>
+<h2 id="HTTP3"><a href="#HTTP3" class="headerlink" title="HTTP3"></a>HTTP3</h2><p>HTTP&#x2F;3 是基于 UDP 的新协议，旨在进一步提高性能，由 IETF 的 QUIC 协议演化而来。</p>
+<h3 id="特点：-2"><a href="#特点：-2" class="headerlink" title="特点："></a>特点：</h3><ul>
+<li>基于 UDP：通过 QUIC 协议实现，使用 UDP 作为传输层协议，避免 TCP 的一些限制。</li>
+<li>多路复用：与 HTTP&#x2F;2 类似，支持在同一连接上并行传输多个请求和响应。</li>
+<li>0-RTT：支持 0-RTT（零往返时间），可以更快地建立连接和传输数据。</li>
+<li>抗丢包：QUIC 实现了自己的流量控制和拥塞控制，更好地适应了丢包情况。</li>
+</ul>
+<h3 id="优点：-1"><a href="#优点：-1" class="headerlink" title="优点："></a>优点：</h3><p>进一步提高性能：通过 UDP 和其他优化，进一步提高了性能和可靠性。<br>减少网络延迟：支持 0-RTT 可以减少连接建立时间，降低延迟。</p>
+<p>总的来说，HTTP&#x2F;2 在 HTTP&#x2F;1.1 的基础上引入了多路复用和头部压缩等特性，大幅提升了性能。而 HTTP&#x2F;3 则在 HTTP&#x2F;2 的基础上进一步通过使用 UDP 和其他优化提高了性能和可靠性，尤其在面对高延迟和丢包的网络环境下具有优势。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/http/" rel="tag"># http</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/08/10/virtual-list/" rel="prev" title="虚拟列表">
+                  <i class="fa fa-angle-left"></i> 虚拟列表
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/09/20/generate-dom/" rel="next" title="Dom树怎么形成">
+                  Dom树怎么形成 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2019 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">wm</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

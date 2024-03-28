@@ -1647,6 +1647,9 @@ return 301 https://$host$request_uri;
 <ol start="4">
 <li>应用差异：一旦找到了两棵虚拟 DOM 树之间的差异，React 就会根据这些差异来进行相应的操作，更新真实 DOM。</li>
 </ol>
+<blockquote>
+<p>vue 中的 diff 算法在对新旧虚拟 dom 对比时，是从节点的两侧向中间对比，如果节点的 key 值和元素类型相同，属性值不同，就认为是不同节点，会将该节点删除重建<br>react 中的 diff 算法在对新旧虚拟 dom 对比时，是从节点的左边向右边对比，如果节点的 key 值和元素类型相同，属性值不同，就认为是节点同类型，只修改当前节点的属性</p>
+</blockquote>
 <h3 id="逻辑"><a href="#逻辑" class="headerlink" title="逻辑"></a>逻辑</h3><ol>
 <li>Tree diff</li>
 </ol>
@@ -2546,6 +2549,95 @@ return 301 https://$host$request_uri;
 ]]></content>
       <tags>
         <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>http协议</title>
+    <url>/2023/09/08/http/</url>
+    <content><![CDATA[<h1 id="怎么知道网站用的-http-协议版本？"><a href="#怎么知道网站用的-http-协议版本？" class="headerlink" title="怎么知道网站用的 http 协议版本？"></a>怎么知道网站用的 http 协议版本？</h1><p>F12-&gt; network -&gt;右击 Tab,勾选 Protocal</p>
+<span id="more"></span>
+
+<h1 id="HTTP-和-HTTPS-的区别"><a href="#HTTP-和-HTTPS-的区别" class="headerlink" title="HTTP 和 HTTPS 的区别"></a>HTTP 和 HTTPS 的区别</h1><p>s</p>
+<h2 id="HTTP-超文本传输协议"><a href="#HTTP-超文本传输协议" class="headerlink" title="HTTP: 超文本传输协议"></a>HTTP: 超文本传输协议</h2><ol>
+<li>端口 ：80</li>
+<li>明文传输，没有数据加密，不安全</li>
+<li>不需要证书</li>
+</ol>
+<h2 id="HTTPS-超文本传输安全协议"><a href="#HTTPS-超文本传输安全协议" class="headerlink" title="HTTPS: 超文本传输安全协议"></a>HTTPS: 超文本传输安全协议</h2><ol>
+<li>端口： 443</li>
+<li>SSL&#x2F;TLS 加密传输协议</li>
+<li>https 需要 ca 证书，一般没有免费证书，需要一定的费用</li>
+</ol>
+<h2 id="HTTPS-的机密"><a href="#HTTPS-的机密" class="headerlink" title="HTTPS 的机密"></a>HTTPS 的机密</h2><p>HTTPS 的加密使用了对称加密和非对称加密的组合</p>
+<h3 id="HTTPS-加密的工作流程"><a href="#HTTPS-加密的工作流程" class="headerlink" title="HTTPS 加密的工作流程"></a>HTTPS 加密的工作流程</h3><ol>
+<li>建立连接</li>
+</ol>
+<ul>
+<li>客户端向服务器发送连接请求。</li>
+<li>服务器响应，并返回其 SSL 证书，其中包含了公钥。</li>
+</ul>
+<ol start="2">
+<li>验证证书</li>
+</ol>
+<ul>
+<li>客户端收到服务器的证书后，会验证证书的有效性。这包括检查证书是否由受信任的证书颁发机构（CA）签发，以及是否在有效期内。</li>
+<li>如果证书有效，则客户端生成一个随机的对称密钥，并使用服务器的公钥对其进行加密，然后将其发送回服务器。</li>
+</ul>
+<ol start="3">
+<li>建立安全连接</li>
+</ol>
+<ul>
+<li>服务器接收到客户端发送的加密后的对称密钥，并使用私钥解密。</li>
+<li>之后，客户端和服务器都拥有了相同的对称密钥，用于加密和解密通信内容。</li>
+</ul>
+<ol start="4">
+<li>安全通信</li>
+</ol>
+<ul>
+<li>客户端和服务器使用这个对称密钥来加密和解密其之间的通信数据。</li>
+<li>通信数据在传输过程中保持加密状态，从而防止被窃听或篡改。</li>
+</ul>
+<p>关于加密过程中使用的加密算法：</p>
+<ul>
+<li><p><strong>对称加密</strong>：对称加密使用相同的密钥进行加密和解密。在 HTTPS 连接建立过程中，对称加密算法用于加密实际的数据传输，因为对称加密算法通常速度较快，适合大量数据的加密和解密。</p>
+</li>
+<li><p><strong>非对称加密</strong>：非对称加密使用一对密钥，即公钥和私钥。公钥用于加密数据，私钥用于解密数据。在 HTTPS 连接建立过程中，服务器的公钥用于加密客户端生成的对称密钥，确保只有服务器持有对应的私钥才能解密对称密钥，从而保证通信的机密性。</p>
+</li>
+</ul>
+<h1 id="HTTP1-1、-HTTP2、HTTP3"><a href="#HTTP1-1、-HTTP2、HTTP3" class="headerlink" title="HTTP1.1、 HTTP2、HTTP3"></a>HTTP1.1、 HTTP2、HTTP3</h1><h2 id="HTTP-1-1"><a href="#HTTP-1-1" class="headerlink" title="HTTP&#x2F;1.1"></a>HTTP&#x2F;1.1</h2><p>HTTP&#x2F;1.1 是最早的标准化版本，最初定义于 RFC 2616。</p>
+<h3 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h3><ul>
+<li>每次请求都需要建立新的 TCP 连接。</li>
+<li>串行传输：在同一连接上，客户端和服务器一次只能发送一个请求或响应。</li>
+<li>阻塞：某个请求&#x2F;响应的延迟会阻塞后续请求&#x2F;响应。</li>
+<li>头部冗余：每个请求都会携带相同的头部信息。</li>
+</ul>
+<h3 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h3><ul>
+<li>性能瓶颈：多个资源请求会受到连接数限制，影响性能。</li>
+<li>网络利用率低：因为串行传输和头部冗余，导致网络利用率低下。</li>
+</ul>
+<h2 id="HTTP2"><a href="#HTTP2" class="headerlink" title="HTTP2"></a>HTTP2</h2><p>HTTP&#x2F;2 是 HTTP&#x2F;1.1 的进化版本，通过 Google 的 SPDY 协议演化而来，目前由 RFC 7540 定义。</p>
+<h3 id="特点：-1"><a href="#特点：-1" class="headerlink" title="特点："></a>特点：</h3><ul>
+<li>多路复用：在同一连接上，允许多个请求和响应同时交错传输。</li>
+<li>头部压缩：减少了头部信息的大小，降低了数据传输量。</li>
+<li>服务器推送：服务器可以主动向客户端推送资源，提高性能。</li>
+<li>优化流程：通过二进制协议优化了数据传输流程。</li>
+</ul>
+<h3 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h3><ul>
+<li>性能提升：多路复用和头部压缩等特性大幅提高了性能。</li>
+<li>资源利用率提高：同一连接上多个请求共享资源，提高了网络利用率</li>
+</ul>
+<h2 id="HTTP3"><a href="#HTTP3" class="headerlink" title="HTTP3"></a>HTTP3</h2><p>HTTP&#x2F;3 是基于 UDP 的新协议，旨在进一步提高性能，由 IETF 的 QUIC 协议演化而来。</p>
+<h3 id="特点：-2"><a href="#特点：-2" class="headerlink" title="特点："></a>特点：</h3><ul>
+<li>基于 UDP：通过 QUIC 协议实现，使用 UDP 作为传输层协议，避免 TCP 的一些限制。</li>
+<li>多路复用：与 HTTP&#x2F;2 类似，支持在同一连接上并行传输多个请求和响应。</li>
+<li>0-RTT：支持 0-RTT（零往返时间），可以更快地建立连接和传输数据。</li>
+<li>抗丢包：QUIC 实现了自己的流量控制和拥塞控制，更好地适应了丢包情况。</li>
+</ul>
+<h3 id="优点：-1"><a href="#优点：-1" class="headerlink" title="优点："></a>优点：</h3><p>进一步提高性能：通过 UDP 和其他优化，进一步提高了性能和可靠性。<br>减少网络延迟：支持 0-RTT 可以减少连接建立时间，降低延迟。</p>
+<p>总的来说，HTTP&#x2F;2 在 HTTP&#x2F;1.1 的基础上引入了多路复用和头部压缩等特性，大幅提升了性能。而 HTTP&#x2F;3 则在 HTTP&#x2F;2 的基础上进一步通过使用 UDP 和其他优化提高了性能和可靠性，尤其在面对高延迟和丢包的网络环境下具有优势。</p>
+]]></content>
+      <tags>
+        <tag>http</tag>
       </tags>
   </entry>
 </search>

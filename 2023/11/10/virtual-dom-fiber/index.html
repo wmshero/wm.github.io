@@ -27,7 +27,7 @@
 <meta property="og:description" content="在 React 中，Virtual DOM（虚拟 DOM）是一种内存中的表示，它是由 React 创建和维护的一种树形结构，用于表示真实 DOM 的抽象。当状态发生变化时，React 会通过比较新的 Virtual DOM 和旧的 Virtual DOM 的差异来确定需要更新的部分，并将这些变化应用到真实的 DOM 中，从而实现页面的更新。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2023-11-10T06:14:05.000Z">
-<meta property="article:modified_time" content="2024-03-27T09:24:25.496Z">
+<meta property="article:modified_time" content="2024-03-28T03:02:25.487Z">
 <meta property="article:author" content="wm">
 <meta property="article:tag" content="vue,React">
 <meta name="twitter:card" content="summary">
@@ -125,7 +125,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-count">58</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -260,6 +260,9 @@
 <ol start="4">
 <li>应用差异：一旦找到了两棵虚拟 DOM 树之间的差异，React 就会根据这些差异来进行相应的操作，更新真实 DOM。</li>
 </ol>
+<blockquote>
+<p>vue 中的 diff 算法在对新旧虚拟 dom 对比时，是从节点的两侧向中间对比，如果节点的 key 值和元素类型相同，属性值不同，就认为是不同节点，会将该节点删除重建<br>react 中的 diff 算法在对新旧虚拟 dom 对比时，是从节点的左边向右边对比，如果节点的 key 值和元素类型相同，属性值不同，就认为是节点同类型，只修改当前节点的属性</p>
+</blockquote>
 <h3 id="逻辑"><a href="#逻辑" class="headerlink" title="逻辑"></a>逻辑</h3><ol>
 <li>Tree diff</li>
 </ol>

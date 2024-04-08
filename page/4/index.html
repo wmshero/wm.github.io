@@ -119,18 +119,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
-      <div class="site-state-item site-state-categories">
-          <a href="/categories/">
-        <span class="site-state-item-count">18</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">24</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -209,26 +204,14 @@
     <div class="post-body" itemprop="articleBody">
           <p>JavaScript 精度丢失问题通常指的是浮点数精度丢失的情况，这是由于 JavaScript 中的浮点数采用 <code>IEEE 754</code> 标准表示，而该标准无法准确表示一些十进制小数。这可能导致在进行浮点数运算时出现意外的结果或精度损失。</p>
 <p><code>0.1 + 0.2 // 返回0.30000000000000004</code></p>
-<p>这种情况的出现是因为 0.1 和 0.2 的二进制表示无法精确地表示为有限位数的浮点数，因此在进行加法运算时会产生微小的误差。</p>
-<p>为了解决 JavaScript 中的精度丢失问题，可以采用以下方法之一：</p>
-<ol>
-<li>避免直接比较浮点数：在比较浮点数时，尽量避免直接使用相等运算符（例如 &#x3D;&#x3D;），而是使用一个误差范围来比较，例如：</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> epsilon = <span class="number">0.000001</span>;</span><br><span class="line"><span class="title class_">Math</span>.<span class="title function_">abs</span>(<span class="number">0.1</span> + <span class="number">0.2</span> - <span class="number">0.3</span>) &lt; epsilon; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><p>使用专门的库：一些专门的 JavaScript 库（例如 <code>BigNumber.js</code>）提供了高精度的数学运算，可以避免浮点数精度丢失的问题。</p>
-</li>
-<li><p>转换为整数处理：在一些情况下，将浮点数转换为整数处理可以避免精度丢失问题，例如乘以一个适当的倍数后进行整数运算，然后再将结果转换回浮点数。</p>
-</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> floatNumber = <span class="number">0.1</span> + <span class="number">0.2</span>;</span><br><span class="line"><span class="comment">// 定义一个倍数（可以是 10 的幂，根据需要调整）</span></span><br><span class="line"><span class="keyword">const</span> multiplier = <span class="number">1000000</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将浮点数乘以倍数并转换为整数</span></span><br><span class="line"><span class="keyword">const</span> integerNumber = <span class="title class_">Math</span>.<span class="title function_">round</span>(floatNumber * multiplier);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> result = integerNumber + <span class="number">12345</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将结果再除以相同的倍数来还原为原始的浮点数</span></span><br><span class="line"><span class="keyword">const</span> finalResult = result / multiplier;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(finalResult); <span class="comment">// 0.300012345</span></span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>使用 toFixed()方法：在显示浮点数时，可以使用 <code>toFixed()</code> 方法将浮点数转换为指定小数位数的字符串，以避免精度丢失问题：</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> number = <span class="number">0.1</span> + <span class="number">0.2</span>;</span><br><span class="line"><span class="keyword">const</span> fixedNumber = (<span class="number">0.1</span> + <span class="number">0.2</span>).<span class="title function_">toFixed</span>(<span class="number">2</span>); <span class="comment">// 将结果四舍五入到小数点后两位</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(fixedNumber); <span class="comment">// 输出 &quot;0.30&quot;</span></span><br></pre></td></tr></table></figure>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/06/26/precision-loss/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -376,6 +359,82 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/06/18/css-slide/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/08/deepClone/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="wm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/04/08/deepClone/" class="post-title-link" itemprop="url">深拷贝</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-04-08 14:39:41" itemprop="dateCreated datePublished" datetime="2023-04-08T14:39:41+08:00">2023-04-08</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>手写深拷贝</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/04/08/deepClone/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -861,82 +920,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/01/15/garbage-recycling-mechanism/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/14/img-lazyload/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="wm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/12/14/img-lazyload/" class="post-title-link" itemprop="url">实现图片的懒加载</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-12-14 16:00:19" itemprop="dateCreated datePublished" datetime="2022-12-14T16:00:19+08:00">2022-12-14</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>图片的懒加载原理： 当图片元素出现在屏幕中时，才给图片的 src 赋值对应的链接，去加载对应的图片</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/12/14/img-lazyload/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>

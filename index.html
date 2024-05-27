@@ -119,7 +119,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -151,6 +151,94 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/05/27/message-push/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="wm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/05/27/message-push/" class="post-title-link" itemprop="url">实时消息推送的方案</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2024-05-27 14:25:17 / Modified: 14:39:04" itemprop="dateCreated datePublished" datetime="2024-05-27T14:25:17+08:00">2024-05-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ol>
+<li>轮询（不适于频繁请求的场景）</li>
+</ol>
+<ul>
+<li>长轮询 前端发起请求，获取最新的消息，后端不会响应，除非有最新消息，再响应前端<br>会出现线程堆积，造成服务器压力过大</li>
+<li>短轮询 隔一段时间就发送请求，以便获取最新的消息，造成资源浪费，</li>
+</ul>
+<ol start="2">
+<li><p>SSE(Server-Sent Events)<br>SSE 是一种单向的、持久的连接前端发请求，建立一个长链接，服务端会持续向客户端发送响应，这是 HTTP 自带的功能。只能实现服务器到客户端的单向推送。（在线聊天、实时监控、新闻天气推送）</p>
+</li>
+<li><p>WebSocket<br>能够在客户端和服务器之间建立即时的通信连接。通过 WebSocket，服务器可以主动向客户端推送消息，而无需客户端主动请求。这种方案具有实时性好、性能高等优势，适用于大规模的实时推送场景。</p>
+</li>
+</ol>
+<ul>
+<li>netty 就是基于 websocket 封装的实时通信框架</li>
+</ul>
+<ol start="4">
+<li>MQTT<br>发布-订阅模式的传输协议，针对于物联网，适用于资源受限的设备和低带宽，高延迟或不稳定的网络环境，</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -844,84 +932,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/01/23/webpack/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="wm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | wm's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/01/23/webpack/" class="post-title-link" itemprop="url">webpack</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2024-01-23 16:56:45" itemprop="dateCreated datePublished" datetime="2024-01-23T16:56:45+08:00">2024-01-23</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="如何提升-webpack-的构造性能"><a href="#如何提升-webpack-的构造性能" class="headerlink" title="如何提升 webpack 的构造性能"></a>如何提升 webpack 的构造性能</h1><h2 id="1-speed-measure-webpack-plugin"><a href="#1-speed-measure-webpack-plugin" class="headerlink" title="1. speed-measure-webpack-plugin"></a>1. speed-measure-webpack-plugin</h2><p>优化你的 webpack 构建速度的第一步是要知道你应该把注意力集中在哪里，在这里推荐一个插件：<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/speed-measure-webpack-plugin">speed-measure-webpack-plugin</a>，这个插件可以测量你的 webpack 构建速度</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/01/23/webpack/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

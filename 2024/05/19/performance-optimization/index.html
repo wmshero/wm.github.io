@@ -19,25 +19,25 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="指标 首屏速度，白屏时间等 操作速度以及渲染速度  白屏时间： 资源记载时间， 首屏 js 执行渲染页面：首屏数据请求，Dom 渲染">
+    <meta name="description" content="什么是 web 性能？MDN 上的 web 性能定义： Web 性能是网站或应用程序的客观度量和可感知的用户体验。  减少整体加载时间： 减少文件体积、减少 HTTP 请求、使用预加载 使得网站尽快可用：仅加载首屏内容，其他内容根据需要进行懒加载 平滑和交互性：使用 CSS 替代 JS 动画、减少 UI 重绘 感知表现：你的页面可能不难做到更快，但你可以让用户感觉更快。耗时操作要给用户反馈，比如加">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端性能优化">
-<meta property="og:url" content="http://example.com/2024/03/19/performance-optimization/index.html">
+<meta property="og:url" content="http://example.com/2024/05/19/performance-optimization/index.html">
 <meta property="og:site_name" content="wm&#39;s blog">
-<meta property="og:description" content="指标 首屏速度，白屏时间等 操作速度以及渲染速度  白屏时间： 资源记载时间， 首屏 js 执行渲染页面：首屏数据请求，Dom 渲染">
+<meta property="og:description" content="什么是 web 性能？MDN 上的 web 性能定义： Web 性能是网站或应用程序的客观度量和可感知的用户体验。  减少整体加载时间： 减少文件体积、减少 HTTP 请求、使用预加载 使得网站尽快可用：仅加载首屏内容，其他内容根据需要进行懒加载 平滑和交互性：使用 CSS 替代 JS 动画、减少 UI 重绘 感知表现：你的页面可能不难做到更快，但你可以让用户感觉更快。耗时操作要给用户反馈，比如加">
 <meta property="og:locale">
-<meta property="article:published_time" content="2024-03-19T07:49:59.000Z">
-<meta property="article:modified_time" content="2024-03-26T08:39:37.154Z">
+<meta property="article:published_time" content="2024-05-19T07:49:59.000Z">
+<meta property="article:modified_time" content="2024-05-31T07:05:56.494Z">
 <meta property="article:author" content="wm">
 <meta property="article:tag" content="性能优化">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2024/03/19/performance-optimization/">
+<link rel="canonical" href="http://example.com/2024/05/19/performance-optimization/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2024/03/19/performance-optimization/","path":"2024/03/19/performance-optimization/","title":"前端性能优化"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2024/05/19/performance-optimization/","path":"2024/05/19/performance-optimization/","title":"前端性能优化"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>前端性能优化 | wm's blog</title>
@@ -112,7 +112,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%87%E6%A0%87"><span class="nav-number">1.</span> <span class="nav-text">指标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E7%BC%A9%E7%9F%AD%E9%A6%96%E5%B1%8F%E9%80%9F%E5%BA%A6%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">如何缩短首屏速度？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E6%9E%9C%E6%AF%94%E8%BE%83%E5%A5%BD%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-number">2.1.</span> <span class="nav-text">效果比较好的操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E6%9E%9C%E4%B8%8D%E5%A4%AA%E5%A5%BD%E6%88%96%E8%80%85%E5%9C%A8%E7%89%B9%E6%AE%8A%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84%E4%BC%98%E5%8C%96%E6%93%8D%E4%BD%9C"><span class="nav-number">2.2.</span> <span class="nav-text">效果不太好或者在特殊情况下的优化操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E9%80%9F%E5%BA%A6%E5%92%8C%E6%B8%B2%E6%9F%93%E9%80%9F%E5%BA%A6"><span class="nav-number">3.</span> <span class="nav-text">操作速度和渲染速度</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%80%E6%AC%A1%E6%80%A7-%E6%93%8D%E4%BD%9C%E5%A4%A7%E9%87%8F"><span class="nav-number">3.1.</span> <span class="nav-text">1. 一次性 操作大量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%95%BF%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93"><span class="nav-number">3.1.1.</span> <span class="nav-text">长列表渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5%E6%B8%B2%E6%9F%93"><span class="nav-number">3.1.2.</span> <span class="nav-text">异步渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-prefetch-%E5%8A%A0%E8%BD%BD"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">1. prefetch 加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-script-%E5%8A%A0%E8%BD%BD"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">2. script 加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#prefetch-%E5%92%8C-script-%E5%8A%A0%E8%BD%BD-%E5%AF%B9%E6%AF%94%EF%BC%9A"><span class="nav-number">3.1.2.3.</span> <span class="nav-text">prefetch 和 script 加载 对比：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E5%8C%96"><span class="nav-number">3.1.2.4.</span> <span class="nav-text">优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%88%A9%E7%94%A8-setTimeout-%E6%88%96-requestAnimationFrame"><span class="nav-number">3.1.2.5.</span> <span class="nav-text">3. 利用 setTimeout 或 requestAnimationFrame</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E4%BD%BF%E7%94%A8-Web-Workers"><span class="nav-number">3.1.2.6.</span> <span class="nav-text">4. 使用 Web Workers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E6%87%92%E5%8A%A0%E8%BD%BD"><span class="nav-number">3.1.2.7.</span> <span class="nav-text">5. 懒加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E4%BD%BF%E7%94%A8%E5%88%86%E7%89%87%E5%8A%A0%E8%BD%BD"><span class="nav-number">3.1.2.8.</span> <span class="nav-text">6. 使用分片加载</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%BF%9B%E8%A1%8C%E4%BA%86%E5%A4%8D%E6%9D%82%E5%BA%A6%E9%AB%98%E7%9A%84%E8%BF%90%E7%AE%97%EF%BC%88eg-%E5%BE%AA%E7%8E%AF%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">2. 进行了复杂度高的运算（eg:循环）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-vue-%E5%92%8C-react-%E9%A1%B9%E7%9B%AE%E4%B8%AD%EF%BC%8C%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84%E6%B8%B2%E6%9F%93%E5%A4%AA%E5%A4%9A"><span class="nav-number">3.3.</span> <span class="nav-text">3. vue 和 react 项目中，不必要的渲染太多</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vue"><span class="nav-number">3.3.1.</span> <span class="nav-text">vue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#react"><span class="nav-number">3.3.2.</span> <span class="nav-text">react</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98"><span class="nav-number">4.</span> <span class="nav-text">数据缓存</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-web-%E6%80%A7%E8%83%BD%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什么是 web 性能？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C-Web-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">如何进行 Web 性能优化？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%87%E6%A0%87"><span class="nav-number">3.</span> <span class="nav-text">指标</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#RAIL-%E6%80%A7%E8%83%BD%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.1.</span> <span class="nav-text">RAIL 性能模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="nav-number">3.2.</span> <span class="nav-text">基于用户体验的性能指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FCP-%EF%BC%88First-Contentful-Paint%EF%BC%89-%E9%A6%96%E6%AC%A1%E5%86%85%E5%AE%B9%E7%BB%98%E5%88%B6"><span class="nav-number">3.2.1.</span> <span class="nav-text">FCP （First Contentful Paint） 首次内容绘制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LCP-%EF%BC%88-Largest-Contentful-Paint%EF%BC%89-%E6%9C%80%E5%A4%A7%E5%86%85%E5%AE%B9%E7%BB%98%E5%88%B6"><span class="nav-number">3.2.2.</span> <span class="nav-text">LCP （ Largest Contentful Paint） 最大内容绘制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FID%EF%BC%88-First-Input-Delay%EF%BC%89-%E9%A6%96%E6%AC%A1%E8%BE%93%E5%85%A5%E5%BB%B6%E8%BF%9F"><span class="nav-number">3.2.3.</span> <span class="nav-text">FID（ First Input Delay） 首次输入延迟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TTI-Time-to-Interactive"><span class="nav-number">3.2.4.</span> <span class="nav-text">TTI (Time to Interactive)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TBT-Total-Block-Time-%E6%80%BB%E9%98%BB%E5%A1%9E%E6%97%B6%E9%97%B4"><span class="nav-number">3.2.5.</span> <span class="nav-text">TBT (Total Block Time) 总阻塞时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CLS-%EF%BC%88Cumulative-Layout-Shift%EF%BC%89-%E7%B4%AF%E8%AE%A1%E5%B8%83%E5%B1%80%E5%81%8F%E7%A7%BB"><span class="nav-number">3.2.6.</span> <span class="nav-text">CLS （Cumulative Layout Shift） 累计布局偏移</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-Vitals"><span class="nav-number">3.3.</span> <span class="nav-text">Web Vitals</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="nav-number">4.</span> <span class="nav-text">web 性能测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%81%AF%E5%A1%94-Lighthouse"><span class="nav-number">4.1.</span> <span class="nav-text">灯塔 Lighthouse</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebPageTest"><span class="nav-number">4.2.</span> <span class="nav-text">WebPageTest</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chrome-DevTool"><span class="nav-number">4.3.</span> <span class="nav-text">Chrome DevTool</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">5.</span> <span class="nav-text">前端页面的生命周期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E7%BC%A9%E7%9F%AD%E9%A6%96%E5%B1%8F%E9%80%9F%E5%BA%A6%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">如何缩短首屏速度？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E6%9E%9C%E6%AF%94%E8%BE%83%E5%A5%BD%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-number">6.1.</span> <span class="nav-text">效果比较好的操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E6%9E%9C%E4%B8%8D%E5%A4%AA%E5%A5%BD%E6%88%96%E8%80%85%E5%9C%A8%E7%89%B9%E6%AE%8A%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84%E4%BC%98%E5%8C%96%E6%93%8D%E4%BD%9C"><span class="nav-number">6.2.</span> <span class="nav-text">效果不太好或者在特殊情况下的优化操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E9%80%9F%E5%BA%A6%E5%92%8C%E6%B8%B2%E6%9F%93%E9%80%9F%E5%BA%A6"><span class="nav-number">7.</span> <span class="nav-text">操作速度和渲染速度</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%80%E6%AC%A1%E6%80%A7-%E6%93%8D%E4%BD%9C%E5%A4%A7%E9%87%8F"><span class="nav-number">7.1.</span> <span class="nav-text">1. 一次性 操作大量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%95%BF%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93"><span class="nav-number">7.1.1.</span> <span class="nav-text">长列表渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5%E6%B8%B2%E6%9F%93"><span class="nav-number">7.1.2.</span> <span class="nav-text">异步渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-prefetch-%E5%8A%A0%E8%BD%BD"><span class="nav-number">7.1.2.1.</span> <span class="nav-text">1. prefetch 加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-script-%E5%8A%A0%E8%BD%BD"><span class="nav-number">7.1.2.2.</span> <span class="nav-text">2. script 加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#prefetch-%E5%92%8C-script-%E5%8A%A0%E8%BD%BD-%E5%AF%B9%E6%AF%94%EF%BC%9A"><span class="nav-number">7.1.2.3.</span> <span class="nav-text">prefetch 和 script 加载 对比：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E5%8C%96"><span class="nav-number">7.1.2.4.</span> <span class="nav-text">优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%88%A9%E7%94%A8-setTimeout-%E6%88%96-requestAnimationFrame"><span class="nav-number">7.1.2.5.</span> <span class="nav-text">3. 利用 setTimeout 或 requestAnimationFrame</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E4%BD%BF%E7%94%A8-Web-Workers"><span class="nav-number">7.1.2.6.</span> <span class="nav-text">4. 使用 Web Workers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E6%87%92%E5%8A%A0%E8%BD%BD"><span class="nav-number">7.1.2.7.</span> <span class="nav-text">5. 懒加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E4%BD%BF%E7%94%A8%E5%88%86%E7%89%87%E5%8A%A0%E8%BD%BD"><span class="nav-number">7.1.2.8.</span> <span class="nav-text">6. 使用分片加载</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%BF%9B%E8%A1%8C%E4%BA%86%E5%A4%8D%E6%9D%82%E5%BA%A6%E9%AB%98%E7%9A%84%E8%BF%90%E7%AE%97%EF%BC%88eg-%E5%BE%AA%E7%8E%AF%EF%BC%89"><span class="nav-number">7.2.</span> <span class="nav-text">2. 进行了复杂度高的运算（eg:循环）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-vue-%E5%92%8C-react-%E9%A1%B9%E7%9B%AE%E4%B8%AD%EF%BC%8C%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84%E6%B8%B2%E6%9F%93%E5%A4%AA%E5%A4%9A"><span class="nav-number">7.3.</span> <span class="nav-text">3. vue 和 react 项目中，不必要的渲染太多</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vue"><span class="nav-number">7.3.1.</span> <span class="nav-text">vue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#react"><span class="nav-number">7.3.2.</span> <span class="nav-text">react</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98"><span class="nav-number">8.</span> <span class="nav-text">数据缓存</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -125,7 +125,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-count">62</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -167,7 +167,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/03/19/performance-optimization/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/05/19/performance-optimization/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -196,7 +196,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2024-03-19 15:49:59" itemprop="dateCreated datePublished" datetime="2024-03-19T15:49:59+08:00">2024-03-19</time>
+      <time title="Created: 2024-05-19 15:49:59" itemprop="dateCreated datePublished" datetime="2024-05-19T15:49:59+08:00">2024-05-19</time>
     </span>
 
   
@@ -208,14 +208,53 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="指标"><a href="#指标" class="headerlink" title="指标"></a>指标</h1><ol>
-<li>首屏速度，白屏时间等</li>
-<li>操作速度以及渲染速度</li>
+    <div class="post-body" itemprop="articleBody"><h1 id="什么是-web-性能？"><a href="#什么是-web-性能？" class="headerlink" title="什么是 web 性能？"></a>什么是 web 性能？</h1><p>MDN 上的 web 性能定义： <strong>Web 性能是网站或应用程序的客观度量和可感知的用户体验</strong>。</p>
+<ul>
+<li><strong>减少整体加载时间</strong>： 减少文件体积、减少 HTTP 请求、使用预加载</li>
+<li><strong>使得网站尽快可用</strong>：仅加载首屏内容，其他内容根据需要进行懒加载</li>
+<li><strong>平滑和交互性</strong>：使用 CSS 替代 JS 动画、减少 UI 重绘</li>
+<li><strong>感知表现</strong>：你的页面可能不难做到更快，但你可以让用户感觉更快。耗时操作要给用户反馈，比如加载动画、进度条、骨架屏等提示信息</li>
+<li><strong>性能测定</strong>：性能指标、性能测试、性能监控持续优化</li>
+</ul>
+<h1 id="如何进行-Web-性能优化？"><a href="#如何进行-Web-性能优化？" class="headerlink" title="如何进行 Web 性能优化？"></a>如何进行 Web 性能优化？</h1><ol>
+<li>首先需要了解性能指标 - 多快才算快？</li>
+<li>使用专业的工具可量化的评估出网站或应用的性能表现</li>
+<li>然后立足于网站页面响应的生命周期，分析出造成较差性能表现的原因</li>
+<li>最后进行技术改造、可行性分析等具体的优化实践</li>
+<li>迭代优化</li>
 </ol>
-<p>白屏时间： 资源记载时间， 首屏 js 执行<br>渲染页面：首屏数据请求，Dom 渲染</p>
 <span id="more"></span>
 
-<h1 id="如何缩短首屏速度？"><a href="#如何缩短首屏速度？" class="headerlink" title="如何缩短首屏速度？"></a>如何缩短首屏速度？</h1><h2 id="效果比较好的操作"><a href="#效果比较好的操作" class="headerlink" title="效果比较好的操作"></a>效果比较好的操作</h2><ol>
+<h1 id="指标"><a href="#指标" class="headerlink" title="指标"></a>指标</h1><h2 id="RAIL-性能模型"><a href="#RAIL-性能模型" class="headerlink" title="RAIL 性能模型"></a>RAIL 性能模型</h2><p>R（Response） - 尽快响应用户，应该在 100ms 内快速响应用户输入<br>A（Animation）- 在展示动画的时候，每一帧应该以 16ms 进行响应，避免卡顿<br>I（Idle）- 当使用 JS 主线程的时候，应该把任务划分到执行时间小于 50ms 的片段中去，这样可以释放线程以进行用户交互<br>L（Load）- 应该在小于 1S 的时间内加载完成你的网站，并进行用户交互</p>
+<h2 id="基于用户体验的性能指标"><a href="#基于用户体验的性能指标" class="headerlink" title="基于用户体验的性能指标"></a>基于用户体验的性能指标</h2><h3 id="FCP-（First-Contentful-Paint）-首次内容绘制"><a href="#FCP-（First-Contentful-Paint）-首次内容绘制" class="headerlink" title="FCP （First Contentful Paint） 首次内容绘制"></a>FCP （First Contentful Paint） 首次内容绘制</h3><p>浏览器<strong>首次绘制来自 DOM 的内容的时间</strong>，内容必须是文本、图片（包含背景图）、非白色的 canvas 或 svg，也包括带有正在加载中的 web 字体的文本。</p>
+<blockquote>
+<p>白屏时间在 0-2 秒，属于快速，2-4 秒是中等，超过 4 属于慢。</p>
+</blockquote>
+<h3 id="LCP-（-Largest-Contentful-Paint）-最大内容绘制"><a href="#LCP-（-Largest-Contentful-Paint）-最大内容绘制" class="headerlink" title="LCP （ Largest Contentful Paint） 最大内容绘制"></a>LCP （ Largest Contentful Paint） 最大内容绘制</h3><p>可视区域中最大的内容元素呈现到屏幕上的时间，用以估算页面的主要内容对用户可见时间。</p>
+<blockquote>
+<p>网站应力争使用 2.5 秒或更短的“最大内容绘画”，2.5 - 4 秒是中等，超过 4S 是慢。</p>
+</blockquote>
+<h3 id="FID（-First-Input-Delay）-首次输入延迟"><a href="#FID（-First-Input-Delay）-首次输入延迟" class="headerlink" title="FID（ First Input Delay） 首次输入延迟"></a>FID（ First Input Delay） 首次输入延迟</h3><p>从用户第一次与页面交互（例如单击链接、点击按钮等）到浏览器实际能够响应应该交互的时间<br>输入延迟是因为浏览器的主线程正忙于做其他事情，所以不能响应用户。发生这种情况的一个常见原因是浏览器正忙于解析和执行应用程序加载的大量计算的 JS。</p>
+<blockquote>
+<p>100ms 内是快，100-300ms 是中等，大于 300ms 是慢</p>
+</blockquote>
+<h3 id="TTI-Time-to-Interactive"><a href="#TTI-Time-to-Interactive" class="headerlink" title="TTI (Time to Interactive)"></a>TTI (Time to Interactive)</h3><p>网页<strong>第一次完成达到可交互状态的时间点</strong>，浏览器已经可以持续性的响应用户的输入。完全达到可交互状态的时间点是在最后一个长任务完成的时间，并且在随后的 5 秒内网络和主线程是空闲的。</p>
+<blockquote>
+<p>超过 50ms 的任务是长任务，0-3.8 是快，3.9-7.3S 是中等，7.3S 以上是慢。</p>
+</blockquote>
+<h3 id="TBT-Total-Block-Time-总阻塞时间"><a href="#TBT-Total-Block-Time-总阻塞时间" class="headerlink" title="TBT (Total Block Time) 总阻塞时间"></a>TBT (Total Block Time) 总阻塞时间</h3><p>度量 FCP 和 TTI 之间的总时间。</p>
+<blockquote>
+<p>0-300：快； 300-600：中等； &gt;600：慢</p>
+</blockquote>
+<h3 id="CLS-（Cumulative-Layout-Shift）-累计布局偏移"><a href="#CLS-（Cumulative-Layout-Shift）-累计布局偏移" class="headerlink" title="CLS （Cumulative Layout Shift） 累计布局偏移"></a>CLS （Cumulative Layout Shift） 累计布局偏移</h3><p>CLS 会测量在页面整个生命周期中发生的每个意外的布局移位的所有单独布局移位分数的总和，它是一种保证页面的视觉稳定性从而提升用户体验的指标方案。</p>
+<blockquote>
+<p>0-0.1：快； 0.1-0.25： 中等； &gt;0.25：慢</p>
+</blockquote>
+<h2 id="Web-Vitals"><a href="#Web-Vitals" class="headerlink" title="Web Vitals"></a>Web Vitals</h2><p>Web Vitals 是一组统一的质量衡量指标 - Core Web Vitals,其中包括加载体验、交互性和页面内容的视觉稳定性。这是 Google 提出的，可以节省学习成本和时间，不需要学习其他诸多的指标。</p>
+<p>将其他很多性能指标简化成这三个指标： <strong>FCP、LID、CLS</strong></p>
+<h1 id="web-性能测试"><a href="#web-性能测试" class="headerlink" title="web 性能测试"></a>web 性能测试</h1><h2 id="灯塔-Lighthouse"><a href="#灯塔-Lighthouse" class="headerlink" title="灯塔 Lighthouse"></a>灯塔 Lighthouse</h2><p>可以打开浏览器开发者工具调试，会给出分数，分析报告，和推荐解决方案。这个分数不一定准确，有时候受网络和硬件设备影响，并且要设置清除缓存。</p>
+<h2 id="WebPageTest"><a href="#WebPageTest" class="headerlink" title="WebPageTest"></a>WebPageTest</h2><p>是一个在线网站测试工具，<a target="_blank" rel="noopener" href="https://www.webpagetest.org/%E3%80%82%E8%BE%93%E5%85%A5%E7%BD%91%E7%AB%99%E7%BD%91%E5%9D%80%EF%BC%8C%E5%9C%A8%E4%BA%91%E7%AB%AF%E6%B5%8B%E8%AF%95%EF%BC%8C%E6%94%AF%E6%8C%81%E5%A4%9A%E5%9C%B0%E5%8C%BA%E3%80%81%E6%B5%8F%E8%A7%88%E5%99%A8%E3%80%81%E8%AE%BE%E5%A4%87%E6%B5%8B%E8%AF%95%EF%BC%8C%E5%8F%AF%E4%BB%A5%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%BB%9C%E9%80%9F%E5%BA%A6%EF%BC%8C%E5%88%86%E8%BE%A8%E7%8E%87%E3%80%81%E6%B5%8B%E8%AF%95%E6%AC%A1%E6%95%B0%E7%AD%89%E7%AD%89%EF%BC%8C%E4%BC%9A%E7%BB%99%E5%87%BA%E4%B8%80%E4%B8%AA%E5%BE%88%E8%AF%A6%E7%BB%86%E7%9A%84%E6%8A%A5%E5%91%8A%E3%80%82">https://www.webpagetest.org/。输入网站网址，在云端测试，支持多地区、浏览器、设备测试，可以设置网络速度，分辨率、测试次数等等，会给出一个很详细的报告。</a></p>
+<h2 id="Chrome-DevTool"><a href="#Chrome-DevTool" class="headerlink" title="Chrome DevTool"></a>Chrome DevTool</h2><h1 id="前端页面的生命周期"><a href="#前端页面的生命周期" class="headerlink" title="前端页面的生命周期"></a>前端页面的生命周期</h1><h1 id="如何缩短首屏速度？"><a href="#如何缩短首屏速度？" class="headerlink" title="如何缩短首屏速度？"></a>如何缩短首屏速度？</h1><h2 id="效果比较好的操作"><a href="#效果比较好的操作" class="headerlink" title="效果比较好的操作"></a>效果比较好的操作</h2><ol>
 <li>减少首屏资源体积</li>
 </ol>
 <ul>
@@ -297,13 +336,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/03/18/vmin/" rel="prev" title="vmin和vw">
-                  <i class="fa fa-angle-left"></i> vmin和vw
+                <a href="/2024/03/31/snake/" rel="prev" title="JS实现贪吃蛇游戏">
+                  <i class="fa fa-angle-left"></i> JS实现贪吃蛇游戏
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/03/19/pnpm/" rel="next" title="pnpm">
-                  pnpm <i class="fa fa-angle-right"></i>
+                <a href="/2024/05/27/message-push/" rel="next" title="实时消息推送的方案">
+                  实时消息推送的方案 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>

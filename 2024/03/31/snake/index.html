@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="设计  规则 贪吃蛇初始为 1 点，可通过上、下、左、右键控制方向移动 每吃一个食物分数+1，每吃 10 个食物，等级+1，每升一级，速度 + 20ms 贪吃虫不能撞墙和自己，否则游戏失败 每吃掉一个食物，贪吃蛇长度+1，下一个食物会在随机位置出现。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS实现贪吃蛇游戏">
+<meta property="og:url" content="http://example.com/2024/03/31/snake/index.html">
+<meta property="og:site_name" content="wm&#39;s blog">
+<meta property="og:description" content="设计  规则 贪吃蛇初始为 1 点，可通过上、下、左、右键控制方向移动 每吃一个食物分数+1，每吃 10 个食物，等级+1，每升一级，速度 + 20ms 贪吃虫不能撞墙和自己，否则游戏失败 每吃掉一个食物，贪吃蛇长度+1，下一个食物会在随机位置出现。">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/2024/03/31/snake/snake.png">
+<meta property="article:published_time" content="2024-03-31T06:49:58.000Z">
+<meta property="article:modified_time" content="2024-05-31T07:05:05.189Z">
+<meta property="article:author" content="wm">
+<meta property="article:tag" content="JS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/03/31/snake/snake.png">
+
+
+<link rel="canonical" href="http://example.com/2024/03/31/snake/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2024/03/31/snake/","path":"2024/03/31/snake/","title":"JS实现贪吃蛇游戏"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>JS实现贪吃蛇游戏 | wm's blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">wm's blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.</span> <span class="nav-text">设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%84%E5%88%99"><span class="nav-number">2.</span> <span class="nav-text">规则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML"><span class="nav-number">3.1.</span> <span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS"><span class="nav-number">3.2.</span> <span class="nav-text">JS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS"><span class="nav-number">3.3.</span> <span class="nav-text">CSS</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">wm</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="/1494601749@qq.com" title="E-Mail → 1494601749@qq.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/03/31/snake/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="wm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="JS实现贪吃蛇游戏 | wm's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS实现贪吃蛇游戏
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-03-31 14:49:58" itemprop="dateCreated datePublished" datetime="2024-03-31T14:49:58+08:00">2024-03-31</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h1><img src="/2024/03/31/snake/snake.png" class title="snake">
+
+<h1 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h1><ol>
+<li>贪吃蛇初始为 1 点，可通过上、下、左、右键控制方向移动</li>
+<li>每吃一个食物分数+1，每吃 10 个食物，等级+1，每升一级，速度 + 20ms</li>
+<li>贪吃虫不能撞墙和自己，否则游戏失败</li>
+<li>每吃掉一个食物，贪吃蛇长度+1，下一个食物会在随机位置出现。</li>
+</ol>
+<span id="more"></span>
+
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;main&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;stage&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;snake&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;food&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;info&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;&quot;</span>&gt;</span>SCORE: <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;score&quot;</span>&gt;</span>0<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;&quot;</span>&gt;</span>LEVEL: <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;level&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> snake = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;snake&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> snakes = snake.<span class="title function_">getElementsByTagName</span>(<span class="string">&quot;div&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> food = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;#food&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> scoreElement = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;score&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> levelElement = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;level&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> dir,</span><br><span class="line">  keyActive = <span class="literal">true</span>,</span><br><span class="line">  gaveOver = <span class="literal">false</span>,</span><br><span class="line">  level = <span class="number">1</span>,</span><br><span class="line">  score = <span class="number">0</span>,</span><br><span class="line">  speed = <span class="number">300</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> keyArr = [<span class="string">&quot;ArrowUp&quot;</span>, <span class="string">&quot;ArrowDown&quot;</span>, <span class="string">&quot;ArrowRight&quot;</span>, <span class="string">&quot;ArrowLeft&quot;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> dirObj = &#123;</span><br><span class="line">  <span class="title class_">ArrowUp</span>: <span class="string">&quot;ArrowDown&quot;</span>,</span><br><span class="line">  <span class="title class_">ArrowDown</span>: <span class="string">&quot;ArrowUp&quot;</span>,</span><br><span class="line">  <span class="title class_">ArrowRight</span>: <span class="string">&quot;ArrowLeft&quot;</span>,</span><br><span class="line">  <span class="title class_">ArrowLeft</span>: <span class="string">&quot;ArrowRight&quot;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 监听键盘事件， 保存方向</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&quot;keydown&quot;</span>, <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (</span><br><span class="line">    keyActive &amp;&amp;</span><br><span class="line">    <span class="comment">//只监听上下左右方向</span></span><br><span class="line">    keyArr.<span class="title function_">includes</span>(e.<span class="property">key</span>) &amp;&amp;</span><br><span class="line">    <span class="comment">//不能反方向，除非蛇的长度等于1</span></span><br><span class="line">    (snakes.<span class="property">length</span> &lt; <span class="number">2</span> || dirObj[dir] !== e.<span class="property">key</span>)</span><br><span class="line">  ) &#123;</span><br><span class="line">    dir = e.<span class="property">key</span>;</span><br><span class="line">    keyActive = <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">changeFood</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 获取0-29之间的随机数，然后*10，即0-290</span></span><br><span class="line">  <span class="keyword">const</span> x = <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>() * <span class="number">30</span>) * <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">const</span> y = <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>() * <span class="number">30</span>) * <span class="number">10</span>;</span><br><span class="line">  food.<span class="property">style</span>.<span class="property">top</span> = y + <span class="string">&quot;px&quot;</span>;</span><br><span class="line">  food.<span class="property">style</span>.<span class="property">left</span> = x + <span class="string">&quot;px&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="keyword">function</span> <span class="title function_">move</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> head = snakes[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">let</span> y = head.<span class="property">offsetTop</span>,</span><br><span class="line">    x = head.<span class="property">offsetLeft</span>;</span><br><span class="line">  <span class="keyword">switch</span> (dir) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;ArrowUp&quot;</span>:</span><br><span class="line">      y -= <span class="number">10</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;ArrowDown&quot;</span>:</span><br><span class="line">      y += <span class="number">10</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;ArrowRight&quot;</span>:</span><br><span class="line">      x += <span class="number">10</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;ArrowLeft&quot;</span>:</span><br><span class="line">      x -= <span class="number">10</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//如果食物坐标和头部坐标相吻合，说明蛇吃到了食物，然后改变食物的坐标到新的随机坐标，并把蛇长度+1，分数+1，如果此时满10个了，等级再+1，速度提升20ms</span></span><br><span class="line">  <span class="keyword">if</span> (</span><br><span class="line">    food.<span class="property">offsetTop</span> === head.<span class="property">offsetTop</span> &amp;&amp;</span><br><span class="line">    food.<span class="property">offsetLeft</span> === head.<span class="property">offsetLeft</span></span><br><span class="line">  ) &#123;</span><br><span class="line">    <span class="title function_">changeFood</span>();</span><br><span class="line">    snake.<span class="title function_">insertAdjacentHTML</span>(<span class="string">&quot;beforeend&quot;</span>, <span class="string">&quot;&lt;div/&gt;&quot;</span>);</span><br><span class="line">    score++;</span><br><span class="line">    scoreElement.<span class="property">textContent</span> = score;</span><br><span class="line">    <span class="keyword">if</span> (score % <span class="number">10</span> === <span class="number">0</span> &amp;&amp; level &lt; <span class="number">14</span>) &#123;</span><br><span class="line">      level++;</span><br><span class="line">      levelElement.<span class="property">textContent</span> = level;</span><br><span class="line">      speed = speed - level * <span class="number">20</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//撞墙或撞自己就死了</span></span><br><span class="line">  <span class="keyword">if</span> (x &lt; <span class="number">0</span> || x &gt; <span class="number">290</span> || y &lt; <span class="number">0</span> || y &gt; <span class="number">290</span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">`撞墙了，游戏结束！\n您的分数为<span class="subst">$&#123;score&#125;</span>分`</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (snakes.<span class="property">length</span> &gt; <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; snakes.<span class="property">length</span> - <span class="number">1</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (snakes[i].<span class="property">offsetTop</span> === y &amp;&amp; snakes[i].<span class="property">offsetLeft</span> === x) &#123;</span><br><span class="line">        <span class="title function_">alert</span>(<span class="string">`撞自己了，游戏结束！\n您的分数为<span class="subst">$&#123;score&#125;</span>分`</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//蛇的移动：蛇的尾部挪到蛇的头部，就可以实现代价最小的移动，</span></span><br><span class="line">  <span class="keyword">const</span> tail = snakes[snakes.<span class="property">length</span> - <span class="number">1</span>];</span><br><span class="line">  tail.<span class="property">style</span>.<span class="property">left</span> = x + <span class="string">&quot;px&quot;</span>;</span><br><span class="line">  tail.<span class="property">style</span>.<span class="property">top</span> = y + <span class="string">&quot;px&quot;</span>;</span><br><span class="line">  snake.<span class="title function_">insertAdjacentElement</span>(<span class="string">&quot;afterbegin&quot;</span>, tail);</span><br><span class="line">  keyActive = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">setTimeout</span>(move, speed);</span><br><span class="line">&#125;, speed);</span><br></pre></td></tr></table></figure>
+
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">* &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#main</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">360px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">420px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">10px</span> solid <span class="number">#000</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#b7d4a8</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">50px</span> auto;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#stage</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">304px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">304px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">2px</span> solid <span class="number">#000</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">20px</span> auto;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#snake</span> &gt; <span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#000</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#b7d4a8</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#food</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-wrap</span>: wrap;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">120px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#food</span> &gt; <span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#000</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">45deg</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#info</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">304px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">justify-content</span>: space-between;</span><br><span class="line">  <span class="attribute">font</span>: bold <span class="number">20px</span> courier;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JS/" rel="tag"># JS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/03/19/pnpm/" rel="prev" title="pnpm">
+                  <i class="fa fa-angle-left"></i> pnpm
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/05/19/performance-optimization/" rel="next" title="前端性能优化">
+                  前端性能优化 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2019 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">wm</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

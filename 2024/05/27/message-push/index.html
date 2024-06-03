@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="轮询（不适于频繁请求的场景）   长轮询 前端发起请求，获取最新的消息，后端不会响应，除非有最新消息，再响应前端会出现线程堆积，造成服务器压力过大 短轮询 隔一段时间就发送请求，以便获取最新的消息，造成资源浪费，   SSE(Server-Sent Events)SSE 是一种单向的、持久的连接前端发请求，建立一个长链接，服务端会持续向客户端发送响应，这是 HTTP 自带的功能。只能实现服务器到">
+    <meta name="description" content="轮询（不适于频繁请求的场景）   长轮询 前端发起请求，获取最新的消息，后端不会响应，除非有最新消息，再响应前端会出现线程堆积，造成服务器压力过大 短轮询 隔一段时间就发送请求，以便获取最新的消息，造成资源浪费，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="实时消息推送的方案">
 <meta property="og:url" content="http://example.com/2024/05/27/message-push/index.html">
 <meta property="og:site_name" content="wm&#39;s blog">
-<meta property="og:description" content="轮询（不适于频繁请求的场景）   长轮询 前端发起请求，获取最新的消息，后端不会响应，除非有最新消息，再响应前端会出现线程堆积，造成服务器压力过大 短轮询 隔一段时间就发送请求，以便获取最新的消息，造成资源浪费，   SSE(Server-Sent Events)SSE 是一种单向的、持久的连接前端发请求，建立一个长链接，服务端会持续向客户端发送响应，这是 HTTP 自带的功能。只能实现服务器到">
+<meta property="og:description" content="轮询（不适于频繁请求的场景）   长轮询 前端发起请求，获取最新的消息，后端不会响应，除非有最新消息，再响应前端会出现线程堆积，造成服务器压力过大 短轮询 隔一段时间就发送请求，以便获取最新的消息，造成资源浪费，">
 <meta property="og:locale">
 <meta property="article:published_time" content="2024-05-27T06:25:17.000Z">
-<meta property="article:modified_time" content="2024-05-27T06:39:04.811Z">
+<meta property="article:modified_time" content="2024-05-27T06:40:01.502Z">
 <meta property="article:author" content="wm">
 <meta property="article:tag" content="web">
 <meta name="twitter:card" content="summary">
@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-count">62</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -196,7 +196,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2024-05-27 14:25:17 / Modified: 14:39:04" itemprop="dateCreated datePublished" datetime="2024-05-27T14:25:17+08:00">2024-05-27</time>
+      <time title="Created: 2024-05-27 14:25:17 / Modified: 14:40:01" itemprop="dateCreated datePublished" datetime="2024-05-27T14:25:17+08:00">2024-05-27</time>
     </span>
 
   
@@ -215,6 +215,8 @@
 <li>长轮询 前端发起请求，获取最新的消息，后端不会响应，除非有最新消息，再响应前端<br>会出现线程堆积，造成服务器压力过大</li>
 <li>短轮询 隔一段时间就发送请求，以便获取最新的消息，造成资源浪费，</li>
 </ul>
+<span id="more"></span>
+
 <ol start="2">
 <li><p>SSE(Server-Sent Events)<br>SSE 是一种单向的、持久的连接前端发请求，建立一个长链接，服务端会持续向客户端发送响应，这是 HTTP 自带的功能。只能实现服务器到客户端的单向推送。（在线聊天、实时监控、新闻天气推送）</p>
 </li>
@@ -243,8 +245,8 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/03/19/pnpm/" rel="prev" title="pnpm">
-                  <i class="fa fa-angle-left"></i> pnpm
+                <a href="/2024/05/19/performance-optimization/" rel="prev" title="前端性能优化">
+                  <i class="fa fa-angle-left"></i> 前端性能优化
                 </a>
             </div>
             <div class="post-nav-item">
